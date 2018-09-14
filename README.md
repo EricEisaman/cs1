@@ -149,17 +149,19 @@ ____
 
 ## Related Videos
 
-[color and font themes](https://youtu.be/5SWlbeJzCDM)
+<a href="https://youtu.be/04UIBSSw5AE?list=PLd_CKe0-tWOf-YZy6_nApH8Xg2XeHUHZm" no-opener no-referer>🏁 Getting Started Playlist</a>
 
-[overview 1](https://youtu.be/eUVZ-o8N72U)
+<a href="https://youtu.be/5SWlbeJzCDM" no-opener no-referer>🎨 Color and Font Themes</a>
 
-[overview 2](https://youtu.be/11lV0jJpN7w)
+<a href="https://youtu.be/eUVZ-o8N72U" no-opener no-referer>ℹ️ Overview 1</a>
 
-[overview 3](https://youtu.be/SIOQWoPyXGU)
+<a href="https://youtu.be/11lV0jJpN7w" no-opener no-referer>ℹ️ Overview 2</a>
 
-[overview 4](https://youtu.be/PaJe14bQMCY)
+<a href="https://youtu.be/SIOQWoPyXGU" no-opener no-referer>ℹ️ Overview 3</a>
 
+<a href="https://youtu.be/PaJe14bQMCY" no-opener no-referer>ℹ️ Overview 4</a>
 
+____
 
 ## Special Thanks
 
