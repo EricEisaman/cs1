@@ -14,6 +14,7 @@ window.dialog = {
         window.dialog.toggleUI(e);
       }else if(e.keyCode == 13 && window.dialog.isShowing 
                && document.getElementById('msg').value.length > 0){
+        if(window.iOS)window.dialog.ui.style.display = "none";
         window.dialog.submit();
         window.dialog.ui.close();
         window.dialog.isShowing = false;
@@ -34,6 +35,7 @@ window.dialog = {
       btn.id = index;
       btn.onclick = ()=>{
        window.setPlayerProperty('faceIndex',index);
+       if(window.iOS)window.dialog.ui.style.display = "none";
        window.dialog.submit();
        window.dialog.ui.close();
        window.dialog.isShowing = false;
@@ -115,8 +117,9 @@ function ColorLuminance(hex, lum) {
 	return rgb;
 }
 
+window.iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; 
 var mylatesttap;
-if(AFRAME.utils.isMobile()) {
+if(AFRAME.utils.isMobile() && !window.iOS) {
     document.body.addEventListener('click',e=>{
     var now = new Date().getTime();
      var timesince = now - mylatesttap;
@@ -131,7 +134,7 @@ if(AFRAME.utils.isMobile()) {
 
 }
 
-if(AFRAME.utils.device.isMobile()){
+if(window.iOS){
   let dialogToggle = document.createElement('div');
   dialogToggle.style.zIndex = 10;
   dialogToggle.style.position = 'fixed';
@@ -143,18 +146,12 @@ if(AFRAME.utils.device.isMobile()){
   dialogToggle.addEventListener('click',function(e){
     e.preventDefault();
     if(window.dialog.isShowing){
-     window.dialog.ui.close();
+     window.dialog.ui.style.display = "none";
      window.dialog.isShowing = false;
     }else{
-     window.dialog.ui.show();
+     window.dialog.ui.style.display = "block";
+     document.getElementById('msg').focus();
      window.dialog.isShowing = true;
     }
   }); 
 }
-  
-
-
-  
-  
-  
-
