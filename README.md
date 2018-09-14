@@ -81,7 +81,7 @@ Toggle music mute with **0** key. Play next song with **P** key.
 
 ![UI](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fui.png)
 
-Toggle the **Message and Avatar UI** with the **EQUALS** key on desktop, **double tap right screen** on mobile. **Tab** your way through the UI elements. Once you have finished typing your message or selecting a new avatar, hit **ENTER** to submit.
+Toggle the **Message and Avatar UI** with the **EQUALS** key on desktop, **double tap right screen** on Android mobile, **single tap top right screen** on iOS. **Tab** your way through the UI elements. Once you have finished typing your message or selecting a new avatar, hit **ENTER** to submit.
 
 Grab and move objects with **click & drag** or **click & move keys** on desktop, **hover & move or rotate** on mobile.
 
@@ -138,7 +138,9 @@ ____
 - Joystick ( forward, backward, yaw )
 - Pitch control ( touch drag right side of screen )
 - Thruster Button ( up and forward )
-- Message, Background Music, Avatar UI ( double tap right screen )
+- Message, BGM, Avatar UI 
+  - **Android** : double tap right screen  
+  - **iOS** : single tap top right screen
 - Putting the cursor over a movable object for 2 seconds triggers 5 seconds of grab and move ability.
 
 ![mobile-0](https://cdn.glitch.com/dd72d0a0-2747-40ff-8463-f7755366f80f%2Fmobile_0.jpg?1535470988490)
