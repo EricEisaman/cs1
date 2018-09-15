@@ -65,46 +65,6 @@ function directionLocalToWorld(object, localDirection)
 	return localDirection.transformDirection(object.matrixWorld);
 }
 
-/*function pointLocalToWorld(object, localPoint)
-{
-	return object.localToWorld(localPoint);
-}
-
-function pointWorldToLocal(object, worldPoint)
-{
-	return object.worldToLocal(worldPoint);
-}
-
-function directionLocalToWorld(object, localDirection)
-{
-	//localDirection -> object.localToWorld -> result - object.worldPosition -> normalize
-}
-
-function directionWorldToLocal(object, worldDirection)
-{
-	//worldDirection + object.worldPosition -> pointWorldToLocal -> normalize
-}
-
-function rotationLocalToWorld(object, localQuaternion)
-{
-
-}
-
-function rotationWorldToLocal(object, worldQuaternion)
-{
-
-}
-
-function scaleLocalToWorld(object, localScale)
-{
-
-}
-
-function scaleWorldToLocal(object, worldScale)
-{
-
-}*/
-
 AFRAME.registerComponent("grabbable", {
 	schema: {
 		origin: { type: "selector" }
@@ -122,7 +82,13 @@ AFRAME.registerComponent("grabbable", {
 		self.el.addEventListener("mousedown", grab);
     if(AFRAME.utils.device.isMobile())self.el.addEventListener("click", function(e){
        grab(e);
-       setTimeout(e=>{release(e)},5000);
+       setTimeout(e=>{
+         document.querySelector('#cam-cursor').setAttribute('material','color: red');
+         release(e);
+         setTimeout(e=>{
+           document.querySelector('#cam-cursor').setAttribute('material','color: white');
+         },500);
+       },5000);
     });
     
     function grab(e){
