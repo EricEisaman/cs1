@@ -7,6 +7,10 @@
 ____
 ____
 
+![cs1 cdl goals](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fcs1_cdl_goals.png?1537027544834)
+____
+____
+
  ![geometry game](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fgeo-game.gif?1534009918502) 
 
 ## Watch the Getting Started Videos <a href="https://youtu.be/04UIBSSw5AE?list=PLd_CKe0-tWOf-YZy6_nApH8Xg2XeHUHZm">![YouTube Playlist](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fyt64.png?1537016897215)</a>
