@@ -1,12 +1,12 @@
 // <a-animation
-//             attribute="rotation"
-//             from="0 0 0"
-//             to="0 360 0"
-//             direction="forward"
-//             dur="4000"
-//             repeat="indefinite"
-//             easing="linear">
-//         </a-animation>
+//    attribute="rotation"
+//    from="0 0 0"
+//    to="0 360 0"
+//    direction="forward"
+//    dur="4000"
+//    repeat="indefinite"
+//    easing="linear">
+// </a-animation>
 
 
 window.bodies = {};
