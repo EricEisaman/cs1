@@ -1,4 +1,5 @@
- ![geometry game](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fgeo-game.gif?1534009918502) 
+![curiosity driven learning](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fcuriosity_driven_learning_logo.png?1537016449703) 
+
 # CS1
 
 *“For the things we have to learn before we can do them, we learn by doing them.” 
@@ -6,9 +7,11 @@
 ____
 ____
 
-## Remixing Instructions
+ ![geometry game](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fgeo-game.gif?1534009918502) 
 
+## Watch the Getting Started Videos <a href="https://youtu.be/04UIBSSw5AE?list=PLd_CKe0-tWOf-YZy6_nApH8Xg2XeHUHZm">![YouTube Playlist](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fyt64.png?1537016897215)</a>
 
+____
 
 Set the **ADMIN_KEY** in .env. This becomes your admin user password, username **admin**, password your **ADMIN_KEY**. 
 
