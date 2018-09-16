@@ -152,9 +152,9 @@ ____
   - **iOS** : single tap top right screen
 - Putting the cursor over a movable object for 2 seconds triggers 5 seconds of grab and move ability.
 
-![mobile-0](https://cdn.glitch.com/dd72d0a0-2747-40ff-8463-f7755366f80f%2Fmobile_0.jpg?1535470988490)
-![mobile-1](https://cdn.glitch.com/dd72d0a0-2747-40ff-8463-f7755366f80f%2Fmobile_1.jpg?1535470988578)
-![mobile-2](https://cdn.glitch.com/dd72d0a0-2747-40ff-8463-f7755366f80f%2Fmobile_2.jpg?1535470988342)
+![mobile-0](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fcs1_mobile_0.jpg?1537095704997)
+![mobile-1](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fcs1_mobile_1.jpg?1537095705133)
+![mobile-2](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fcs1_mobile_2.jpg?1537095705306)
 
 ____
 
