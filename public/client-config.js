@@ -14,9 +14,13 @@ window.config = {
  },
  avatar:{
   models:["https://cdn.glitch.com/f54ba682-ab47-46e4-bf61-5e68e6053f18%2Fthing-idle.glb?1532828880828",
-          "https://cdn.glitch.com/f54ba682-ab47-46e4-bf61-5e68e6053f18%2Fowl.glb?1532839615976"],
+          "https://cdn.glitch.com/f54ba682-ab47-46e4-bf61-5e68e6053f18%2Fowl.glb?1532839615976",
+          "https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fgreeny_animated.glb?1537474053675",
+          "https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fred_thing.glb?1537622937733"],
   buttonFaces: ["https://cdn.glitch.com/f54ba682-ab47-46e4-bf61-5e68e6053f18%2Fweebs.png?1532833980859",
-          "https://cdn.glitch.com/f54ba682-ab47-46e4-bf61-5e68e6053f18%2Fowl.png?1532839076824"],
+          "https://cdn.glitch.com/f54ba682-ab47-46e4-bf61-5e68e6053f18%2Fowl.png?1532839076824",
+          "https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fgreeny_btn.png?1537463045668",
+          "https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fred_thing.png?1537622885960"],
   buttonColor: '#fff',
   speed: 140
  },
