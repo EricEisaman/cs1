@@ -69,17 +69,26 @@
       </a-entity>
       
       
-      <!--House (edit physics with CTRL+OPTION+I)
+      <!--House (Open Aframe Inspector in live page with CTRL+OPTION+I)
       <a-entity id="house"
                 scale="1 1 1"
                 rotation="0 0 0"
                 position="-40 0 0">
         
         <a-entity id="house-model"
-                  gltf-model="url()">
+                  gltf-model="url(https://cdn.glitch.com/264357be-a97e-43ca-8194-b6020c6fd45e%2Fgray_house_obj.glb?1538062517231)">
         </a-entity>
         
         <a-entity id="house-physics">
+          
+          <a-box id="wall-1" 
+                 class="toggle-opacity" 
+                 position="40 9 -8.8" 
+                 geometry="width:10;height:20;depth:1" 
+                 opacity="1" 
+                 static-body
+                 material="">
+          </a-box>
           
           <a-entity id="house-stairs">
           </a-entity>
@@ -88,8 +97,6 @@
         
       </a-entity>
       -->
-      
-      
       
       
       
