@@ -19,7 +19,7 @@ ____
 
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/remix/cs1)
 
-Set the **ADMIN_KEY** in .env. This becomes your admin user password, username **admin**, password your **ADMIN_KEY**. 
+Set the value of your **ADMIN_KEY** in .env. Your administrator account has username : **admin** and password : **the value of your ADMIN_KEY**. 
 
 In the **client-config.js** set the values for:
   - game name
