@@ -16,9 +16,10 @@ window.setCustomPhysics = ()=>{
   document.querySelector('[cursor]').setAttribute('raycaster',`far: ${window.config.physics.maxGrabDistance};`);
   window.config.physics.objects.forEach(o=>{
     let e = document.createElement('a-entity');
+    e.setAttribute('position', o.position);
     switch(o.model){
       case "heart-light":
-        e.setAttribute('geometry','primative:box;');
+        e.setAttribute('geometry','primitive:box;');
         e.setAttribute('shadow','cast: false');
         e.setAttribute('material','opacity:0');
         let m = document.createElement('a-entity');
@@ -44,7 +45,7 @@ window.setCustomPhysics = ()=>{
         e.appendChild(m);
         break;
       case "heart":
-        e.setAttribute('geometry','primative:box;');
+        e.setAttribute('geometry','primitive:box;');
         e.setAttribute('shadow','cast: false');
         e.setAttribute('material','opacity:0');
         let p = document.createElement('a-entity');
@@ -61,11 +62,27 @@ window.setCustomPhysics = ()=>{
         p.appendChild(q);
         e.appendChild(p);
         break;
+      case "custom":
+        e = document.createElement('a-box');
+        e.setAttribute('position', o.position);
+        setTimeout(()=>{e.object3D.position.y += 0.5;},2000);
+        e.className = 'toggle-opacity';
+        e.setAttribute('geometry','width:1;depth:1;height:1');
+        e.setAttribute('scale',o.physics_scale || '1 1 1');
+        e.setAttribute('shadow','cast: false');
+        e.setAttribute('opacity',0);
+        let t = document.createElement('a-entity');
+        setTimeout(()=>{t.object3D.position.y -= 0.5;},2000);
+        t.object3D.position.y -= 0.5;
+        t.id = 'm'+Math.random().toFixed(4).toString().replace('.','');
+        t.setAttribute('gltf-model',`url(${o.url})`);
+        t.setAttribute('scale',o.scale);
+        e.appendChild(t);
+        break;
       default:
         e.setAttribute('geometry', o.geometry);
     }
     e.setAttribute('grabbable','');
-    e.setAttribute('line','start:0 0 0;end:0 0 0;color:green');
     switch(o.material){
       case "shiny-crinkle": 
         e.setAttribute('material', `color:${o.color}; sphericalEnvMap: #sky; metalness: 1; roughness: 0.2; shader: standard; normalMap: #plaster`);
@@ -73,10 +90,18 @@ window.setCustomPhysics = ()=>{
       default:
         e.setAttribute('material', `color:${o.color}`);   
     }
+    if(typeof o.sound != 'undefined'){
+      let s = document.createElement('a-sound');
+      s.setAttribute('src',`src:url(${o.sound.url})`);
+      s.setAttribute('autoplay', o.sound.autoplay || true);
+      s.setAttribute('loop', o.sound.loop || true);
+      s.setAttribute('volume', o.sound.volume || 1);
+      e.appendChild(s);
+    }
     //e.setAttribute(o.type,(o.type == 'dynamic-body')?`mass:${o.mass}`:'' );
     e.setAttribute('static-body','');
+    e.setAttribute('rotation', o.rotation || '0 0 0');
     window.bodies[o.name]= e;
-    e.setAttribute('position', o.position);
     scene.appendChild(e);
   });
 }

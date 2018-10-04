@@ -25,7 +25,7 @@ window.config = {
   speed: 140
  },
  sounds:{
-  playerJoined: 'https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fdoorbell.mp3',
+  playerJoined: 'https://cdn.glitch.com/264357be-a97e-43ca-8194-b6020c6fd45e%2Fdoorbell.mp3',
   playerLeft:  'https://cdn.glitch.com/3294c4a3-a3d8-412f-a31e-1e03d1cd1cbd%2Fplayer-leave.mp3?1532440646173'
  },
  msg:{
@@ -105,6 +105,18 @@ window.config = {
       {name:'Shiny Cube',geometry:"primitive:box;width:4;height:4;depth:4",position:'-28 8 -10',color:'#FFF',material:'shiny-crinkle'},
       {name:'Shiny Sphere',geometry:'primitive: sphere; radius: 2',position:'-20 4 -10',color:'#FFF',material:'shiny-crinkle'},
       {name:'Heart',model:'heart',position:'-28 4 -10',color:'#FFF'},
+      {name:'Boom Box',model:'custom',
+       url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fboom_box.glb?1538650649040',
+       sound:{url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fbeat.mp3?1538665641133'},
+       scale:'0.06 0.06 0.06',position:'60.2 2.038 23.2',rotation:'0 -45 0',color:'#FFF'},
+     {name:'Bull Pug',model:'custom',
+       url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fbullpug.glb?1538661547665',
+       sound:{url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fdog_barking.mp3?1538666719402'},
+       scale:'0.15 0.15 0.15',position:'22 0 28',rotation:'0 135 0',color:'#FFF'},
+     {name:'Bird',model:'custom',
+       url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fbird.glb?1538670682969',
+       sound:{url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fbird.mp3?1538670877349',volume:0.3},
+       scale:'0.12 0.12 0.12',position:'74.2 2.3 18.9',rotation:'0 -110 0',color:'#FFF'},
       {name:'Small Shiny Sphere',geometry:'primitive: sphere; radius: 1',position:'0 8 -10',color:'#FFF',material:'shiny-crinkle'}
       //{name:'Heart2',model:'heart-light',position:'0 18 -10',color:'#FFF'} 
     ]
