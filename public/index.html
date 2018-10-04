@@ -69,25 +69,31 @@
       </a-entity>
       
       
-      <!--House (Open Aframe Inspector in live page with CTRL+OPTION+I)
+      <!--House (edit physics with CTRL+OPTION+I)-->
       <a-entity id="house"
-                scale="1 1 1"
-                rotation="0 0 0"
-                position="-40 0 0">
+                position="51.975 0 31.779" rotation="0 -90 0" scale="0.5 0.5 0.5">
         
         <a-entity id="house-model"
-                  gltf-model="url(https://cdn.glitch.com/264357be-a97e-43ca-8194-b6020c6fd45e%2Fgray_house_obj.glb?1538062517231)">
+                  gltf-model="url(https://cdn.glitch.com/264357be-a97e-43ca-8194-b6020c6fd45e%2Fdesert_house.glb?1538162816813)">
         </a-entity>
         
         <a-entity id="house-physics">
           
-          <a-box id="wall-1" 
-                 class="toggle-opacity" 
-                 position="40 9 -8.8" 
-                 geometry="width:10;height:20;depth:1" 
-                 opacity="1" 
-                 static-body
-                 material="">
+          <a-box id="floor-1" class="toggle-opacity" position="-0.421 -0.696 -6.64" geometry="height:20;width:10" opacity="1" static-body="sphereRadius:NaN" material="" scale="4.001 0.17 26.435">
+          </a-box>
+          <a-box id="floor-2" class="toggle-opacity" position="9.032 -0.505 12.175" geometry="depth:0.56;height:17.74;width:4.47" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" material="">
+          </a-box>
+          <a-box id="sofa-1" class="toggle-opacity" position="-7.477 1.501 2.737" geometry="width:0.93;depth:0.42;height:17.74" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" rotation="0 90 0" material="">
+          </a-box>
+          <a-box id="sofa-2" class="toggle-opacity" position="-16.851 1.501 -6.448" geometry="depth:0.42;height:17.74;width:0.93" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435">
+          </a-box>
+          <a-box id="wall-1" class="toggle-opacity" position="-19.459 14.611 -6.846" geometry="width:0.35;height:20.29" opacity="1" static-body="sphereRadius:NaN" scale="4.001 1.426 26.435">
+          </a-box>
+          <a-box id="wall-2" class="toggle-opacity" position="-9.282 11.724 6.695" geometry="depth:0.81;height:14.919999999999998;width:0.5900000000000001" opacity="1" static-body="sphereRadius:NaN" scale="4.001 2.368 26.435" rotation="0 90 0">
+          </a-box>
+          <a-box id="table-1" class="toggle-opacity" position="-17.308 2.525 2.989" geometry="depth:0.1;height:17.74" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" rotation="0 90 0">
+          </a-box>
+          <a-box id="table-2" class="toggle-opacity" position="-17.308 2.525 -16.53" geometry="depth:0.1;height:17.74" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" rotation="0 90 0">
           </a-box>
           
           <a-entity id="house-stairs">
@@ -96,7 +102,9 @@
         </a-entity>
         
       </a-entity>
-      -->
+      
+      
+      
       
       
       
