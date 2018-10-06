@@ -1,12 +1,7 @@
-window.sounds = {
-  playerJoined : ()=>{
-   let audio = new Audio(window.config.sounds.playerJoined);
-   audio.volume = 1.0;
-   audio.play();
-  },
-  playerLeft : ()=>{
-   let audio = new Audio(window.config.sounds.playerLeft);
-   audio.volume = 1.0;
-   audio.play();
-  } 
-}
+window.sounds = {};
+
+Object.keys(window.config.sounds).forEach(soundName=>{
+  window.sounds[soundName] = new Audio(window.config.sounds[soundName].url);
+  window.sounds[soundName].loop = window.config.sounds[soundName].loop || false;
+  window.sounds[soundName].volume = window.config.sounds[soundName].volume || 1;
+});
