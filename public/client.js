@@ -36,7 +36,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
   window.login.style.display = "none";
    
   window.gameHasBegun = true;
-  window.sounds.playerJoined();
+  window.sounds.playerJoined.play();
   player.play();
   
   let playerData = {};
@@ -88,7 +88,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
     window.addThruster(p);
     window.scene.appendChild(p);
     window.otherPlayers[p.id]=p;
-    window.sounds.playerJoined();
+    window.sounds.playerJoined.play();
   }
   
   window.updateOtherPlayers = o=>{
@@ -108,7 +108,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
   window.removePlayer = id=>{
  window.otherPlayers[id].parentNode.removeChild(window.otherPlayers[id]);
     delete window.otherPlayers[id]; 
-    window.sounds.playerLeft();
+    window.sounds.playerLeft.play();
   }
   
   window.setPlayerMessage = data=>{
