@@ -1,0 +1,14 @@
+{
+  "short_name": "CS1",
+  "name": "CS1 - Curiosity Driven Learning",
+  "icons": [
+    {
+      "src": "https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Ffavicon.ico?1534175835412",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
