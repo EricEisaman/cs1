@@ -113,7 +113,7 @@ window.config = {
      {name:'Clock',model:'custom',
        url:'https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fclock.glb?1538858467717',
        sound:{url:'https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Ftick_tock.mp3?1538858557825'},
-       scale:'0.06 0.06 0.06',position:'15 0 23',rotation:'0 -45 0',color:'#FFF'},
+       scale:'0.06 0.06 0.06',position:'15 0 23',rotation:'0 -135 0',color:'#FFF'},
      {name:'Bull Pug',model:'custom',
        url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fbullpug.glb?1538661547665',
        sound:{url:'https://cdn.glitch.com/d8401fe6-52a6-4c57-a271-36a0b25b97e8%2Fdog_barking.mp3?1538666719402'},

@@ -24,25 +24,28 @@ window.socket.sendUpdateToServer = ()=>{
     window.socket.lastPlayerData = window.socket.playerData;
     let bodiesData = [];
     for(var name in window.bodies){
-      if(window.bodies[name].states.includes("moving")){
+      let b = window.bodies[name];
+      if(b.states.includes("moving") || b.dirty){
         let d = {
           name: name,
-          position: window.bodies[name].object3D.position,
-          scale: window.bodies[name].object3D.scale,
+          position: b.object3D.position,
+          scale: b.object3D.scale,
           rotation: { 
-            x: window.bodies[name].object3D.quaternion.x,
-            y: window.bodies[name].object3D.quaternion.y,
-            z: window.bodies[name].object3D.quaternion.z,
-            w: window.bodies[name].object3D.quaternion.w,
-          }
+            x: b.object3D.quaternion.x,
+            y: b.object3D.quaternion.y,
+            z: b.object3D.quaternion.z,
+            w: b.object3D.quaternion.w,
+          },
+          soundState: b.soundState
         };
+        b.dirty = false;
         bodiesData.push(d);
       }
     }
     if(bodiesData.length > 0) {
       window.socket.emit('update-bodies',bodiesData);
       if(window.debug){
-        console.warn(`SENDING ${bodiesData[0].name} DATA TO SERVER`);
+        console.log(`SENDING ${bodiesData[0].name} DATA TO SERVER`);
         console.log(bodiesData);
       } 
     }
@@ -71,16 +74,18 @@ window.socket.on('request-for-bodies', ()=>{
   let ibs = {};
   for(name in window.bodies){
     if (!window.bodies.hasOwnProperty(name)) continue;
+    let b = window.bodies[name];
     ibs[name] = {
           name: name,
-          position: window.bodies[name].object3D.position,
-          scale: window.bodies[name].object3D.scale,
+          position: b.object3D.position,
+          scale: b.object3D.scale,
           rotation: { 
-            x: window.bodies[name].object3D.quaternion.x,
-            y: window.bodies[name].object3D.quaternion.y,
-            z: window.bodies[name].object3D.quaternion.z,
-            w: window.bodies[name].object3D.quaternion.w,
-          }
+            x: b.object3D.quaternion.x,
+            y: b.object3D.quaternion.y,
+            z: b.object3D.quaternion.z,
+            w: b.object3D.quaternion.w,
+          },
+          soundState: b.soundState
         };
     window.socket.emit('initial-bodies-state',ibs);
     if(window.debug){

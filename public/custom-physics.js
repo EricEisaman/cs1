@@ -94,11 +94,12 @@ window.setCustomPhysics = ()=>{
       let s = document.createElement('a-sound');
       s.setAttribute('src',`src:url(${o.sound.url})`);
       s.setAttribute('autoplay', o.sound.autoplay || true);
+      if(typeof o.sound.autoplay == 'undefined') e.soundState = 0;
+      else e.soundState = 1;
       s.setAttribute('loop', o.sound.loop || true);
       s.setAttribute('volume', o.sound.volume || 1);
       e.appendChild(s);
     }
-    //e.setAttribute(o.type,(o.type == 'dynamic-body')?`mass:${o.mass}`:'' );
     e.setAttribute('static-body','');
     e.setAttribute('rotation', o.rotation || '0 0 0');
     window.bodies[o.name]= e;
@@ -109,12 +110,17 @@ window.setCustomPhysics = ()=>{
 window.updateBodies = (bodiesData)=>{
   if(Object.keys(window.bodies).length === 0 || !window.bodies[bodiesData[0].name] || !window.gameHasBegun) return;
   bodiesData.forEach( (d,index)=>{
+    let b = window.bodies[d.name];
     if(window.debug){
-      console.warn('Individual body data from server:');
+      console.log('Individual body data from server:');
       console.log(d);
     } 
-    if(d.position) window.bodies[d.name].object3D.position.copy(d.position);
-		if(d.scale) window.bodies[d.name].object3D.scale.copy(d.scale);
-		if(d.rotation) window.bodies[d.name].object3D.quaternion.copy(d.rotation);
+    if(d.position) b.object3D.position.copy(d.position);
+		if(d.scale) b.object3D.scale.copy(d.scale);
+		if(d.rotation) b.object3D.quaternion.copy(d.rotation);
+    if(typeof d.soundState != 'undefined'){
+      if(d.soundState) playBodySound(d.name);
+      else stopBodySound(d.name);
+    }
   });
 }

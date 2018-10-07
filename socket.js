@@ -62,7 +62,7 @@ module.exports = (io)=>{
           players[socket.id].faceIndex = data.faceIndex;
           players[socket.id].thrust = data.thrust;
           //console.log(data);
-        })  
+        });  
         socket.on('msg',function(data){
           if(socket.auth){
             socket.broadcast.emit('msg',{id:socket.id,msg:data.msg});
@@ -165,4 +165,4 @@ var isEqual = function (value, other) {
 	// If nothing failed, return true
 	return true;
 
-};
+}; 
