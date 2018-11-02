@@ -21,7 +21,7 @@ let anyOtherPlayersAndMyselfWithin = function(distance,numberOfOtherPlayers){
 
 }
 
-let allPlayersByMyselfWithin = function(distance){
+let allPlayersButMyselfWithin = function(distance){
 
 
 
@@ -49,7 +49,7 @@ let bodiesWithin = function(distance,names){
 let stopBodySound = function(name){
   if(window.bodies[name].soundState === 0) return;
   window.bodies[name].querySelector('a-sound').components.sound.stopSound();
-  console.log("STOP BODY SOUND");
+  //console.log("STOP BODY SOUND");
   window.bodies[name].dirty = true;
   window.bodies[name].soundState = 0;
 }
@@ -57,7 +57,7 @@ let stopBodySound = function(name){
 let playBodySound = function(name){
   if(window.bodies[name].soundState == 1) return;
   window.bodies[name].querySelector('a-sound').components.sound.playSound();
-  console.log("PLAY BODY SOUND");
+  //console.log("PLAY BODY SOUND");
   window.bodies[name].dirty = true;
   window.bodies[name].soundState = 1;
 }
@@ -79,7 +79,7 @@ setInterval(()=>{
    stopBodySound('Bull Pug');
    stopBodySound('Boom Box');
    stopBodySound('Bird');
-  }else if(player.within(2,'Bull Pug')){
+  }else if(player.within(4,'Bull Pug')){
    stopBodySound('Bull Pug');
    doggyQuietBecauseIWasClose = true; 
   }else{
