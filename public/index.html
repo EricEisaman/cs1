@@ -1,207 +1,196 @@
-<html>     
+<html>
   <head>
-    <meta property="og:title" content="Curiosity Driven Project Based Learning"/>
-    <meta property="og:image" content="https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fscreenshot.png"/>
-    <meta property="og:description" content="This project introduces fundamentals of computer science and commercial art within an easy to edit 3D Multiplayer Game."/>
-    <meta property="og:url" content="//cs1.glitch.me/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <link rel="stylesheet" type="text/css" href="bundle.css">
     <link rel="manifest" href="/manifest.json">
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:500" rel="stylesheet" type="text/css">
-    <link href="login.css" rel="stylesheet" type="text/css" />
-    <link href="mobile.css" rel="stylesheet" type="text/css" />
-    <!--<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>-->
-    <script src="https://cdn.glitch.com/dd72d0a0-2747-40ff-8463-f7755366f80f%2Faframe-v0.7.0.min.js"></script>
-    <script src="https://cdn.rawgit.com/feiss/aframe-environment-component/ad57b15d/dist/aframe-environment-component.min.js"></script>
-    <script src="https://rawgit.com/takahirox/aframe-rain/master/build/aframe-rain.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.4/dist/aframe-extras.min.js"></script>
-    <script src="cursor-effects.js"></script>
-    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
-    <title>☀️</title>
-  </head>
-  <body>
-    <div style="position:absolute">
-      <div id="loading-screen">LOADING...</div>
-    </div>
-    <div id="container" style="position:relative; display:none">
-    <a-scene> 
-      <a-assets>
-        <img src="https://cdn.glitch.com/969cb4c8-d5f5-4980-8ed6-10a2b1fbb574%2F4thave-small.jpg?1505357175431" id="sky" />
-        <img src="https://cdn.glitch.com/51384993-d04d-4eb8-a1c6-b97ba65b8b94%2Fplaster-normal.jpg?1507086697487" id="plaster" />
-      </a-assets>
-
-        
-      <!--<a-entity animation-mixer
-                gltf-model="url(https://cdn.glitch.com/f54ba682-ab47-46e4-bf61-5e68e6053f18%2Fthing-idle.glb?1532828880828)"
-                position="0 0 0"
-                static-body="geometry:sphere"></a-entity>-->
-      
-      
-      <!--Sky Island-->
-      <a-entity id="sky-island"
-                scale="300 300 300"
-                position="-20 -150 0">
-        
-        <a-entity id="sky-island-model"
-                  gltf-model="url(https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fsi.glb?1538969372559)"></a-entity>
-        
-        <a-entity id="sky-island-physics">
-          
-          
-          <a-box id="big-top" class="toggle-opacity" position="-0.083 0.91 0.014" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="width:0.118;height:0.036" material=""></a-box><a-box id="big-top-2" class="toggle-opacity" position="0.051 0.91 0.011" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="width:0.13;height:0.036"></a-box><a-box id="top-2" class="toggle-opacity" position="-0.018 0.91 -0.024" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.13;width:0.011;height:0.036"></a-box><a-box id="top-3" class="toggle-opacity" position="-0.018 0.91 0.081" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.06;width:0.011;height:0.036"></a-box><a-box id="top-4" class="toggle-opacity" position="-0.158 0.91 0.024" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="width:0.04;depth:0.1;height:0.036"></a-box><a-box id="top-5" class="toggle-opacity" position="-0.196 0.91 0.037" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.03;width:0.04;height:0.036"></a-box><a-box id="top-6" class="toggle-opacity" position="-0.046 0.967 0.045" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.075;width:0.03;height:0.036"></a-box><a-box id="top-7" class="toggle-opacity" position="0.015 0.967 0.045" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="width:0.03;height:0.036;depth:0.075"></a-box><a-box id="top-8" class="toggle-opacity" position="-0.015 0.967 0.02" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.022;width:0.032;height:0.036"></a-box><a-box id="top-9" class="toggle-opacity" position="-0.015 0.967 0.072" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.022;width:0.032;height:0.036"></a-box><a-box id="top-10" class="toggle-opacity" position="-0.015 0.962 0.057" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.011;width:0.032;height:0.036"></a-box><a-box id="top-11" class="toggle-opacity" position="-0.015 0.962 0.036" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="width:0.032;height:0.036;depth:0.011"></a-box><a-box id="top-12" class="toggle-opacity" position="-0.005 0.962 0.046" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="width:0.011;height:0.036;depth:0.011"></a-box><a-box id="top-13" class="toggle-opacity" position="-0.026 0.962 0.046" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.011;height:0.036;width:0.011"></a-box>
-        <a-entity id="sky-stairs">
-          <a-box id="sky-stairs-1" class="toggle-opacity" position="0.088 0.863 -0.149" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.01;height:0.005;width:0.01" material=""></a-box>
-          <a-box id="sky-stairs-2" class="toggle-opacity" position="0.088 0.858 -0.139" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.01;height:0.005;width:0.01" material=""></a-box>
-          <a-box id="sky-stairs-3" class="toggle-opacity" position="0.088 0.853 -0.124" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.023;height:0.005;width:0.01" material=""></a-box>
-          <a-box id="sky-stairs-4" class="toggle-opacity" position="0.088 0.858 -0.108" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.01;height:0.005;width:0.01" material=""></a-box>
-          <a-box id="sky-stairs-5" class="toggle-opacity" position="0.088 0.863 -0.098" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.01;height:0.0065;width:0.01" material=""></a-box>
-          <a-box id="sky-stairs-6" class="toggle-opacity" position="0.088 0.869 -0.088" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.01;height:0.005;width:0.01" material=""></a-box>
-        </a-entity>
-        <a-box id="sky-patio" class="toggle-opacity" position="0.088 0.87 -0.018" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.13;height:0.013;width:0.052" material=""></a-box>
-          <a-box id="sky-patio-2" class="toggle-opacity" position="0.016 0.87 0.005" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="shape:box;sphereRadius:NaN" geometry="depth:0.032;height:0.013;width:0.118" material="flatShading:true"></a-box>
-          <a-box id="sky-patio-2-end" class="toggle-opacity" position="-0.047 0.872 0.016" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.01;height:0.008;width:0.01" material=""></a-box>
-          <a-box id="sky-patio-3-end" class="toggle-opacity" position="-0.088 0.872 0.016" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.01;height:0.008;width:0.011" material=""></a-box>
-          <a-box id="sky-patio-3-end-2" class="toggle-opacity" position="-0.099 0.872 0.01" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.021;height:0.008;width:0.011" material=""></a-box>
-          <a-box id="sky-patio-3" class="toggle-opacity" position="-0.129 0.872 0.005" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.0312;height:0.008;width:0.052" material=""></a-box>
-          <a-box id="sky-tree-1" class="toggle-opacity" position="-0.015 0.811 0.045" width="0.36" height="0.01" depth="0.2" opacity="1" static-body="sphereRadius:NaN" geometry="depth:0.031;height:0.008;width:0.031" material=""></a-box>
-          
-        </a-entity>
-        
-      </a-entity>
-      
-      
-      <!--House (edit physics with CTRL+OPTION+I)-->
-      <a-entity id="house"
-                position="51.975 0 31.779" rotation="0 -90 0" scale="0.5 0.5 0.5">
-        
-        <a-entity id="house-model"
-                  gltf-model="url(https://cdn.glitch.com/264357be-a97e-43ca-8194-b6020c6fd45e%2Fdesert_house.glb?1538162816813)">
-        </a-entity>
-        
-        <a-entity id="house-physics">
-          
-          <a-box id="floor-1" class="toggle-opacity" position="-0.421 -0.696 -6.64" geometry="height:20;width:10" opacity="1" static-body="sphereRadius:NaN" material="" scale="4.001 0.17 26.435">
-          </a-box>
-          <a-box id="floor-2" class="toggle-opacity" position="9.032 -0.505 12.175" geometry="depth:0.56;height:17.74;width:4.47" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" material="">
-          </a-box>
-          <a-box id="sofa-1" class="toggle-opacity" position="-7.477 1.501 2.737" geometry="width:0.93;depth:0.42;height:17.74" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" rotation="0 90 0" material="">
-          </a-box>
-          <a-box id="sofa-2" class="toggle-opacity" position="-16.851 1.501 -6.448" geometry="depth:0.42;height:17.74;width:0.93" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435">
-          </a-box>
-          <a-box id="wall-1" class="toggle-opacity" position="-19.459 14.611 -6.846" geometry="width:0.35;height:20.29" opacity="1" static-body="sphereRadius:NaN" scale="4.001 1.426 26.435">
-          </a-box>
-          <a-box id="wall-2" class="toggle-opacity" position="-9.282 11.724 6.695" geometry="depth:0.81;height:14.92;width:0.59" opacity="1" static-body="sphereRadius:NaN" scale="4.001 2.368 26.435" rotation="0 90 0">
-          </a-box>
-          <a-box id="wall-3" class="toggle-opacity" position="19.129 14.611 0.209" geometry="depth:1.53;width:0.51;height:20.29" opacity="1" static-body="sphereRadius:NaN" scale="4.001 1.426 26.435">
-          </a-box>
-          <a-box id="wall-4" class="toggle-opacity" position="9.912 11.724 18.814" geometry="depth:0.75;width:0.6;height:14.92" opacity="1" static-body="sphereRadius:NaN" scale="4.001 2.368 26.435" rotation="0 90 0">
-          </a-box>
-          <a-box id="wall-5" class="toggle-opacity" position="0.374 14.611 10.566" geometry="depth:0.19;width:0.36;height:20.29" opacity="1" static-body="sphereRadius:NaN" scale="4.001 1.426 26.435">
-          </a-box>
-          <a-box id="wall-6" class="toggle-opacity" position="0.374 20.183 15.401" geometry="height:12.72;depth:0.19;width:0.36" opacity="1" static-body="sphereRadius:NaN" scale="4.001 1.426 26.435">
-          </a-box>
-          <a-box id="table-1" class="toggle-opacity" position="-17.308 2.525 2.989" geometry="depth:0.1;height:17.74" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" rotation="0 90 0">
-          </a-box>
-          <a-box id="table-2" class="toggle-opacity" position="-17.308 2.525 -16.53" geometry="depth:0.1;height:17.74" opacity="1" static-body="sphereRadius:NaN" scale="4.001 0.17 26.435" rotation="0 90 0">
-          </a-box>
-          
-          <a-entity id="house-stairs">
-          </a-entity>
-          
-        </a-entity>
-        
-      </a-entity>
-      
-      
-      
-      
-      
-      
-      <!-- Environment -->
-      <a-entity id="environment" environment="shadow: true; playArea:1.3; shadowSize: 10; preset:japan; dressingAmount: 12;fog:0.7" ></a-entity> 
-      
-      <!--Ground-->
-      <a-box id="ground" position="0 -0.5 0"
-              width="400" height="1" depth="400"
-              opacity="0"
-              static-body></a-box>
-      
-       <!-- Camera -->
-      <a-entity id="player"
-                camera="userHeight: 1.8" 
-                universal-controls 
-                position="0 1.8 0"
-                rotation="0 0 0"
-                kinematic-body="radius: 0.8"
-                jump-ability="maxJumps: 800
-                              distance: 5">
-        <a-entity id="cam-cursor" cursor="fuseTimeout: 2000;"
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                  material="color: white; shader: flat">
-        </a-entity>
-      </a-entity>  
-         
-      
-    </a-scene>
-    <div id="dialog-container" style="position:absolute; top:0px; left:0px; z-index:1000;width:100%">
-      <dialog id="dialog">
-        <h3 class="modal-header">Send a Message or Change your Avatar</h3>
-        <div class="modal-body">
-          <input id="msg" placeholder="Enter your message.">
-        </div>
-        <footer id="bgm-footer" class="modal-footer">
-          <div id="bgm"></div>
-        </footer>
-        <footer id="btns-footer" class="modal-footer">
-          <div id="btns"></div>
-        </footer>
-      </dialog>
-    </div>
-    <div id="login">
-          <div class="login-background">
-              <div class="login">
-                <div class="login-header">
-                  <h1 id="game-name">Login</h1>
-                </div>
-                <div class="login-form">
-                  <span>Username:</span>
-                  <input id="un" type="text" placeholder="Username"/><br>
-                  <span>Password:</span>
-                  <input id="pw" type="password" placeholder="Password"/>
-                  <br>
-                  <input type="button" value="Login" class="login-button"/>
-                  <br>
-                </div>
-            </div>
-            <div class="error-page">
-              <div class="try-again">Error: Try again?</div>
-            </div>
-          </div>  
-      </div>
-      <div>
-        <div id="thruster-btn" style="float:top"></div>
-        <div id="joystick-container" style="width:50%;float:left"></div> 
-        <div id="pitch-controller" style="width:50%;float:right;height:100%"></div>    
-      </div> 
-    </div>
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://game-dev.glitch.me/">
+    <link rel="shortcut icon" href="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1.png?1552299028732">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="//aframe.io/releases/0.9.0/aframe.min.js"></script>    
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.1/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="client-config.js"></script>
-    <script src="dialog.js"></script>
-    <script src="bgm.js"></script>
-    <script src="sounds.js"></script>
-    <script src="voice.js"></script>
-    <script src="thruster.js"></script>
+    <script src="bundle.js"></script>
+    <script>
+      // This is just to force HTTPS (can't do it statically on glitch)
+      if(location.protocol == 'http:') location.protocol = 'https:';
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw_cache_site.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker **not** registered', err));
+      }
+      else {
+        console.warn('Service Worker not supported in this browser');
+      }   
+    </script>
+  </head>
+ <body>
+   <div style="position:absolute">
+      <div id="loading-screen"></div>
+   </div>
+   <div id="scene-container" style="position:relative; display:none" >
+     <a-scene vr-mode-ui="enabled:false"
+              effects="godrays,bloom,fxaa" fxaa godrays="src:#moon" bloom="strength:2"
+              game>
+       
+     <a-assets>
+<!--          <a-asset-item id="avatar" src="https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_orange.glb?1543069720785"></a-asset-item> -->
+        <img id="energy-tex" 
+             crossorigin="anonymous"
+             src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fblue_dart.png?1552200077630">
+       <img id="star-tex" 
+            crossorigin="anonymous"
+            src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fstar.png?1552205546292">
+       <img id="dust-tex" 
+            crossorigin="anonymous"
+            src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fdust.png?1552205792372">
+  
+     </a-assets>
+      
+     <!-- Scene Model-->
+    <a-entity id="scene-model" 
+              position="0 -4 0"
+              shadow="receive: true"
+              gltf-model="url(https://cdn.glitch.com/f93bf9bf-fd77-4ec9-bec3-d751947a1150%2FPacManProject.glb?1545131458507)"></a-entity>
+         
+     <!-- Nav Mesh -->
+    <a-entity id="navmesh"
+              gltf-model="url(https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fnavmesh_agent_radius_2.2.gltf?1552655914074)"
+              position="0 -5 0"
+              visible="false"
+              nav-mesh></a-entity>
+       
+    <a-entity id="other-player-avatar"
+              gltf-model="url(https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_orange.glb?1543069720785)"
+              animation-mixer
+              scale="1 1 1"
+              visible="false"></a-entity>
+       
+    <a-plane position="4.5 1.7 10"
+             grabbable
+             height="2" width="3"
+             d3-graph="side:double; url:https://api.openweathermap.org/data/2.5/forecast/?appid=56df5e300fabead0a56fc2d706e6aa7d&id=4959473"></a-plane>
+       
+    <a-sphere position="4.5 1.7 15"
+              radius="0.7" 
+              shader-frog="name:Cosmic_Shader"
+              grabbable
+              particles
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623; cb:fireParticles;affects:pointsDial;value:5;spawns:true"></a-sphere>
+       
+    <a-sphere position="4.5 1.7 5" 
+              radius="0.7" 
+              shader-frog="name:Disco_Shader"
+              collectible="affects:energyDial;value:20"></a-sphere>
+       
+    <a-sphere position="4.5 1.7 -5" 
+              radius="0.7" 
+              shader-frog="name:Cosmic_Shader"
+              grabbable
+              particles
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623; cb:fireParticles;affects:pointsDial;value:5"></a-sphere>
+       
     
-    <script src="custom-physics.js"></script>
-    <script src="client-socket-control.js"></script>
-    <script src="client.js"></script>
-    <script src="game.js"></script>
-    <script src="mobile.js"></script>
-    <script src="login.js"></script>
-    <script src="pshape-helper.js"></script>
-  </body>
+    <a-sphere position="-10 1.7 -5" 
+              radius="0.7" 
+              shader-frog="name:Disco_Shader"
+              collectible="affects:energyDial;value:20"></a-sphere>
+       
+    <a-sphere position="-20 1.7 -5" 
+              radius="0.7" 
+              shader-frog="name:Cosmic_Shader"
+              grabbable
+              particles
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623;cb:fireParticles;affects:pointsDial;value:5"></a-sphere>
+       
+    <a-sphere position="-30 1.7 -5" 
+              radius="0.7" 
+              shader-frog="name:Disco_Shader"
+              collectible="affects:energyDial;value:20"></a-sphere>
+       
+    <a-sphere position="-40 1.7 -5" 
+              radius="0.7" 
+              shader-frog="name:Cosmic_Shader"
+              grabbable
+              particles
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623;cb:fireParticles;affects:pointsDial;value:5"></a-sphere>
+       
+    <a-box position="-50 1.7 -15" 
+           proximity-glitch
+           shader-frog="name:Marching_Ants_Shader"
+           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"></a-box>
+       
+    <a-sphere position="-50 1.7 0" 
+              radius="0.7" 
+              shader-frog="name:Goo_Shader"
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25"></a-sphere>
+       
+    <a-sphere position="-50 1.7 5" 
+              radius="0.7" 
+              shader-frog="name:Goo_Shader"
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25"></a-sphere>
+       
+    <a-sphere position="-50 1.7 10" 
+              radius="0.7" 
+              shader-frog="name:Goo_Shader"
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25"></a-sphere>
+       
+    <a-sphere position="-50 1.7 15" 
+              radius="0.7"
+              shader-frog="name:Goo_Shader"
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25"></a-sphere>
+       
+    <a-box position="-50 1.7 20"
+           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"
+           shader-frog="name:Psycho_Shader"
+           collectible="affects:oxygenMeter;value:0.25"></a-box>
+       
+    <a-box position="-40 1.7 23" 
+           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"  
+           shader-frog="name:Psycho_Shader"
+           collectible="affects:oxygenMeter;value:0.25"></a-box>
+       
+    <a-box position="-30 1.7 23" 
+           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"
+           shader-frog="name:Psycho_Shader"
+           collectible="affects:oxygenMeter;value:0.25"></a-box>
+       
+    <a-plane src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator.png?1552145274536"
+             position="4.5 2.5 26.88"
+             rotation="0 180 0"
+             width="3" height="5"></a-plane>
+     
+
+     
+    <a-entity id="my-player" 
+              position="4.5 0 25"
+              movement-controls="constrainToNavMesh: true; speed: 0.5"
+              player>
+      <a-entity id="cam"
+                camera
+                position="0 2.6 0"
+                rotation="31.283 -12.834 0"
+                look-controls="pointerLockEnabled:true;reverseTouchDrag:true">
+        <a-cursor id="cam-cursor" nav-pointer raycaster="objects: [grabbable];far:4"></a-cursor>
+      </a-entity>
+    </a-entity>
+       
+   <a-sphere id="moon" src="https://cdn.glitch.com/630690db-5297-4f44-9d50-b6fb8e795635%2F2k_moon.jpg?1551707768297" radius="10" material="shader:flat;transparent:true;color:#ffffff" light="intensity:0.8" position="40 65 50"></a-sphere>
+       
+  <a-entity light="type:ambient;color:#BBB"></a-entity>
+          
+    <!-- Environment -->
+<!--     <a-entity id="environment" environment="shadow: true; 
+                                            playArea:1.3; 
+                                            shadowSize: 10; 
+                                            fog:0" ></a-entity>  -->
+     
+  </a-scene>
+     <div id="hud" ></div>
+     <div id="login"></div>
+   </div>
+</body>  
 </html>

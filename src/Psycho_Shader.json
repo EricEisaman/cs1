@@ -1,0 +1,34 @@
+{
+  "id": 3055,
+  "name": "Psycho Shader",
+  "fragment": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 cameraPosition;\nuniform float time;\nuniform vec2 Randomise_Fractal;\nuniform float NUM_SIDES;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\nconst float PI = 3.14159265359;\nfloat KA = PI / NUM_SIDES;\nvoid koleidoscope(inout vec2 uv) \n    {\n        float angle = atan(uv.y, uv.x);\n        angle = mod(angle, 2.0 * KA);\n        angle = abs(angle - KA);\n        angle += 0.1 * time;\n        float d = length(uv);\n        uv = d * vec2(cos(angle), sin(angle));\n    }\nvoid smallKoleidoscope(inout vec2 uv) \n    {\n        float angle = abs(mod(atan(uv.y, uv.x), 2.0 * KA) - KA) + 0.1 * time;\n        uv = length(uv) * vec2(cos(angle), sin(angle));\n    }\nvec4 Kaleidoscope_Fractal_Shader1551694817060_1634_main() \n    {\n        vec4 Kaleidoscope_Fractal_Shader1551694817060_1634_gl_FragColor = vec4(0.0);\n        vec2 uv = 12.0 * (2.0 * vUv.xy - 1.0);\n        smallKoleidoscope(uv);\n        vec3 p = vec3(uv, Randomise_Fractal.x);\n        for (int i = 0;\n i < 44; i++) p.xzy = vec3(1.3, 0.999, 0.678) * abs((abs(p) / dot(p, p) - vec3(1.0, 1.02, Randomise_Fractal.y * 0.4)));\n        Kaleidoscope_Fractal_Shader1551694817060_1634_gl_FragColor = vec4(p, 1.0);\n        return Kaleidoscope_Fractal_Shader1551694817060_1634_gl_FragColor *= 1.0;\n    }\nvoid main() \n    {\n        gl_FragColor = Kaleidoscope_Fractal_Shader1551694817060_1634_main();    }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 cameraPosition;\nuniform float time;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\nvec4 Kaleidoscope_Fractal_Shader1551694817060_1634_main() \n    {\n        vec4 Kaleidoscope_Fractal_Shader1551694817060_1634_gl_Position = vec4(0.0);\n        vNormal = normal;\n        vUv = uv;\n        vUv2 = uv2;\n        vPosition = position;\n        Kaleidoscope_Fractal_Shader1551694817060_1634_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Kaleidoscope_Fractal_Shader1551694817060_1634_gl_Position *= 1.0;\n    }\nvoid main() \n    {\n        gl_Position = Kaleidoscope_Fractal_Shader1551694817060_1634_main();    }\n",
+  "uniforms": {
+    "cameraPosition": {
+      "type": "v3",
+      "glslType": "vec3"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "Randomise_Fractal": {
+      "value": {
+        "x": 0.5076923076923077,
+        "y": 0.7076923076923077
+      },
+      "type": "v2",
+      "glslType": "vec2"
+    },
+    "NUM_SIDES": {
+      "value": "12",
+      "type": "f",
+      "glslType": "float"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/3055",
+  "user": {
+    "username": "SirFizX",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}
