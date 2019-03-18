@@ -5,7 +5,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(dbFile);
 var config = require('./config');
 const uuidv4 = require('uuid/v4');
-
+ 
 if(process.env.ADMIN_KEY.length > 0){
   db.serialize(function() { 
     db.run("CREATE TABLE if not exists Users (id TEXT ,name TEXT, pw TEXT, isPlaying INTEGER, UNIQUE(name,pw))"); 

@@ -1,0 +1,82 @@
+{
+  "id": 3060,
+  "name": "Goo Shader",
+  "fragment": "precision highp float;\nprecision highp int;\nuniform vec3 color;\nuniform float time;\nuniform float Configurable_Oil_Spill1525321525720_28_speed;\nuniform vec3 color1;\nuniform vec3 color2;\nuniform vec3 color3;\nuniform vec3 color4;\nvarying float vNoise;\nvarying vec2 vUv;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nfloat rand(vec2 n) \n    {\n        return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);\n    }\nfloat noise(vec2 n) \n    {\n        const vec2 d = vec2(0.0, 1.0);\n        vec2 b = floor(n), f = smoothstep(vec2(0.0), vec2(1.0), fract(n));\n        return mix(mix(rand(b), rand(b + d.yx), f.x), mix(rand(b + d.xy), rand(b + d.yy), f.x), f.y);\n    }\nfloat fbm(vec2 n) \n    {\n        float total = 0.0, amplitude = 1.0;\n        for (int i = 0;\n i < 7; i++) \n        {\n            total += noise(n) * amplitude;\n            n += n;\n            amplitude *= 0.5;\n        }\n        return total;\n    }\nvec4 Big_Wiggles1525321525655_25_main() \n    {\n        vec4 Big_Wiggles1525321525655_25_gl_FragColor = vec4(0.0);\n        Big_Wiggles1525321525655_25_gl_FragColor = vec4(color * vNoise, 1.0);\n        return Big_Wiggles1525321525655_25_gl_FragColor *= 1.0;\n    }\nvec4 Configurable_Oil_Spill1525321525720_28_main() \n    {\n        vec4 Configurable_Oil_Spill1525321525720_28_gl_FragColor = vec4(0.0);\n        const vec3 c5 = vec3(0.1);\n        const vec3 c6 = vec3(0.9);\n        vec2 p = vUv.xy * 8.0;\n        float timed = time * Configurable_Oil_Spill1525321525720_28_speed;\n        float q = fbm(p - timed * 0.1);\n        vec2 r = vec2(fbm(p + q + timed * 0.7 - p.x - p.y), fbm(p + q - timed * 0.4));\n        vec3 c = mix(color1, color2, fbm(p + r)) + mix(color3, color4, r.x) - mix(c5, c6, r.y);\n        Configurable_Oil_Spill1525321525720_28_gl_FragColor = vec4(c * cos(1.57 * vUv.y), 1.0);\n        return Configurable_Oil_Spill1525321525720_28_gl_FragColor *= 1.0;\n    }\nvoid main() \n    {\n        gl_FragColor = (Big_Wiggles1525321525655_25_main() + Configurable_Oil_Spill1525321525720_28_main());    }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform float scale;\nuniform float displacement;\nuniform float time;\nuniform float Big_Wiggles1525321525655_25_speed;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying float vNoise;\nvec3 mod289(vec3 x) \n    {\n        return x - floor(x * (1.0 / 289.0)) * 289.0;\n    }\nvec4 mod289(vec4 x) \n    {\n        return x - floor(x * (1.0 / 289.0)) * 289.0;\n    }\nvec4 permute(vec4 x) \n    {\n        return mod289(((x * 34.0) + 1.0) * x);\n    }\nvec4 taylorInvSqrt(vec4 r) \n    {\n        return 1.79284291400159 - 0.85373472095314 * r;\n    }\nvec3 fade(vec3 t) \n    {\n        return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);\n    }\nfloat cnoise(vec3 P) \n    {\n        vec3 Pi0 = floor(P);\n        vec3 Pi1 = Pi0 + vec3(1.0);\n        Pi0 = mod289(Pi0);\n        Pi1 = mod289(Pi1);\n        vec3 Pf0 = fract(P);\n        vec3 Pf1 = Pf0 - vec3(1.0);\n        vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);\n        vec4 iy = vec4(Pi0.yy, Pi1.yy);\n        vec4 iz0 = Pi0.zzzz;\n        vec4 iz1 = Pi1.zzzz;\n        vec4 ixy = permute(permute(ix) + iy);\n        vec4 ixy0 = permute(ixy + iz0);\n        vec4 ixy1 = permute(ixy + iz1);\n        vec4 gx0 = ixy0 * (1.0 / 7.0);\n        vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;\n        gx0 = fract(gx0);\n        vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);\n        vec4 sz0 = step(gz0, vec4(0.0));\n        gx0 -= sz0 * (step(0.0, gx0) - 0.5);\n        gy0 -= sz0 * (step(0.0, gy0) - 0.5);\n        vec4 gx1 = ixy1 * (1.0 / 7.0);\n        vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;\n        gx1 = fract(gx1);\n        vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);\n        vec4 sz1 = step(gz1, vec4(0.0));\n        gx1 -= sz1 * (step(0.0, gx1) - 0.5);\n        gy1 -= sz1 * (step(0.0, gy1) - 0.5);\n        vec3 g000 = vec3(gx0.x, gy0.x, gz0.x);\n        vec3 g100 = vec3(gx0.y, gy0.y, gz0.y);\n        vec3 g010 = vec3(gx0.z, gy0.z, gz0.z);\n        vec3 g110 = vec3(gx0.w, gy0.w, gz0.w);\n        vec3 g001 = vec3(gx1.x, gy1.x, gz1.x);\n        vec3 g101 = vec3(gx1.y, gy1.y, gz1.y);\n        vec3 g011 = vec3(gx1.z, gy1.z, gz1.z);\n        vec3 g111 = vec3(gx1.w, gy1.w, gz1.w);\n        vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));\n        g000 *= norm0.x;\n        g010 *= norm0.y;\n        g100 *= norm0.z;\n        g110 *= norm0.w;\n        vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));\n        g001 *= norm1.x;\n        g011 *= norm1.y;\n        g101 *= norm1.z;\n        g111 *= norm1.w;\n        float n000 = dot(g000, Pf0);\n        float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));\n        float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));\n        float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));\n        float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));\n        float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));\n        float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));\n        float n111 = dot(g111, Pf1);\n        vec3 fade_xyz = fade(Pf0);\n        vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);\n        vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);\n        float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);\n        return 2.2 * n_xyz;\n    }\nvarying vec2 vUv;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvec4 Big_Wiggles1525321525655_25_main() \n    {\n        vec4 Big_Wiggles1525321525655_25_gl_Position = vec4(0.0);\n        vNoise = cnoise(normalize(position) * scale + (time * Big_Wiggles1525321525655_25_speed));\n        vec3 pos = position + normal * vNoise * vec3(displacement);\n        Big_Wiggles1525321525655_25_gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n        return Big_Wiggles1525321525655_25_gl_Position *= 1.0;\n    }\nvec4 Configurable_Oil_Spill1525321525720_28_main() \n    {\n        vec4 Configurable_Oil_Spill1525321525720_28_gl_Position = vec4(0.0);\n        vUv = uv;\n        vPosition = position;\n        vNormal = normal;\n        Configurable_Oil_Spill1525321525720_28_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Configurable_Oil_Spill1525321525720_28_gl_Position *= 1.0;\n    }\nvoid main() \n    {\n        gl_Position = Big_Wiggles1525321525655_25_main() + Configurable_Oil_Spill1525321525720_28_main();    }\n",
+  "uniforms": {
+    "scale": {
+      "value": ".8",
+      "type": "f",
+      "glslType": "float"
+    },
+    "displacement": {
+      "value": ".5",
+      "type": "f",
+      "glslType": "float"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "Big_Wiggles1525321525655_25_speed": {
+      "value": ".3",
+      "type": "f",
+      "glslType": "float"
+    },
+    "color": {
+      "value": {
+        "r": ".3",
+        "g": 0,
+        "b": 0
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "color1": {
+      "value": {
+        "r": ".4",
+        "g": ".1",
+        "b": ".2"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "color2": {
+      "value": {
+        "r": ".5",
+        "g": "1",
+        "b": ".5"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "color3": {
+      "value": {
+        "r": ".2",
+        "g": ".9",
+        "b": 0
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "color4": {
+      "value": {
+        "r": "1.1",
+        "g": "1.1",
+        "b": "2"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "Configurable_Oil_Spill1525321525720_28_speed": {
+      "value": ".4",
+      "type": "f",
+      "glslType": "float"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/3060",
+  "user": {
+    "username": "SirFizX",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}

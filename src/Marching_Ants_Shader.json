@@ -1,0 +1,46 @@
+{
+  "id": 3053,
+  "name": "Marching Ants Shader",
+  "fragment": "precision highp float;\nprecision highp int;\nuniform float edgeWidth;\nuniform float sharpness;\nuniform float antSize;\nuniform float antSpeed;\nuniform float time;\nuniform vec3 color;\nvarying vec2 vUv;\nvec4 Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_main() \n    {\n        vec4 Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_gl_FragColor = vec4(0.0);\n        vec2 borderUv = abs((vUv - 0.5) * 2.0);\n        float leftRight = clamp((borderUv.x - (1.0 - edgeWidth)) * sharpness, 0.0, 1.0);\n        float upDown = clamp((borderUv.y - (1.0 - edgeWidth)) * sharpness, 0.0, 1.0);\n        vec2 antUv = vUv * antSize;\n        float antOffset = time * antSpeed;\n        if (mod(floor(antUv.x + antOffset), 2.0) != 1.0) \n        {\n            upDown = 0.0;\n        }\n         if (mod(floor(antUv.y + antOffset), 2.0) != 1.0) \n        {\n            leftRight = 0.0;\n        }\n         float alpha = clamp(leftRight + upDown, 0.0, 1.0);\n        Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_gl_FragColor = vec4(color * alpha, alpha);\n        return Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_gl_FragColor *= 1.0;\n    }\nvoid main() \n    {\n        gl_FragColor = Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_main();    }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying vec2 vUv;\nvec4 Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_main() \n    {\n        vec4 Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_gl_Position = vec4(0.0);\n        vUv = uv;\n        Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_gl_Position *= 1.0;\n    }\nvoid main() \n    {\n        gl_Position = Marching_Ants_UV_Based_Border_Edge_Outline1551694606526_1465_main();    }\n",
+  "uniforms": {
+    "color": {
+      "value": {
+        "r": "1",
+        "g": "1",
+        "b": "1"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "edgeWidth": {
+      "value": "0.1",
+      "type": "f",
+      "glslType": "float"
+    },
+    "sharpness": {
+      "value": "100",
+      "type": "f",
+      "glslType": "float"
+    },
+    "antSize": {
+      "value": "10",
+      "type": "f",
+      "glslType": "float"
+    },
+    "antSpeed": {
+      "value": "1",
+      "type": "f",
+      "glslType": "float"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/3053",
+  "user": {
+    "username": "SirFizX",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}

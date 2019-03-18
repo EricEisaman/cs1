@@ -3,6 +3,7 @@ const uuidv4 = require('uuid/v4');
 module.exports = (io)=>{
     var players = {};
     var bodies = {};
+    var collectibles = [];
     var changedBodies = [];
     var lastSocketSentBodies = {broadcast:{emit:()=>{}}};
     let intervalId = setInterval(()=>{
@@ -20,7 +21,8 @@ module.exports = (io)=>{
           console.log(players);
           socket.emit('players-already-here',players);
           console.log('changedBodies length:',changedBodies.length);
-          if( (changedBodies.length > 0) && (Object.keys(players).length > 0) ) {
+          // (changedBodies.length > 0) && 
+          if((Object.keys(players).length > 0) ) {
            let ibs = [];
            for(name in bodies){
              ibs.push(bodies[name]);
@@ -29,7 +31,18 @@ module.exports = (io)=>{
            console.log('sending initial bodies state');
            console.log(ibs);
           }
-          if(Object.keys(players).length === 0)socket.emit('request-for-bodies');
+          if(Object.keys(players).length === 0){
+            socket.emit('request-for-bodies');
+            socket.emit('request-for-collectibles');
+          }else{
+            collectibles.forEach((c,index)=>{
+               if(c.collector){
+                 socket.emit('collect',{index:index,collector:c.collector});
+                 console.log('Sending collectible update to new player:');
+                 console.log(c);
+               }
+            });
+          }
           console.log("New player has state:",shared_state_data);
           // Add the new player to the object
           shared_state_data.name = socket.name;
@@ -47,6 +60,7 @@ module.exports = (io)=>{
              changedBodies = [];
            }
            socket.broadcast.emit('remove-player',socket.id);
+           socket.emit('failed-socket');
            db.serialize(function() {
                  db.run("UPDATE Users SET isPlaying = 0 WHERE id = ?",socket.dbid);
                });
@@ -60,19 +74,51 @@ module.exports = (io)=>{
           players[socket.id].position = data.position; 
           players[socket.id].rotation = data.rotation;
           players[socket.id].faceIndex = data.faceIndex;
-          players[socket.id].thrust = data.thrust;
           //console.log(data);
         });  
+        socket.on('request-collection',function(data){
+         if(!socket.auth)return;
+         // console.log('collection requested');
+         // console.log(data);
+         console.log(collectibles[data.index].collector);
+         if(!collectibles[data.index].collector){
+           collectibles[data.index].collector = socket.id;
+           io.emit('collect',{index:data.index,collector:socket.id});
+           console.log('collection made');
+           if(collectibles[data.index].spawns){
+             setTimeout(()=>{
+               io.emit('spawn-collectible',data.index);
+               collectibles[data.index].collector = false;
+               console.log('calling to spawn collectible');
+             },collectibles[data.index].spawnDelay*1000);
+           }
+         }
+        });
+        socket.on('initial-collectibles-state',function(d){
+           console.log('Collectibles initializing.');
+           for(let i=0; i<d.length; i++){
+             let c = {};
+             c.spawns = d[i].spawns;
+             c.spawnDelay = Number(d[i].spawnDelay);
+             c.collector = false;
+             collectibles[i] = c;
+           }
+          console.log(collectibles);
+        });
+        socket.on('hyperspace-alert',data=>{
+          socket.broadcast.emit('hyperspace',data);
+        });
         socket.on('msg',function(data){
           if(socket.auth){
             socket.broadcast.emit('msg',{id:socket.id,msg:data.msg});
           }
         });
         socket.on('initial-bodies-state',obj=>{
+          console.log('Initial bodies state received.');
           bodies = obj;
         });
         socket.on('update-bodies',function(data){
-          //console.log(data);
+          console.log(data);
           changedBodies = data;
           changedBodies.forEach(bd=>{
             bodies[bd.name]=bd;
@@ -81,7 +127,7 @@ module.exports = (io)=>{
         });
         socket.on('arg',function(data){
           socket.ipLocal = data;
-          //console.log(`Client Info:\nPublic IP: ${socket.ip}  Local IP: ${socket.ipLocal}`);
+          console.log(`Client Info:\nPublic IP: ${socket.ip}  Local IP: ${socket.ipLocal}`);
         }); 
         socket.on('login',function(data){
           console.log(`User attempting to login with name: ${data.name} and password: ${data.pw}`);
