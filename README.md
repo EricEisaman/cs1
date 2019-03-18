@@ -12,6 +12,12 @@ ____
 
 ____
 
+## Try Tech Demo
+
+Log into the <a href="https://cs1.glitch.me/" noopener noreferer>tech demo</a> with username: **computer** or **science** and password: **1234**.
+
+____
+
 ## Quick Start 
 
 🍎 Remix this project.
@@ -136,7 +142,7 @@ ____
 
 ## Issues
 
-🍎 Please post any issues to <a href="https://github.com/EricEisaman/maine-js/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc" noopener noreferer>GitHub</a>.
+🍎 Please post any issues to <a href="https://github.com/EricEisaman/cs1/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc" noopener noreferer>GitHub</a>.
 
     
     
