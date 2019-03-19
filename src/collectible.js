@@ -30,7 +30,7 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
       let collectedEntity = CS1.collectibles[data.index];
       if(collectedEntity.el.components.sound__loop)collectedEntity.el.components.sound__loop.pause();
       collectedEntity.el.setAttribute('visible',false);
-      collectedEntity.el.setAttribute('scale','0 0 0');
+      //collectedEntity.el.setAttribute('scale','0 0 0');
       collectedEntity.soundIsPlaying=true;
       collectedEntity.el.components.sound__collect.playSound();
       if(collectedEntity.data.cb){
@@ -49,7 +49,7 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
       let collectedEntity = CS1.collectibles[index];
       if(collectedEntity.el.components.sound__loop)collectedEntity.el.components.sound__loop.play();
       collectedEntity.el.setAttribute('visible',true);
-      collectedEntity.el.setAttribute('scale','1 1 1');
+      //collectedEntity.el.setAttribute('scale','1 1 1');
       collectedEntity.play();
     });
   }, 
