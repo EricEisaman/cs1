@@ -31,7 +31,11 @@ window.onload = e=>{
       CS1.sounds.playerJoined.play();
       setTimeout(()=>{CS1.say(`Welcome to ${CS1.game.name}!`);},CS1.game.welcomeDelay);    }
     else if(document.getElementById('name').value.length > 0 && document.getElementById('pw').value.length > 0){
-      CS1.login(document.getElementById('name').value,document.getElementById('pw').value);
+     if(navigator.vendor.includes('Apple')){
+        CS1.sounds.playerJoined.play()
+         .catch(err=>{console.log(err)});
+      } 
+     CS1.login(document.getElementById('name').value,document.getElementById('pw').value);
       document.getElementById('name').value = '';
       document.getElementById('pw').value = '';
     }
