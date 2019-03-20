@@ -91,7 +91,10 @@ RingDial.prototype.createOverlay = function() {
     circle.setAttribute('cx', this.size / 2);
     circle.setAttribute('cy', this.size / 2);
     circle.setAttribute('r', r);
-    circle.setAttribute('fill', 'url(#gradient-background)');
+    if(navigator.vendor.includes('Apple')){
+      circle.setAttribute('fill', 'rgba(0, 0, 0, 0.05)');
+    }else
+       circle.setAttribute('fill', 'url(#gradient-background)');
     this.svg.appendChild(circle);
     this.overlay = circle;
 };
