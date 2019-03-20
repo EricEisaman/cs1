@@ -142,9 +142,8 @@ export default CS1=>{AFRAME.registerComponent('game', {
     
     CS1.sounds.playerJoined.play()
      .catch(err=>{
-        console.log(err);
         CS1.myPlayer.components["movement-controls"].data.speed=CS1.myPlayer.startSpeed;
-        this.isRunning=true;
+        this.isRunning=true;      
       });
     
     CS1.game.hasBegun = true;
