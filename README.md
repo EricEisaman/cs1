@@ -95,7 +95,7 @@ ____
 
 🍎 Describe a **websocket** connection.
 
-🍎 Describe **persistent data** and a **database**.
+🍎 Describe **persistent data** and **databases**.
 
 🍎 Create an **ADMIN_KEY** in the **.env** file.
 
