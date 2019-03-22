@@ -55,6 +55,7 @@ export default CS1=>{AFRAME.registerComponent('game', {
     let p = document.createElement('a-entity');
     p.model = CS1.op_template.cloneNode();
     p.appendChild(p.model);
+    p.setAttribute('player','');
     p.model.setAttribute('visible','true');
     p.id = newPlayerObject.id;
     p.name = newPlayerObject.name;
