@@ -77,7 +77,8 @@ ____
 - via SoundCloud (TODO)
 
 🍎 Player Component
-- move player logic and state from game component to player component (TODO)
+- instantiated for all players
+- **setAvatar** and **setAnimation** methods (TODO)
 
 ____
 
