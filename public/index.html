@@ -32,9 +32,8 @@
       <div id="loading-screen"></div>
    </div>
    <div id="scene-container" style="position:relative; display:none" >
-     <a-scene vr-mode-ui="enabled:false"
-              effects="godrays,bloom,fxaa" fxaa godrays="src:#moon" bloom="strength:2"
-              game>
+     <a-scene vr-mode-ui="enabled:false" game>
+    <!-- effects="godrays,bloom,fxaa" fxaa godrays="src:#moon;intensity:0.15" bloom="strength:2"        -->
        
      <a-assets>
 <!--          <a-asset-item id="avatar" src="https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_orange.glb?1543069720785"></a-asset-item> -->
@@ -47,7 +46,7 @@
        <img id="dust-tex" 
             crossorigin="anonymous"
             src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fdust.png?1552205792372">
-  
+      
      </a-assets>
       
      <!-- Scene Model-->
@@ -59,113 +58,139 @@
      <!-- Nav Mesh -->
     <a-entity id="navmesh"
               gltf-model="url(https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fnavmesh_agent_radius_2.2.gltf?1552655914074)"
-              position="0 -5 0"
+              position="0 -4.6 0"
               visible="false"
               nav-mesh></a-entity>
        
-    <a-entity id="other-player-avatar"
-              gltf-model="url(https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_orange.glb?1543069720785)"
-              animation-mixer="clip:Dragon_Flying"
+    <a-entity id="avatar-to-clone"
+              gltf-model="url(https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fchip_skull_2.79.glb?1553387334223)"
+              animation-mixer="clip:idle"
               scale="1 1 1"
+              shadow
               visible="false"></a-entity>
        
-    <a-plane position="4.5 1.7 10"
-             grabbable
-             height="2" width="3"
-             d3-graph="side:double; url:https://api.openweathermap.org/data/2.5/forecast/?appid=56df5e300fabead0a56fc2d706e6aa7d&id=4959473"></a-plane>
-       
-    <a-sphere position="18.5 2.1 24"
-              radius="0.35" 
-              shader-frog="name:Sun_Shader"
-              grabbable
-              particles
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623; cb:fireParticles;affects:pointsDial;value:15;spawns:true"></a-sphere>
-       
-       
-    <a-entity position="18.5 1 10"
-              scale="2 2 2"
-              animation="property: rotation; from: 0 0 0; to: 0 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
-              gltf-model="url(https://cdn.glitch.com/42bbeb62-376a-43c2-8778-dd986cf367d3%2Fpotion.glb?1553006598489)"
-              collectible="affects:pointsDial;value:100;spawns:true;spawnDelay:10"
+   
+     <a-cylinder id="avatar-upgrade-zone"
+               position="-4 3 14.4"
+               height="4"
+               radius="1"
+               animation="property: rotation; from: -15 0 0; to: -15 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
+               rotation="-15 180 0"
+               material="opacity:0.65,side:double;transparent:true;emissive:#ffe102;emissiveIntensity:0.3"
+               src="https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fglass_with_hole.png?1553383941710"
+               >
+       <a-entity id="avatar-upgrade"
+              position="0 -1 0"
+              gltf-model="url(https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fchip_skull_2.79.glb?1553387334223)"
+              scale="1 1 1"
+              collectible="soundCollect:https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Ftada.mp3?1553467314704;affects:avatarUpgrade;threshold:2.8"
               ></a-entity>
        
-    <a-sphere position="4.5 1.7 5" 
-              radius="0.7" 
-              shader-frog="name:Disco_Shader"
-              collectible="affects:energyDial;value:20;spawns:true;spawnDelay:10"></a-sphere>
+       </a-cylinder>
        
-    <a-sphere position="4.5 1.7 -5" 
-              radius="0.7" 
-              shader-frog="name:Cosmic_Shader"
-              grabbable
-              particles
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623; cb:fireParticles;affects:pointsDial;value:5;spawns:true;spawnDelay:10"></a-sphere>
+      <!-- LEFT SIDE ELEVATOR FACING HALLWAY    -->
+       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
+                     position=".1 6 15.5"
+                     rotation="0 90 0"
+                     >
+          <a-entity position="0 0 0.7" 
+                    rotation="-90 0 0"
+                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
+                   ></a-entity>
+       </a-gltf-model>
        
+       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
+                     position=".1 6 9.5"
+                     rotation="0 90 0"
+                     >
+          <a-entity position="0 0 0.7" 
+                    rotation="-90 0 0"
+                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
+                   ></a-entity>
+       </a-gltf-model>
+       
+       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
+                     position=".1 6 3.5"
+                     rotation="0 90 0"
+                     >
+          <a-entity position="0 0 0.7" 
+                    rotation="-90 0 0"
+                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
+                   ></a-entity>
+       </a-gltf-model>
+       
+       <!-- RIGHT SIDE ELEVATOR FACING HALLWAY    -->
+       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
+                     position="7.8 6 15.5"
+                     rotation="0 -90 0"
+                     >
+          <a-entity position="0 0 0.7" 
+                    rotation="-90 0 0"
+                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
+                   ></a-entity>
+       </a-gltf-model>
+       
+       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
+                     position="7.8 6 9.5"
+                     rotation="0 -90 0"
+                     >
+          <a-entity position="0 0 0.7" 
+                    rotation="-90 0 0"
+                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
+                   ></a-entity>
+       </a-gltf-model>
+       
+       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
+                     position="7.8 6 3.5"
+                     rotation="0 -90 0"
+                     >
+          <a-entity position="0 0 0.7" 
+                    rotation="-90 0 0"
+                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
+                   ></a-entity>
+       </a-gltf-model>
+       
+       
+       
+   
     
-    <a-sphere position="-10 1.7 -5" 
-              radius="0.7" 
-              shader-frog="name:Disco_Shader"
-              collectible="affects:energyDial;value:20;spawns:true;spawnDelay:10"></a-sphere>
+    <a-sphere position="5.8 2.4 2.3"
+                color="#911243"
+                material="metalness:0.8"
+                radius="1.5"
+                grabbable
+                shadow
+                ></a-sphere>
        
-    <a-sphere position="-20 1.7 -5" 
-              radius="0.7" 
-              shader-frog="name:Cosmic_Shader"
-              grabbable
+
+       
+       
+    <a-entity position="1.8 2 9"
+              scale="2 2 2"
               particles
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623;cb:fireParticles;affects:pointsDial;value:5;spawns:true;spawnDelay:10"></a-sphere>
+              shadow
+              animation="property: rotation; from: 0 0 0; to: 0 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
+              gltf-model="url(https://cdn.glitch.com/42bbeb62-376a-43c2-8778-dd986cf367d3%2Fpotion.glb?1553006598489)"
+              collectible="cb:fireParticles;affects:pointsDial;value:100;spawns:true;spawnDelay:10"
+              ></a-entity>
        
-    <a-sphere position="-30 1.7 -5" 
-              radius="0.7" 
-              shader-frog="name:Disco_Shader"
-              collectible="affects:energyDial;value:20;spawns:true;spawnDelay:10"></a-sphere>
        
-    <a-sphere position="-40 1.7 -5" 
+       
+    <a-sphere position="7.8 2 20" 
               radius="0.7" 
-              shader-frog="name:Cosmic_Shader"
-              grabbable
-              particles
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_2.mp3?1552158630623;cb:fireParticles;affects:pointsDial;value:5;spawns:true;spawnDelay:10"></a-sphere>
+              rotation="0 -45 0"
+              shader-frog="name:Goo_Shader"
+              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;spawns:true;spawnDelay:10"></a-sphere>
+       
+   
        
     <a-box position="-50 1.7 -15" 
            proximity-glitch
            shader-frog="name:Marching_Ants_Shader"
            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"></a-box>
        
-    <a-sphere position="-50 1.7 0" 
-              radius="0.7" 
-              shader-frog="name:Goo_Shader"
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;spawns:true;spawnDelay:10"></a-sphere>
-       
-    <a-sphere position="-50 1.7 5" 
-              radius="0.7" 
-              shader-frog="name:Goo_Shader"
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;spawns:true;spawnDelay:10"></a-sphere>
-       
-    <a-sphere position="-50 1.7 10" 
-              radius="0.7" 
-              shader-frog="name:Goo_Shader"
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;spawns:true;spawnDelay:10"></a-sphere>
-       
-    <a-sphere position="-50 1.7 15" 
-              radius="0.7"
-              shader-frog="name:Goo_Shader"
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;spawns:true;spawnDelay:10"></a-sphere>
-       
-    <a-box position="-50 1.7 20"
-           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"
-           shader-frog="name:Psycho_Shader"
-           collectible="affects:oxygenMeter;value:0.25;spawns:true;spawnDelay:10"></a-box>
-       
-    <a-box position="-40 1.7 23" 
-           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"  
-           shader-frog="name:Psycho_Shader"
-           collectible="affects:oxygenMeter;value:0.25;spawns:true;spawnDelay:10"></a-box>
-       
-    <a-box position="-30 1.7 23" 
-           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"
-           shader-frog="name:Psycho_Shader"
-           collectible="affects:oxygenMeter;value:0.25;spawns:true;spawnDelay:10"></a-box>
-       
+  
+   
     <a-plane src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator.png?1552145274536"
              position="4.5 2.5 26.88"
              rotation="0 180 0"
@@ -174,21 +199,21 @@
 
      
     <a-entity id="my-player" 
-              position="4.5 0 24"
-              movement-controls="constrainToNavMesh: true; speed: 0.5"
-              player>
+              position="4.3 0.4 24"
+              movement-controls="constrainToNavMesh: true; speed: 0.4"
+              player="me:true">
       <a-entity id="cam"
                 camera
-                position="0 2.6 0"
+                position="0 2.8 0"
                 rotation="31.283 -12.834 0"
                 look-controls="pointerLockEnabled:true;reverseTouchDrag:true">
         <a-cursor id="cam-cursor" nav-pointer raycaster="objects: [grabbable];far:4"></a-cursor>
       </a-entity>
     </a-entity>
        
-   <a-sphere id="moon" src="https://cdn.glitch.com/630690db-5297-4f44-9d50-b6fb8e795635%2F2k_moon.jpg?1551707768297" radius="10" material="shader:flat;transparent:true;color:#ffffff" light="intensity:0.8" position="40 65 50"></a-sphere>
+   <a-sphere id="moon" src="https://cdn.glitch.com/630690db-5297-4f44-9d50-b6fb8e795635%2F2k_moon.jpg?1551707768297" radius="10" material="shader:flat;transparent:true;color:#ffffff" light="intensity:0.25" position="40 65 50" rotation="-40 0 0"></a-sphere>
        
-  <a-entity light="type:ambient;color:#BBB"></a-entity>
+  <a-entity light="type:ambient;color:#aaa"></a-entity>
           
     <!-- Environment -->
 <!--     <a-entity id="environment" environment="shadow: true; 

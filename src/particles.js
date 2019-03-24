@@ -39,9 +39,9 @@ export default CS1=>{
         this.p3 = document.createElement('a-entity');
 
 
-        this.p1.setAttribute('particleplayer',`src: orb; img: #star-tex; dur: 2000; count: 40%; scale: ${this.data.scale}; pscale: 9; interpolate: false; shader: standard; poolSize: 1; loop: ${this.data.loop}`);
-        this.p2.setAttribute('particleplayer',`color:${this.data.color}; src: energy; img:#energy-tex; dur: 2000; count: 100%; scale: ${this.data.scale}; pscale: 12; interpolate: false; shader: standard; poolSize: 1; loop: ${this.data.loop};`);
-        this.p3.setAttribute('particleplayer',`src: dust; img: #dust-tex; dur: 2000; count: 100%; scale: ${this.data.scale}; pscale: 1; interpolate: false; shader: standard; poolSize: 1; loop: ${this.data.loop}; color: #558`);
+        this.p1.setAttribute('particleplayer',`src: orb; img: #star-tex; dur: 1000; count: 40%; scale: ${this.data.scale}; pscale: 9; interpolate: false; shader: standard; poolSize: 1; loop: ${this.data.loop}`);
+        this.p2.setAttribute('particleplayer',`color:${this.data.color}; src: energy; img:#energy-tex; dur: 1000; count: 100%; scale: ${this.data.scale}; pscale: 12; interpolate: false; shader: standard; poolSize: 1; loop: ${this.data.loop};`);
+        this.p3.setAttribute('particleplayer',`src: dust; img: #dust-tex; dur: 1000; count: 100%; scale: ${this.data.scale}; pscale: 1; interpolate: false; shader: standard; poolSize: 1; loop: ${this.data.loop}; color: #558`);
 
         this.e.appendChild(this.p1);
         this.e.appendChild(this.p2);
