@@ -16,26 +16,17 @@ export default {
  avatar:{
   models:[
     {
-      url:"https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_orange.glb?1543069720785",
-      scale:0.62, yOffset:0.8,
-      animations:{idle:"Dragon_Flying"},
-      msg:{color: 'orange',offset: '0 6 -0.51'},
-      thruster:{innerColor: "red",outerColor: "white"}
+      url:"https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fchip_2.79.glb?1553371735573",
+      scale:1, yOffset:0.7,
+      animations:{idle:"idle",walk:"walk"},
+      msg:{color: 'orange',offset: '0 3.7 0'}
     },
     {
-      url:"https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_blue.glb?1543070759125",
-      scale:0.62, yOffset:0.8,
-      animations:{idle:"Dragon_Flying"},
-      msg:{color: 'blue',offset: '0 4 -0.51'},
-      thruster:{innerColor: "blue",outerColor: "white"}
-    },
-    {
-      url:"https://cdn.glitch.com/38098e30-bf12-4ed8-ba20-d2f4ba8f65a8%2FDragon_eyes.glb?1543064526277",
-      scale:0.62, yOffset:0.8,
-      animations:{idle:"Dragon_Flying"},
-      msg:{color: 'black',offset: '0 4 -0.51'},
-      thruster:{innerColor: "black",outerColor: "white"}
-    } 
+      url:"https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fchip_skull_2.79.glb?1553387334223",
+      scale:2, yOffset:3,
+      animations:{idle:"idle",walk:"walk"},
+      msg:{color: 'blue',offset: '0 4 -0.51'}
+    }
     ],
   buttonFaces: [
     "https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_orange.png?1543070170738",

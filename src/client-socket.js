@@ -21,6 +21,17 @@ export default CS1=>{
     else document.getElementById('login-msg').innerHTML = data.msg;
   });
   
+  socket.on('anim', data=>{
+    let clips = ['idle','walk'];
+    if(CS1.otherPlayers[data.id])
+      CS1.otherPlayers[data.id].firstElementChild.setAttribute('animation-mixer',`clip:${clips[data.anim]}`);
+  });
+  
+  socket.on('avatar', data=>{
+    if(CS1.otherPlayers[data.id])
+      CS1.otherPlayers[data.id].components.player.setAvatar(data.avatar);
+  });
+    
   socket.on('disconnect', ()=>{
     console.log('I have disconnected.');
     socket.isInitialized = false;

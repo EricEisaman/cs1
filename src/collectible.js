@@ -1,3 +1,4 @@
+import config from './client-config';
 export default CS1=>{AFRAME.registerComponent("collectible", {
 	schema: {
     threshold: {type: 'number', default: 2.7},
@@ -33,15 +34,35 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
       //collectedEntity.el.setAttribute('scale','0 0 0');
       collectedEntity.soundIsPlaying=true;
       collectedEntity.el.components.sound__collect.playSound();
-      if(collectedEntity.data.cb){
+      if(collectedEntity.data.cb && !AFRAME.utils.device.isMobile()){
         CS1.game[collectedEntity.data.cb](collectedEntity.el);
       }
       collectedEntity.el.addEventListener('sound-ended',e=>{
         collectedEntity.soundIsPlaying=false;
         collectedEntity.pause();     
       });
-      if(data.collector==CS1.socket.id && collectedEntity.data.affects){        
+      if(data.collector==CS1.socket.id && collectedEntity.data.affects){  
+        if(collectedEntity.data.affects.includes('avatar')){
+           CS1.myPlayer.components.player.setSpeed(0.8);
+           console.log('speed boost');
+        }else  
         CS1.hud[collectedEntity.data.affects].changeBy(collectedEntity.data.value);
+      }
+      if( (data.collector!=CS1.socket.id) && (collectedEntity.data.affects=='avatarUpgrade')){  
+         console.log(CS1.otherPlayers[data.collector]);
+         let m = document.querySelector('#avatar-to-clone').cloneNode();
+         let op = CS1.otherPlayers[data.collector];
+         m.appendChild(op.msg);
+         op.msg.setAttribute('text',`value:Speedy;
+                                   align:center;
+                                   width:8;
+                                   wrap-count:24; 
+                                   color:yellow`);
+         m.setAttribute('visible',true);
+         op.appendChild(m);
+         op.removeChild(op.model);
+         op.model = m;
+         
       }
     });
     if(!CS1.socket._callbacks["$spawn-collectible"])
@@ -55,7 +76,12 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
   }, 
 	tick: function()
 	{   
-     if(this.el.object3D.position.distanceTo(CS1.myPlayer.object3D.position) < this.data.threshold){ 
+     if((this.el.object3D.position.distanceTo(CS1.myPlayer.object3D.position) < this.data.threshold)&&
+          this.data.affects!='avatarUpgrade'){ 
+       this.collect();
+     }
+     if(this.data.affects=='avatarUpgrade' &&
+        (this.el.parentElement.object3D.position.distanceTo(CS1.myPlayer.object3D.position) < this.data.threshold) ){
        this.collect();
      }
 		
@@ -70,7 +96,7 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
       this.soundIsPlaying=true;
       this.el.components.sound__collect.playSound();
       if(this.data.cb)CS1.game[this.data.cb](this.el);
-      if(this.data.affects)
+      if(this.data.affects && this.data.affects !== 'avatarUpgrade')
         CS1.hud[this.data.affects].animateTo(CS1.hud[this.data.affects].value+this.data.value);
       this.el.addEventListener('sound-ended',e=>{
         this.soundIsPlaying=false;

@@ -1,7 +1,7 @@
 <img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
 
 # CS1 Game Engine
-#### version 0.3.0
+#### version 0.3.1
 ____
 
 ## Mission
@@ -78,7 +78,7 @@ ____
 
 🍎 Player Component
 - instantiated for all players
-- **setAvatar** and **setAnimation** methods (TODO)
+- avatars and animation clips can be changed dynamically
 
 ____
 
