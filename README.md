@@ -12,7 +12,7 @@ ____
 
 ____
 
-## Try Tech Demo
+## Tech Demo
 
 🍎 Log into the <a href="https://cs1.glitch.me/" noopener noreferer>tech demo</a> with username: **computer** or **science** and password: **1234**.
 
