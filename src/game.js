@@ -80,7 +80,7 @@ export default CS1=>{AFRAME.registerComponent('game', {
                                      width:8;
                                      wrap-count:24; 
                                      color:yellow`);
-      p.msg.setAttribute('position',`0 6 0`);
+      p.msg.setAttribute('position',c.msg.offset);
       p.msg.setAttribute('rotation','0 0 0');
       p.model.appendChild(p.msg);
       CS1.scene.appendChild(p);
