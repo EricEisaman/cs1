@@ -25,7 +25,7 @@ export default {
       url:"https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fchip_skull_2.79.glb?1553387334223",
       scale:2, yOffset:3,
       animations:{idle:"idle",walk:"walk"},
-      msg:{color: 'blue',offset: '0 4 -0.51'}
+      msg:{color: 'blue',offset: '0 4 0'}
     }
     ],
   buttonFaces: [
