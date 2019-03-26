@@ -43,17 +43,35 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
       });
       if(data.collector==CS1.socket.id && collectedEntity.data.affects){  
         if(collectedEntity.data.affects.includes('avatar')){
-           CS1.myPlayer.components.player.setSpeed(0.8);
+           let s;
+           switch(collectedEntity.el.id){
+             case 'avatar-upgrade-1':
+               s=0.6;
+               break;
+             case 'avatar-upgrade-2':
+               s=0.9
+           }
+           CS1.myPlayer.components.player.setSpeed(s);
            console.log('speed boost');
         }else  
         CS1.hud[collectedEntity.data.affects].changeBy(collectedEntity.data.value);
       }
       if( (data.collector!=CS1.socket.id) && (collectedEntity.data.affects=='avatarUpgrade')){  
          console.log(CS1.otherPlayers[data.collector]);
-         let m = document.querySelector('#avatar-to-clone').cloneNode();
+        let m,t;
+         switch(collectedEntity.el.id){
+           case 'avatar-upgrade-1':
+              m = document.querySelector('#avatar-to-clone-1').cloneNode();
+              t = 'Murse';
+              break;
+           case 'avatar-upgrade-2':
+              m = document.querySelector('#avatar-to-clone-2').cloneNode();
+              t = 'Speedy';
+         }
+        
          let op = CS1.otherPlayers[data.collector];
          m.appendChild(op.msg);
-         op.msg.setAttribute('text',`value:Speedy;
+         op.msg.setAttribute('text',`value:${t};
                                    align:center;
                                    width:8;
                                    wrap-count:24; 
