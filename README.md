@@ -141,6 +141,27 @@ ____
 
 ____
 
+## Lesson Three
+
+#### Objectives
+
+🍎 Describe a **3d model**.
+
+🍎 Describe a **mesh**.
+
+🍎 Describe a **material**.
+
+🍎 Describe a **texture**.
+
+🍎 Describe an **animation**.
+
+🍎 Describe an **armature**.
+
+🍎 Create and animate a 3d model.
+
+____
+
+
 ## Issues
 
 🍎 Please post any issues to <a href="https://github.com/EricEisaman/cs1/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc" noopener noreferer>GitHub</a>.
