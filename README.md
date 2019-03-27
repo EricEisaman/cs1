@@ -98,6 +98,8 @@ ____
 
 🍎 Describe **persistent data** and **databases**.
 
+🍎 Describe **Node.js environment variables**.
+
 🍎 Create an **ADMIN_KEY** in the **.env** file.
 
 🍎 Create a custom **gameName** value in the **src/client-config.js** file.
