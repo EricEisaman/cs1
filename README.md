@@ -80,8 +80,19 @@ ____
 - instantiated for all players
 - avatars and animation clips can be changed dynamically
 
-🍎 Node Graph Flow Based Programming Interface
-- Create with [NoFlo](https://noflojs.org/). (TODO)
+🍎 Node Graph Flow Based Editor
+- Create with [Litegraph](https://github.com/jagenjo/litegraph.js). (TODO)
+
+🍎 Cloud Component
+- vertex animation
+- custom color
+
+🍎 Database
+- migrate from SQLite3 to [Lowdb](https://github.com/typicode/lowdb) (TODO)
+
+
+
+
 
 
 ____
@@ -167,6 +178,34 @@ ____
 
 ____
 
+## CS1 Global Object Namespace
+
+🍎 CS1.scene
+
+🍎 CS1.myPlayer
+
+🍎 CS1.otherPlayers
+
+🍎 CS1.utils
+ - uuid()
+ - isEqual(a,b)
+ - toColor(number)
+ 
+🍎 CS1.cam
+
+🍎 CS1.collectibles
+
+🍎 CS1.grabbables
+
+🍎 CS1.hud
+
+🍎 CS1.say
+
+🍎 CS1.sounds
+
+
+
+____
 
 ## Issues
 
