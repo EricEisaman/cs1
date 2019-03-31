@@ -81,7 +81,7 @@ ____
 - avatars and animation clips can be changed dynamically
 
 🍎 Node Graph Flow Based Editor
-- Create with [Litegraph](https://github.com/jagenjo/litegraph.js). (TODO)
+- Create with [Litegraph](https://github.com/jagenjo/litegraph.js). (<a href="https://glitch.com/edit/#!/cs1-flow?path=README.md:1:0" noopener noreferer>Early Development</a>)
 
 🍎 Cloud Component
 - vertex animation
