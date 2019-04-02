@@ -121,16 +121,6 @@
        
       <!-- LEFT SIDE ELEVATOR FACING HALLWAY    -->
        <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
-                     position=".1 6 15.5"
-                     rotation="0 90 0"
-                     >
-          <a-entity position="0 0 0.7" 
-                    rotation="-90 0 0"
-                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
-                   ></a-entity>
-       </a-gltf-model>
-       
-       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
                      position=".1 6 9.5"
                      rotation="0 90 0"
                      >
@@ -140,27 +130,7 @@
                    ></a-entity>
        </a-gltf-model>
        
-       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
-                     position=".1 6 3.5"
-                     rotation="0 90 0"
-                     >
-          <a-entity position="0 0 0.7" 
-                    rotation="-90 0 0"
-                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
-                   ></a-entity>
-       </a-gltf-model>
-       
-       <!-- RIGHT SIDE ELEVATOR FACING HALLWAY    -->
-       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
-                     position="7.8 6 15.5"
-                     rotation="0 -90 0"
-                     >
-          <a-entity position="0 0 0.7" 
-                    rotation="-90 0 0"
-                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
-                   ></a-entity>
-       </a-gltf-model>
-       
+       <!-- RIGHT SIDE ELEVATOR FACING HALLWAY    -->       
        <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
                      position="7.8 6 9.5"
                      rotation="0 -90 0"
@@ -171,20 +141,9 @@
                    ></a-entity>
        </a-gltf-model>
        
-       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
-                     position="7.8 6 3.5"
-                     rotation="0 -90 0"
-                     >
-          <a-entity position="0 0 0.7" 
-                    rotation="-90 0 0"
-                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
-                   ></a-entity>
-       </a-gltf-model>
        
+      
        
-       
-   
-    
     <a-sphere position="5.8 2.4 2.3"
                 color="#911243"
                 material="metalness:0.8"
@@ -233,6 +192,17 @@
              scale="5 5 5"
              radius="0.2"
              position="-50 4 -30"
+             segments-height="128"
+             segments-width="128">
+      </a-sphere>
+       
+   <a-sphere id="cloud-2"
+             cloud="color:pink"
+             grabbable
+             collectible
+             scale="5 5 5"
+             radius="0.2"
+             position="-50 4 -35"
              segments-height="128"
              segments-width="128">
       </a-sphere>
