@@ -46,7 +46,7 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
            let s;
            switch(collectedEntity.el.id){
              case 'avatar-upgrade-1':
-               s=0.6;
+               s=0.5;
                break;
              case 'avatar-upgrade-2':
                s=0.9
@@ -62,7 +62,7 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
          switch(collectedEntity.el.id){
            case 'avatar-upgrade-1':
               m = document.querySelector('#avatar-to-clone-1').cloneNode();
-              t = 'Murse';
+              t = 'Skully';
               break;
            case 'avatar-upgrade-2':
               m = document.querySelector('#avatar-to-clone-2').cloneNode();
