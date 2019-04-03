@@ -8,7 +8,7 @@ ____
 
 🍎 Provide the JavaScript community with a fast track to high performance 3D VR multiplayer games installable on phones, tablets, laptops, and desktops as Progressive Web Applications (PWAs). The resultant games are compatible with many popular VR HMD and controller systems such as the Oculus Quest.
 
-🍎 Provide computer science students and teachers with an accompanying introductory level curriculum.
+🍎 Provide students and teachers with an accompanying introductory level curriculum covering computer programming, computer networks, and application asset design.
 
 ____
 
