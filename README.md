@@ -73,8 +73,10 @@ ____
 🍎 [A-Frame Particle Player](https://github.com/supermedium/aframe-particleplayer-component)
 - JSON particles bundling
 
-🍎 BGM System
-- via SoundCloud (TODO)
+🍎 BGM System (via named exports)
+- via SoundCloud
+  - bgmlite: simple no UI, no server interaction
+  - bgm: includes UI and interactive multiplayer interaction (TODO)
 
 🍎 Player Component
 - instantiated for all players
