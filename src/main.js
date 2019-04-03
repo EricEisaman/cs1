@@ -15,6 +15,8 @@ import './hud.css';
 hud(CS1);
 import game from './game';
 game(CS1);
+import {bgmlite} from './bgm';
+bgmlite(CS1);
 import socket from './client-socket';
 socket(CS1);
 import collectible from './collectible';
