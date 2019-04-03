@@ -176,6 +176,21 @@ export default CS1=>{AFRAME.registerComponent('game', {
     playerData.faceIndex = 0;
     CS1.socket.emit('new-player',playerData);
     
+    // Create a new event    
+    let event = new CustomEvent(
+      "gameStart", 
+      {
+        detail: {
+          message: "Let's play!",
+          time: new Date(),
+        },
+        bubbles: true,
+        cancelable: true
+      }
+    );
+
+    // Dispatch the event
+    document.body.dispatchEvent(event);
     
   },
   
