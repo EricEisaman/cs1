@@ -32,10 +32,10 @@ export function bgmlite(CS1,opts){
    });
 }
   
+let currentSongIndex = 0;
   
   CS1.bgm = {
     tracks: tracks,
-    currentSongIndex: 0,
     play: ()=>{
       audio.volume = 1;
       audio.play();
@@ -44,15 +44,14 @@ export function bgmlite(CS1,opts){
       audio.pause();
     },
     playNext: ()=>{
-    
-          this.currentSongIndex++;
-          if(this.currentSongIndex == this.tracks.length) this.currentSongIndex = 0;
-          this.src = bgmUrlStart + this.tracks[this.currentSongIndex] + bgmUrlEnd;
-          audio.crossorigin = 'anonymous';
-          audio.autoplay = 'autoplay';
-          audio.load();
-          if(!opts.playAll) audio.loop = true;
-      },
+      currentSongIndex++;
+      if(currentSongIndex == tracks.length) currentSongIndex = 0;
+      audio.src = bgmUrlStart + tracks[currentSongIndex] + bgmUrlEnd;
+      audio.crossorigin = 'anonymous';
+      audio.load();
+      if(!opts.playAll) audio.loop = true;
+      audio.play();
+    },
     
   }//end of CS1.bgm definition
   
