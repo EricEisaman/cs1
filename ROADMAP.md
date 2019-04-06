@@ -3,7 +3,7 @@
 # CS1 Game Engine
 ____
 
-## Roadmap to version 0.4.0
+## Roadmap to version 0.4.0 👣
 
 🍎 Provide community with a clear goal for our developer experience (DX)
   - follow the entity component system (ECS) paradigm consistent with A-Frame and the underlying browser custom components.
