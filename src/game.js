@@ -1,4 +1,4 @@
-import config from './client-config';
+import config from '../.data/client-config';
 export default CS1=>{AFRAME.registerComponent('game', {
   schema: {mode:{type: 'string',default:'standard'}},
   init: function () {

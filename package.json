@@ -1,13 +1,16 @@
 {
-  "name": "hello-sqlite",
-  "version": "0.0.1",
-  "description": "A simple Node app with SQLite as a database management system, instantly up and running.",
+  "name": "CS1",
+  "version": "0.3.2",
+  "description": "Game Engine for making 3D multiplayer games in JavaScript.",
   "main": "server.js",
   "scripts": {
+    "prebuild": "npm run config",
     "build": "rollup -c",
+    "prewatch": "npm run config",
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
-    "start": "node server.js"
+    "start": "node server.js",
+    "config": "if [ -f './src/client-config.js' ]; then cp ./src/client-config.js .data/; fi;"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.3",
