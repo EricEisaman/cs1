@@ -1,13 +1,13 @@
-export function bgmlite(CS1,opts){
-  opts = opts || {};
-  let tracks = [347139395,257421013];
+import config from '../.data/client-config';
+export function bgmlite(CS1){
+  let tracks = config.bgm.songs;
   let audio = document.createElement('audio');
   let bgmUrlStart = 'https://api.soundcloud.com/tracks/';
   let bgmUrlEnd = '/stream?client_id=b9d11449cd4c64d461b8b5c30650cd06';
   audio.src = bgmUrlStart +tracks[0]+ bgmUrlEnd;
   audio.crossorigin = 'anonymous';
   audio.autoplay = 'autoplay';
-  if(!opts.playAll) audio.loop = true;
+  if(config.bgm.playAll) audio.loop = true;
   audio.volume = 0.00;
   
   let nextSongBtn = document.createElement('button');
@@ -25,7 +25,7 @@ export function bgmlite(CS1,opts){
    ui.appendChild(nextSongBtn);
   },5000);
   
-  if(opts.playAll){
+  if(config.bgm.playAll){
    audio.addEventListener('ended',e=>{
     console.log('bgm song ended');
     CS1.bgm.playNextSong();
@@ -37,7 +37,7 @@ let currentSongIndex = 0;
   CS1.bgm = {
     tracks: tracks,
     play: ()=>{
-      audio.volume = 1;
+      audio.volume = config.bgm.volume;
       audio.play();
     },
     pause: ()=>{
@@ -49,7 +49,7 @@ let currentSongIndex = 0;
       audio.src = bgmUrlStart + tracks[currentSongIndex] + bgmUrlEnd;
       audio.crossorigin = 'anonymous';
       audio.load();
-      if(!opts.playAll) audio.loop = true;
+      if(config.bgm.playAll) audio.loop = true;
       audio.play();
     },
     

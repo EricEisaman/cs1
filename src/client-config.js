@@ -1,5 +1,5 @@
 export default {
- gameName:"CS1 Agency Headquarters . . . . . . The question of whether a computer can think is no more interesting than the question of whether a submarine can swim. . . Edsger W. Dijkstra",
+ gameName:"CS1 Agency Headquarters . . . . . . All vistors are required to sign in at the welcome desk.",
  // https://emojipedia.org/  leave as "" if you want no emoji
  emoji:"🏰",
  // https://www141.lunapic.com/editor/  http://icoconvert.com/
@@ -81,8 +81,8 @@ export default {
  },
  //Soundcloud track numbers from share/embed code
  bgm:{
-  songs: [95999380],
-  volume: 0.05,
+  songs: [347139395,257421013],
+  volume: 0.3,
   playAll: true,
   initialDelay: 5000
  },
