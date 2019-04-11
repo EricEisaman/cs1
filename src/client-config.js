@@ -1,3 +1,8 @@
+/*
+Note most of this configuration file is a remnant of an
+earlier iteration.  The look and function of this file
+will surely be greatly changing.
+*/
 export default {
  gameName:"CS1 Agency Headquarters . . . . . . All vistors are required to sign in at the welcome desk.",
  // https://emojipedia.org/  leave as "" if you want no emoji
