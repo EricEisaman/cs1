@@ -30,8 +30,9 @@ export default CS1=>{
         labelColor: '#ccc',
         gradientColor1: 'white',
         gradientColor2: 'lime',
-        max: 1000                     
+        max: 1000
     });
+    CS1.hud.energyDial.setValue(500);
     CS1.hud.magicDial = new RingDial({
         container: containers.top,
         labelText: 'magic',

@@ -51,19 +51,20 @@
       
      <!-- Scene Model-->
     <a-entity id="scene-model" 
-              position="0 -4 0"
+              position="0 0 0"
               shadow="receive: true"
-              gltf-model="url(https://cdn.glitch.com/f93bf9bf-fd77-4ec9-bec3-d751947a1150%2FPacManProject.glb?1545131458507)"></a-entity>
+              gltf-model="url(https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2F1x.glb?1555277530576)"></a-entity>
          
      <!-- Nav Mesh -->
     <a-entity id="navmesh"
-              gltf-model="url(https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fnavmesh_agent_radius_2.2.gltf?1552655914074)"
-              position="0 -4.6 0"
+              gltf-model="url(https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2F1x_navmesh_1.1.glb?1555276182487)"
+              position="0 -0.6 0"
               visible="false"
               nav-mesh></a-entity>
-           
        
-     <a-entity id="avatar-to-clone-1"
+       
+       
+      <a-entity id="avatar-to-clone-1"
               gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401)"
               animation-mixer="clip:idle"
               scale="1 1 1"
@@ -72,9 +73,10 @@
        
    
      <a-cylinder id="avatar-upgrade-zone-1"
-               position="-4 3 14.4"
+               position="10.6 4.5 5.9"
                height="4"
                radius="1"
+               scale="1.3 1.3 1.3"
                animation="property: rotation; from: -15 0 0; to: -15 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
                rotation="-15 180 0"
                material="opacity:0.65,side:double;transparent:true;emissive:#ffe102;emissiveIntensity:0.3"
@@ -84,7 +86,7 @@
               position="0 -1 0"
               gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401)"
               scale="1 1 1"
-              collectible="soundCollect:https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Ftada.mp3?1553467314704;affects:avatarUpgrade;threshold:2.8"
+              collectible="soundCollect:https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Ftada.mp3?1553467314704;affects:avatarUpgrade;threshold:4.7"
               ></a-entity>
        
        </a-cylinder>
@@ -98,9 +100,10 @@
               visible="false"></a-entity>
        
        <a-cylinder id="avatar-upgrade-zone-2"
-               position="-28.5 3 14.4"
+               position="-9.6 4.5 5.9"
                height="4"
                radius="1"
+               scale="1.3 1.3 1.3"
                animation="property: rotation; from: -15 0 0; to: -15 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
                rotation="-15 180 0"
                material="opacity:0.65,side:double;transparent:true;emissive:#ffe102;emissiveIntensity:0.3"
@@ -110,7 +113,7 @@
               position="0 -1 0"
               gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchippewa.glb?1553596541620)"
               scale="1 1 1"
-              collectible="soundCollect:https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Ftada.mp3?1553467314704;affects:avatarUpgrade;threshold:2.8"
+              collectible="soundCollect:https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Ftada.mp3?1553467314704;affects:avatarUpgrade;threshold:4.7"
               ></a-entity>
        
        </a-cylinder>
@@ -118,111 +121,41 @@
        
        
        
-       
-      <!-- LEFT SIDE ELEVATOR FACING HALLWAY    -->
-       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
-                     position=".1 6 9.5"
-                     rotation="0 90 0"
-                     >
-          <a-entity position="0 0 0.7" 
-                    rotation="-90 0 0"
-                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
-                   ></a-entity>
-       </a-gltf-model>
-       
-       <!-- RIGHT SIDE ELEVATOR FACING HALLWAY    -->       
-       <a-gltf-model src="https://cdn.glitch.com/d3c18d9e-c399-40af-bb49-80aede8ac702%2Fsconce.glb?1553462478281"
-                     position="7.8 6 9.5"
-                     rotation="0 -90 0"
-                     >
-          <a-entity position="0 0 0.7" 
-                    rotation="-90 0 0"
-                    light="type:spot;angle:26;castShadow:true;distance:8;color:#f5f97c"
-                   ></a-entity>
-       </a-gltf-model>
-       
-       
-      
-       
-    <a-sphere position="5.8 2.4 2.3"
-                color="#911243"
-                material="metalness:0.8"
-                radius="1.5"
-                grabbable
-                shadow
-                ></a-sphere>
-       
-
-       
-       
-    <a-entity position="1.8 2 9"
-              scale="2 2 2"
-              particles
-              shadow
-              animation="property: rotation; from: 0 0 0; to: 0 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
-              gltf-model="url(https://cdn.glitch.com/42bbeb62-376a-43c2-8778-dd986cf367d3%2Fpotion.glb?1553006598489)"
-              collectible="cb:fireParticles;affects:pointsDial;value:100;spawns:true;spawnDelay:10"
-              ></a-entity>
-       
-       
-       
-    <a-sphere position="7.8 2 20" 
-              radius="0.7" 
-              rotation="0 -45 0"
-              shader-frog="name:Goo_Shader"
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;spawns:true;spawnDelay:10;threshold:2"></a-sphere>
-       
-   
-       
-    <a-box position="-50 1.7 -15" 
-           proximity-glitch
+      <a-box position="-34 3 -13"
+           scale="2 2 2"
+           proximity-glitch="threshold:4;affects:energyDial"
            shader-frog="name:Marching_Ants_Shader"
            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"></a-box>
        
-    <a-box position="-50 1.7 -23" 
-           shader-frog="name:Green_Dance_Shader"
-           color="white"
-           material="emissive:#fff;emissiveIntensity:8"
-           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"></a-box>
        
+    <a-sphere position="-34 3 -40"
+           scale="2 2 2"
+           collectible="affects:energyDial;value:100"
+           shader-frog="name:Green_Ova_Shader"></a-sphere>
+
        
-   <a-sphere id="cloud-1"
-             cloud="color:#f2e03c"
-             grabbable
-             scale="5 5 5"
-             radius="0.2"
-             position="-50 4 -30"
-             segments-height="128"
-             segments-width="128">
-      </a-sphere>
-       
-   <a-sphere id="cloud-2"
-             cloud="color:pink"
-             grabbable
-             collectible
-             scale="5 5 5"
-             radius="0.2"
-             position="-50 4 -35"
-             segments-height="128"
-             segments-width="128">
-      </a-sphere>
-       
-  
+          
    
     <a-plane src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator.png?1552145274536"
-             position="4.5 2.5 26.88"
+             position="19.51 3.7 18.98"
              rotation="0 180 0"
-             width="3" height="5"></a-plane>
+             width="6" height="6"></a-plane>
+       
+    <a-plane src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1.png?1552299028732"
+             position="21 4.9 -22.8"
+             rotation="0 0 0"
+             material="transparent:true"
+             width="4" height="4"></a-plane>
      
 
      
     <a-entity id="my-player" 
-              position="4.3 0.4 24"
+              position="19.51 0.4 17"
               movement-controls="constrainToNavMesh: true; speed: 0.4"
               player="me:true">
       <a-entity id="cam"
                 camera
-                position="0 2.8 0"
+                position="0 4 0"
                 rotation="31.283 -12.834 0"
                 look-controls="pointerLockEnabled:true;reverseTouchDrag:true">
         <a-cursor id="cam-cursor" nav-pointer raycaster="objects: [grabbable];far:4"></a-cursor>

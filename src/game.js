@@ -67,6 +67,7 @@ export default CS1=>{AFRAME.registerComponent('game', {
       p.appendChild(p.model);
       p.setAttribute('player','');
       p.model.setAttribute('shadow','');
+      p.model.setAttribute('scale',`${c.scale} ${c.scale} ${c.scale}`);
       p.model.setAttribute('visible','true');
       p.model.setAttribute('animation-mixer','clip:idle');
       p.id = newPlayerObject.id;
@@ -145,7 +146,7 @@ export default CS1=>{AFRAME.registerComponent('game', {
       playerData.faceIndex = CS1.socket.playerData.faceIndex;
       CS1.socket.setPlayerData(playerData);
       CS1.socket.sendUpdateToServer();
-      CS1.hud.oxygenMeter.animateTo(CS1.hud.oxygenMeter.el.value-0.005);
+      CS1.hud.oxygenMeter.animateTo(CS1.hud.oxygenMeter.el.value-0.0035);
     }
   },
   

@@ -209,7 +209,7 @@ RingDial.prototype.animateTo = function(to) {
 };
 
 RingDial.prototype.changeBy = function(amt) {
-   this.targetValue = this.targetValue?this.targetValue+amt:this.cachedValue+amt;
+   this.targetValue = this.targetValue?this.targetValue+amt:this.value+amt;
    this.animateTo(this.targetValue);
 };
 
@@ -245,6 +245,7 @@ RingDial.prototype.setValue = function(value) {
     this.slice.setAttribute('d', d);
     var tspanSize = (this.size / 3.5) / 3;
     this.text.innerHTML = Math.floor(value) + `<tspan font-size=${tspanSize} dy=${-tspanSize * 1.2}>${this.opts.suffix}</tspan>`;
+    this.value = value;
 };
 
 export default RingDial;

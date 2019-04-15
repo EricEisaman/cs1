@@ -19,6 +19,8 @@ import Goo_Shader from './Goo_Shader.json';
 shaders['Goo_Shader']=Goo_Shader;
 import Psycho_Shader from './Psycho_Shader.json';
 shaders['Psycho_Shader']=Psycho_Shader;
+import Green_Ova_Shader from './Green_Ova_Shader.json';
+shaders['Green_Ova_Shader']=Green_Ova_Shader;
 
 
 export default(function shaderfrog(){
