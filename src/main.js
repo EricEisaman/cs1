@@ -10,6 +10,7 @@ import shaderfrog from './shader-frog';
 import particles from './particles';
 particles(CS1);
 import proximityGlitch from './proximity-glitch'
+proximityGlitch(CS1);
 import hud from './hud';
 import './hud.css';
 hud(CS1);
