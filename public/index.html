@@ -130,7 +130,8 @@
        
     <a-sphere position="-34 3 -40"
            scale="2 2 2"
-           collectible="affects:energyDial;value:100"
+           collectible="affects:energyDial;value:100;threshold:4"
+           grabbable
            shader-frog="name:Green_Ova_Shader"></a-sphere>
 
        
@@ -141,16 +142,19 @@
              rotation="0 180 0"
              width="6" height="6"></a-plane>
        
-    <a-plane src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1.png?1552299028732"
+    <a-plane id="logo"
+             src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1.png?1552299028732"
              position="21 4.9 -22.8"
              rotation="0 0 0"
              material="transparent:true"
              width="4" height="4"></a-plane>
        
     
-    <a-plane src="https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fsign_in.jpg?1555332792191"
+    <a-plane id="sign-in"
+             src="https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fsign_in.jpg?1555332792191"
              position="21 3.03 -17.79"
              rotation="-90 0 0"
+             sign-in
              width="1.1" height="2.0"></a-plane> 
 
      
@@ -163,7 +167,7 @@
                 position="0 4 0"
                 rotation="31.283 -12.834 0"
                 look-controls="pointerLockEnabled:true;reverseTouchDrag:true">
-        <a-cursor id="cam-cursor" nav-pointer raycaster="objects: [grabbable];far:4"></a-cursor>
+        <a-cursor id="cam-cursor" nav-pointer raycaster="objects:[grabbable],[sign-in];far:4"></a-cursor>
       </a-entity>
     </a-entity>
        

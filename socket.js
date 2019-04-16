@@ -5,6 +5,7 @@ module.exports = (io)=>{
     var bodies = {};
     var collectibles = [];
     var changedBodies = [];
+    var signedIn = [];
     var lastSocketSentBodies = {broadcast:{emit:()=>{}}};
     let intervalId = setInterval(()=>{
           io.emit('update-players',players);
@@ -20,6 +21,7 @@ module.exports = (io)=>{
           console.log('sending players already here');
           console.log(players);
           socket.emit('players-already-here',players);
+          if(signedIn.length>0)socket.emit('players-already-signed-in',signedIn);
           console.log('changedBodies length:',changedBodies.length);
           // (changedBodies.length > 0) && 
           if((Object.keys(players).length > 0) ) {
@@ -118,6 +120,14 @@ module.exports = (io)=>{
         });
         socket.on('avatar',function(data){
           socket.broadcast.emit('avatar',{id:socket.id,avatar:data});
+        });
+        socket.on('sign-in',function(){
+          console.log(socket.name + ' is signing in!');
+          if(!signedIn.includes(socket.name)){
+            io.emit('sign-in',socket.name);
+            signedIn.push(socket.name);
+            console.log(socket.name + ' has been added to sign in list.');
+          }
         });
         socket.on('initial-bodies-state',obj=>{
           console.log('Initial bodies state received.');
