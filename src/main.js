@@ -24,6 +24,8 @@ import collectible from './collectible';
 collectible(CS1);
 import player from './player';
 player(CS1);
+import signIn from './sign-in';
+signIn(CS1);
 import './main.css';
 import login from './login';
 import './login.css';

@@ -146,7 +146,9 @@ export default CS1=>{AFRAME.registerComponent('game', {
       playerData.faceIndex = CS1.socket.playerData.faceIndex;
       CS1.socket.setPlayerData(playerData);
       CS1.socket.sendUpdateToServer();
-      CS1.hud.oxygenMeter.animateTo(CS1.hud.oxygenMeter.el.value-0.0035);
+      if(this.totalSteps%36 == 0){
+        CS1.hud.oxygenMeter.animateTo(CS1.hud.oxygenMeter.el.value-0.0035);
+      }
     }
   },
   

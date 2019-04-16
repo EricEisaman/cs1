@@ -11,7 +11,6 @@ export default CS1=>{
       this.sound = document.createElement('a-sound');
       this.sound.setAttribute('src',`url(${this.data.sound})`);
       this.el.appendChild(this.sound);
-      console.log(this.el.getAttribute('sound__trigger'));
       this.soundIsPlaying=false;
       this.sound.addEventListener('sound-ended',e=>{
         this.soundIsPlaying=false;     
