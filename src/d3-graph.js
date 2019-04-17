@@ -8,6 +8,8 @@ export default (function player(){
     dependencies: ['geometry', 'material'],
     init: function () {
       this.canvas=document.createElement('canvas');
+      this.canvas.style.position = 'absolute';
+      this.canvas.style.left = -2000;
       this.canvas.id=CS1.utils.uid();
       this.canvas.setAttribute('crossOrigin','anonymous');
       document.querySelector('a-scene').appendChild(this.canvas);
@@ -46,7 +48,7 @@ export default (function player(){
       let ctx = this.ctx;
       if(this.cursor.getAttribute('material').color=='green')t=1000;
       this.data.forEach((d,i)=>{
-        let hue = t*(d.temp_max / 500);
+        let hue = t*(d.temp_max / 900);
         ctx.fillStyle = 'hsl(' + hue + ', 50%, 30%)';
         ctx.fillRect(i*dt_width, 0, dt_width, canvas.height);
       });
