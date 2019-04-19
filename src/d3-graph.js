@@ -1,4 +1,4 @@
-export default (function player(){
+export default (function d3graph(){
   
   AFRAME.registerComponent('d3-graph', {
     schema:{

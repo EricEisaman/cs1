@@ -1,7 +1,6 @@
 export default(()=>{
 
   window.addEventListener('load', function () {
-    console.log('window loaded make spinner');
     let loadSpinner = document.createElement('div');
     loadSpinner.className = 'lds-grid';
     for(let i=0;i<9;i++){

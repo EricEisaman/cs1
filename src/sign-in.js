@@ -2,7 +2,8 @@ export default CS1=>{
   
   AFRAME.registerComponent('sign-in', {
     schema:{
-      required:{type:'boolean',default:true}
+      required:{type:'boolean',default:true},
+      timeOut:{type:'number',default:60}
     },
     init: function () {
       this.addSignatureLayer();
@@ -21,15 +22,40 @@ export default CS1=>{
       }); 
       CS1.socket.on('sign-in',name=>{
         this.addName(name);
+        CS1.myPlayer.signedIn = true;
       });
       CS1.socket.on('players-already-signed-in',ps=>{
         console.log('Adding players already signed in.');
         console.log(ps);
         ps.forEach(p=>{
+          if(p==CS1.myPlayer.name)CS1.myPlayer.signedIn = true;
           console.log('Adding '+p);
           this.addName(p);
         });
       });
+      let self = this;
+      document.addEventListener('gameStart',e=>{
+        console.log('Handling gameStart on my sign-in.');
+        setTimeout(e=>{
+          if(!CS1.myPlayer.signedIn){
+            let event = new CustomEvent(
+              "signInFail", 
+              {
+                detail: {
+                  message: "Sign in fail!",
+                  time: new Date(),
+                },
+                bubbles: true,
+                cancelable: true
+              }
+            );
+
+            // Dispatch the event
+            document.body.dispatchEvent(event);
+          }
+        },this.data.timeOut*1000);
+      })
+    
     },
     addName: function (name) {
       this.el.setAttribute('text',`value:${this.el.components.text.data.value}\n${name}`);

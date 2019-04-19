@@ -6,6 +6,7 @@ module.exports = (io)=>{
     var collectibles = [];
     var changedBodies = [];
     var signedIn = [];
+    var ufoTarget = false;
     var lastSocketSentBodies = {broadcast:{emit:()=>{}}};
     let intervalId = setInterval(()=>{
           io.emit('update-players',players);
@@ -22,6 +23,7 @@ module.exports = (io)=>{
           console.log(players);
           socket.emit('players-already-here',players);
           if(signedIn.length>0)socket.emit('players-already-signed-in',signedIn);
+          if(ufoTarget)socket.emit('set-ufo-target',ufoTarget);
           console.log('changedBodies length:',changedBodies.length);
           // (changedBodies.length > 0) && 
           if((Object.keys(players).length > 0) ) {
@@ -56,6 +58,10 @@ module.exports = (io)=>{
           // Delete from object on disconnect
           if(socket.auth){
            console.log(`Player named ${socket.name} disconnected. Removing ${socket.id}`);
+           if(socket.id == ufoTarget){
+             ufoTarget=false;
+             io.emit('set-ufo-target',false);
+           }
            delete players[socket.id]; 
            if(Object.keys(players)===0){
              bodies = {};
@@ -128,6 +134,10 @@ module.exports = (io)=>{
             signedIn.push(socket.name);
             console.log(socket.name + ' has been added to sign in list.');
           }
+        });
+        socket.on('set-ufo-target',function(id){
+          io.emit('set-ufo-target', id);
+          ufoTarget = id;
         });
         socket.on('initial-bodies-state',obj=>{
           console.log('Initial bodies state received.');
