@@ -10,7 +10,18 @@ export default CS1=>{
         this.setKeyCtls();
         this.setTouchCtls();
         this.setAvatarChoices();
+        this.addMyListeners();
+        this.el.timePlayed = 0;
       }
+    },
+    addMyListeners: function(){
+      let self = this;
+      document.addEventListener('gameStart',e=>{
+        console.log('Handling gameStart on my player.');
+        self.el.id = CS1.socket.id;
+        self.el.classList = 'my-player';
+        self.isPlaying = true;
+      })
     },
     setKeyCtls: function(){
       document.body.addEventListener('keydown',e=>{
@@ -56,8 +67,9 @@ export default CS1=>{
       this.avatarUpgradeZone = document.querySelector('#avatar-upgrade-zone');
     },
     tick: function(t,dt){
-    
-     
+      if(this.data.me && CS1.game.hasBegun){
+        this.el.timePlayed += dt;
+      }  
     },
     
     setAvatar: function(data){

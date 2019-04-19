@@ -16,6 +16,7 @@ export default CS1=>{
     if(data.success) {
       document.querySelector('#login').style.zIndex = -1;
       document.querySelector('#login').style.display = 'none'; 
+      CS1.myPlayer.name = data.name;
       CS1.game.start();
     }
     else document.getElementById('login-msg').innerHTML = data.msg;
