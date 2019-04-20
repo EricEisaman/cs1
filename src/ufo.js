@@ -31,6 +31,8 @@ export default CS1=>{
         ang+THREE.Math.degToRad(this.data.rotOffset),
         0
       );
+      if(new THREE.Vector2(this.el.object3D.position.x,this.el.object3D.position.z).distanceTo(new THREE.Vector2(this.target.object3D.position.x,this.target.object3D.position.z))>1)
+        this.el.object3D.translateZ(-this.data.speed*dt/3000);
     
     },
     setTarget: function(id){
