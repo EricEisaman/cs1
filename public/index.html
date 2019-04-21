@@ -130,9 +130,9 @@
        
     <a-sphere position="-34 3 -40"
            scale="2 2 2"
-           collectible="affects:energyDial;value:100;threshold:4"
+           collectible="affects:energyDial;value:100;threshold:4;spawns:true;spawnDelay:10"
            grabbable
-           shader-frog="name:Green_Ova_Shader"></a-sphere>
+           shader-frog="name:Disco_Shader"></a-sphere>
 
        
           
@@ -173,7 +173,16 @@
               position="0 50 0"
               scale="3 3 3"
               ufo
-              gltf-model="url(https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2FSmallSpaceFighter.glb?1555691894769)"></a-entity>
+              gltf-model="url(https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2FSmallSpaceFighter.glb?1555691894769)">
+      
+     <a-sphere id="thruster"
+           position="0 0 3"
+           scale="1 2 1"
+           rotation="90 0 0"
+           shader-frog="name:Thruster_Shader"></a-sphere>
+
+       
+       </a-entity>
 
      
     <a-entity id="my-player" 
