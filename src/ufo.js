@@ -13,6 +13,8 @@ export default CS1=>{
 	    this.target = false;
       this.lockedIn = false;
       this.lerpCount = 0;
+      this.thruster = document.getElementById('thruster');
+      this.thruster.object3D.visible = false;
       //console.log('UFO Target:');
 	    //console.log(this.target);
       let self = this;
@@ -42,6 +44,7 @@ export default CS1=>{
         
         if(new THREE.Vector2(this.el.object3D.position.x,this.el.object3D.position.z).distanceTo(new THREE.Vector2(this.target.object3D.position.x,this.target.object3D.position.z))>1){
         this.el.object3D.translateZ(-this.data.speed*dt/3000);
+        this.thruster.object3D.visible = true;
         if(!this.engineSoundPlaying){
           this.el.components.sound__engine.playSound();
           this.engineSoundPlaying = true;
@@ -56,6 +59,7 @@ export default CS1=>{
       }else{
         this.el.components.sound__engine.pauseSound();
         this.engineSoundPlaying = false;
+        this.thruster.object3D.visible = false;
       }
         
       
