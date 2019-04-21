@@ -15,7 +15,7 @@ export default CS1=>{
       this.lerpCount = 0;
       //console.log('UFO Target:');
 	    //console.log(this.target);
-      self = this;
+      let self = this;
       CS1.socket.on('set-ufo-target',id=>{
         self.setTarget(id);
       });
