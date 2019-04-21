@@ -20,3 +20,7 @@ ____
   - functions
     - player boot
     - item spawns sent as server rendered HTML strings.
+    
+🍎 Build a compelling demo with specialized components and custom user data stored in database.
+  - Create a lesson on writing A-Frame components.
+  - Create a lesson on storing and retrieving custom user data using the database.

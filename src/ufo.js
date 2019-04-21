@@ -11,6 +11,8 @@ export default CS1=>{
     init: function () {
       CS1.ufo = this; // NOTE: this is a singleton.
 	    this.target = false;
+      this.lockedIn = false;
+      this.lerpCount = 0;
       //console.log('UFO Target:');
 	    //console.log(this.target);
       self = this;
@@ -29,27 +31,44 @@ export default CS1=>{
       //console.log(vec);
       let ang = Math.atan2(vec.x,vec.z);
       //console.log(ang);
-      this.el.object3D.rotation.set(
-        0,
-        ang+THREE.Math.degToRad(this.data.rotOffset),
-        0
-      );
-      if(new THREE.Vector2(this.el.object3D.position.x,this.el.object3D.position.z).distanceTo(new THREE.Vector2(this.target.object3D.position.x,this.target.object3D.position.z))>1){
+      if(!this.lockedIn){
+        this.el.object3D.rotateY( (ang+THREE.Math.degToRad(this.data.rotOffset))/40 );
+        this.lerpCount += 1;
+        if(this.lerpCount>40){
+          this.lockedIn=true;
+          this.lerpCount = 0;
+        }
+      }else{
+        
+        if(new THREE.Vector2(this.el.object3D.position.x,this.el.object3D.position.z).distanceTo(new THREE.Vector2(this.target.object3D.position.x,this.target.object3D.position.z))>1){
         this.el.object3D.translateZ(-this.data.speed*dt/3000);
         if(!this.engineSoundPlaying){
           this.el.components.sound__engine.playSound();
           this.engineSoundPlaying = true;
         }
+          
+        this.el.object3D.rotation.set(
+          0,
+          ang+THREE.Math.degToRad(this.data.rotOffset),
+          0
+        );
+          
       }else{
         this.el.components.sound__engine.pauseSound();
         this.engineSoundPlaying = false;
       }
         
+      
+      
+      }
+      
+           
     
     },
     setTarget: function(id){
       let target = id ? document.getElementById(id) : id;
       this.target = target;
+      this.lockedIn = false;
     }
   });
     
