@@ -11,7 +11,7 @@ export default CS1=>{
       CS1.welcomeDeskSignIn = this;
     },
     addSignatureLayer: function () {
-      this.textSettings = 'zOffset:0.03;xOffset:0.123;color:black;wrapCount:18;baseline:top;height:4';      
+      this.textSettings = 'zOffset:0.01;xOffset:0;color:black;wrapCount:12;baseline:top;height:4';      
       this.el.setAttribute('text',this.textSettings);
     },
     addListeners: function () {
