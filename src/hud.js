@@ -16,6 +16,7 @@ export default CS1=>{
     CS1.hud = {};
     let hudElement = document.querySelector('#hud');
     let containers = generateRegions(hudElement);
+    containers.top.style.pointerEvents='none';
     CS1.hud.pointsDial = new RingDial({
         container: containers.top,
         labelText: 'points',
