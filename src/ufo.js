@@ -4,7 +4,9 @@ export default CS1=>{
     schema:{
       type: {type:'string', default:'sentinel'},
       speed: {type:'number', default:10},
-      rotOffset: {type:'number', default:0}
+      rotOffset: {type:'number', default:0},
+      engineSound: {type:'string', default:'https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fufo_engines.mp3?1555803047342'},
+      engineVolume: {type:'number', default: 16}
     },
     init: function () {
       CS1.ufo = this; // NOTE: this is a singleton.
@@ -19,6 +21,7 @@ export default CS1=>{
         console.log('Handling signInFail on ufo.');
         CS1.socket.emit('set-ufo-target',CS1.socket.id);
       });
+      this.el.setAttribute('sound__engine',`src:url(${this.data.engineSound});loop:true;volume:${this.data.engineVolume}`);
 	  },
     tick: function (t,dt) {
       if(!this.target)return;
@@ -31,8 +34,17 @@ export default CS1=>{
         ang+THREE.Math.degToRad(this.data.rotOffset),
         0
       );
-      if(new THREE.Vector2(this.el.object3D.position.x,this.el.object3D.position.z).distanceTo(new THREE.Vector2(this.target.object3D.position.x,this.target.object3D.position.z))>1)
+      if(new THREE.Vector2(this.el.object3D.position.x,this.el.object3D.position.z).distanceTo(new THREE.Vector2(this.target.object3D.position.x,this.target.object3D.position.z))>1){
         this.el.object3D.translateZ(-this.data.speed*dt/3000);
+        if(!this.engineSoundPlaying){
+          this.el.components.sound__engine.playSound();
+          this.engineSoundPlaying = true;
+        }
+      }else{
+        this.el.components.sound__engine.pauseSound();
+        this.engineSoundPlaying = false;
+      }
+        
     
     },
     setTarget: function(id){

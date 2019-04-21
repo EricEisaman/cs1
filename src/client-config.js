@@ -87,7 +87,7 @@ export default {
  //Soundcloud track numbers from share/embed code
  bgm:{
   songs: [461828928,347139395,257421013],
-  volume: 0.3,
+  volume: 0.2,
   playAll: true,
   initialDelay: 5000
  },
