@@ -26,9 +26,9 @@ shaders['Thruster_Shader']=Thruster_Shader;
 import Flowing_Circles_Shader from './Flowing_Circles_Shader.json';
 shaders['Flowing_Circles_Shader']=Flowing_Circles_Shader;
 
-
-export default(function shaderfrog(){
+export default CS1=>{
   
+CS1.shaderfrog = shaders;
 
 var defaultThreeUniforms = [
     'normalMatrix', 'viewMatrix', 'projectionMatrix', 'position', 'normal',
@@ -348,4 +348,4 @@ AFRAME.registerComponent('shader-frog',{
   }
 });
   
-})()
+}

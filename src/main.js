@@ -7,6 +7,7 @@ import grabbable from './grabbable';
 import navpointer from './nav-pointer';
 import d3graph from './d3-graph';
 import shaderfrog from './shader-frog';
+shaderfrog(CS1);
 import particles from './particles';
 particles(CS1);
 import proximityGlitch from './proximity-glitch'
