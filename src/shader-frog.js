@@ -23,6 +23,8 @@ import Green_Ova_Shader from './Green_Ova_Shader.json';
 shaders['Green_Ova_Shader']=Green_Ova_Shader;
 import Thruster_Shader from './Thruster_Shader.json';
 shaders['Thruster_Shader']=Thruster_Shader;
+import Flowing_Circles_Shader from './Flowing_Circles_Shader.json';
+shaders['Flowing_Circles_Shader']=Flowing_Circles_Shader;
 
 
 export default(function shaderfrog(){
