@@ -1,0 +1,63 @@
+{
+  "id": 3369,
+  "name": "Flowing Circles",
+  "fragment": "precision highp float;\nprecision highp int;\nuniform vec2 resolution;\nuniform float time;\nuniform float speed;\nuniform float baseRadius;\nuniform float colorVariation;\nuniform float brightnessVariation;\nuniform vec3 backgroundColor;\nuniform float variation;\nvarying vec2 vUv;\nvec3 n(vec2 x, float t) \n    {\n        vec3 v = floor(vec3(x, t));\n        vec3 u = vec3(mod(v.xy, variation), v.z);\n        vec3 c = fract(u.xyz * (vec3(0.16462, 0.84787, 0.98273) + u.xyz * vec3(0.24808, 0.75905, 0.13898) + u.yzx * vec3(0.31517, 0.62703, 0.26063) + u.zxy * vec3(0.47127, 0.58568, 0.37244)) + u.yzx * (vec3(0.35425, 0.65187, 0.12423) + u.yzx * vec3(0.95238, 0.93187, 0.95213) + u.zxy * vec3(0.31526, 0.62512, 0.71837)) + u.zxy * (vec3(0.95213, 0.13841, 0.16479) + u.zxy * vec3(0.47626, 0.69257, 0.19738)));\n        return v + c;\n    }\nvec3 col(vec2 x, float t) \n    {\n        return vec3(0.5 + max(brightnessVariation * cos(x.y * x.x), 0.0)) + clamp(colorVariation * cos(fract(vec3(x, t)) * 371.0241), vec3(-0.4), vec3(1.0));\n    }\nvec2 idx(vec2 x) \n    {\n        return floor(fract(x * 29.0) * 3.0) - vec2(1.0);\n    }\nfloat circle(vec2 x, vec2 c, float r) \n    {\n        return max(0.0, 1.0 - dot(x - c, x - c) / (r * r));\n    }\nvec4 Fluid_Circles1551693972791_443_main() \n    {\n        vec4 Fluid_Circles1551693972791_443_gl_FragColor = vec4(0.0);\n        vec2 x = vUv * resolution;\n        float t = time * speed;\n        vec4 c = vec4(vec3(0.0), 0.1);\n        for (int N = 0;\n N < 3; N++) \n        {\n            for (int k = -1;\n k <= 0; k++) \n            {\n                for (int i = -1;\n i <= 1; i++) \n                {\n                    for (int j = -1;\n j <= 1; j++) \n                    {\n                        vec2 X = x + vec2(j, i);\n                        float t = t + float(N) * 38.0;\n                        float T = t + float(k);\n                        vec3 a = n(X, T);\n                        vec2 o = idx(a.xy);\n                        vec3 b = n(X + o, T + 1.0);\n                        vec2 m = mix(a.xy, b.xy, (t - a.z) / (b.z - a.z));\n                        float r = baseRadius * sin(3.1415927 * clamp((t - a.z) / (b.z - a.z), 0.0, 1.0));\n                        if (length(a.xy - b.xy) / (b.z - a.z) > 2.0) \n                        {\n                            r = 0.0;\n                        }\n                         c += vec4(col(a.xy, a.z), 1.0) * circle(x, m, r);\n                    }\n                }\n            }\n        }\n        Fluid_Circles1551693972791_443_gl_FragColor = vec4(c.rgb / max(1e-5, c.w) + backgroundColor, 1.0);\n        return Fluid_Circles1551693972791_443_gl_FragColor *= 1.0;\n    }\nvoid main() \n    {\n        gl_FragColor = Fluid_Circles1551693972791_443_main();    }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 cameraPosition;\nuniform float time;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\nvec4 Fluid_Circles1551693972791_443_main() \n    {\n        vec4 Fluid_Circles1551693972791_443_gl_Position = vec4(0.0);\n        vNormal = normal;\n        vUv = uv;\n        vUv2 = uv2;\n        vPosition = position;\n        Fluid_Circles1551693972791_443_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Fluid_Circles1551693972791_443_gl_Position *= 1.0;\n    }\nvoid main() \n    {\n        gl_Position = Fluid_Circles1551693972791_443_main();    }\n",
+  "uniforms": {
+    "cameraPosition": {
+      "type": "v3",
+      "glslType": "vec3"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "resolution": {
+      "value": {
+        "x": "8",
+        "y": "9"
+      },
+      "type": "v2",
+      "glslType": "vec2"
+    },
+    "speed": {
+      "value": ".2",
+      "type": "f",
+      "glslType": "float"
+    },
+    "baseRadius": {
+      "value": ".2",
+      "type": "f",
+      "glslType": "float"
+    },
+    "backgroundColor": {
+      "value": {
+        "r": 0,
+        "g": ".",
+        "b": "0.9"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "brightnessVariation": {
+      "value": "0",
+      "type": "f",
+      "glslType": "float"
+    },
+    "colorVariation": {
+      "value": "0.99",
+      "type": "f",
+      "glslType": "float"
+    },
+    "variation": {
+      "value": "50",
+      "type": "f",
+      "glslType": "float"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/3369",
+  "user": {
+    "username": "SirFizX",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}
