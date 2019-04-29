@@ -169,15 +169,18 @@ RingDial.prototype.animateStart = function() {
     }, 10);
 };
 
-RingDial.prototype.animateTo = function(to) {
-    if(to>this.opts.max)to=this.opts.max;
+RingDial.prototype.animateTo = function(to,s=3,t=0.1) {
+    let m=this.opts.max;
+    s*=m/100;
+    t*=m/100;
+    if(to>m)to=m;
     if(to<0)to=0;
     var v = this.value;
     var self = this;
     this.isAnimating = true;
     var intervalOne = setInterval(function() {
         var p =  (v>to)? +(to /v).toFixed(2)  : +(v / to).toFixed(2);
-        var a = (p < 0.95) ? 2 - (2 * p) : 0.05;
+        var a = (p < 0.95) ? s - (s * p) : t;
         if(to<v){
           v -= a;
             // Stop
