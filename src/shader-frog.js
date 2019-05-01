@@ -27,6 +27,8 @@ import Flowing_Circles_Shader from './Flowing_Circles_Shader.json';
 shaders['Flowing_Circles_Shader']=Flowing_Circles_Shader;
 import Electric_Shader from './Electric_Shader.json';
 shaders['Electric_Shader']=Electric_Shader;
+import CS1_Shader from './CS1_Shader.json';
+shaders['CS1_Shader']=CS1_Shader;
 
 export default CS1=>{
   
