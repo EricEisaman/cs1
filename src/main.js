@@ -34,6 +34,9 @@ import aframeEffects from './aframe-effects';
 import cloud from './cloud';
 import ufo from './ufo';
 ufo(CS1);
+import npc from './npc';
+npc(CS1);
+
 
   
 
