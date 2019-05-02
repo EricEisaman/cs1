@@ -66,7 +66,15 @@ export default CS1=>{
               r = (num & 0xFF0000) >>> 16,
               a = ( (num & 0xFF000000) >>> 24 ) / 255 ;
           return "rgba(" + [r, g, b, a].join(",") + ")";
+      },
+    
+    randomFromArray: function (array) {
+      if(array.length>0){
+        return array[Math.floor(Math.random()*array.length)];
+      }else{
+        return false;
       }
+    }
        
 
   }

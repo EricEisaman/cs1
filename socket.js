@@ -7,6 +7,7 @@ module.exports = (io)=>{
     var changedBodies = [];
     var signedIn = [];
     var ufoTarget = false;
+    var npc = {};
     var lastSocketSentBodies = {broadcast:{emit:()=>{}}};
     let intervalId = setInterval(()=>{
           io.emit('update-players',players);
@@ -139,6 +140,38 @@ module.exports = (io)=>{
           io.emit('set-ufo-target', id);
           ufoTarget = id;
         });
+      
+      
+      
+      
+        socket.on('register-npc',data=>{
+          if(!npc[data.name]){
+            npc[data.name]={};
+            npc[data.name].waypoints=data.waypoints;
+            console.log('Registering NPC.');
+            console.log(npc[data.name]);
+          }
+        });
+        socket.on('set-npc-waypoints',data=>{
+          if(npc[data.name]){
+            npc[data.name].waypoints=data.waypoints;
+            console.log('Setting NPC waypoints.');
+            console.log(npc[data.name]);
+          }
+        });
+        socket.on('add-npc-waypoint',data=>{
+          if(npc[data.name]){
+            npc[data.name].waypoints.push(data.waypoint);
+            console.log('Adding NPC waypoint.');
+            console.log(npc[data.name]);
+          }
+        });
+        socket.on('npc-move',data=>{
+          io.emit('npc-move',data);
+        });
+      
+      
+      
         socket.on('initial-bodies-state',obj=>{
           console.log('Initial bodies state received.');
           bodies = obj;

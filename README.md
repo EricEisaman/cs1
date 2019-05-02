@@ -106,6 +106,7 @@ ____
  - uuid()
  - isEqual(a,b)
  - toColor(number)
+ - randomFromArray(array)
  
 🍎 CS1.cam
 
