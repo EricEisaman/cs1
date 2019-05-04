@@ -23,7 +23,7 @@ export default CS1=>{
         labelColor: '#ccc',
         gradientColor1: 'white',
         gradientColor2: 'red',
-        max: 400                     
+        max: 1000                     
     });
     CS1.hud.energyDial = new RingDial({
         container: containers.top,
