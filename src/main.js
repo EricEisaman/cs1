@@ -36,6 +36,7 @@ import ufo from './ufo';
 ufo(CS1);
 import npc from './npc';
 npc(CS1);
+import dotrow from './dotrow';
 
 
   

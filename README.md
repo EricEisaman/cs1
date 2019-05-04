@@ -1,7 +1,7 @@
 <img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
 
 # CS1 Game Engine
-#### version 0.3.2
+#### version 0.3.3
 ____
 
 ## Mission
@@ -47,6 +47,8 @@ ____
 - Make examples. (TODO)
   
 🍎 Enables easy use of shaders created with [Shader Frog](https://shaderfrog.com/).
+- Include the desired shader json file in your build by importing in shader-frog.js
+- Declaratively implement the shader-frog component in your HTML.
 
 🍎 JS, CSS, and JSON bundling, minification, and uglifying with [Rollup](https://rollupjs.org/guide/en).
 
@@ -88,6 +90,12 @@ ____
 🍎 Cloud Component
 - vertex animation
 - custom color
+
+🍎 NPC Component
+
+🍎 Dotrow Component
+- Makes it easy to add rows of collectibles.
+- Intended to be developer's first look in to editing component source code.
 
 🍎 Database
 - migrate from SQLite3 to [Lowdb](https://github.com/typicode/lowdb) (TODO)
