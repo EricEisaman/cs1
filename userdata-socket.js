@@ -3,6 +3,10 @@ let userdataSocket = {
  name: 'userdataSocket',
  maxstore: 1000,
  init: socket=>{
+    if(!process.env.ALLOWED_KEYS){
+     console.log('Add ALLOWED_KEYS to your .env file, such as ALLOWED_KEYS="avatar lastScore"');
+     return;
+    }
     let allowedKeys = process.env.ALLOWED_KEYS.split(" ");
     socket.on('db-store',(data,cb)=>{
       if(!socket.auth){

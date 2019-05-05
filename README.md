@@ -22,8 +22,15 @@ ____
 
 🍎 Remix this project.
 
-🍎 Add an **ADMIN_KEY** in **.env**
+🍎 Add an **ADMIN_KEY** in **.env**, such as:
+```C
+ADMIN_KEY="myAdminPassword1234"
+```
 
+🍎 Add an **ALLOWED_KEYS** in **.env**, separated by spaces such as:
+```C
+ALLOWED_KEYS="avatar lastScore"
+```
 🍎 For the admin account, login with admin and your ADMIN_KEY.
 
 🍎 Add additional accounts through the client console.
@@ -136,8 +143,8 @@ ____
 🍎 CS1.game
 
 🍎 CS1.db
-  - save({key:'value'})
-  - get('key')
+  - save({key:'value'} , callbackFunction)
+  - get('key' , callbackFunction)
 
 
 ____
