@@ -80,7 +80,7 @@ export default CS1=>{
     },
     onNavigationEnd: function(e){
       this.dest=false;
-      console.log(`NPC Navigation has ended for ${this.name}.`)
+      //console.log(`NPC Navigation has ended for ${this.name}.`)
       //console.log(e);
       if(this.data.roam)this.requestMove();
     }

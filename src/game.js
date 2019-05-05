@@ -6,6 +6,8 @@ export default CS1=>{AFRAME.registerComponent('game', {
     CS1.game = this;
     this.isRunning = false;
     this.name = config.gameName;
+    this.announcements = {};
+    this.announcements['welcome'] = config.welcomeMsg;
     this.welcomeDelay = config.voice.welcomeDelay;
     
     document.querySelector('#scene-container').style.display='block';

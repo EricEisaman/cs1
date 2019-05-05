@@ -1,5 +1,6 @@
 dependencies:
   express: 4.16.3
+  lowdb: 1.0.0
   socket.io: 2.2.0
   sqlite3: 4.0.0
   uuid: 3.3.2
@@ -556,7 +557,6 @@ packages:
     resolution:
       integrity: sha1-gTg9ctsFT8zPUzbaqQLxgvbtuyg=
   /graceful-fs/4.1.15:
-    dev: true
     resolution:
       integrity: sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
   /graceful-readlink/1.0.1:
@@ -720,6 +720,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-IHurkWOEmcB7Kt8kCkGochADRXU=
+  /is-promise/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha1-eaKp7OfwlugPNtKy87wWwf9L8/o=
   /is-regex/1.0.4:
     dependencies:
       has: 1.0.3
@@ -803,6 +807,22 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-L19Fq5HjMhYjT9U62rZo607AmTs=
+  /lodash/4.17.11:
+    dev: false
+    resolution:
+      integrity: sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  /lowdb/1.0.0:
+    dependencies:
+      graceful-fs: 4.1.15
+      is-promise: 2.1.0
+      lodash: 4.17.11
+      pify: 3.0.0
+      steno: 0.4.4
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-2+x8esE/Wb9SQ1F9IHaYWfsC9FIecLOPrK4g17FGEayjUWH172H6nwicRovGvSE2CPZouc2MCIqCI7h9d+GftQ==
   /magic-string/0.25.2:
     dependencies:
       sourcemap-codec: 1.4.4
@@ -1048,7 +1068,6 @@ packages:
     resolution:
       integrity: sha512-9CT4NFlDcosssyg8KVFltgokyKZIFjoBxw8CTGy+5F38Y1eQWrt8tRayiUOXE+zVKQnYu5BR8JjCtvK3BcnBhg==
   /pify/3.0.0:
-    dev: true
     engines:
       node: '>=4'
     resolution:
@@ -1391,6 +1410,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-zhSCtt8v2NDrRlPQpCNtw/heZLtfUDqxBM1udqikb/Hbk52LK4nQSwr10u77iopCW5LsyHpuXS0GnEc48mLeew==
+  /steno/0.4.4:
+    dependencies:
+      graceful-fs: 4.1.15
+    dev: false
+    resolution:
+      integrity: sha1-BxEFvfwobmYVwEA8J+nXtdy4Vcs=
   /string.prototype.padend/3.0.0:
     dependencies:
       define-properties: 1.1.3
@@ -1519,6 +1544,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   express: ^4.16.3
+  lowdb: ^1.x
   npm-run-all: ^4.1.3
   rollup: ^0.60.1
   rollup-plugin-cleanup: ^3.1.1

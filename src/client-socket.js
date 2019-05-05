@@ -115,7 +115,7 @@ export default CS1=>{
                 "faceIndex":o[key].faceIndex}
         });
     });
-    setTimeout(()=>{CS1.say(`Welcome to ${CS1.game.name}!`);},CS1.game.welcomeDelay);
+    setTimeout(()=>{CS1.say(CS1.game.announcements.welcome);},CS1.game.welcomeDelay);
   });
   
   socket.on('request-for-bodies', ()=>{
@@ -166,6 +166,8 @@ export default CS1=>{
   socket.on('failed-socket',()=>{
     window.location.reload();
   });
+  
+  socket.on('log',msg=>{console.log(msg)});
   
 
   window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
