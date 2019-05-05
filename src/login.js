@@ -29,7 +29,8 @@ window.onload = e=>{
       loginContainer.style.zIndex = -1;
       CS1.myPlayer.components["movement-controls"].data.speed=CS1.myPlayer.startSpeed;
       CS1.sounds.playerJoined.play();
-      setTimeout(()=>{CS1.say(`Welcome to ${CS1.game.name}!`);},CS1.game.welcomeDelay);    }
+      setTimeout(()=>{CS1.say(CS1.game.announcements.welcome)},CS1.game.welcomeDelay);    
+    }
     else if(document.getElementById('name').value.length > 0 && document.getElementById('pw').value.length > 0){
      if(navigator.vendor.includes('Apple')){
         CS1.sounds.playerJoined.play()

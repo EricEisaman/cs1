@@ -1,7 +1,7 @@
 <img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
 
 # CS1 Game Engine
-#### version 0.3.3
+#### version 0.3.4
 ____
 
 ## Mission
@@ -132,6 +132,12 @@ ____
   - provides easy access to shaders to manipulate uniforms.
 
 🍎 CS1.npc
+
+🍎 CS1.game
+
+🍎 CS1.db
+  - save({key:'value'})
+  - get('key')
 
 
 ____

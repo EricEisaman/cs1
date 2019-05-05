@@ -1,5 +1,8 @@
-const db = require('./db.js');
+const db = require('./low_db');
 const uuidv4 = require('uuid/v4');
+let addons = [];
+let userdataSocket = require('./userdata-socket');
+addons.push(userdataSocket);
 module.exports = (io)=>{
     var players = {};
     var bodies = {};
@@ -70,9 +73,7 @@ module.exports = (io)=>{
            }
            socket.broadcast.emit('remove-player',socket.id);
            socket.emit('failed-socket');
-           db.serialize(function() {
-                 db.run("UPDATE Users SET isPlaying = 0 WHERE id = ?",socket.dbid);
-               });
+           db.get('users').find({id:socket.dbid}).assign({isPlaying:false}).write();
           }else{
            console.log('Unauthorized connection has disconnected',socket.id);
           }     
@@ -190,49 +191,57 @@ module.exports = (io)=>{
         }); 
         socket.on('login',function(data){
           console.log(`User attempting to login with name: ${data.name} and password: ${data.pw}`);
-          db.serialize(function() {  
-          db.get("SELECT * FROM Users WHERE pw=? AND name=?",[data.pw,data.name], function(err, username) {
-              if(username){
-               if(username.isPlaying) {
-                 socket.emit('login-results',{success:false,name:"cheater",msg:"You are already logged in!"});
-                 console.log(`${username.name} has provided valid login credentials but is already playing. :(`);
+          let user = db.get('users').find({name:data.name,pw:data.pw});
+          if(user){
+            if(user.value().isPlaying) {
+                socket.emit('login-results',{success:false,name:"cheater",msg:"You are already logged in!"});
+                 console.log(`${user.value().name} has provided valid login credentials but is already playing. :(`);
                  return;
-               }
-               console.log(`${username.name} has provided valid login credentials.`);
-               socket.auth = true;
-               socket.name = data.name;
-               db.serialize(function() {
-                 db.run("UPDATE Users SET isPlaying = 1 WHERE id = ?",username.id);
-               });
-               socket.dbid = username.id;
-               socket.emit('login-results',{success:true,name:data.name});
-              }
-              else{
-               console.log('Failed login attempt.');
-               socket.emit('login-results',{success:false,msg:"Invalid credentials!"});
-               setTimeout(()=>{
-                 if(!socket.auth)
-                 socket.disconnect(true)
-               },30000);
-              }
-            });
-          });   
+             }
+             console.log(`${user.value().name} has provided valid login credentials.`);
+             socket.auth = true;
+             socket.name = data.name;
+             user.assign({isPlaying:true}).write();
+             socket.dbid = user.value().id;
+             socket.emit('login-results',{success:true,name:data.name});
+          }else{
+            console.log('Failed login attempt. 30 seconds before socket is disconnected.');
+            socket.emit('login-results',{success:false,msg:"Invalid credentials!"});
+            setTimeout(()=>{
+                if(!socket.auth)
+                  socket.disconnect(true)
+             },30000);
+          }
         });   
         socket.on('add-user',function(data){
           if(data.key == process.env.ADMIN_KEY){
-            db.serialize(function() {
-              let uid = uuidv4()+'';
-              db.run("INSERT INTO Users VALUES (?,?,?,0)",[uid,data.name,data.pw],err=>{
-                if(err){
-                 console.log("Error adding user to database");
-                 console.log(err.message);
-                }else{
-                 console.log("User successfully added to database");
-                }
-              }); 
-            });
+            if(db.get('users').find({name:data.name}).value()){
+               let msg='User cannot be added. Name already exists in database.'
+               console.log(msg);
+               socket.emit('log',msg);
+               return;
+            }
+            let result = db.get('users').push({id:uuidv4(),name:data.name,pw:data.pw,isPlaying:false}).write();
+            if(result){
+              let msg = "User successfully added to database";
+              console.log(msg);
+              socket.emit('log',msg);
+            }else{
+              let msg = "Error adding user to database";
+              console.log(msg);
+              socket.emit('log',msg);
+            }
           } 
         }); 
+      
+      
+        //INITIALIZE ADDONS
+        addons.forEach(addon=>{
+           console.log(`Initializing ${addon.name} for socket id: ${socket.id} ...`);
+           addon.init(socket);
+        });
+      
+      
      })
   } 
   

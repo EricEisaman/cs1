@@ -2,7 +2,7 @@ let express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-require('./socket.js')(io);
+require('./main-socket.js')(io);
 app.use(express.static('public'));
 app.use(function(req, res, next) {
       if ((req.get('X-Forwarded-Proto') !== 'https')) {
