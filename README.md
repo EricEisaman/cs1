@@ -143,8 +143,8 @@ ____
 🍎 CS1.game
 
 🍎 CS1.db
-  - save({key:'value'})
-  - get('key')
+  - save({key:'value'} , callbackFunction)
+  - get('key' , callbackFunction)
 
 
 ____
