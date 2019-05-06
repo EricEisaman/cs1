@@ -143,7 +143,7 @@ ____
 🍎 CS1.game
 
 🍎 CS1.db
-  - save({key:'value'} , callbackFunction)
+  - set({key:'value'} , callbackFunction)
   - get('key' , callbackFunction)
 
 
