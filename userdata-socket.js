@@ -8,7 +8,7 @@ let userdataSocket = {
      return;
     }
     let allowedKeys = process.env.ALLOWED_KEYS.split(" ");
-    socket.on('db-store',(data,cb)=>{
+    socket.on('db-set',(data,cb)=>{
       if(!socket.auth){
         socket.emit('db-fail',data);
         socket.emit('log','You attempted to store data before logging into the game!');
@@ -35,7 +35,7 @@ let userdataSocket = {
       console.log('Attempting to save the following to the user database:');
       console.log(d);
       let result = db.get('users').find({id:socket.dbid}).assign(d).write();
-      if(result){
+      if(result && typeof cb == "function"){
         cb('success');
         let msg = 'Userdata save was a success!'
         console.log(msg);
@@ -50,17 +50,15 @@ let userdataSocket = {
    
    
    socket.on('db-get',(key,cb)=>{
-      console.log(`Attempting to get user.${key}.`);
+      //console.log(`Attempting to get user.${key} for user with id: ${socket.dbid}`);
       let result = db.get('users').find({id:socket.dbid}).value()[key];
-      if(result){
+      if(result && typeof cb == "function"){
         cb(result);
       }else{
         socket.emit('db-fail',key);
         let msg = `Failed to retrieve user.${key} from database.`
         socket.emit('log',msg);
-      }
-   
-   
+      }  
    });
    
    

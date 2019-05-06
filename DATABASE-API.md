@@ -19,7 +19,7 @@ function onAvatarSaved(status){
 }
 
 
-CS1.db.save({avatar : 'Jill'} , onAvatarSaved)
+CS1.db.set({avatar : 'Jill'} , onAvatarSaved)
 ```
 
 ## 💾 Data Retrieval
