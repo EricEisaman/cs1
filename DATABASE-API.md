@@ -38,7 +38,7 @@ CS1.db.get('avatar', setAvatar);
  
 ## 💾 Data Storage
 
-Implements gets an array of allowed keys from **process.env.ALLOWED_KEYS**.
+References an array of allowed keys from **process.env.ALLOWED_KEYS**.
 
 Implements a **maxstore** variable to limit the size of any saved data.
 

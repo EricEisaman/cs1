@@ -15,7 +15,10 @@ if(process.env.ADMIN_KEY.length > 0){
   db.get('users').filter({isPlaying:true}).map(u=>{
     u.isPlaying = false;
     return u
-  }).write(); 
+  }).write();
+  db.get('users').value().forEach(user=>{
+    console.log(user.name, user.pw); 
+  });
 } else {
   console.log('Set the value of ADMIN_KEY in .env, for example ADMIN_KEY="34crrg344"');
 }   
