@@ -25,7 +25,7 @@ AFRAME.registerComponent('dotrow', {
       //console.log('adding dot...');
       let c = document.createElement('a-sphere');
       c.setAttribute('position',(cdIsX)?`${i} 3.5 ${elPosition.z}`:`${elPosition.x} 3.5 ${i}`);
-      c.setAttribute('shader-frog', 'name:Green_Dance_Shader');
+      c.setAttribute('shader-frog', 'name:Ova_Shader');
       c.setAttribute('radius', '0.5');
       c.setAttribute('collectible','affects:pointsDial;value:10;threshold:3.2')  
       scn.appendChild(c);
