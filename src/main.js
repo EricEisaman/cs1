@@ -40,6 +40,9 @@ import dotrow from './dotrow';
 import userdata from './userdata';
 userdata(CS1);
 
+//supress console.warn
+window.console.warn = function(){};
+
 
   
 
