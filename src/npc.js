@@ -50,23 +50,25 @@ export default CS1=>{
       if(destination){
         s = destination;
       }else{
-        if(!this.waypoints){
-          console.log('You must specify npc waypoints if you wish your npc to roam.');
-          return;
-        }
         s=this.waypoints[this.waypointsIndex];
         if(++this.waypointsIndex==this.waypoints.length)this.waypointsIndex=0;
       }
-      this.dest=s;
-      let a = s.split(' ');
-        dest.x=a[0];
-        dest.y=a[1];
-        dest.z=a[2];
-      if (dest) this.el.setAttribute('nav-agent', {
-        active: true,
-        destination: dest,
-        speed: 3.5
-      });
+      if(!s){
+          console.error('You must define some waypoints for your npc to roam! < npc component >');
+          return;
+      }else{
+          this.dest=s;
+          let a = s.split(' ');
+          dest.x=a[0];
+          dest.y=a[1];
+          dest.z=a[2];
+          if (dest) this.el.setAttribute('nav-agent', {
+            active: true,
+            destination: dest,
+            speed: 3.5
+          });
+      
+      }
     },
     setPosition: function (position) {
       this.el.setAttribute('position',position);
