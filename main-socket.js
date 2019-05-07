@@ -192,7 +192,8 @@ module.exports = (io)=>{
         socket.on('login',function(data){
           console.log(`User attempting to login with name: ${data.name} and password: ${data.pw}`);
           let user = db.get('users').find({name:data.name,pw:data.pw});
-          if(user){
+      
+          if(user.value()){
             if(user.value().isPlaying) {
                 socket.emit('login-results',{success:false,name:"cheater",msg:"You are already logged in!"});
                  console.log(`${user.value().name} has provided valid login credentials but is already playing. :(`);
