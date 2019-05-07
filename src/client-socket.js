@@ -1,8 +1,8 @@
 export default CS1=>{
   let socket = CS1.socket = io();
   socket.on('connect',()=>{
-    console.log(`socket connected with id: ${socket.id}`);
-    console.log('Client.js can initialize my playerData now.');
+    //console.log(`socket connected with id: ${socket.id}`);
+    //console.log('Client.js can initialize my playerData now.');
     socket.playerData = {position:{},rotation:{},faceIndex:0};
     socket.lastPlayerData = {position:{},rotation:{},faceIndex:0};
     //REVISIT
@@ -12,7 +12,7 @@ export default CS1=>{
   }); 
   
   socket.on('login-results',data=>{
-    console.log(data);
+    //console.log(data);
     if(data.success) {
       document.querySelector('#login').style.zIndex = -1;
       document.querySelector('#login').style.display = 'none'; 

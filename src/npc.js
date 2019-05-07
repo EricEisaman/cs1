@@ -2,7 +2,7 @@ export default CS1=>{
   
   AFRAME.registerComponent('npc', {
     schema:{
-      waypoints:{type:'array',default:''},//"{x:1,y:0.9,z:2},{x:10,y:0.9,z:12}"
+      waypoints:{type:'array'},
       name:{type:'string'},
       roam:{type:'boolean',default:false}
     },
@@ -50,6 +50,10 @@ export default CS1=>{
       if(destination){
         s = destination;
       }else{
+        if(!this.waypoints){
+          console.log('You must specify npc waypoints if you wish your npc to roam.');
+          return;
+        }
         s=this.waypoints[this.waypointsIndex];
         if(++this.waypointsIndex==this.waypoints.length)this.waypointsIndex=0;
       }

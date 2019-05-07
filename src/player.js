@@ -17,7 +17,7 @@ export default CS1=>{
     addMyListeners: function(){
       let self = this;
       document.addEventListener('gameStart',e=>{
-        console.log('Handling gameStart on my player.');
+        //console.log('Handling gameStart on my player.');
         self.el.id = CS1.socket.id;
         self.el.classList = 'my-player';
         self.isPlaying = true;

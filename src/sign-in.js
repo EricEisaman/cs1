@@ -35,7 +35,7 @@ export default CS1=>{
       });
       let self = this;
       document.addEventListener('gameStart',e=>{
-        console.log('Handling gameStart on my sign-in.');
+        //console.log('Handling gameStart on sign-in component.');
         setTimeout(e=>{
           if(!CS1.myPlayer.signedIn){
             let event = new CustomEvent(
