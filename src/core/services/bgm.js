@@ -1,4 +1,4 @@
-import config from '../.data/client-config';
+import config from '../../../.data/client-config';
 export function bgmlite(CS1){
   let tracks = config.bgm.songs;
   let audio = document.createElement('audio');

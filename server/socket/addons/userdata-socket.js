@@ -1,4 +1,4 @@
-const db = require('./db');
+const db = require('../../db/db');
 let userdataSocket = {
  name: 'userdataSocket',
  maxstore: 1000,

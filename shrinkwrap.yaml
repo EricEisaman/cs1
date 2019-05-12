@@ -2,7 +2,6 @@ dependencies:
   express: 4.16.3
   lowdb: 1.0.0
   socket.io: 2.2.0
-  sqlite3: 4.0.0
   uuid: 3.3.2
 devDependencies:
   npm-run-all: 4.1.5
@@ -919,10 +918,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
-  /nan/2.9.2:
-    dev: false
-    resolution:
-      integrity: sha512-ltW65co7f3PQWBDbqVvaU1WtFJUsNW7sWWm4HINhbMQIyVyzIeyZ8toX5TC5eeooE6piZoaEh4cZkueSKG3KYw==
   /negotiator/0.6.1:
     dev: false
     engines:
@@ -1395,15 +1390,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-uBIcIl3Ih6Phe3XHK1NqboJLdGfwr1UN3k6wSD1dZpmPsIkb8AGNbZYJ1fOBk834+Gxy8rpfDxrS6XLEMZMY2g==
-  /sqlite3/4.0.0:
-    bundledDependencies:
-      - node-pre-gyp
-    dependencies:
-      nan: 2.9.2
-    dev: false
-    requiresBuild: true
-    resolution:
-      integrity: sha512-6OlcAQNGaRSBLK1CuaRbKwlMFBb9DEhzmZyQP+fltNRF6XcIMpVIfXCBEcXPe1d4v9LnhkQUYkknDbA5JReqJg==
   /statuses/1.4.0:
     dev: false
     engines:
@@ -1555,5 +1541,4 @@ specifiers:
   rollup-plugin-uglify: ^4.0.0
   rollup-plugin-uglify-es: ^0.0.1
   socket.io: ^2.2.0
-  sqlite3: ^4.0.0
   uuid: ^3.3.2
