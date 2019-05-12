@@ -29,7 +29,7 @@ ADMIN_KEY="myAdminPassword1234"
 
 🍎 Add an **ALLOWED_KEYS** in **.env**, separated by spaces such as:
 ```C
-ALLOWED_KEYS="avatar lastScore"
+ALLOWED_KEYS="avatar LED"
 ```
 🍎 For the admin account, login with admin and your ADMIN_KEY.
 
