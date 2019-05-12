@@ -43,9 +43,10 @@ CS1.db.get('led', onResponse);
 
 Note: the polling period should not be less than 3500 milliseconds to avoid hitting the hourly request limit for Glitch.
 
-# On IoT Device
+# On IoT Device  
+[Example sketch at GitHub](https://github.com/EricEisaman/esp8266/blob/master/ino/cs1-iot.ino)
 
-Trivial example for ESP8266 printing the current **led** value to the serial console.
+Example for remote control of an **ESP8266 LED**.
 ```c++
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
@@ -54,7 +55,7 @@ Trivial example for ESP8266 printing the current **led** value to the serial con
 ESP8266WebServer server;
 
 char* ssid = "YOUR_SSID";
-char* password = "YOUR SSID PASSWORD";
+char* password = "SSID_PASSWORD";
 
 const char INDEX_HTML[] =
   "<!DOCTYPE HTML>"
@@ -78,9 +79,8 @@ const char INDEX_HTML[] =
   "</body>"
   "</html>";
 
-// For polling every 4 seconds
-int fourSecIntervalLengthMS=4000; 
-int fourSecIntervalStartMS=millis();
+int POLLING_PERIOD=200; 
+int intervalStartMS=millis();
 
 void setup()
 {
@@ -97,7 +97,7 @@ void setup()
   Serial.print(WiFi.localIP());
   Serial.println("");
   pinMode(LED_BUILTIN, OUTPUT); 
-  digitalWrite(LED_BUILTIN,LOW);
+  digitalWrite(LED_BUILTIN,LOW);//Turn on LED
 
   server.on("/",sendIndex);
   server.on("/toggle", toggleLED);
@@ -107,10 +107,9 @@ void setup()
 void loop()
 {
   server.handleClient();
-  if( millis() > fourSecIntervalStartMS + fourSecIntervalLengthMS ) {
-    Serial.println("Run fourSecondPoll Function.");
-    fourSecondPoll();
-    fourSecIntervalStartMS = millis();  
+  if( millis() > intervalStartMS + POLLING_PERIOD ) {
+    pollServer();
+    intervalStartMS = millis();  
   }
   
   
@@ -126,9 +125,10 @@ void toggleLED(){
   server.send(200,"text/plain","Toggle!\n");
 }
 
-void fourSecondPoll(){
+
+void pollServer(){
   HTTPClient http;
-    http.begin("http://iot-api.glitch.me/user/?id=f33faadaweeee&prop=led");
+    http.begin("http://my-project.glitch.me/iot-get/?name=CS1&prop=LED");
     int httpCode = http.GET();
     // httpCode will be negative on error
     if(httpCode > 0) {
@@ -139,12 +139,26 @@ void fourSecondPoll(){
         if(httpCode == HTTP_CODE_OK) {
             String payload = http.getString();
             Serial.println(payload);
+            Serial.println("");
+            setLED(payload);
         }
      } else {
         Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
      }
 
      http.end(); 
+}
+String on = String("on");
+void setLED(String state){
+  if(state == on){
+      Serial.println("TURNING THE LED ON.");
+      Serial.println("");
+      digitalWrite(LED_BUILTIN,LOW);
+    }else{
+      Serial.println("TURNING THE LED OFF.");
+      Serial.println("");
+      digitalWrite(LED_BUILTIN,HIGH);
+    }
 }
 ```
 
