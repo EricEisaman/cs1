@@ -7,8 +7,8 @@ let config = {
   }
 }
 
-import RingDial from './ring-dial';
-import Meter from './meter';
+import RingDial from './elements/ring-dial';
+import Meter from './elements/meter';
 
 export default CS1=>{
 

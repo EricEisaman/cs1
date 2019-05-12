@@ -2,7 +2,8 @@ let express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-require('./main-socket.js')(io);
+require('./socket/main-socket.js')(io);
+require('./socket/addons/iot-api.js')(app);
 app.use(express.static('public'));
 app.use(function(req, res, next) {
       if ((req.get('X-Forwarded-Proto') !== 'https')) {
@@ -21,4 +22,4 @@ http.listen(app.get('port'), function(){
   console.log('listening on port',app.get('port'));
 }); 
  
-                     
+                       

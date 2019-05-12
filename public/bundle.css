@@ -1,3 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 2em;
+  background:#1f2120;
+}
+#loading-screen {
+ background:#1f2120;
+ z-index:100;
+}
+#scene-container {
+ z-index:0;
+}
+#hud {
+ position: absolute;
+ z-index: 100;
+ width: 0px;
+ height: 0px;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ display: flex;
+ flex-direction: row;
+ font-family: Century Gothic, Lato;
+}
+
+
 .lds-grid {
   display: inline-block;
   position: relative;
@@ -66,37 +97,6 @@
   50% {
     opacity: 0.5;
   }
-}
-#hud {
- position: absolute;
- z-index: 100;
- width: 0px;
- height: 0px;
- top: 0;
- bottom: 0;
- left: 0;
- right: 0;
- display: flex;
- flex-direction: row;
- font-family: Century Gothic, Lato;
-}
-
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
-  background:#1f2120;
-}
-#loading-screen {
- background:#1f2120;
- z-index:100;
-}
-#scene-container {
- z-index:0;
 }
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 

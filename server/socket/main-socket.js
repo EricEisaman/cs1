@@ -1,7 +1,7 @@
-const db = require('./db');  
+const db = require('../db/db');  
 const uuidv4 = require('uuid/v4');
 let addons = [];
-let userdataSocket = require('./userdata-socket');
+let userdataSocket = require('./addons/userdata-socket');
 addons.push(userdataSocket);
 module.exports = (io)=>{
     var players = {};

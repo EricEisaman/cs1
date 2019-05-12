@@ -1,4 +1,4 @@
-var config = require('./config');
+var config = require('../config/config');
 const uuidv4 = require('uuid/v4');
 
 var low = require('lowdb');

@@ -224,6 +224,20 @@
 
        
     <a-entity id="dotrow-1" dotrow="to: 56" position="-56.84967 1 56.63414"></a-entity>
+       
+       
+    <a-entity id="esp8266" 
+              position="-34.6 6.5 -39.3"
+              rotation="25.14 98.5 70.93"
+              scale="0.2 0.2 0.2"
+              grabbable
+              gltf-model="https://cdn.glitch.com/e93942d2-015d-47d7-aae4-9f92f2a7d6b5%2FESP8266_lp.glb?1557589195138">
+       <a-box id="led"
+              iot-api
+              position="2.215 2.45 1.235"
+              scale="0.5 0.5 1"
+              material="color:red;emissive:#f00;emissiveIntensity:4"></a-box>
+    </a-entity>
 
      
     <a-entity id="my-player" 
@@ -236,13 +250,13 @@
                 position="0 4 0"
                 rotation="31.283 -12.834 0"
                 look-controls="pointerLockEnabled:true;reverseTouchDrag:true">
-        <a-cursor id="cam-cursor" nav-pointer raycaster="objects:[grabbable],[sign-in];far:4"></a-cursor>
+        <a-cursor id="cam-cursor" nav-pointer raycaster="objects:[grabbable],[sign-in],[iot-api];far:4"></a-cursor>
       </a-entity>
     </a-entity>
        
-   <a-sphere id="moon" src="https://cdn.glitch.com/630690db-5297-4f44-9d50-b6fb8e795635%2F2k_moon.jpg?1551707768297" radius="10" material="shader:flat;transparent:true;color:#ffffff" light="intensity:0.25" position="40 65 50" rotation="-40 0 0"></a-sphere>
+   <a-sphere id="moon" src="https://cdn.glitch.com/630690db-5297-4f44-9d50-b6fb8e795635%2F2k_moon.jpg?1551707768297" radius="10" material="shader:flat;transparent:true;color:#ffffff" light="intensity:0.4" position="40 65 50" rotation="-40 0 0"></a-sphere>
        
-  <a-entity light="type:ambient;color:#aaa"></a-entity>
+  <a-entity light="type:ambient;color:#fff"></a-entity>
           
     <!-- Environment -->
 <!--     <a-entity id="environment" environment="shadow: true; 

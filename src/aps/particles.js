@@ -1,10 +1,10 @@
 import particlePlayer from './particle-player';
 
-import Particles_Dust from './Particles_Dust.json';
+import Particles_Dust from './particles/Particles_Dust.json';
 
-import Particles_Energy from './Particles_Energy.json';
+import Particles_Energy from './particles/Particles_Energy.json';
 
-import Particles_Orb from './Particles_Orb.json';
+import Particles_Orb from './particles/Particles_Orb.json';
 
 
 export default CS1=>{
