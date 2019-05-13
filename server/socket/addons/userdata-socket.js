@@ -3,11 +3,11 @@ let userdataSocket = {
  name: 'userdataSocket',
  maxstore: 1000,
  init: socket=>{
-    if(!process.env.ALLOWED_KEYS){
-     console.log('Add ALLOWED_KEYS to your .env file, such as ALLOWED_KEYS="avatar lastScore"');
+    if(!process.env.DATABASE_API_PROPERTIES){
+     console.log('Add DATABASE_API_PROPERTIES to your .env file, such as DATABASE_API_PROPERTIES="LED credits"');
      return;
     }
-    let allowedKeys = process.env.ALLOWED_KEYS.split(" ");
+    let allowedKeys = process.env.DATABASE_API_PROPERTIES.split(" ");
     socket.on('db-set',(data,cb)=>{
       if(!socket.auth){
         socket.emit('db-fail',data);
