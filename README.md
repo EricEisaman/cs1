@@ -27,9 +27,14 @@ ____
 ADMIN_KEY="myAdminPassword1234"
 ```
 
-🍎 Add an **ALLOWED_KEYS** in **.env**, separated by spaces such as:
+🍎 Add **DATABASE_API_PROPERTIES** in **.env**, separated by spaces such as:
 ```C
-ALLOWED_KEYS="avatar LED"
+DATABASE_API_PROPERTIES="LED credits"
+```
+
+🍎 Add **IOT_API_KEY** in **.env** if you are connecting an IoT device:
+```C
+IOT_API_KEY="wejvaYi359qM12"
 ```
 🍎 For the admin account, login with admin and your ADMIN_KEY.
 

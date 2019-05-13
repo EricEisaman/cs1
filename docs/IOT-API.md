@@ -4,6 +4,8 @@
 
 The **iot-api** client side component provides interaction with an **IoT Device** such as an **ESP8266** via the server database.  Developers can design custom **IoT API Endpoints** in the server side **iot-api** module.
 
+#  ⚠️ SET IOT_API_KEY in .env ⚠️ 
+
 ____
 
 # Client Side
@@ -55,7 +57,7 @@ Example for remote control of an **ESP8266 LED**.
 ESP8266WebServer server;
 
 char* ssid = "YOUR_SSID";
-char* password = "SSID_PASSWORD";
+char* password = "YOUR_SSID_PASSWORD";
 
 const char INDEX_HTML[] =
   "<!DOCTYPE HTML>"
@@ -128,7 +130,7 @@ void toggleLED(){
 
 void pollServer(){
   HTTPClient http;
-    http.begin("http://my-project.glitch.me/iot-get/?name=CS1&prop=LED");
+    http.begin("http://your-project.glitch.me/iot-get/?key=aW49mH15Bo&prop=LED");
     int httpCode = http.GET();
     // httpCode will be negative on error
     if(httpCode > 0) {

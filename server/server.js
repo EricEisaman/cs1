@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 require('./socket/main-socket.js')(io);
-require('./socket/addons/iot-api.js')(app);
+require('./socket/addons/iot-api.js').setApp(app);
 app.use(express.static('public'));
 app.use(function(req, res, next) {
       if ((req.get('X-Forwarded-Proto') !== 'https')) {

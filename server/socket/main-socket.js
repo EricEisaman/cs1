@@ -3,6 +3,8 @@ const uuidv4 = require('uuid/v4');
 let addons = [];
 let userdataSocket = require('./addons/userdata-socket');
 addons.push(userdataSocket);
+let iotapi = require('./addons/iot-api');
+addons.push(iotapi);
 module.exports = (io)=>{
     var players = {};
     var bodies = {};

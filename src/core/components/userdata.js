@@ -10,7 +10,7 @@ AFRAME.registerComponent('userdata', {
     //'avatar'
     CS1.db.get = (key,cb)=>{
       CS1.socket.emit('db-get', key, cb);
-    }  
+    }
   }
   
 });
