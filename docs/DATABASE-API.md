@@ -1,6 +1,6 @@
 Provided by **userdata** component
 
-⚠️ Note: **userdata** requires **process.env.ALLOWED_KEYS** to be set in the **.env** file.
+⚠️ Note: **userdata** requires **process.env.DATABASE_API_PROPERTIES** to be set in the **.env** file.
 ____
 
 # Client Side
@@ -38,7 +38,7 @@ CS1.db.get('avatar', setAvatar);
  
 ## 💾 Data Storage
 
-References an array of allowed keys from **process.env.ALLOWED_KEYS**.
+References an array of allowed keys from **process.env.DATABASE_API_PROPERTIES**.
 
 Implements a **maxstore** variable to limit the size of any saved data.
 
