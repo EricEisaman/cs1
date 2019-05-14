@@ -8,6 +8,9 @@ The **iot-api** client side component provides interaction with an **IoT Device*
 
 ____
 
+# Example Implementation
+____
+
 # Client Side
  
 ## 💾 Remotely control the IoT Device
@@ -41,7 +44,9 @@ CS1.db.get('led', onResponse);
 
 # Server Side
  
-## 💾 The server mediates communication between a polling IoT Device and the 3d application's client socket.
+## 💾 In this example, the server mediates communication between a polling IoT Device and the 3d application's client socket. 
+
+##  💎 If the IoT device can support a secure websocket connection, it would be preferable over polling.
 
 Note: the polling period should not be less than 3500 milliseconds to avoid hitting the hourly request limit for Glitch.
 
