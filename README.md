@@ -110,7 +110,10 @@ ____
 - Intended to be developer's first look in to editing component source code.
 
 🍎 Database
-- migrate from SQLite3 to [Lowdb](https://github.com/typicode/lowdb) (TODO)
+- uses [Lowdb](https://github.com/typicode/lowdb) 
+
+🍎 IoT Component
+- Illustrates basic IoT device integration.
 
 ____
 
