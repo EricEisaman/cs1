@@ -2,7 +2,7 @@
 
 ![](https://cdn.glitch.com/e93942d2-015d-47d7-aae4-9f92f2a7d6b5%2FESP8266.png?1557526884045)
 
-The **iot-api** client side component provides interaction with an **IoT Device** such as an **ESP8266** via the server database.  Developers can design custom **IoT API Endpoints** in the server side **iot-api** module.
+The **iot-api** client side component provides interaction with an **IoT Device** such as an **ESP8266** via the server database.  Developers can design custom **IoT API Endpoints** in custom server side **iot-api** modules.
 
 #  ⚠️ SET IOT_API_KEY in .env ⚠️ 
 
