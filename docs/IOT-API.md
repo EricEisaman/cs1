@@ -27,7 +27,7 @@ function onResponse(status){
 }
 
 
-CS1.db.set({led : 'on'} , onResponse)
+CS1.db.set({LED : 'on'} , onResponse)
 ```
 
 ## 💾 Get the current state of the IoT Device
@@ -38,7 +38,7 @@ function onResponse(value){
    //Provide visual feedback based on the value.
 }
 
-CS1.db.get('led', onResponse);
+CS1.db.get('LED', onResponse);
 ```
 
 
