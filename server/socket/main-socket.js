@@ -39,7 +39,7 @@ module.exports = (io)=>{
            }  
            socket.emit('initial-bodies-state',ibs);
            console.log('sending initial bodies state');
-           console.log(ibs);
+           //console.log(ibs);
           }
           if(Object.keys(players).length === 0){
             socket.emit('request-for-bodies');
@@ -49,7 +49,7 @@ module.exports = (io)=>{
                if(c.collector){
                  socket.emit('collect',{index:index,collector:c.collector});
                  console.log('Sending collectible update to new player:');
-                 console.log(c);
+                 //console.log(c);
                }
             });
           }
@@ -115,7 +115,7 @@ module.exports = (io)=>{
              c.collector = false;
              collectibles[i] = c;
            }
-          console.log(collectibles);
+          //console.log(collectibles);
         });
         socket.on('hyperspace-alert',data=>{
           socket.broadcast.emit('hyperspace',data);
@@ -152,14 +152,14 @@ module.exports = (io)=>{
             npc[data.name]={};
             npc[data.name].waypoints=data.waypoints;
             console.log('Registering NPC.');
-            console.log(npc[data.name]);
+            //console.log(npc[data.name]);
           }
         });
         socket.on('set-npc-waypoints',data=>{
           if(npc[data.name]){
             npc[data.name].waypoints=data.waypoints;
             console.log('Setting NPC waypoints.');
-            console.log(npc[data.name]);
+            //console.log(npc[data.name]);
           }
         });
         socket.on('add-npc-waypoint',data=>{
