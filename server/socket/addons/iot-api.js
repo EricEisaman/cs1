@@ -1,7 +1,7 @@
 const db = require('../../db/db');
 const IOT_API_KEY = process.env.IOT_API_KEY;
 const iotAPI = {
-  
+  name: 'iotAPI',
   init: socket => {
     
     if(!process.env.DATABASE_API_PROPERTIES){
