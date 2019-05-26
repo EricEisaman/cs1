@@ -65,7 +65,7 @@ export default CS1=>{
           if (dest) this.el.setAttribute('nav-agent', {
             active: true,
             destination: dest,
-            speed: 3.5
+            speed: 2
           });
       
       }

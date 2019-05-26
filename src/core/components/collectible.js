@@ -46,10 +46,10 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
            let s;
            switch(collectedEntity.el.id){
              case 'avatar-upgrade-1':
-               s=0.5;
+               s=0.35;
                break;
              case 'avatar-upgrade-2':
-               s=0.9
+               s=0.5
            }
            CS1.myPlayer.components.player.setSpeed(s);
            console.log('speed boost');
