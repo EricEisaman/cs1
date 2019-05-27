@@ -77,7 +77,7 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
     }
 
     //AFRAME.utils.device.checkHeadsetConnected ()
-		//document.querySelector('#lef-hand').components["oculus-touch-controls"].controllerPresent
+		//document.querySelector('#left-hand').components["oculus-touch-controls"].controllerPresent
     
     setTimeout(()=>{
       

@@ -9,6 +9,7 @@ export default CS1=>{
         this.isWalking=false;
         this.setKeyCtls();
         this.setTouchCtls();
+        this.setOculusCtls();
         this.setAvatarChoices();
         this.addMyListeners();
         this.el.timePlayed = 0;
@@ -60,6 +61,38 @@ export default CS1=>{
          CS1.socket.emit('anim',0);
          this.isWalking=false;
       });
+    },
+    setOculusCtls: function(){
+      let lh = document.querySelector('#left-hand').components["oculus-touch-controls"];
+      let rh = document.querySelector('#right-hand').components["oculus-touch-controls"];
+      setTimeout(()=>{
+        
+        if(AFRAME.utils.device.checkHeadsetConnected()){
+          lh.el.addEventListener('thumbsticktouchstart',e=>{
+             if(!this.isWalking){
+                   CS1.socket.emit('anim',1);
+                   this.isWalking=true;    
+                 }   
+          });
+          lh.el.addEventListener('thumbsticktouchend',e=>{
+             CS1.socket.emit('anim',0);
+             this.isWalking=false; 
+          });
+          rh.el.addEventListener('thumbsticktouchstart',e=>{
+             if(!this.isWalking){
+                   CS1.socket.emit('anim',1);
+                   this.isWalking=true;    
+                 }   
+          });
+          rh.el.addEventListener('thumbsticktouchend',e=>{
+             CS1.socket.emit('anim',0);
+             this.isWalking=false; 
+          });
+        }
+        
+      },3000);
+      
+      
     },
     setAvatarChoices: function(){
       this.avatar_0 = document.querySelector('#starter-avatar');
