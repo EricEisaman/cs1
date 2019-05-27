@@ -58,7 +58,7 @@
      <!-- Nav Mesh -->
     <a-entity id="navmesh"
               gltf-model="url(https://cdn.glitch.com/f846816e-0f04-48ce-8699-fb634b3c2a42%2Fcs1_hq_navmesh.gltf?1558895383268)"
-              position="0 0 0"
+              position="0 -0.2 0"
               visible="false"
               nav-mesh></a-entity>
        
@@ -235,8 +235,8 @@
        </a-entity>
     
     <a-entity id="npc-1"
-              position="0 0.2 0"
-              npc="name:Rover_1;waypoints:0 0.2 -1,-22.5 0.2 16.3; roam:true">
+              position="0 0 0"
+              npc="name:Rover_1;waypoints:0 0 -1,-22.5 0 16.3; roam:true">
        <a-entity position="0 2.1 0" 
                  rotation="30 0 0"
                  scale="0.4 0.4 0.4"
@@ -244,7 +244,7 @@
     </a-entity>
        
     <a-entity id="npc-2"
-              position="8 0.3 -5"
+              position="8 0 -5"
               npc="name:Rover_2">
        <a-entity position="0 2.1 0" 
                  rotation="30 0 0"
@@ -261,7 +261,7 @@
        
      
     <a-entity id="my-player" 
-              position="8 0.2 6.2"
+              position="8 0 6.2"
               movement-controls="constrainToNavMesh: true; speed: 0.2"
               player="me:true"
               userdata>
