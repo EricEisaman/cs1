@@ -74,7 +74,7 @@ export default CS1=>{AFRAME.registerComponent('game', {
       p.model.setAttribute('animation-mixer','clip:idle');
       p.id = newPlayerObject.id;
       p.name = newPlayerObject.name;
-      p.setAttribute('position',`${newPlayerObject.data.position.x} ${newPlayerObject.data.position.y+0.0} ${newPlayerObject.data.position.z}`);
+      p.setAttribute('position',`${newPlayerObject.data.position.x} ${newPlayerObject.data.position.y} ${newPlayerObject.data.position.z}`);
       p.model.setAttribute('rotation',`${-newPlayerObject.data.rotation.x} ${newPlayerObject.data.rotation.y+180} ${newPlayerObject.data.rotation.z}`);
       p.msg = document.createElement('a-entity');
       let test = `Hello\nI am\n${newPlayerObject.name}!`;

@@ -19,19 +19,19 @@ export default {
   models:[
     {
       url:"https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fchip_2.79.glb?1553371735573",
-      scale:0.75, yOffset:0.0,
+      scale:0.75, yOffset:0.11,
       animations:{idle:"idle",walk:"walk"},
       msg:{color: 'orange',offset: '0 4 0'}
     },
     {
       url:"https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401",
-      scale:0.75, yOffset:0.0,
+      scale:0.75, yOffset:0.11,
       animations:{idle:"idle",walk:"walk"},
       msg:{color: 'orange',offset: '0 4 0'}
     },
     {
       url:"https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchippewa.glb?1553596541620",
-      scale:0.75, yOffset:0.0,
+      scale:0.75, yOffset:0.11,
       animations:{idle:"idle",walk:"walk"},
       msg:{color: 'orange',offset: '0 4 0'}
     }
