@@ -156,6 +156,9 @@ export default CS1=>{AFRAME.registerComponent('game', {
   
   start: function () {
     
+    if(AFRAME.utils.device.checkHeadsetConnected()){
+          CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} is playing with an Oculus VR device!`,channel:'0'});
+    }
     
     CS1.sounds.playerJoined.onended = ()=>{
       CS1.myPlayer.components["movement-controls"].data.speed=CS1.myPlayer.startSpeed;

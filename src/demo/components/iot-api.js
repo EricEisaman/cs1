@@ -42,7 +42,7 @@ export default CS1=>{
       
     },
     offLED: function(){
-      let mat = 'color:#680c1a;emissiveIntensity:0';
+      let mat = 'color:#551818;emissiveIntensity:0';
       this.data.LED = 'off';
       this.el.setAttribute('material',mat);
     },
