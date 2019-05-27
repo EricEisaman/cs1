@@ -60,22 +60,76 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
 		self.proxyObject = null;
 
 		self.el.classList.add("interactive");
-
-		self.el.addEventListener("mousedown", grab);
     
-    if(AFRAME.utils.device.isMobile())self.el.addEventListener("click", function(e){
-       grab(e);
-       setTimeout(function(e){
-         document.querySelector('#cam-cursor').setAttribute('material','color: purple');
-         release(e);
+    
+    //use object to allow for further development
+    if(!CS1.grabbables)CS1.grabbables={}; 
+    self.name=Object.keys(CS1.grabbables).length;
+    CS1.grabbables[self.name]=self.el;
+    
+    if(self.el.components.log){
+      //this.el.components.log.data.channel = this.name;
+      self.el.setAttribute('log',`channel:${String(self.name)}`)
+      if(!CS1.socket._callbacks["$vr-log"])
+      CS1.socket.on('vr-log',data=>{
+        CS1.log(data.msg ,String(data.channel));
+      });
+    }
+
+    //AFRAME.utils.device.checkHeadsetConnected ()
+		//document.querySelector('#lef-hand').components["oculus-touch-controls"].controllerPresent
+    
+    setTimeout(()=>{
+      
+      
+    if(AFRAME.utils.device.checkHeadsetConnected () ) {
+      self.el.addEventListener("mousedown", grab);
+      document.querySelector('#cam-cursor').setAttribute('visible',false);
+      document.querySelector('#cam-cursor').setAttribute('fuse',false);
+      document.querySelector('#cam-cursor').pause();
+    }
+    else {
+      self.el.addEventListener("mousedown", grab);
+    
+      if(AFRAME.utils.device.isMobile()){
+        
+        self.el.addEventListener("click", function(e){
+         grab(e);
          setTimeout(function(e){
-           document.querySelector('#cam-cursor').setAttribute('material','color: crimson');
-         },500);
-       },5000);
-    });
+           document.querySelector('#cam-cursor').setAttribute('material','color: purple');
+           release(e);
+           setTimeout(function(e){
+             document.querySelector('#cam-cursor').setAttribute('material','color: crimson');
+           },500);
+         },5000);
+      });
+      
+      } else{ //No headset and not mobile
+        
+        const el = this.el;
+
+        el.addEventListener('mouseenter',e=>{
+          document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
+        });
+        el.addEventListener('mouseleave',e=>{
+          document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
+        });
+        
+        
+        
+      }  
+    
+    }
+      
+      
+      
+    },3000);
+    
+    
     
     function grab(e){
       //console.log("GRABBING");
+      CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} grabbing!` ,channel:self.name});
 			e.cancelBubble = true;
 			if(isDragging) return;
       
@@ -95,12 +149,15 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
 			self.originEl.addState("moving");
 		}
 
-		self.el.addEventListener("mouseup", release);
+		if(AFRAME.utils.device.checkHeadsetConnected () ){ 
+      self.el.addEventListener("mouseup", release);
+    }
+    else self.el.addEventListener("mouseup", release);
     
     function release(e)
 		{
 			if(isDragging)
-			{
+			{ CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} releasing!` ,channel:self.name});
 				isDragging = false;
 
 				if(self.proxyObject)
@@ -147,10 +204,7 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
         });
       }
     
-    //use object to allow for further development
-    if(!CS1.grabbables)CS1.grabbables={}; 
-    this.name=Object.keys(CS1.grabbables).length;
-    CS1.grabbables[this.name]=this.el;
+    
     
 	},
 

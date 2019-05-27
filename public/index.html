@@ -63,6 +63,15 @@
               nav-mesh></a-entity>
        
        
+    <a-entity position="1.65 2 -9.6" rotation="0 90 0" scale="2 2 2"  >
+        <a-entity log="max:20"  grabbable   geometry="primitive: plane" material="color: #111; side:double" text="color: lightgreen"></a-entity>
+    </a-entity>
+       
+   <a-entity position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2"  >
+        <a-entity log="max:20"  grabbable   geometry="primitive: plane" material="color: #111; side:double" text="color: pink"></a-entity>
+    </a-entity>
+       
+       
        
       <a-entity id="avatar-to-clone-1"
               gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401)"
@@ -261,10 +270,15 @@
                 position="0 1.6 0"
                 rotation="31.283 -12.834 0"
                 look-controls="pointerLockEnabled:true;reverseTouchDrag:true">
-        <a-cursor id="cam-cursor" nav-pointer raycaster="objects:[grabbable],[sign-in],[iot-api];far:2"></a-cursor>
+        
+        <a-cursor id="cam-cursor" raycaster="objects:[grabbable],[sign-in],[iot-api];far:3"></a-cursor>
+<!-- <a-cursor id="cam-cursor" nav-pointer raycaster="objects:[grabbable],[sign-in],[iot-api];far:2"></a-cursor> -->
+<!--         oculus-touch-controls="hand: left" -->
       </a-entity>
-      <a-entity id="left-hand" position="0 1 0" oculus-touch-controls="hand: left"></a-entity>
-      <a-entity id="right-hand" position="0 1 0" oculus-touch-controls="hand: right"></a-entity>
+      
+    
+      <a-entity id="left-hand" position="0 1 0" laser-controls="hand: left"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3" ></a-entity>
+      <a-entity id="right-hand" position="0 1 0" laser-controls="hand: right"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3" ></a-entity>
       
       
     </a-entity>

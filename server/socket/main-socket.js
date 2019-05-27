@@ -238,6 +238,13 @@ module.exports = (io)=>{
         }); 
       
       
+       socket.on('vr-log',data=>{
+         
+         io.sockets.emit('vr-log', data);
+         
+       });
+      
+      
         //INITIALIZE ADDONS
         addons.forEach(addon=>{
            console.log(`Initializing ${addon.name} for socket id: ${socket.id} ...`);

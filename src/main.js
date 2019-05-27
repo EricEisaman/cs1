@@ -41,6 +41,8 @@ import userdata from './core/components/userdata';
 userdata(CS1);
 import iotAPI from './demo/components/iot-api';
 iotAPI(CS1);
+import log from './core/components/log';
+
 
 //supress console.warn
 window.console.warn = function(){};
