@@ -171,11 +171,13 @@ export default CS1=>{AFRAME.registerComponent('game', {
         this.isRunning=true;      
       });
     
+    
+    let c = config.avatar.models[0];
     CS1.game.hasBegun = true;
     let playerData = {};
     let pos = CS1.myPlayer.getAttribute('position');
     pos.x = Number(pos.x.toFixed(2));
-    pos.y = Number(pos.y.toFixed(2));
+    pos.y = Number(pos.y.toFixed(2))+0.3;
     pos.z = Number(pos.z.toFixed(2));
     playerData.position = pos;
     let rot = CS1.myPlayer.getAttribute('rotation');
