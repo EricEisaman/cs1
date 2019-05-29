@@ -78,52 +78,53 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
 
     //AFRAME.utils.device.checkHeadsetConnected ()
 		//document.querySelector('#left-hand').components["oculus-touch-controls"].controllerPresent
-    
-    setTimeout(()=>{
+  
+    //setTimeout(()=>{
       
+    self.el.addEventListener("mousedown", grab);
+    self.el.addEventListener("mouseup", release);
       
-    if(AFRAME.utils.device.checkHeadsetConnected () ) {
-      self.el.addEventListener("mousedown", grab);
-      document.querySelector('#cam-cursor').setAttribute('visible',false);
-      document.querySelector('#cam-cursor').setAttribute('fuse',false);
-      document.querySelector('#cam-cursor').pause();
-    }
-    else {
-      self.el.addEventListener("mousedown", grab);
-    
-      if(AFRAME.utils.device.isMobile()){
+    navigator.getVRDisplays().then(function(displays) {
+      if(displays[0].displayName == "Oculus Quest"){
+        document.querySelector('#cam-cursor').setAttribute('visible',false);
+        document.querySelector('#cam-cursor').setAttribute('fuse',false);
+        document.querySelector('#cam-cursor').pause();
+        CS1.device = "Oculus Quest";
+      }else{
         
-        self.el.addEventListener("click", function(e){
-         grab(e);
-         setTimeout(function(e){
-           document.querySelector('#cam-cursor').setAttribute('material','color: purple');
-           release(e);
-           setTimeout(function(e){
-             document.querySelector('#cam-cursor').setAttribute('material','color: crimson');
-           },500);
-         },5000);
-      });
+        if(AFRAME.utils.device.isMobile()){
+          CS1.device = "Mobile";
+          self.el.addEventListener("click", function(e){
+             grab(e);
+             setTimeout(function(e){
+               document.querySelector('#cam-cursor').setAttribute('material','color: purple');
+               release(e);
+               setTimeout(function(e){
+                 document.querySelector('#cam-cursor').setAttribute('material','color: crimson');
+               },500);
+             },5000);
+          });
       
-      } else{ //No headset and not mobile
-        
-        const el = this.el;
+          } else{ //No headset and not mobile
+            CS1.device = "Standard";
+            const el = this.el;
 
-        el.addEventListener('mouseenter',e=>{
-          document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
-        });
-        el.addEventListener('mouseleave',e=>{
-          document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
-        });
+            el.addEventListener('mouseenter',e=>{
+              document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
+            });
+            el.addEventListener('mouseleave',e=>{
+              document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
+            });
+
+
+
+          } 
         
         
+      }
+    });
         
-      }  
-    
-    }
-      
-      
-      
-    },3000);
+   // },3000);
     
     
     
