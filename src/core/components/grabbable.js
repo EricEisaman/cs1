@@ -85,7 +85,7 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
     self.el.addEventListener("mouseup", release);
       
     navigator.getVRDisplays().then(function(displays) {
-      if(displays[0].displayName == "Oculus Quest"){
+      if(displays && displays[0] && (displays[0].displayName == "Oculus Quest")){
         document.querySelector('#cam-cursor').setAttribute('visible',false);
         document.querySelector('#cam-cursor').setAttribute('fuse',false);
         document.querySelector('#cam-cursor').pause();
@@ -107,7 +107,7 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
       
           } else{ //No headset and not mobile
             CS1.device = "Standard";
-            const el = this.el;
+            const el = self.el;
 
             el.addEventListener('mouseenter',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
