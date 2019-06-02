@@ -30,7 +30,8 @@ export default CS1=>{
       this.el.addEventListener('navigation-end',this.onNavigationEnd.bind(self));
       if(!CS1.socket._callbacks["$npc-move"])
       CS1.socket.on('npc-move',data=>{
-        if(data.dest===this.dest)return;
+        if(data.dest===self.dest)return;
+        CS1.npc[data.name].dest = data.dest;
         CS1.npc[data.name].setPosition(data.pos);
         CS1.npc[data.name].move(data.dest);
       });
@@ -85,7 +86,7 @@ export default CS1=>{
       });
     },
     onNavigationEnd: function(e){
-      this.dest=false;
+      //this.dest=false;
       //console.log(`NPC Navigation has ended for ${this.name}.`)
       //console.log(e);
       if(this.data.roam)this.requestMove();

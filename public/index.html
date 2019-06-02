@@ -64,7 +64,7 @@
        
        
     <a-entity position="1.65 2 -9.6" rotation="0 90 0" scale="2 2 2"  >
-        <a-entity log="max:20"  grabbable   geometry="primitive: plane" material="color: #111; side:double" text="color: lightgreen"></a-entity>
+        <a-entity log="max:8"  grabbable   geometry="primitive: plane" material="color: #111; side:double" text="color: lightgreen"></a-entity>
     </a-entity>
        
    <a-entity position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2"  >
@@ -130,22 +130,14 @@
        
        
        
-      <a-box position="-14 1.1 -5.3"
+      <a-box position="-14 1.1 1"
            scale="1 1 1"
            proximity-glitch="threshold:2;affects:energyDial"
            shader-frog="name:Marching_Ants_Shader"
            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"></a-box>
        
        
-    <a-sphere position="-13.6 1.6 -16.8"
-           radius="2"
-           scale="0.4 0.4 0.4"
-           collectible="affects:energyDial;value:100;threshold:2;spawns:true;spawnDelay:10"
-           grabbable
-           shader-frog="name:Disco_Shader"></a-sphere>
-       
-    
-     <a-entity id="esp8266" 
+    <a-entity id="esp8266" 
               position="-13.6 3.2 -16.8"
               rotation="25.14 98.5 70.93"
               scale="0.1 0.1 0.1"
@@ -157,6 +149,29 @@
               scale="0.5 0.5 1"
               material="color:red;emissive:#f00;emissiveIntensity:4"></a-box>
     </a-entity>
+       
+    <a-sphere position="-13.6 1.6 -16.8"
+           radius="2"
+           scale="0.4 0.4 0.4"
+           collectible="affects:energyDial;value:100;threshold:2;spawns:true;spawnDelay:10"
+           grabbable launchable
+           shader-frog="name:Disco_Shader"></a-sphere>
+       
+   <a-sphere position="-13.6 1.6 -19.8"
+           radius="2"
+           scale="0.4 0.4 0.4"
+           collectible="affects:energyDial;value:100;threshold:2;spawns:true;spawnDelay:10"
+           grabbable launchable
+           shader-frog="name:Disco_Shader"></a-sphere>
+       
+    <a-sphere position="-13.6 1.6 -22.8"
+           radius="2"
+           scale="0.4 0.4 0.4"
+           collectible="affects:energyDial;value:100;threshold:2;spawns:true;spawnDelay:10"
+           grabbable launchable
+           shader-frog="name:Disco_Shader"></a-sphere>
+       
+    
                  
    
     <a-plane src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator.png?1552145274536"
@@ -277,8 +292,8 @@
       </a-entity>
       
     
-      <a-entity id="left-hand" position="0 1 0" laser-controls="hand: left"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3" ></a-entity>
-      <a-entity id="right-hand" position="0 1 0" laser-controls="hand: right"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3" ></a-entity>
+      <a-entity id="left-hand" position="0 1 0" laser-controls="hand: left"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3;useWorldCoordinates:true" ></a-entity>
+      <a-entity id="right-hand" position="0 1 0" laser-controls="hand: right"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3;useWorldCoordinates:true" ></a-entity>
       
       
     </a-entity>

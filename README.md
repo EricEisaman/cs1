@@ -1,7 +1,7 @@
 <img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
 
 # CS1 Game Engine
-#### version 0.3.5
+#### version 0.3.6
 ____
 
 ## Mission
@@ -77,6 +77,8 @@ ____
 - Collectibles can be set to respawn
 
 🍎 Items can be declared **grabbable**, therefore movable by players.
+
+🍎 **grabbable** items can be launched with the **launchable** component.
 
 🍎 [A-Frame Effects](https://github.com/wizgrav/aframe-effects)
 - bloom
