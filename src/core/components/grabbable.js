@@ -47,7 +47,9 @@ function directionLocalToWorld(object, localDirection)
 	return localDirection.transformDirection(object.matrixWorld);
 }
 
-export default (function grabbable(){AFRAME.registerComponent("grabbable", {
+export default (function grabbable(){
+  
+  AFRAME.registerComponent("grabbable", {
 	schema: {
 		origin: { type: "selector" }
 	},
@@ -55,7 +57,8 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
 	init: function()
 	{
 		var self = this;
-		var isDragging = false;
+    self.cursor = false;
+		self.isDragging = false;
 		self.originEl = this.data.origin || this.el;
 		self.proxyObject = null;
 
@@ -129,22 +132,24 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
     
     
     function grab(e){
-      //console.log("GRABBING");
-      CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} grabbing!` ,channel:self.name});
-			e.cancelBubble = true;
-			if(isDragging) return;
       
-			isDragging = true;
+			e.cancelBubble = true;
+			if(self.isDragging) return;
+      
+			self.isDragging = true;
 
-			var cursor = e.detail.cursorEl;
-			if(cursor == self.el.sceneEl) cursor = document.querySelector("[camera]"); //This handles the scenario where the user isn't using motion controllers
+			self.cursor = e.detail.cursorEl;
+			if(self.cursor == self.el.sceneEl) self.cursor = document.querySelector("[camera]"); //This handles the scenario where the user isn't using motion controllers
+      
+      CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} grabbing!` ,channel:self.name});
+      
       // avoid seeing flickering at origin during reparenting
       self.el.setAttribute('visible', false);
       setTimeout(function(){
         self.el.setAttribute('visible', true);
       },20);
 
-			createProxyObject(cursor.object3D);
+			createProxyObject(self.cursor.object3D);
 			
 			self.originEl.emit("grabStart", e);
 			self.originEl.addState("moving");
@@ -157,9 +162,9 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
     
     function release(e)
 		{
-			if(isDragging)
+			if(self.isDragging)
 			{ CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} releasing!` ,channel:self.name});
-				isDragging = false;
+				self.isDragging = false;
 
 				if(self.proxyObject)
 				{
@@ -170,8 +175,11 @@ export default (function grabbable(){AFRAME.registerComponent("grabbable", {
 				self.originEl.setAttribute("position", self.originEl.getAttribute("position")); //seems pointless, but will force the event system to notify subscribers
 				self.originEl.setAttribute("rotation", self.originEl.getAttribute("rotation")); //seems pointless, but will force the event system to notify subscribers
 
-				self.originEl.emit("grabEnd", e);
+				self.originEl.emit("grabEnd",e);
 				self.originEl.removeState("moving");
+       
+        
+       
 			}
 		}
 

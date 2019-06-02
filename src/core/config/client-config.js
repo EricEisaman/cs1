@@ -46,13 +46,13 @@ export default {
  //sounds object example: {url:<URL> , loop:<BOOLEAN>, volume:<NUMBER>}
  sounds:{
   playerJoined: {url:'https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator.mp3?1552143572126'},
-  playerLeft: {url:'https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator_leave.mp3?1552207263640'},
+  playerLeft: {url:'https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator_leave.mp3?1552207263640'}
   //yay: {url:'https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fyay.mp3?1538839840045',loop:false,volume:0.8},
   //hyperspace: {url:'https://cdn.glitch.com/7f007e49-e78d-40b6-964d-097554282381%2Fhyperspace.mp3?1545441819724',loop:false,volume:1.0} 
  },
  //Soundcloud track numbers from share/embed code
  bgm:{
-  songs: [461828928,347139395,257421013],
+  songs: [247978847,461828928,347139395,257421013],
   volume: 0.2,
   playAll: true,
   initialDelay: 5000

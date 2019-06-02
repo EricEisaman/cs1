@@ -1,22 +1,23 @@
 const db = require('../db/db');  
 const uuidv4 = require('uuid/v4');
 let addons = [];
-let userdataSocket = require('./addons/userdata-socket');
-addons.push(userdataSocket);
-let iotapi = require('./addons/iot-api');
-addons.push(iotapi);
+addons.push(require('./addons/userdata-socket'));
+addons.push(require('./addons/iot-api'));
+addons.push(require('./addons/launchable'));
 module.exports = (io)=>{
-    var players = {};
-    var bodies = {};
-    var collectibles = [];
-    var changedBodies = [];
-    var signedIn = [];
-    var ufoTarget = false;
-    var npc = {};
-    var lastSocketSentBodies = {broadcast:{emit:()=>{}}};
-    let intervalId = setInterval(()=>{
-          io.emit('update-players',players);
-        },100);
+    var state = {
+      players:{},
+      bodies:{},
+      collectibles:[],
+      changedBodies:[],
+      signedIn:[],
+      ufoTarget:false,
+      npc:{},
+      lastSocketSentBodies:{broadcast:{emit:()=>{}}},
+      intervalId:setInterval(()=>{
+          io.emit('update-players',state.players);
+        },100)
+    };
     io.on('connection', function(socket){
         socket.ip = socket.handshake.headers['x-forwarded-for'];
         //Uncomment second part below if storing to Firebase
@@ -26,26 +27,26 @@ module.exports = (io)=>{
         socket.on('new-player',function(shared_state_data){ 
           if(!socket.auth)return;
           console.log('sending players already here');
-          console.log(players);
-          socket.emit('players-already-here',players);
-          if(signedIn.length>0)socket.emit('players-already-signed-in',signedIn);
-          if(ufoTarget)socket.emit('set-ufo-target',ufoTarget);
-          console.log('changedBodies length:',changedBodies.length);
+          console.log(state.players);
+          socket.emit('players-already-here',state.players);
+          if(state.signedIn.length>0)socket.emit('players-already-signed-in',state.signedIn);
+          if(state.ufoTarget)socket.emit('set-ufo-target',state.ufoTarget);
+          console.log('changedBodies length:',state.changedBodies.length);
           // (changedBodies.length > 0) && 
-          if((Object.keys(players).length > 0) ) {
+          if((Object.keys(state.players).length > 0) ) {
            let ibs = [];
-           for(name in bodies){
-             ibs.push(bodies[name]);
+           for(name in state.bodies){
+             ibs.push(state.bodies[name]);
            }  
            socket.emit('initial-bodies-state',ibs);
            console.log('sending initial bodies state');
            //console.log(ibs);
           }
-          if(Object.keys(players).length === 0){
+          if(Object.keys(state.players).length === 0){
             socket.emit('request-for-bodies');
             socket.emit('request-for-collectibles');
           }else{
-            collectibles.forEach((c,index)=>{
+            state.collectibles.forEach((c,index)=>{
                if(c.collector){
                  socket.emit('collect',{index:index,collector:c.collector});
                  console.log('Sending collectible update to new player:');
@@ -56,7 +57,7 @@ module.exports = (io)=>{
           console.log("New player has state:",shared_state_data);
           // Add the new player to the object
           shared_state_data.name = socket.name;
-          players[socket.id] = shared_state_data;
+          state.players[socket.id] = shared_state_data;
           let id = socket.id; 
           io.emit('new-player',{"id":id,"name":socket.name,"data":shared_state_data});
         })   
@@ -64,14 +65,14 @@ module.exports = (io)=>{
           // Delete from object on disconnect
           if(socket.auth){
            console.log(`Player named ${socket.name} disconnected. Removing ${socket.id}`);
-           if(socket.id == ufoTarget){
-             ufoTarget=false;
+           if(socket.id == state.ufoTarget){
+             state.ufoTarget=false;
              io.emit('set-ufo-target',false);
            }
-           delete players[socket.id]; 
-           if(Object.keys(players)===0){
-             bodies = {};
-             changedBodies = [];
+           delete state.players[socket.id]; 
+           if(Object.keys(state.players)===0){
+             state.bodies = {};
+             state.changedBodies = [];
            }
            socket.broadcast.emit('remove-player',socket.id);
            socket.emit('failed-socket');
@@ -82,27 +83,27 @@ module.exports = (io)=>{
         }) 
         // Online players' shared data throughput
         socket.on('send-update',function(data){
-          if(players[socket.id] == null || !socket.auth) return;
-          players[socket.id].position = data.position; 
-          players[socket.id].rotation = data.rotation;
-          players[socket.id].faceIndex = data.faceIndex;
+          if(state.players[socket.id] == null || !socket.auth) return;
+          state.players[socket.id].position = data.position; 
+          state.players[socket.id].rotation = data.rotation;
+          state.players[socket.id].faceIndex = data.faceIndex;
           //console.log(data);
         });  
         socket.on('request-collection',function(data){
          if(!socket.auth)return;
          // console.log('collection requested');
          // console.log(data);
-         console.log(collectibles[data.index].collector);
-         if(!collectibles[data.index].collector){
-           collectibles[data.index].collector = socket.id;
+         console.log(state.collectibles[data.index].collector);
+         if(!state.collectibles[data.index].collector){
+           state.collectibles[data.index].collector = socket.id;
            io.emit('collect',{index:data.index,collector:socket.id});
            console.log('collection made');
-           if(collectibles[data.index].spawns){
+           if(state.collectibles[data.index].spawns){
              setTimeout(()=>{
                io.emit('spawn-collectible',data.index);
-               collectibles[data.index].collector = false;
+               state.collectibles[data.index].collector = false;
                console.log('calling to spawn collectible');
-             },collectibles[data.index].spawnDelay*1000);
+             },state.collectibles[data.index].spawnDelay*1000);
            }
          }
         });
@@ -113,7 +114,7 @@ module.exports = (io)=>{
              c.spawns = d[i].spawns;
              c.spawnDelay = Number(d[i].spawnDelay);
              c.collector = false;
-             collectibles[i] = c;
+             state.collectibles[i] = c;
            }
           //console.log(collectibles);
         });
@@ -133,40 +134,40 @@ module.exports = (io)=>{
         });
         socket.on('sign-in',function(){
           console.log(socket.name + ' is signing in!');
-          if(!signedIn.includes(socket.name)){
+          if(!state.signedIn.includes(socket.name)){
             io.emit('sign-in',socket.name);
-            signedIn.push(socket.name);
+            state.signedIn.push(socket.name);
             console.log(socket.name + ' has been added to sign in list.');
           }
         });
         socket.on('set-ufo-target',function(id){
           io.emit('set-ufo-target', id);
-          ufoTarget = id;
+          state.ufoTarget = id;
         });
       
       
       
       
         socket.on('register-npc',data=>{
-          if(!npc[data.name]){
-            npc[data.name]={};
-            npc[data.name].waypoints=data.waypoints;
+          if(!state.npc[data.name]){
+            state.npc[data.name]={};
+            state.npc[data.name].waypoints=data.waypoints;
             console.log('Registering NPC.');
             //console.log(npc[data.name]);
           }
         });
         socket.on('set-npc-waypoints',data=>{
-          if(npc[data.name]){
-            npc[data.name].waypoints=data.waypoints;
+          if(state.npc[data.name]){
+            state.npc[data.name].waypoints=data.waypoints;
             console.log('Setting NPC waypoints.');
             //console.log(npc[data.name]);
           }
         });
         socket.on('add-npc-waypoint',data=>{
-          if(npc[data.name]){
-            npc[data.name].waypoints.push(data.waypoint);
+          if(state.npc[data.name]){
+            state.npc[data.name].waypoints.push(data.waypoint);
             console.log('Adding NPC waypoint.');
-            console.log(npc[data.name]);
+            console.log(state.npc[data.name]);
           }
         });
         socket.on('npc-move',data=>{
@@ -177,15 +178,15 @@ module.exports = (io)=>{
       
         socket.on('initial-bodies-state',obj=>{
           console.log('Initial bodies state received.');
-          bodies = obj;
+          state.bodies = obj;
         });
         socket.on('update-bodies',function(data){
-          console.log(data);
-          changedBodies = data;
-          changedBodies.forEach(bd=>{
-            bodies[bd.name]=bd;
+          //console.log(data);
+          state.changedBodies = data;
+          state.changedBodies.forEach(bd=>{
+            state.bodies[bd.name]=bd;
           });
-          if(Object.keys(players).length > 1 ) socket.broadcast.emit('update-bodies',changedBodies);
+          if(Object.keys(state.players).length > 1 ) socket.broadcast.emit('update-bodies',state.changedBodies);
         });
         socket.on('arg',function(data){
           socket.ipLocal = data;
@@ -244,11 +245,13 @@ module.exports = (io)=>{
          
        });
       
+       
+      
       
         //INITIALIZE ADDONS
         addons.forEach(addon=>{
            console.log(`Initializing ${addon.name} for socket id: ${socket.id} ...`);
-           addon.init(socket);
+           addon.init(socket,state);
         });
       
       
