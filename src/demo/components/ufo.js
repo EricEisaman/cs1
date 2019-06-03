@@ -6,7 +6,7 @@ export default CS1=>{
       speed: {type:'number', default:10},
       rotOffset: {type:'number', default:0},
       engineSound: {type:'string', default:'https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fufo_engines.mp3?1555803047342'},
-      engineVolume: {type:'number', default: 32}
+      engineVolume: {type:'number', default: 15}
     },
     init: function () {
       CS1.ufo = this; // NOTE: this is a singleton.
