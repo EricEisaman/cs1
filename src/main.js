@@ -43,6 +43,7 @@ import iotAPI from './demo/components/iot-api';
 iotAPI(CS1);
 import log from './core/components/log';
 import launchable from './core/components/launchable';
+import launchrow from './demo/components/launchrow';
 
 
 //supress console.warn
