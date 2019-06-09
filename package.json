@@ -10,7 +10,7 @@
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "node server/server.js",
-    "config": "if [ -f './src/core/config/client-config.js' ]; then cp ./src/core/config/client-config.js .data/; fi;"
+    "config": "if [ -f './src/core/config/client-config.json' ]; then cp ./src/core/config/client-config.json .data/; fi;"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.3",

@@ -1,4 +1,4 @@
-import config from '../config/client-config';
+import config from '../config/client-config.json';
 export default CS1=>{AFRAME.registerComponent("collectible", {
 	schema: {
     threshold: {type: 'number', default: 2.7},
