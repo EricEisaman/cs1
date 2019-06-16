@@ -4,6 +4,7 @@ let addons = [];
 addons.push(require('./addons/userdata-socket'));
 addons.push(require('./addons/iot-api'));
 addons.push(require('./addons/launchable'));
+addons.push(require('./addons/admin'));
 module.exports = (io)=>{
     var state = {
       players:{},

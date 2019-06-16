@@ -4,10 +4,10 @@ const launchable = {
   
    this.socket = socket;
    this.state = state;
-   self = this;
-   self.maxTicks = 100;
-   self.speed = 3;
-   self.launchedBodies = [];
+   const dis = this;
+   dis.maxTicks = 100;
+   dis.speed = 3;
+   dis.launchedBodies = []; 
    
    socket.on('launch',function(data){
      
@@ -16,14 +16,13 @@ const launchable = {
      
      var b = state.bodies[data.name];
      var d = data.dir;
-     
      // console.log(`Request to launch ${JSON.stringify(b)} with direction ${JSON.stringify(d)} at speed ${self.speed}.`);
      
      var ticks = 0;
-     d.x *= self.speed;
-     d.y *= self.speed;
-     d.z *= self.speed;
-     var maxTicks = self.maxTicks;
+     d.x *= dis.speed;
+     d.y *= dis.speed;
+     d.z *= dis.speed;
+     var maxTicks = dis.maxTicks;
      
      var launchId = setInterval(()=>{
       // TODO: if collision, burst and clearInterval(launchId)

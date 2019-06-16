@@ -6,7 +6,7 @@ import './core/load/load-spinner.css';
 import grabbable from './core/components/grabbable';
 import navpointer from './core/components/nav-pointer';
 import d3graph from './core/components/d3-graph';
-import shaderfrog from './shaderfrog/shader-frog';
+import shaderfrog from './core/components/shaderfrog/shader-frog';
 shaderfrog(CS1);
 import particles from './aps/particles';
 particles(CS1);
@@ -44,7 +44,7 @@ iotAPI(CS1);
 import log from './core/components/log';
 import launchable from './core/components/launchable';
 import launchrow from './demo/components/launchrow';
-
+import mycomponents from './core/components/my-components';
 
 //supress console.warn
 window.console.warn = function(){};

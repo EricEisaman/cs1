@@ -135,12 +135,12 @@ export default CS1=>{
           },
           soundState: b.soundState
         };
+  }
     socket.emit('initial-bodies-state',ibs);
     if(CS1.debug){
       console.warn('SENDING INITIAL BODIES STATE TO SERVER');
       console.log(ibs);
     }
-  }
 });
   
   socket.on('update-bodies', grabbablesData=>{
