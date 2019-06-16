@@ -5,7 +5,7 @@ export default (()=>{
       burst:{type:'boolean',default:true},
       launchSound:{type:'string',default:'https://cdn.glitch.com/83b7f985-f6ce-40dd-ac98-772aff98ebbf%2Fwoosh.mp3'}
     },
-    // will listen for the grabbable release event (YET TO BE ADDED TO GRABBABLE)
+    // will listen for the grabbable release event 
     dependencies: ['grabbable'],
     
     init: function () {
@@ -19,7 +19,9 @@ export default (()=>{
       self.el.addEventListener('grabEnd',e=>{
         CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} launched grabbable ${self.grabbable.name}!`,channel:'0'});
         self.grabbable.isDragging = true; // can't grab while it is in launch
-        CS1.socket.emit('launch',{name:self.grabbable.name,dir:self.getDir()});
+        let launchData = {name:self.grabbable.name,dir:self.getDir()};
+        //console.log(launchData);
+        CS1.socket.emit('launch',launchData);
       });
       
       if(!CS1.socket._callbacks["$launch-sound"])

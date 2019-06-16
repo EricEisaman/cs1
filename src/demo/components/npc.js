@@ -52,13 +52,11 @@ export default CS1=>{
         s = destination;
       }else{
         s=this.waypoints[this.waypointsIndex];
-        if(++this.waypointsIndex==this.waypoints.length)this.waypointsIndex=0;
       }
       if(!s){
           console.error('You must define some waypoints for your npc to roam! < npc component >');
           return;
       }else{
-          this.dest=s;
           let a = s.split(' ');
           dest.x=a[0];
           dest.y=a[1];
@@ -89,7 +87,10 @@ export default CS1=>{
       //this.dest=false;
       //console.log(`NPC Navigation has ended for ${this.name}.`)
       //console.log(e);
-      if(this.data.roam)this.requestMove();
+      this.waypointsIndex++;
+      if( this.waypointsIndex==this.waypoints.length)this.waypointsIndex=0;
+      let d = this.waypoints[this.waypointsIndex];
+      if(this.data.roam)this.requestMove(d);
     }
   });
   
