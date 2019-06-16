@@ -1,6 +1,6 @@
 {
-    "gameName": "My Game",
-    "welcomeMsg": "Welcome to My Game.",
+    "gameName": "CS1 Agency Headquarters",
+	"welcomeMsg": "Welcome to CS1 Agency Headquarters . . . . . . All visitors are required to sign in at the welcome desk.",
     "theme": {
         "fontFamily": "New Rocker",
         "titleFontColor": "#f2d15c",
