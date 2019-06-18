@@ -1,24 +1,6 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-async function ls() {
-  const { stdout, stderr } = await exec('ls');
-  console.log('stdout:', stdout);
-  console.log('stderr:', stderr);
-}
-
-
-async function build(cb) {
-  try{
-    await exec('pnpm run build');
-    cb('success');
-  }catch(err){
-    cb('fail');
-  }
-    
-}
-
-
 const fs = require('fs');
 
 const ideAPI = {
@@ -40,7 +22,32 @@ const ideAPI = {
   },
   
   setAdminSocket: socket=>{
-      
+    //IDE API Helpers
+    async function ls() {
+      const { stdout, stderr } = await exec('ls');
+      console.log('stdout:', stdout);
+      console.log('stderr:', stderr);
+    }
+
+
+    async function build(cb) {
+      try{
+        const { stdout, stderr } = await exec('pnpm run build');
+        socket.emit('log', stdout);
+        socket.emit('log', stderr);
+        cb('success');
+      }catch(err){
+        socket.emit('log', err.name + '\n' + err.message );
+        cb('fail');
+      }
+
+    }
+    
+    
+    
+    
+    //IDE API:  build, save, get-src
+    
     socket.on('build', cb=>{
         build(cb);
     }); 
