@@ -49,6 +49,15 @@ refresh
 ```
 ____
 
+![CS1 IDE](https://cdn.glitch.com/25820b43-1b95-4fa5-a6eb-7937baaa174d%2Fcs1_ide.svg?v=1560717395173)
+
+## Try the CS1 IDE
+
+🍎 The <a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">CS1 IDE</a> is designed for focused game design with guided lessons.
+
+🍎 The **CS1 IDE** enables remote editing and building of your **CS1 Game Engine** project.
+____
+
 ## Overview
 
 🍎 Based upon [A-Frame version 0.9](https://aframe.io/docs/0.9.0/introduction/).
