@@ -65,6 +65,7 @@ const ideAPI = {
     });
     
     socket.on('get-src',(path,cb)=>{
+      console.log(`get source request to path: ${path}`);
       fs.readFile(path,"utf8",(err,data)=>{
         if (err) {
           cb({status:'fail',data:err});
