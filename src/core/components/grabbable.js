@@ -95,6 +95,8 @@ export default (function grabbable(){
         CS1.device = "Oculus Quest";
       }else{
         
+        const el = self.el;
+        
         if(AFRAME.utils.device.isMobile()){
           CS1.device = "Mobile";
           self.el.addEventListener("click", function(e){
@@ -107,11 +109,20 @@ export default (function grabbable(){
                },500);
              },5000);
           });
+          
+           el.addEventListener('mouseenter',e=>{
+              document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
+            });
+            el.addEventListener('mouseleave',e=>{
+              document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
+            });
+
+          
+          
       
           } else{ //No headset and not mobile
             CS1.device = "Standard";
-            const el = self.el;
-
+            
             el.addEventListener('mouseenter',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
             });
