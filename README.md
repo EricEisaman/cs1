@@ -19,7 +19,7 @@ ____
 ____
 
 ## First Steps
-____
+
 
 The **CS1 Game Engine** is currently lacking a clear boundary between itself and the embedded tech demo.  I will soon start to pull those apart to establish a clear API boundary layer for the engine. For now I suggest starting with the lessons accompanying the <a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">**CS1 IDE**</a>.
 
