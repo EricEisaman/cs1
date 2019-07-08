@@ -87,19 +87,11 @@ export default (function grabbable(){
     self.el.addEventListener("mousedown", grab);
     self.el.addEventListener("mouseup", release);
       
-    navigator.getVRDisplays().then(function(displays) {
-      if(displays && displays[0] && (displays[0].displayName == "Oculus Quest")){
-        document.querySelector('#cam-cursor').setAttribute('visible',false);
-        document.querySelector('#cam-cursor').setAttribute('fuse',false);
-        document.querySelector('#cam-cursor').pause();
-        CS1.device = "Oculus Quest";
-      }else{
+    const el = self.el;
         
-        const el = self.el;
-        
-        if(AFRAME.utils.device.isMobile()){
-          CS1.device = "Mobile";
-          self.el.addEventListener("click", function(e){
+    if(CS1.device=="Mobile"){
+  
+      self.el.addEventListener("click", function(e){
              grab(e);
              setTimeout(function(e){
                document.querySelector('#cam-cursor').setAttribute('material','color: purple');
@@ -108,39 +100,26 @@ export default (function grabbable(){
                  document.querySelector('#cam-cursor').setAttribute('material','color: crimson');
                },500);
              },5000);
-          });
+      });
           
-           el.addEventListener('mouseenter',e=>{
+      el.addEventListener('mouseenter',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
             });
-            el.addEventListener('mouseleave',e=>{
+      el.addEventListener('mouseleave',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
             });
 
           
-          
-      
-          } else{ //No headset and not mobile
-            CS1.device = "Standard";
-            
-            el.addEventListener('mouseenter',e=>{
+      } else if(CS1.device=="Standard"){ //No headset and not mobile
+    
+          el.addEventListener('mouseenter',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
             });
-            el.addEventListener('mouseleave',e=>{
+          el.addEventListener('mouseleave',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
             });
-
-
-
-          } 
+      } 
         
-        
-      }
-    });
-        
-   // },3000);
-    
-    
     
     function grab(e){
       

@@ -1,5 +1,5 @@
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,10 +8,11 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="canonical" href="https://game-dev.glitch.me/">
     <link rel="shortcut icon" href="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1.png?1552299028732">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
-    <script src="//aframe.io/releases/0.9.0/aframe.min.js"></script>    
+    <script src="//aframe.io/releases/0.9.2/aframe.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/gh/EricEisaman/aframe-keyboard/dist/aframe-keyboard.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
-    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/supereggbert/aframe-htmlembed-component/dist/build.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="bundle.js"></script>
     <script>
@@ -25,292 +26,102 @@
       else {
         console.warn('Service Worker not supported in this browser');
       }   
-    </script>
+    </script>  
   </head>
- <body>
+<body>
+  
+  
    <div style="position:absolute">
       <div id="loading-screen"></div>
    </div>
+  
+   <!-- Used for slide navigation of vrui main div  -->
+  <div id="slide2" class="slide"/>
+  <div id="slide3" class="slide"/>
+  <div id="slide4" class="slide"/>
+  
    <div id="scene-container" style="position:relative; display:none" >
-     <a-scene  game>
-    <!-- effects="godrays,bloom,fxaa" fxaa godrays="src:#moon;intensity:0.15" bloom="strength:2"        -->
-       
-     <a-assets>
-<!--          <a-asset-item id="avatar" src="https://cdn.glitch.com/d9ff495e-24db-4a3f-b88d-05ddd4e02632%2Fdragon_orange.glb?1543069720785"></a-asset-item> -->
-        <img id="energy-tex" 
-             crossorigin="anonymous"
-             src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fblue_dart.png?1552200077630">
-       <img id="star-tex" 
-            crossorigin="anonymous"
-            src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fstar.png?1552205546292">
-       <img id="dust-tex" 
-            crossorigin="anonymous"
-            src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fdust.png?1552205792372">
-      
-     </a-assets>
-      
-     <!-- Scene Model-->
-    <a-entity id="scene-model" 
-              position="0 0 0"
-              shadow="receive: true"
-              gltf-model="url(https://cdn.glitch.com/f846816e-0f04-48ce-8699-fb634b3c2a42%2Fcs1_hq.glb?1558564684108)"></a-entity>
-         
-     <!-- Nav Mesh -->
-    <a-entity id="navmesh"
-              gltf-model="url(https://cdn.glitch.com/f846816e-0f04-48ce-8699-fb634b3c2a42%2Fcs1_hq_navmesh.gltf?1558895383268)"
-              position="0 -0.2 0"
-              visible="false"
-              nav-mesh></a-entity>
-       
-       
-    <a-entity position="1.65 2 -9.6" rotation="0 90 0" scale="2 2 2"  >
-        <a-entity log="max:8"  grabbable   geometry="primitive: plane" material="color: #111; side:double" text="color: lightgreen"></a-entity>
-    </a-entity>
-       
-   <a-entity position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2"  >
-        <a-entity log="max:20"  grabbable   geometry="primitive: plane" material="color: #111; side:double" text="color: pink"></a-entity>
-    </a-entity>
-       
-       
-       
-      <a-entity id="avatar-to-clone-1"
-              gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401)"
-              animation-mixer="clip:idle"
-              scale="0.4 0.4 0.4"
-              shadow
-              visible="false"></a-entity>  
-       
-   
-     <a-cylinder id="avatar-upgrade-zone-1"
-               position="3.76 1.69 2.55"
-               height="4"
-               radius="1"
-               scale="0.52 0.52 0.52"
-               animation="property: rotation; from: -15 0 0; to: -15 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
-               rotation="-15 180 0"
-               material="opacity:0.65,side:double;transparent:true;emissive:#ffe102;emissiveIntensity:0.3"
-               src="https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fglass_with_hole.png?1553383941710"
-               >
-       <a-entity id="avatar-upgrade-1"
-              position="0 -1 0"
-              gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401)"
-              scale="1 1 1"
-              collectible="soundCollect:https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fsax_riff.mp3?1555334351639;affects:avatarUpgrade;threshold:1.6"
-              ></a-entity>
-       
-       </a-cylinder>
-       
-       
-       <a-entity id="avatar-to-clone-2"
-              gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchippewa.glb?1553596541620)"
-              animation-mixer="clip:idle"
-              scale="0.4 0.4 0.4"
-              shadow
-              visible="false"></a-entity>
-       
-       <a-cylinder id="avatar-upgrade-zone-2"
-               position="-4 1.69 2.55"
-               height="4"
-               radius="1"
-               scale="0.52 0.52 0.52"
-               animation="property: rotation; from: -15 0 0; to: -15 360 0; dur: 3000; dir: normal;loop: true;easing:linear"
-               rotation="-15 180 0"
-               material="opacity:0.65,side:double;transparent:true;emissive:#ffe102;emissiveIntensity:0.3"
-               src="https://cdn.glitch.com/8f1d6c34-bcd8-4c19-a2c6-18d155fc1050%2Fglass_with_hole.png?1553383941710"
-               >
-       <a-entity id="avatar-upgrade-2"
-              position="0 -1 0"
-              gltf-model="url(https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchippewa.glb?1553596541620)"
-              scale="1 1 1"
-              collectible="soundCollect:https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fsax_riff.mp3?1555334351639;affects:avatarUpgrade;threshold:1.6"
-              ></a-entity>
-       
-       </a-cylinder>
-       
-       
-       
-       
-      <a-box position="-14 1.1 1"
-           scale="1 1 1"
-           proximity-glitch="threshold:2;affects:energyDial"
-           shader-frog="name:Marching_Ants_Shader"
-           animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500"></a-box>
-       
-       
-    <a-entity id="esp8266" 
-              position="-13.6 3.2 -16.8"
-              rotation="25.14 98.5 70.93"
-              scale="0.1 0.1 0.1"
-              grabbable
-              gltf-model="https://cdn.glitch.com/e93942d2-015d-47d7-aae4-9f92f2a7d6b5%2FESP8266_lp.glb?1557589195138">
-       <a-box id="led"
-              iot-api
-              position="2.14 2.35 1.32"
-              scale="0.5 0.5 1"
-              material="color:red;emissive:#f00;emissiveIntensity:4"></a-box>
-    </a-entity>
-       
-    <a-sphere position="-13.6 1.6 -16.8"
-           radius="2"
-           scale="0.4 0.4 0.4"
-           collectible="affects:energyDial;value:100;threshold:2;spawns:true;spawnDelay:10"
-           grabbable launchable
-           shader-frog="name:Disco_Shader"></a-sphere>
-       
-   <a-sphere position="-13.6 1.6 -19.8"
-           radius="2"
-           scale="0.4 0.4 0.4"
-           collectible="affects:energyDial;value:100;threshold:2;spawns:true;spawnDelay:10"
-           grabbable launchable
-           shader-frog="name:Disco_Shader"></a-sphere>
-       
-    <a-sphere position="-13.6 1.6 -22.8"
-           radius="2"
-           scale="0.4 0.4 0.4"
-           collectible="affects:energyDial;value:100;threshold:2;spawns:true;spawnDelay:10"
-           grabbable launchable
-           shader-frog="name:Disco_Shader"></a-sphere>
-       
-    
-                 
-   
-    <a-plane src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Felevator.png?1552145274536"
-             position="8 1.6 7.58"
-             rotation="0 180 0"
-             scale="0.4 0.4 0.4"
-             width="6" height="6"></a-plane>
-       
-    <a-plane d3-graph="side:double; url:https://api.openweathermap.org/data/2.5/forecast/?appid=56df5e300fabead0a56fc2d706e6aa7d&id=4959473"
-             grabbable
-             position="12.15 2.42 -5.4"
-             scale="0.4 0.4 0.4"
-             rotation="-20.7 116.1 0.651"
-             width="6" height="4"></a-plane>
-       
-    <a-plane id="logo"
-             src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1.png?1552299028732"
-             position="8 1.96 -9.16"
-             scale="0.4 0.4 0.4"
-             rotation="0 0 0"
-             material="transparent:true"
-             width="4" height="4"></a-plane>
-       
-    
-    <a-plane id="sign-in"
-             src="https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fsignin.jpg?1555865761883"
-             position="8 1.25 -7.14"
-             scale="0.4 0.36 0.4"
-             rotation="-90 0 0"
-             sign-in
-             width="1.1" height="2.0"></a-plane> 
-       
-    <a-sphere position="-8 1.4 0" 
-              radius="0.7" 
-              shader-frog="name:Goo_Shader"
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;threshold:2;spawns:true"></a-sphere>
-       
-       
-    <a-sphere position="0 1.7 2.6"
-              radius="2" 
-              scale="0.4 0.4 0.4"
-              shader-frog="name:Electric_Shader"
-              grabbable
-              collectible="soundCollect:https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FUFO_Takeoff-Sonidor-1604321570.mp3?1552159612543;affects:magicDial;value:25;threshold:2;spawns:true">
-       <a-sphere  
-              radius="0.7" 
-              shader-frog="name:Flowing_Circles_Shader"></a-sphere>
-       
-       </a-sphere>
-       
-  <a-sphere position="8 8.38 9" 
-            radius="4.1" 
-            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500; dir: reverse"
-              shader-frog="name:CS1_Shader">
-       
-       <a-sphere 
-            color="blue"
-            shader-frog="name:Cosmic_Shader"
-            radius="4" ></a-sphere>
-       </a-sphere>
-       
-       
-   <a-entity id="ufo" 
-              position="0 25 0"
-              scale="1.5 1.5 1.5"
-              ufo
-              gltf-model="url(https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2FSentinel_Ship.glb?1555881533432)">
-      
-     <a-sphere id="thruster"
-           position="0 0 3"
-           scale="1 2 1"
-           rotation="90 0 0"
-           shader-frog="name:Thruster_Shader"></a-sphere>
-
-       
-       </a-entity>
-    
-    <a-entity id="npc-1"
-              position="0 0 0"
-              npc="name:Rover_1;waypoints:0 0 -1,3 0 -2,-22.5 0 16.3; roam:true">
-       <a-entity position="0 2.1 0" 
-                 rotation="30 0 0"
-                 scale="0.4 0.4 0.4"
-                 gltf-model="url(https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fhover_bot.glb?1556746061708)"></a-entity>
-    </a-entity>
-       
-    <a-entity id="npc-2"
-              position="8 0 -5"
-              npc="name:Rover_2">
-       <a-entity position="0 2.1 0" 
-                 rotation="30 0 0"
-                 scale="0.4 0.4 0.4"
-                 gltf-model="url(https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2Fhover_bot.glb?1556746061708)"></a-entity>
-    </a-entity>
-       
-
-       
-    <a-entity id="dotrow-1" dotrow="to: 21.5" position="-21.5 0 22.5"></a-entity>
-       
-    <a-entity id="launchrow-1" launchrow="change:z; to: -22.12" position="13.89 1.4 15.6"></a-entity>
-       
-       
      
-    <a-entity id="my-player" 
-              position="8 0 6.2"
+     
+     <a-scene environment="preset: starry; ground: flat" game>       
+       
+       
+      <a-assets>
+        <img id="grass" crossorigin="anonymous" src="https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2Fgrass1.png?v=1561979604396">
+        <img id="go" crossorigin="anonymous" src="https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2Fgo.png?v=1562106636316">
+        <img id="pig" crossorigin="anonymous" src="https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2F4433d9a49e.png?v=1562106572295">
+        <img id="cow" crossorigin="anonymous" src="https://cdn.glitch.com/376724db-dc5f-44ca-af35-36d00838079c%2Fcow.png?v=1562353505829">
+      </a-assets>
+       
+      <!-- You can use a ground plane or simply add a floor in your scene model. --> 
+      <a-plane id="ground" material="src:#grass; repeat: 700 700; 
+               transparent: true;" height="500" width="500" 
+               position="0 0.1 0" rotation="-90 0 0"></a-plane>
+      
+      <!-- Scene Model-->
+      <a-entity id="scene-model" 
+                position="0 0.1 0"
+                shadow="receive: true"
+                gltf-model="url(https://cdn.glitch.com/376724db-dc5f-44ca-af35-36d00838079c%2Fnature_scene.glb?v=1562355917189)"></a-entity>
+
+      <!-- Nav Mesh -->
+<!--       <a-entity id="navmesh"
+                gltf-model="url()"
+                position="0 -0.2 0"
+                visible="false"
+                nav-mesh></a-entity> -->
+
+
+      <a-entity position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2"  >
+          <a-entity log="max:20"  grabbable   geometry="primitive: plane" material="color: #153D0F; side:double" text="color: #CEA579"></a-entity>
+      </a-entity>
+         
+      <a-entity id="my-player" 
+              position="0 0 0"
               movement-controls="constrainToNavMesh: true; speed: 0.2"
               player="me:true"
+              chat
               userdata>
-      <a-entity id="cam"
+      
+        <a-entity id="cam"
                 camera
                 position="0 1.6 0"
                 rotation="31.283 -12.834 0"
                 look-controls="pointerLockEnabled:true;reverseTouchDrag:true">
         
-        <a-cursor id="cam-cursor" raycaster="objects:[grabbable],[sign-in],[iot-api];far:3"></a-cursor>
-<!-- <a-cursor id="cam-cursor" nav-pointer raycaster="objects:[grabbable],[sign-in],[iot-api];far:2"></a-cursor> -->
-<!--         oculus-touch-controls="hand: left" -->
-      </a-entity>
+          <a-cursor id="cam-cursor" 
+                    material="color:crimson"
+                    raycaster="objects:[grabbable],[sign-in],[iot-api], .screen, .collidable;far:4"></a-cursor>
+
+        </a-entity>
+        
+        <a-entity id="left-hand" position="0 1 0" laser-controls="hand: left"  
+                raycaster="objects:[grabbable],[sign-in],[iot-api], .screen, .collidable;far:4;useWorldCoordinates:true" ></a-entity>
+        
       
-    
-      <a-entity id="left-hand" position="0 1 0" laser-controls="hand: left"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3;useWorldCoordinates:true" ></a-entity>
-      <a-entity id="right-hand" position="0 1 0" laser-controls="hand: right"  raycaster="objects:[grabbable],[sign-in],[iot-api];far:3;useWorldCoordinates:true" ></a-entity>
-      
-      
-    </a-entity>
-       
-   <a-sphere id="moon" src="https://cdn.glitch.com/630690db-5297-4f44-9d50-b6fb8e795635%2F2k_moon.jpg?1551707768297" radius="10" material="shader:flat;transparent:true;color:#ffffff" light="intensity:0.4" position="40 65 -76" rotation="40 0 0"></a-sphere>
-       
-  <a-entity light="type:ambient;color:#fff"></a-entity>
+        <a-entity id="right-hand" position="0 1 0" laser-controls="hand: right"  
+                raycaster="objects:[grabbable],[sign-in],[iot-api], .screen, .collidable;far:4;useWorldCoordinates:true" ></a-entity>
+        
+        
           
-    <!-- Environment -->
-<!--     <a-entity id="environment" environment="shadow: true; 
-                                            playArea:1.3; 
-                                            shadowSize: 10; 
-                                            fog:0" ></a-entity>  -->
+       </a-entity>
+       
+       
+      <a-entity light="type:ambient;color:#fff"></a-entity>
+       
+          
+           
+       
+     </a-scene>
      
-  </a-scene>
-     <div id="hud" ></div>
+     <div id="mobile-btn-container" ></div>
+     
+     <input id="mobile-chat-input" placeholder="Enter message ...">
+     
      <div id="login"></div>
+     
    </div>
+  
+  
 </body>  
 </html>

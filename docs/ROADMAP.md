@@ -3,7 +3,7 @@
 # CS1 Game Engine
 ____
 
-## Roadmap to version 0.4.0 👣
+## Roadmap to version 0.5.0 👣
 
 🍎 Provide community with a clear goal for our developer experience (DX)
   - follow the entity component system (<a href="https://en.wikipedia.org/wiki/Entity_component_system" rel="noreferer">ECS</a>) paradigm consistent with A-Frame and the underlying browser custom components. ✅
@@ -12,9 +12,6 @@ ____
     - CS1 Flow will be designed to authenticate with developer's Glitch projects and write the resulting configurations as an ES6 module file in those projects' .data directory via a server REST API.
     - There will be an empty configuration file in the .data directory in case the developer chooses not to use any of the visual development tools.  ✅
    
-🍎 Third-party authentication provider component expecting API keys stored in **.env** variables.
-  - This component will provide a user registration mechanism.
-  
 🍎 Game admin console component.
   - will provide client-side interface with the live game server.
   - functions
@@ -22,6 +19,5 @@ ____
     - item spawns sent as server rendered HTML strings.
     
 🍎 Build a compelling demo with specialized components and custom user data stored in database.
-  - Create a lesson on writing A-Frame components.
   - Create a lesson on storing and retrieving custom user data using the database.
   - Create a lesson on writing and using custom events.

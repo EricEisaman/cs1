@@ -1,6 +1,8 @@
 <img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
 
 # CS1 Curriculum
+
+It is currently recommended to follow the default lessons in the <a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" noopener noreferrer>CS1 IDE</a>.
 ____
 
 <a href="https://docs.google.com/presentation/d/e/2PACX-1vSm0Bv326sS-haY14GL5SUnpuE1jdtX_WvIWBljpKMtOk0fcnXwu-fNEp3cAk1TcsQ0NZl7HllgsK7Q/pub?start=false&loop=false&delayms=60000" noopener noreferrer><img src="https://cdn.glitch.com/6b222f93-e194-41e2-aaf6-59e5af64658d%2FSlides-icon.png?1555733872845"/></a>

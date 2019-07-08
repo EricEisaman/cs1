@@ -5,6 +5,9 @@ export default CS1=>{AFRAME.registerComponent('game', {
     
     CS1.game = this;
     this.isRunning = false;
+    
+    this.determineDevice();
+    
     this.name = config.gameName;
     this.announcements = {};
     this.announcements['welcome'] = config.welcomeMsg;
@@ -148,7 +151,7 @@ export default CS1=>{AFRAME.registerComponent('game', {
       playerData.faceIndex = CS1.socket.playerData.faceIndex;
       CS1.socket.setPlayerData(playerData);
       CS1.socket.sendUpdateToServer();
-      if(this.totalSteps%36 == 0){
+      if(this.totalSteps%36 == 0 && CS1.hud && CS1.hud.oxygenMeter){
         CS1.hud.oxygenMeter.animateTo(CS1.hud.oxygenMeter.el.value-0.0035);
       }
     }
@@ -212,6 +215,115 @@ export default CS1=>{AFRAME.registerComponent('game', {
   
   fireParticles: function(el){
     el.components.particles.fire();
+  },
+  
+  determineDevice: function(){
+    
+    navigator.getVRDisplays().then(function(displays) {
+      let scn = document.querySelector('a-scene');
+      if(displays && displays[0] && (displays[0].displayName == "Oculus Quest")){
+        document.querySelector('#cam-cursor').setAttribute('visible',false);
+        document.querySelector('#cam-cursor').setAttribute('fuse',false);
+        document.querySelector('#cam-cursor').pause();
+        CS1.device = "Oculus Quest";
+        CS1.myPlayer.leftHand = document.querySelector('#left-hand');
+        CS1.myPlayer.rightHand = document.querySelector('#right-hand');
+      }else if(AFRAME.utils.device.isMobile()){
+        CS1.myPlayer.cursor = document.querySelector('#cam-cursor');
+        CS1.device = "Mobile";
+        CS1.log("Mobile");
+        scn.setAttribute('vr-mode-ui','enabled: false');
+        CS1.mylatesttap=0;
+        let mbc = document.querySelector('#mobile-btn-container');
+        
+        let icon = document.createElement('img');
+        
+        icon.setAttribute('src','https://cdn.glitch.com/376724db-dc5f-44ca-af35-36d00838079c%2Fmenu-64-icon.png?v=1562375093680');
+        icon.setAttribute('style','position:absolute;right:0px');
+        mbc.appendChild(icon);  
+        
+        icon.addEventListener('touchstart',e=>{
+          
+           let now = new Date().getTime();
+           let timesince = now - CS1.mylatesttap;
+           
+           if((timesince < 600) && (timesince > 0)){
+            // double tap  
+            
+            // Create a new event    
+            let event = new CustomEvent(
+              "doubleTapMenu", 
+              {
+                detail: {
+                  message: "Double Tappin!",
+                  time: new Date(),
+                },
+                bubbles: true,
+                cancelable: true
+              }
+            );
+            // Dispatch the event
+            document.body.dispatchEvent(event); 
+           }else{
+              // too much time to be a doubletap
+             
+           }
+           CS1.mylatesttap = new Date().getTime();          
+          
+        });
+        
+        
+        let icon2 = document.createElement('img');
+        
+        icon2.setAttribute('src','https://cdn.glitch.com/376724db-dc5f-44ca-af35-36d00838079c%2Fchat-64-icon.png?v=1562528152057');
+        icon2.setAttribute('style','position:absolute;left:0px');
+        mbc.appendChild(icon2);  
+        
+        icon2.addEventListener('touchstart',e=>{
+          
+           let now = new Date().getTime();
+           let timesince = now - CS1.mylatesttap;
+           
+           if((timesince < 600) && (timesince > 0)){
+            // double tap  
+            
+            // Create a new event    
+            let event = new CustomEvent(
+              "doubleTapChat", 
+              {
+                detail: {
+                  message: "Double Tappin!",
+                  time: new Date(),
+                },
+                bubbles: true,
+                cancelable: true
+              }
+            );
+            // Dispatch the event
+            document.body.dispatchEvent(event); 
+           }else{
+              // too much time to be a doubletap
+             
+           }
+           CS1.mylatesttap = new Date().getTime();          
+          
+        });
+        
+        
+        
+        
+        
+        
+      
+        
+       } else{ //No headset and not mobile
+           CS1.device = "Standard";
+           scn.setAttribute('vr-mode-ui','enabled: false');
+           CS1.myPlayer.cursor = document.querySelector('#cam-cursor');
+       }   
+    
+    })
+  
   }
    
 });}
