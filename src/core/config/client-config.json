@@ -1,6 +1,6 @@
 {
     "gameName": "CS1 Community Park",
-	"welcomeMsg": "Welcome to CS1 Community Park . . . . . . Please join us at 9pm for some tasty roasted smores.",
+	"welcomeMsg": "Welcome to CS1 Community Park . . . . . . Please join us at 9pm for some tasty roasted ... marshmallow smores.",
   "playerLeftMsg": "... has packed up and headed for home.",
     "theme": {
         "fontFamily": "Arial",
