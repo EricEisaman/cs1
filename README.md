@@ -1,7 +1,7 @@
 <img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
 
 # CS1 Game Engine
-#### version 0.3.6
+#### version 0.4.0
 ____
 
 ## Mission
@@ -18,6 +18,15 @@ ____
 
 ____
 
+## First Steps
+
+
+The **CS1 Game Engine** is currently lacking a clear boundary between itself and the embedded tech demo.  I will soon start to pull those apart to establish a clear API boundary layer for the engine. For now I suggest starting with the lessons accompanying the <a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">**CS1 IDE**</a>.
+
+<a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">![CS1 IDE](https://cdn.glitch.com/25820b43-1b95-4fa5-a6eb-7937baaa174d%2Fcs1_ide.svg?v=1560717395173)</a>
+
+
+____
 ## Quick Start 
 
 🍎 Remix this project.

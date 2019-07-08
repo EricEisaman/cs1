@@ -1,3 +1,4 @@
+import config from '../../../.data/client-config.json';
 export default CS1=>{
   let socket = CS1.socket = io();
   socket.on('connect',()=>{
@@ -155,7 +156,7 @@ export default CS1=>{
     if(CS1.game.hasBegun && CS1.otherPlayers[id]){
       let name = CS1.otherPlayers[id].name;
       CS1.removePlayer(id);
-      setTimeout(()=>{CS1.say(`${name} has departed the complex!`)},1500);
+      setTimeout(()=>{CS1.say(`${name} ${config.playerLeftMsg}`)},1500);
     }
   });
   

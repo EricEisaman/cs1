@@ -10,7 +10,7 @@ const defaults={
 
 const RingDial = function(custom) {
     this.opts = Object.assign({}, defaults, custom);
-    this.size = window.innerWidth/9;
+    this.size = 2000/9;
     this.strokeWidth = this.size / 8;
     this.radius = (this.size / 2) - (this.strokeWidth / 2);
     this.value = 0;

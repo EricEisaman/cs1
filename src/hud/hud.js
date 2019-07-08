@@ -14,7 +14,10 @@ export default CS1=>{
 
   window.addEventListener('load', function () {
     CS1.hud = {};
-    let hudElement = document.querySelector('#hud');
+    let hudElement = document.createElement('div');
+    hudElement.id = 'vr-hud';
+    CS1.hud.container = hudElement;
+    if(!hudElement)return;
     let containers = generateRegions(hudElement);
     containers.top.style.pointerEvents='none';
     CS1.hud.pointsDial = new RingDial({
@@ -53,8 +56,8 @@ export default CS1=>{
      top.style.position = 'relative';
      top.style.left = '0px';
      top.style.top = '0px';
-     top.style.width = window.innerWidth + 'px';
-     top.style.height = window.innerWidth/8 + 'px';
+     top.style.width = 2000 + 'px';
+     top.style.height = 2000/4 + 'px';
      containers.top = top;
      hudElement.appendChild(top);
    }
@@ -69,9 +72,9 @@ export default CS1=>{
      bottom.id = 'hud-bottom';
      bottom.style.position = 'absolute';
      bottom.style.left = '0px';
-     bottom.style.top = window.innerHeight - window.innerWidth/8 + 'px';
-     bottom.style.width = window.innerWidth + 'px';
-     bottom.style.height = window.innerWidth/8 + 'px';
+     bottom.style.top = 900 - 2000/8 + 'px';
+     bottom.style.width = 2000 + 'px';
+     bottom.style.height = 2000/8 + 'px';
      containers.bottom = bottom;
      hudElement.appendChild(bottom);
    }
