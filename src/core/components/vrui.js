@@ -373,7 +373,7 @@ AFRAME.registerSystem('vrui', {
     } else if(CS1.device=="Standard") {
       
       document.addEventListener('keypress',e=>{
-          if(e.keyCode==109){
+          if(e.code=='Backquote'){
             CS1.hud.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
             let v = CS1.hud.container.getAttribute('visible');
             CS1.hud.container.setAttribute('visible',!v);
