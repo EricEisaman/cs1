@@ -47,7 +47,22 @@ AFRAME.registerComponent('chat', {
                  e.classList.remove('collidable')
                 })  
       
+      
+      const dummy = document.querySelector('#standard-chat-dummy');
+      
       self.value = '';
+      
+      function submit(){
+        self.input.setAttribute('value', self.value);
+            self.container.setAttribute('visible',false);
+            self.keys.forEach(e=>{
+                 e.classList.remove('collidable')
+                }) 
+            self.keyboard.components['a-keyboard'].pause();
+            document.removeEventListener('a-keyboard-update', updateInput)
+            CS1.socket.emit('msg',{msg:self.value});
+            dummy.blur();     
+      }
       
       function updateInput(e){
         let code = parseInt(e.detail.code)
@@ -56,17 +71,14 @@ AFRAME.registerComponent('chat', {
             self.value = self.value.slice(0, -1)
             break
           case 999:
-            self.input.setAttribute('value', self.value);
-            self.container.setAttribute('visible',false);
-            self.keys.forEach(e=>{
-                 e.classList.remove('collidable')
-                }) 
-            self.keyboard.components['a-keyboard'].pause();
-            document.removeEventListener('a-keyboard-update', updateInput)
-            CS1.socket.emit('msg',{msg:self.value});
+            submit();
             return
+          case 13:
+            submit();
+            return 
           default:
             if(!e.detail.value)return;
+            if(e.detail.code==40)e.detail.value='\n';
             self.value = self.value + e.detail.value
             break
           }
@@ -130,6 +142,7 @@ AFRAME.registerComponent('chat', {
               case 13:
                 CS1.socket.emit('msg',{msg:CS1.chatInput.value});
                 CS1.chatInput.style.zIndex = -1000;
+                CS1.chatInput.setAttribute('hidden',true);
                 CS1.chatInput.blur();
                 break;
             }
@@ -138,8 +151,10 @@ AFRAME.registerComponent('chat', {
             
             if(CS1.chatInput.style.zIndex == -1000){
               CS1.chatInput.style.zIndex = 200;
+              CS1.chatInput.setAttribute('hidden',false);
             }else{
               CS1.chatInput.style.zIndex = -1000;
+              CS1.chatInput.setAttribute('hidden',true);
             }
 
             
@@ -148,8 +163,9 @@ AFRAME.registerComponent('chat', {
           
           break;
         case "Standard":
+          const dummy = document.querySelector('#standard-chat-dummy');
           document.addEventListener('keypress',e=>{
-            if(e.keyCode==99){
+            if(e.keyCode==61){
               self.value = '';
               self.input.setAttribute('value', self.value);
               document.addEventListener('a-keyboard-update', updateInput)
@@ -159,11 +175,13 @@ AFRAME.registerComponent('chat', {
               self.keyboard.components['a-keyboard'].play();
               if(v){
                self.keys.forEach(e=>{
-                 e.classList.remove('collidable')
+                 dummy.blur();
+                 e.classList.remove('collidable');
                 })  
             }else{
               self.keys.forEach(e=>{
-                 e.classList.add('collidable')
+                 dummy.focus();
+                 e.classList.add('collidable');
                 })  
             }
             }

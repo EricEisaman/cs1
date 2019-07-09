@@ -27,6 +27,7 @@ window.onload = e=>{
     e.preventDefault(); 
     if(!(CS1 && CS1.socket.connected)){
       loginContainer.style.zIndex = -1;
+      loginContainer.setAttribute('hidden','');
       CS1.myPlayer.components["movement-controls"].data.speed=CS1.myPlayer.startSpeed;
       CS1.sounds.playerJoined.play();
       setTimeout(()=>{CS1.say(CS1.game.announcements.welcome)},CS1.game.welcomeDelay);    
