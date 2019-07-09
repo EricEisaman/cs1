@@ -274,7 +274,7 @@ AFRAME.registerSystem('vrui', {
     let topBtn = document.querySelector('#top-btn');
     if(topBtn)topBtn.addEventListener('mouseenter',e=>{
   
-      if(CS1.hud.container.getAttribute('visible'))m2.components.sound.playSound()
+      if(CS1.hud.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound()
 
     });
     if(topBtn)topBtn.addEventListener('click',e=>{
@@ -285,7 +285,7 @@ AFRAME.registerSystem('vrui', {
     let midBtn = document.querySelector('#mid-btn');
     if(midBtn)midBtn.addEventListener('mouseenter',e=>{
 
-      if(CS1.hud.container.getAttribute('visible'))m2.components.sound.playSound()
+      if(CS1.hud.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound()
 
     });
     if(midBtn)midBtn.addEventListener('click',e=>{
@@ -296,7 +296,7 @@ AFRAME.registerSystem('vrui', {
     let botBtn = document.querySelector('#bot-btn');
     if(botBtn)botBtn.addEventListener('mouseenter',e=>{
 
-      if(CS1.hud.container.getAttribute('visible'))m2.components.sound.playSound()
+      if(CS1.hud.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound()
 
     });
     if(botBtn)botBtn.addEventListener('click',e=>{
@@ -308,30 +308,35 @@ AFRAME.registerSystem('vrui', {
     let Btn1 = document.querySelector('#b1');
     if(Btn1)Btn1.addEventListener('mouseenter',e=>{
 
-      if(CS1.hud.container.getAttribute('visible'))m1.components.sound.playSound()
+      if(CS1.hud.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
 
     let Btn2 = document.querySelector('#b2');
     if(Btn2)Btn2.addEventListener('mouseenter',e=>{
 
-      if(CS1.hud.container.getAttribute('visible'))m1.components.sound.playSound()
+      if(CS1.hud.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
 
     let Btn3 = document.querySelector('#b3');
     if(Btn3)Btn3.addEventListener('mouseenter',e=>{
 
-      if(CS1.hud.container.getAttribute('visible'))m1.components.sound.playSound()
+      if(CS1.hud.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
 
     let Btn4 = document.querySelector('#b4');
     if(Btn4)Btn4.addEventListener('mouseenter',e=>{
 
-      if(CS1.hud.container.getAttribute('visible'))m1.components.sound.playSound()
+      if(CS1.hud.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
+      
+      
+    document.querySelectorAll('.dark').forEach(e=>{
+               e.classList.remove('screen')
+              })  
       
     
     let lh = document.querySelector('#left-hand').components["oculus-touch-controls"];

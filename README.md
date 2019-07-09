@@ -16,6 +16,15 @@ ____
 
 🍎 Log into the <a href="https://cs1.glitch.me/" noopener noreferer>tech demo</a> with username: **computer** or **science** and password: **1234**.
 
+🍎 Keyboard Interface:
+  - Movement: **WASD** or **Arrow Keys**
+  - Chat Mode: 
+      - Toggle On/Off: **=**
+      - Submit: **Enter**
+      - New Line: **Down Arrow**
+  - VRUI Toggle On/Off: **Backquote Key**
+  
+
 ____
 
 ## First Steps
