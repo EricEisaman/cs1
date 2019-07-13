@@ -86,15 +86,15 @@ export default (function grabbable(){
       
     self.el.addEventListener("mousedown", grab);
     self.el.addEventListener("mouseup", release);
+    
+    function onGameStart(){
       
-    const el = self.el;
-        
-    if(CS1.device=="Mobile"){
+      if(CS1.device=="Mobile"){
   
       self.el.addEventListener("click", function(e){
              grab(e);
              setTimeout(function(e){
-               document.querySelector('#cam-cursor').setAttribute('material','color: purple');
+               document.querySelector('#cam-cursor').setAttribute('material','color: yellow');
                release(e);
                setTimeout(function(e){
                  document.querySelector('#cam-cursor').setAttribute('material','color: crimson');
@@ -102,25 +102,29 @@ export default (function grabbable(){
              },5000);
       });
           
-      el.addEventListener('mouseenter',e=>{
+      self.el.addEventListener('mouseenter',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
             });
-      el.addEventListener('mouseleave',e=>{
+      self.el.addEventListener('mouseleave',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
             });
 
           
       } else if(CS1.device=="Standard"){ //No headset and not mobile
     
-          el.addEventListener('mouseenter',e=>{
+          self.el.addEventListener('mouseenter',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'green'});
             });
-          el.addEventListener('mouseleave',e=>{
+          self.el.addEventListener('mouseleave',e=>{
               document.querySelector('#cam-cursor').setAttribute('material', {color: 'crimson'})
             });
       } 
-        
+      document.removeEventListener('gameStart', onGameStart);
+      
+    }
     
+    document.addEventListener('gameStart', onGameStart);
+            
     function grab(e){
       
 			e.cancelBubble = true;
