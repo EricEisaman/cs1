@@ -25,8 +25,6 @@ import collectible from './core/components/collectible';
 collectible(CS1);
 import player from './core/components/player';
 player(CS1);
-import signIn from './demo/components/sign-in';
-signIn(CS1);
 import './main.css';
 import login from './core/login/login';
 import './core/login/login.css';

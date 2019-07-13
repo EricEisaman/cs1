@@ -1,6 +1,6 @@
 export default(()=>{
 
-AFRAME.registerSystem('mycomponent', {
+AFRAME.registerComponent('mycomponent', {
   schema: {
 	  console: {default: true}
   },

@@ -2,8 +2,7 @@ export default (()=>{
   
   document.addEventListener('gameStart',e=>{
   
-     let myNumber = 4;
-     CS1.log(`${CS1.myPlayer.name} has logged ${myNumber}!`);
+     
   
   });
   

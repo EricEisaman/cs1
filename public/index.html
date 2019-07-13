@@ -8,6 +8,9 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="canonical" href="https://game-dev.glitch.me/">
     <link rel="shortcut icon" href="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1.png?1552299028732">
+    
+    
+  
     <script src="//aframe.io/releases/0.9.2/aframe.min.js"></script>   
     <script src="https://cdn.jsdelivr.net/gh/EricEisaman/aframe-keyboard/dist/aframe-keyboard.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
@@ -15,6 +18,9 @@
     <script src="https://cdn.jsdelivr.net/gh/supereggbert/aframe-htmlembed-component/dist/build.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="bundle.js"></script>
+    
+  
+    
     <script>
       // This is just to force HTTPS (can't do it statically on glitch)
       if(location.protocol == 'http:') location.protocol = 'https:';
@@ -28,7 +34,7 @@
       }   
     </script>  
   </head>
-<body>
+<body onload="start$()">
   
   
    <div style="position:absolute">
