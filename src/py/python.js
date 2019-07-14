@@ -11,6 +11,6 @@ export default(()=>{
   document.head.appendChild(b);
     
   const pre = window.onload;
-  window.start$ = e=>{pre();document.body.appendChild(z92$);brython({debug: 1, py_id:['mypy']})}
+  window.python_start = e=>{pre();document.body.appendChild(z92$);brython({debug: 1, py_id:['mypy']})}
   
 })()
