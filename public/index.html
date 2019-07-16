@@ -73,14 +73,16 @@
       <!-- Nav Mesh -->
 <!--       <a-entity id="navmesh"
                 gltf-model="url()"
-                position="0 -0.2 0"
+                position="0 0 0"
                 visible="false"
                 nav-mesh></a-entity> -->
 
 
-      <a-entity position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2"  >
-          <a-entity log="max:20"  grabbable   geometry="primitive: plane" material="color: #153D0F; side:double" text="color: #CEA579"></a-entity>
+      <a-entity log="max:20"  grabbable   geometry="primitive: plane" 
+                position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2" 
+                material="color: #153D0F; side:double" text="color: #CEA579">
       </a-entity>
+       
          
       <a-entity id="my-player" 
               position="0 0 0"
