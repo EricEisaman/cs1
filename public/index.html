@@ -49,7 +49,7 @@
    <div id="scene-container" style="position:relative; display:none" >
      
      
-     <a-scene environment="preset: starry; ground: flat" game>       
+     <a-scene environment="preset: starry; ground: flat; light: none" game>       
        
        
       <a-assets>
@@ -115,8 +115,9 @@
        </a-entity>
        
        
-      <a-entity light="type:ambient;color:#fff"></a-entity>
-       
+      <a-entity light="type: ambient; color: #BBB; intensity: 0.23"></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity> 
+
           
            
        
