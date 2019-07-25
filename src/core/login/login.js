@@ -1,29 +1,34 @@
+import config from '../../../.data/client-config.json';
 export default(()=>{
 window.onload = e=>{
   let loginHTML = `
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
     <div class="modal-dialog">
 		  <div class="loginmodal-container">
-					<h1>CS1</h1><br>
-				  <form id="login-form">
-					  <input id="name" type="text" name="user" placeholder="Username">
-					  <input id="pw" type="password" name="pass" placeholder="Password">
-					  <input id="login-submit" type="submit" name="login" class="login loginmodal-submit" >
-            <div id='login-msg'></div>
-				  </form>
+          <image id="logo" src="" width="64px">
+          <h3 id="gamename">CS1</h3>
+			<form>	  
+					<input  placeholder="username" class="q1">
+          <input  placeholder="password" type="password" class="q2"> 
+          <button id="lb">Submit</button> 
+          <div style="color:red" id="login-msg"></div> 
+      </form>				
+
 			</div>
 	</div>
 </div>
 `
  let loginContainer = document.querySelector('#login');
  loginContainer.innerHTML = loginHTML;
+ document.querySelector('#logo').setAttribute('src',config.theme.logo);
+ document.querySelector('#gamename').innerHTML = config.gameName;
  setTimeout(e=>{
    if(!(CS1 && CS1.socket.connected)){
      document.getElementById('login-msg').innerHTML = 'OFFLINE MODE';
-     document.getElementById('login-submit').setAttribute('value','Play Game Offline');
+      document.querySelector('#lb').setAttribute('value','Play Game Offline');
    }
  },1000);
- document.getElementById('login-form').addEventListener("submit",function(e) {
+ document.getElementById('lb').addEventListener("click",function(e) {
     e.preventDefault(); 
     if(!(CS1 && CS1.socket.connected)){
       loginContainer.style.zIndex = -1;
@@ -32,14 +37,14 @@ window.onload = e=>{
       CS1.sounds.playerJoined.play();
       setTimeout(()=>{CS1.say(CS1.game.announcements.welcome)},CS1.game.welcomeDelay);    
     }
-    else if(document.getElementById('name').value.length > 0 && document.getElementById('pw').value.length > 0){
+    else if(document.querySelector('.q1').value.length > 0 && document.querySelector('.q2').value.length > 0){
      if(navigator.vendor.includes('Apple')){
         CS1.sounds.playerJoined.play()
          .catch(err=>{console.log(err)});
       } 
-     CS1.login(document.getElementById('name').value,document.getElementById('pw').value);
-      document.getElementById('name').value = '';
-      document.getElementById('pw').value = '';
+     CS1.login(document.querySelector('.q1').value,document.querySelector('.q2').value);
+      document.querySelector('.q1').value = '';
+      document.querySelector('.q2').value = '';
     }
   });
   
