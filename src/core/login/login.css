@@ -11,7 +11,7 @@
 
 #login-modal {
   margin: 0 auto;
-  padding-top:0.5em;
+  padding-top:0.25em;
   width:100%;
   height:100%
 }
@@ -28,7 +28,7 @@
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
-  padding: 20px;
+  padding: 5%;
   max-width: 350px;
   width: 100% !important;
   background-color: #F7F7F7;
@@ -87,7 +87,7 @@
   user-select: none; */
 }
 
-.loginmodal-submit {
+#lb {
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
@@ -99,7 +99,7 @@
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
-.loginmodal-submit:hover {
+#lb:hover {
   /* border: 1px solid #2f5bb7; */
   border: 0px;
   text-shadow: 0 1px rgba(0,0,0,0.3);
