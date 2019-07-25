@@ -149,8 +149,10 @@ body {
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
-  padding: 5%;
-  max-width: 350px;
+  padding: 6px;
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: 400px;
   width: 100% !important;
   background-color: #F7F7F7;
   margin: 0 auto;
