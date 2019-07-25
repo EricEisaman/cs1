@@ -132,7 +132,7 @@ body {
 
 #login-modal {
   margin: 0 auto;
-  padding-top:1em;
+  padding-top:0.5em;
   width:100%;
   height:100%
 }
@@ -142,9 +142,14 @@ body {
   font-weight: bold;
 }
 
+#logo {
+  display:block;
+  margin:auto;
+}
+
 /****** LOGIN MODAL ******/
 .loginmodal-container {
-  padding: 30px;
+  padding: 20px;
   max-width: 350px;
   width: 100% !important;
   background-color: #F7F7F7;
@@ -155,20 +160,20 @@ body {
   font-family: roboto;
 }
 
-.loginmodal-container h1 {
+.loginmodal-container h3 {
   text-align: center;
-  font-size: 1.8em;
+  font-size: 1.0em;
   font-family: roboto;
 }
 
-.loginmodal-container input[type=submit] {
+.loginmodal-container #lb {
   width: 100%;
   display: block;
   margin-bottom: 10px;
   position: relative;
 }
 
-.loginmodal-container input[type=text], input[type=password] {
+.loginmodal-container .q1, .q2 {
   height: 44px;
   font-size: 16px;
   width: 100%;
@@ -183,7 +188,7 @@ body {
   -moz-box-sizing: border-box;
 }
 
-.loginmodal-container input[type=text]:hover, input[type=password]:hover {
+.loginmodal-container .q1:hover, .q2:hover {
   border: 1px solid #b9b9b9;
   border-top: 1px solid #a0a0a0;
   -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
