@@ -6,7 +6,7 @@
         "fontFamily": "Arial",
         "titleFontColor": "#f2d15c",
         "formFontColor": "white",
-        "formColor": "#0f3917",
+        "formButtonColor": "#AA2F1F",
         "overlayColor": "rgba(0,0,0, 0.7)",
         "fontSize": 2,
         "logo":"https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?v=1552299344920"
