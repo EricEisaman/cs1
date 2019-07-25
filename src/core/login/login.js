@@ -22,6 +22,7 @@ window.onload = e=>{
  loginContainer.innerHTML = loginHTML;
  document.querySelector('#logo').setAttribute('src',config.theme.logo);
  document.querySelector('#gamename').innerHTML = config.gameName;
+ document.getElementById('lb').setAttribute('style',`background-color:${config.theme.formButtonColor}`)
  setTimeout(e=>{
    if(!(CS1 && CS1.socket.connected)){
      document.getElementById('login-msg').innerHTML = 'OFFLINE MODE';
