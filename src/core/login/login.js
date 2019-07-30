@@ -7,12 +7,12 @@ window.onload = e=>{
 		  <div class="loginmodal-container">
           <image id="logo" src="" width="64px">
           <h3 id="gamename">CS1</h3>
-			<form>	  
+			<div>	  
 					<input  placeholder="username" class="q1">
           <input  placeholder="password" type="password" class="q2"> 
           <button id="lb">Submit</button> 
           <div style="color:red" id="login-msg"></div> 
-      </form>				
+      </div>				
 
 			</div>
 	</div>
@@ -22,7 +22,7 @@ window.onload = e=>{
  loginContainer.innerHTML = loginHTML;
  document.querySelector('#logo').setAttribute('src',config.theme.logo);
  document.querySelector('#gamename').innerHTML = config.gameName;
- document.getElementById('lb').setAttribute('style',`background-color:${config.theme.formButtonColor}`)
+ document.getElementById('lb').setAttribute('style',`background-color:${config.theme.formButtonColor}`);
  setTimeout(e=>{
    if(!(CS1 && CS1.socket.connected)){
      document.getElementById('login-msg').innerHTML = 'OFFLINE MODE';
