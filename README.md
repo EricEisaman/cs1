@@ -1,4 +1,4 @@
-<img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
+<img src="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_128.png?v=1564891473860">
 
 # CS1 Game Engine
 #### version 0.4.0
