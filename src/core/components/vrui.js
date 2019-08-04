@@ -212,8 +212,8 @@ AFRAME.registerSystem('vrui', {
           <div>Cow Cud</div>
        </a>
        <a id="mid-btn" class="imgLink" href="#">
-          <img crossorigin="anonymous"  src="https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2F4433d9a49e.png?v=1562106572295" width="80" height="80">
-          <div>Pig Heaven</div>
+          <img crossorigin="anonymous"  src="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_512.png?v=1564891633017" width="80" height="80">
+          <div>CS1 Game Engine</div>
        </a>
        <a id="bot-btn" class="imgLink" href="#">
           <img  crossorigin="anonymous" src="https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2Fgo.png?v=1562106636316" width="80" height="80">
@@ -290,7 +290,7 @@ AFRAME.registerSystem('vrui', {
     });
     if(midBtn)midBtn.addEventListener('click',e=>{
       e.preventDefault();
-      box.setAttribute('material','src:#pig');
+      box.setAttribute('material','src:#cs1');
     });
 
     let botBtn = document.querySelector('#bot-btn');
