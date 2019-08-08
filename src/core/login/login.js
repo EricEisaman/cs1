@@ -7,12 +7,12 @@ window.onload = e=>{
 		  <div class="loginmodal-container">
           <image id="logo" src="" width="64px">
           <h3 id="gamename">CS1</h3>
-			<form>	  
+			<div>	  
 					<input  placeholder="username" class="q1">
           <input  placeholder="password" type="password" class="q2"> 
           <button id="lb">Submit</button> 
           <div style="color:red" id="login-msg"></div> 
-      </form>				
+      </div>				
 
 			</div>
 	</div>
