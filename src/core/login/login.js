@@ -7,12 +7,12 @@ window.onload = e=>{
 		  <div class="loginmodal-container">
           <image id="logo" src="" width="64px">
           <h3 id="gamename">CS1</h3>
-			<div>	  
+			<form>	  
 					<input  placeholder="username" class="q1">
           <input  placeholder="password" type="password" class="q2"> 
           <button id="lb">Submit</button> 
           <div style="color:red" id="login-msg"></div> 
-      </div>				
+      </form>				
 
 			</div>
 	</div>
@@ -29,7 +29,12 @@ window.onload = e=>{
       document.querySelector('#lb').setAttribute('value','Play Game Offline');
    }
  },1000);
- document.getElementById('lb').addEventListener("click",function(e) {
+ document.getElementById('lb').addEventListener("click",login);
+ document.querySelector('.q2').addEventListener("keydown",e=>{
+   if(e.code=='Enter')login(e);
+ }); 
+  
+  function login(e){
     e.preventDefault(); 
     if(!(CS1 && CS1.socket.connected)){
       loginContainer.style.zIndex = -1;
@@ -47,7 +52,7 @@ window.onload = e=>{
       document.querySelector('.q1').value = '';
       document.querySelector('.q2').value = '';
     }
-  });
+  }
   
 }
   
