@@ -17,7 +17,7 @@ export default (()=>{
       self.el.setAttribute('sound__launch',`src:url(${this.data.launchSound})`);
       
       self.el.addEventListener('grabEnd',e=>{
-        CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} launched grabbable ${self.grabbable.name}!`,channel:'0'});
+        CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} launched grabbable ${self.grabbable.name}!`,channel:'0'});
         self.grabbable.isDragging = true; // can't grab while it is in launch
         let launchData = {name:self.grabbable.name,dir:self.getDir()};
         //console.log(launchData);

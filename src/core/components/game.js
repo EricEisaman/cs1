@@ -39,6 +39,8 @@ export default CS1=>{AFRAME.registerComponent('game', {
       speechSynthesis.speak(msg);
     }
     
+    CS1.sayall = function(msg,name){CS1.socket.emit('sayall',{msg:msg,name:name})}
+    
     CS1.printVoices = ()=>{
       speechSynthesis.getVoices().forEach(v=>{
         console.log(v.name,v.lang);
@@ -159,8 +161,12 @@ export default CS1=>{AFRAME.registerComponent('game', {
   
   start: function () {
     
+    CS1.logall = function(msg,channel=''){
+      CS1.socket.emit('logall',{msg:msg,channel:channel});
+    }
+    
     if(CS1.device == "Oculus Quest"){
-        CS1.socket.emit('vr-log',{msg:`${CS1.myPlayer.name} is playing with an Oculus VR device!`,channel:'0'});
+        CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} is playing with an Oculus VR device!`,channel:'0'});
       }
     
     CS1.sounds.playerJoined.onended = ()=>{
