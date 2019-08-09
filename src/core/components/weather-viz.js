@@ -1,12 +1,14 @@
 export default (function d3graph(){
   
-  AFRAME.registerComponent('d3-graph', {
+  AFRAME.registerComponent('weather-viz', {
     schema:{
-      side: {type:'string', default:'front'},
-      url: {type:'string', default:''}
+      side: {type:'string', default:'double'},
+      url: {type:'string', default:'https://api.openweathermap.org/data/2.5/forecast/?appid=56df5e300fabead0a56fc2d706e6aa7d&id=4959473'}
     },
     dependencies: ['geometry', 'material'],
     init: function () {
+      this.el.setAttribute('width',6);
+      this.el.setAttribute('height',4);
       this.canvas=document.createElement('canvas');
       this.canvas.style.position = 'absolute';
       this.canvas.style.left = -2000;

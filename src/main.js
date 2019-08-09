@@ -5,7 +5,7 @@ import loadSpinner from './core/load/load-spinner';
 import './core/load/load-spinner.css';
 import grabbable from './core/components/grabbable';
 import navpointer from './core/components/nav-pointer';
-import d3graph from './core/components/d3-graph';
+import weatherviz from './core/components/weather-viz';
 import shaderfrog from './core/components/shaderfrog/shader-frog';
 shaderfrog(CS1);
 import particles from './aps/particles';

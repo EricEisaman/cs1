@@ -171,6 +171,10 @@ export default CS1=>{
   
   socket.on('log',msg=>{console.log(msg)});
   
+  socket.on('say',data=>{
+    CS1.say(data.msg,data.name);
+  });
+  
 
   window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
   var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      

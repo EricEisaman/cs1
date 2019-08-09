@@ -240,9 +240,15 @@ module.exports = (io)=>{
         }); 
       
       
-       socket.on('vr-log',data=>{
+       socket.on('logall',data=>{
          
          io.sockets.emit('vr-log', data);
+         
+       });
+      
+      socket.on('sayall',data=>{
+         
+         io.sockets.emit('say', data);
          
        });
       

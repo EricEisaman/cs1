@@ -10,7 +10,7 @@ AFRAME.registerSystem('log', {
 	    var logs = this.logs = [];
 	    var loggers = this.loggers = [];
 
-	    // Register global function to adding logs.
+	    // Register global function for logging.
 	    window.CS1.log = function (message, channel) {
 	      logs.push([message, channel]);
 	      loggers.forEach(function (loggerComponent) {
