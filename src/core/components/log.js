@@ -21,6 +21,16 @@ AFRAME.registerSystem('log', {
 	        console.log('[log:' + (channel || '') + '] ' + message);
 	      }
 	    };
+      
+      window.CS1.socket.on('vr-log',data=>{
+        window.CS1.log(data.msg,data.channel);
+      });
+      
+      window.CS1.logall = function (message, channel){
+        window.CS1.socket.emit('logall',{msg:message,channel:channel});    
+      }
+      
+      
 	  },
 
 	  registerLogger: function (component) {
