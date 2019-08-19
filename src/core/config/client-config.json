@@ -4,9 +4,10 @@
   "playerLeftMsg": "... has packed up and headed for home.",
     "theme": {
         "fontFamily": "Arial",
-        "titleFontColor": "#f2d15c",
+        "titleFontColor": "#C4A43C",
+        "formColor": "#fff",
         "formFontColor": "white",
-        "formButtonColor": "#AA2F1F",
+        "formButtonColor": "#A82F1E",
         "overlayColor": "rgba(0,0,0, 0.7)",
         "fontSize": 2,
         "logo":"https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_64.png?v=1564891473540"
