@@ -10,7 +10,7 @@ window.onload = e=>{
 			<div>	  
 					<input  placeholder="username" class="q1">
           <input  placeholder="password" type="password" class="q2"> 
-          <button id="lb">Submit</button> 
+          <button id="lb" style="background-color:${config.theme.formButtonColor}">Submit</button> 
           <div style="color:${config.theme.formButtonColor}" id="login-msg"></div> 
       </div>				
 
