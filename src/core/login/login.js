@@ -2,16 +2,16 @@ import config from '../../../.data/client-config.json';
 export default(()=>{
 window.onload = e=>{
   let loginHTML = `
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;background-color:${config.theme.overlayColor}">
     <div class="modal-dialog">
-		  <div class="loginmodal-container">
-          <image id="logo" src="" width="64px">
-          <h3 id="gamename">CS1</h3>
+		  <div class="loginmodal-container" style="background-color:${config.theme.formColor}">
+          <image id="logo" src=${config.theme.logo} width="64px">
+          <h3 id="gamename" style="color:${config.theme.titleFontColor}">${config.gameName}</h3>
 			<div>	  
 					<input  placeholder="username" class="q1">
           <input  placeholder="password" type="password" class="q2"> 
           <button id="lb">Submit</button> 
-          <div style="color:red" id="login-msg"></div> 
+          <div style="color:${config.theme.formButtonColor}" id="login-msg"></div> 
       </div>				
 
 			</div>
@@ -20,9 +20,6 @@ window.onload = e=>{
 `
  let loginContainer = document.querySelector('#login');
  loginContainer.innerHTML = loginHTML;
- document.querySelector('#logo').setAttribute('src',config.theme.logo);
- document.querySelector('#gamename').innerHTML = config.gameName;
- document.getElementById('lb').setAttribute('style',`background-color:${config.theme.formButtonColor}`);
  setTimeout(e=>{
    if(!(CS1 && CS1.socket.connected)){
      document.getElementById('login-msg').innerHTML = 'OFFLINE MODE';

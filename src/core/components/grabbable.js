@@ -135,7 +135,7 @@ export default (function grabbable(){
 			self.cursor = e.detail.cursorEl;
 			if(self.cursor == self.el.sceneEl) self.cursor = document.querySelector("[camera]"); //This handles the scenario where the user isn't using motion controllers
       
-      CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} grabbing!` ,channel:self.name});
+      //CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} grabbing!` ,channel:self.name});
       
       // avoid seeing flickering at origin during reparenting
       self.el.setAttribute('visible', false);
@@ -157,7 +157,8 @@ export default (function grabbable(){
     function release(e)
 		{
 			if(self.isDragging)
-			{ CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} releasing!` ,channel:self.name});
+			{ 
+        //CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} releasing!` ,channel:self.name});
 				self.isDragging = false;
 
 				if(self.proxyObject)
