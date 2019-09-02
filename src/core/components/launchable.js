@@ -1,5 +1,19 @@
 export default (()=>{
   
+  AFRAME.registerSystem('launchable', {
+  schema: {},  // System schema. Parses into `this.data`.
+
+  init: function () {
+
+    CS1.socket.on('launch-sound',name=>{
+      CS1.grabbables[name].components.sound__launch.playSound();
+    });
+    
+  },
+
+  
+});
+  
   AFRAME.registerComponent('launchable', {
     schema:{
       burst:{type:'boolean',default:true},
@@ -24,10 +38,7 @@ export default (()=>{
         CS1.socket.emit('launch',launchData);
       });
       
-      if(!CS1.socket._callbacks["$launch-sound"])
-      CS1.socket.on('launch-sound',name=>{
-        CS1.grabbables[name].components.sound__launch.playSound();
-      });
+      
       
       
          

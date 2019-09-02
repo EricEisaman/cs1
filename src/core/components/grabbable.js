@@ -49,6 +49,39 @@ function directionLocalToWorld(object, localDirection)
 
 export default (function grabbable(){
   
+  
+  AFRAME.registerSystem('grabbable', {
+  schema: {},  // System schema. Parses into `this.data`.
+
+  init: function () {
+
+      //use object to allow for further development
+    CS1.grabbables={}; 
+    
+    CS1.__updateGrabbables = (grabbablesData)=>{
+        //console.log('Update Grabbables');
+        //console.log(grabbablesData);
+        if(Object.keys(CS1.grabbables).length === 0 || !CS1.grabbables[grabbablesData[0].name] || !CS1.game.hasBegun) return;
+        grabbablesData.forEach( (d,index)=>{
+          let b = CS1.grabbables[d.name];
+          if(CS1.debug){
+            console.log('Individual body data from server:');
+            console.log(d);
+          } 
+          if(d.position) b.object3D.position.copy(d.position);
+          if(d.scale) b.object3D.scale.copy(d.scale);
+          if(d.rotation) b.object3D.quaternion.copy(d.rotation);
+      
+        });
+      }
+    
+    
+    
+  },
+
+  
+  });//end system definition
+  
   AFRAME.registerComponent("grabbable", {
 	schema: {
 		origin: { type: "selector" }
@@ -65,11 +98,6 @@ export default (function grabbable(){
 		self.el.classList.add("interactive");
     
     
-    //use object to allow for further development
-    if(!CS1.grabbables)CS1.grabbables={}; 
-    self.name=Object.keys(CS1.grabbables).length;
-    CS1.grabbables[self.name]=self.el;
-    
     if(self.el.components.log){
       //this.el.components.log.data.channel = this.name;
       self.el.setAttribute('log',`channel:${String(self.name)}`)
@@ -78,11 +106,10 @@ export default (function grabbable(){
         CS1.log(data.msg ,String(data.channel));
       });
     }
-
-    //AFRAME.utils.device.checkHeadsetConnected ()
-		//document.querySelector('#left-hand').components["oculus-touch-controls"].controllerPresent
-  
-    //setTimeout(()=>{
+    
+    
+    self.name=Object.keys(CS1.grabbables).length;
+    CS1.grabbables[self.name]=self.el;
       
     self.el.addEventListener("mousedown", grab);
     self.el.addEventListener("mouseup", release);
@@ -135,7 +162,6 @@ export default (function grabbable(){
 			self.cursor = e.detail.cursorEl;
 			if(self.cursor == self.el.sceneEl) self.cursor = document.querySelector("[camera]"); //This handles the scenario where the user isn't using motion controllers
       
-      //CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} grabbing!` ,channel:self.name});
       
       // avoid seeing flickering at origin during reparenting
       self.el.setAttribute('visible', false);
@@ -190,23 +216,7 @@ export default (function grabbable(){
 			copyTransform(self.originEl.object3D, self.proxyObject);				
 		}
     
-    if(!CS1.updateGrabbables)
-    CS1.updateGrabbables = (grabbablesData)=>{
-        //console.log('Update Grabbables');
-        //console.log(grabbablesData);
-        if(Object.keys(CS1.grabbables).length === 0 || !CS1.grabbables[grabbablesData[0].name] || !CS1.game.hasBegun) return;
-        grabbablesData.forEach( (d,index)=>{
-          let b = CS1.grabbables[d.name];
-          if(CS1.debug){
-            console.log('Individual body data from server:');
-            console.log(d);
-          } 
-          if(d.position) b.object3D.position.copy(d.position);
-          if(d.scale) b.object3D.scale.copy(d.scale);
-          if(d.rotation) b.object3D.quaternion.copy(d.rotation);
-      
-        });
-      }
+    
     
     
     

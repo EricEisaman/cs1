@@ -1,31 +1,13 @@
 import config from '../config/client-config.json';
-export default CS1=>{AFRAME.registerComponent("collectible", {
-	schema: {
-    threshold: {type: 'number', default: 2.7},
-    soundCollect: {type: 'string',default:'https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_1.mp3?1552158629039'},
-    soundLoop: {},
-    cb:{type:'string',default:''},
-    affects:{type:'string',default:''},
-    value:{type:'number',default:1},
-    spawns:{type:'boolean',default:false},
-    spawnDelay:{type:'number',default:5}
-	},
-	init: function()
-	{
-    this.el.setAttribute('sound__collect',`src:url(${this.data.soundCollect})`);
-    if(this.data.soundLoop)this.el.setAttribute('sound__loop',`src:url(${this.data.soundLoop});autoplay:true;loop:true`);
-    if(!CS1.collectibles)CS1.collectibles=[];
-    CS1.collectibles.push(this);
-    this.soundIsPlaying=false;
-    if(!CS1.socket._callbacks["$request-for-collectibles"])
-    CS1.socket.on('request-for-collectibles',()=>{
-      let d=[];
-      CS1.collectibles.forEach(c=>{
-        d.push({spawns:c.data.spawns,spawnDelay:c.data.spawnDelay});
-      });
-      CS1.socket.emit('initial-collectibles-state', d);
-    });
-    if(!CS1.socket._callbacks["$collect"])
+export default CS1=>{
+  
+  AFRAME.registerSystem('collectible', {
+  schema: {},  // System schema. Parses into `this.data`.
+
+  init: function () {
+    
+    CS1.collectibles=[];
+   
     CS1.socket.on('collect',data=>{
       if(!(CS1.game && CS1.game.hasBegun))return;
       let collectedEntity = CS1.collectibles[data.index];
@@ -83,7 +65,7 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
          
       }
     });
-    if(!CS1.socket._callbacks["$spawn-collectible"])
+    
     CS1.socket.on('spawn-collectible',index=>{
       let collectedEntity = CS1.collectibles[index];
       if(collectedEntity.el.components.sound__loop)collectedEntity.el.components.sound__loop.play();
@@ -91,6 +73,44 @@ export default CS1=>{AFRAME.registerComponent("collectible", {
       //collectedEntity.el.setAttribute('scale','1 1 1');
       collectedEntity.play();
     });
+
+    CS1.socket.on('request-for-collectibles',()=>{
+      let d=[];
+      CS1.collectibles.forEach(c=>{
+        d.push({spawns:c.data.spawns,spawnDelay:c.data.spawnDelay});
+      });
+      CS1.socket.emit('initial-collectibles-state', d);
+    });
+    
+    
+    
+    
+    
+  },
+
+ 
+});
+  
+  
+  AFRAME.registerComponent("collectible", {
+	schema: {
+    threshold: {type: 'number', default: 2.7},
+    soundCollect: {type: 'string',default:'https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2Fpowerup_1.mp3?1552158629039'},
+    soundLoop: {},
+    cb:{type:'string',default:''},
+    affects:{type:'string',default:''},
+    value:{type:'number',default:1},
+    spawns:{type:'boolean',default:false},
+    spawnDelay:{type:'number',default:5}
+	},
+	init: function()
+	{
+    
+    this.el.setAttribute('sound__collect',`src:url(${this.data.soundCollect})`);
+    if(this.data.soundLoop)this.el.setAttribute('sound__loop',`src:url(${this.data.soundLoop});autoplay:true;loop:true`);
+    CS1.collectibles.push(this);
+    this.soundIsPlaying=false;
+      
   }, 
 	tick: function()
 	{   

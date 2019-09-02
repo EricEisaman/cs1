@@ -1,4 +1,4 @@
-const cacheName = 'cs1.0.6';
+const cacheName = 'cs1.0.1';
 
 self.addEventListener('install', e => {
  console.log('Service Worker Installed');
