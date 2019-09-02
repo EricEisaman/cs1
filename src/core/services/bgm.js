@@ -4,11 +4,11 @@ export function bgmlite(CS1){
   let audio = document.createElement('audio');
   let bgmUrlStart = 'https://api.soundcloud.com/tracks/';
   let bgmUrlEnd = '/stream?client_id=b9d11449cd4c64d461b8b5c30650cd06';
-  audio.src = bgmUrlStart +tracks[0]+ bgmUrlEnd;
-  audio.crossorigin = 'anonymous';
-  audio.autoplay = 'autoplay';
-  if(config.bgm.playAll) audio.loop = true;
-  audio.volume = 0.00;
+  // audio.src = bgmUrlStart +tracks[0]+ bgmUrlEnd;
+  // audio.crossorigin = 'anonymous';
+  // audio.autoplay = 'autoplay';
+  // if(config.bgm.playAll) audio.loop = true;
+  // audio.volume = 0.00;
   
   let nextSongBtn = document.createElement('button');
   nextSongBtn.innerHTML = "PLAY NEXT SONG";
@@ -40,6 +40,14 @@ let currentSongIndex = 0;
       audio.volume = config.bgm.volume;
       audio.play();
     },
+    playTrackIndex: n=>{
+      currentSongIndex=n;
+      audio.src = bgmUrlStart + tracks[currentSongIndex] + bgmUrlEnd;
+      audio.crossorigin = 'anonymous';
+      audio.load();
+      audio.loop = !config.bgm.playAll;
+      audio.play();
+    },
     pause: ()=>{
       audio.pause();
     },
@@ -49,14 +57,14 @@ let currentSongIndex = 0;
       audio.src = bgmUrlStart + tracks[currentSongIndex] + bgmUrlEnd;
       audio.crossorigin = 'anonymous';
       audio.load();
-      if(config.bgm.playAll) audio.loop = true;
+      audio.loop = !config.bgm.playAll;
       audio.play();
     },
     
   }//end of CS1.bgm definition
   
    document.addEventListener('gameStart',e=>{
-    CS1.bgm.play();
+    if(CS1.bgm.tracks.length) CS1.bgm.playTrackIndex(0);
   })
 
 }//end of bgmlite

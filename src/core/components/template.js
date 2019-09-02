@@ -5,7 +5,7 @@ AFRAME.registerComponent('mycomponent', {
 	  console: {default: true}
   },
   
-  init: ()=>{
+  init: function(){
     
   }
 });

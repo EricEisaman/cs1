@@ -116,8 +116,8 @@ AFRAME.registerComponent('chat', {
           self.input.setAttribute('value', self.value + '_')
       }
       
-      let lh = document.querySelector('#left-hand').components["oculus-touch-controls"];
-      let rh = document.querySelector('#right-hand').components["oculus-touch-controls"];
+      let lh = CS1.myPlayer.components.player.lh.components["oculus-touch-controls"];
+      let rh = CS1.myPlayer.components.player.rh.components["oculus-touch-controls"];
       
       switch(CS1.device){
           

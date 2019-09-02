@@ -206,21 +206,21 @@ AFRAME.registerSystem('vrui', {
        </div>
     </a-entity>
     <a-entity id="menu2" class="screen menu dark" position="2.712 1.5 -1.476" rotation="0 -45 0">
-       <h2>Box Logo</h2>
+       <h2>Avatars</h2>
        <a id="top-btn" class="imgLink" href="#">
-          <img crossorigin="anonymous"   src="https://cdn.glitch.com/376724db-dc5f-44ca-af35-36d00838079c%2Fcow.png?v=1562353505829" width="80" height="80">
-          <div>Cow Cud</div>
+          <img crossorigin="anonymous"   src="https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fchip.png?v=1567384714024" width="80" height="80">
+          <div>Chip</div>
        </a>
        <a id="mid-btn" class="imgLink" href="#">
-          <img crossorigin="anonymous"  src="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_512.png?v=1564891633017" width="80" height="80">
-          <div>CS1 Game Engine</div>
+          <img crossorigin="anonymous"  src="https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.png?v=1567389128396" width="80" height="80">
+          <div>Mel</div>
        </a>
        <a id="bot-btn" class="imgLink" href="#">
-          <img  crossorigin="anonymous" src="https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2Fgo.png?v=1562106636316" width="80" height="80">
-          <div>Golang</div>
+          <img  crossorigin="anonymous" src="https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fvr.png?v=1567383953311" width="80" height="80">
+          <div>VR-1</div>
        </a>
     </a-entity>
-    <a-box material="src:#go" scale="0.5 0.5 0.5" position="1 1 -1.5" id="box" visible="false"></a-box> `;
+    <a-box material="src:#chip" scale="0.5 0.5 0.5" position="1 1 -1.5" id="box" visible="false"></a-box> `;
     
     const ec = document.createElement('a-entity');
     ec.setAttribute('style','visibility:hidden');
@@ -249,7 +249,7 @@ AFRAME.registerSystem('vrui', {
     let scn = document.querySelector('a-scene');
     let ctr = document.querySelector('#embed-container');
     ctr.setAttribute('visible',false);
-    ctr.setAttribute('position','0 0 0');
+    ctr.setAttribute('position','0 0.3 0');
     CS1.myPlayer.add(ctr);
     CS1.hud.container = ctr;
     let m = document.querySelector('#main');
@@ -279,7 +279,8 @@ AFRAME.registerSystem('vrui', {
     });
     if(topBtn)topBtn.addEventListener('click',e=>{
       e.preventDefault();
-      box.setAttribute('material','src:#cow');
+      box.setAttribute('material','src:#chip');
+      CS1.socket.playerData.faceIndex = 1;
     });
 
     let midBtn = document.querySelector('#mid-btn');
@@ -290,7 +291,8 @@ AFRAME.registerSystem('vrui', {
     });
     if(midBtn)midBtn.addEventListener('click',e=>{
       e.preventDefault();
-      box.setAttribute('material','src:#cs1');
+      box.setAttribute('material','src:#mel');
+      CS1.socket.playerData.faceIndex = 2;
     });
 
     let botBtn = document.querySelector('#bot-btn');
@@ -301,7 +303,8 @@ AFRAME.registerSystem('vrui', {
     });
     if(botBtn)botBtn.addEventListener('click',e=>{
       e.preventDefault();
-      box.setAttribute('material','src:#go');
+      box.setAttribute('material','src:#vr1');
+      CS1.socket.playerData.faceIndex = 0;
     });
 
 
@@ -339,8 +342,8 @@ AFRAME.registerSystem('vrui', {
               })  
       
     
-    let lh = document.querySelector('#left-hand').components["oculus-touch-controls"];
-    let rh = document.querySelector('#right-hand').components["oculus-touch-controls"];
+    let lh = CS1.myPlayer.components.player.lh.components["oculus-touch-controls"];
+    let rh = CS1.myPlayer.components.player.rh.components["oculus-touch-controls"];
     if(CS1.device=="Oculus Quest"){
        //AFRAME.utils.device.checkHeadsetConnected()
       

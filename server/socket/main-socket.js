@@ -5,10 +5,12 @@ addons.push(require('./addons/userdata-socket'));
 addons.push(require('./addons/iot-api'));
 addons.push(require('./addons/launchable'));
 addons.push(require('./addons/admin'));
+addons.push(require('./addons/jukebox'));
 module.exports = (io)=>{
     var state = {
       players:{},
       bodies:{},
+      dbmap:{},
       collectibles:[],
       changedBodies:[],
       signedIn:[],
@@ -20,11 +22,73 @@ module.exports = (io)=>{
         },100)
     };
     io.on('connection', function(socket){
+      
+       
+      
+      
         socket.ip = socket.handshake.headers['x-forwarded-for'];
         //Uncomment second part below if storing to Firebase
         socket.ip = socket.ip.split(',')[0]//.replace(/\./g, "_");
         console.log(`New connection with socket id: ${socket.id}.`);
         socket.auth = false;
+
+        socket.on('disconnect',function(){
+          // Delete from object on disconnect
+          if(socket.auth && state.players[socket.id]){
+           
+           state.players[socket.id].disconnected = true; 
+            
+           setTimeout(_=>{
+             
+             if(state.players[socket.id].disconnected){
+               
+               console.log(`Unrecovered connection named ${socket.name}. Removing socket.id : ${socket.id} and socket.dbid: ${socket.dbid} at ${new Date().getSeconds()} seconds.`);
+               if(socket.id == state.ufoTarget){
+                 state.ufoTarget=false;
+                 io.emit('set-ufo-target',false); 
+               }
+               delete state.players[socket.id]; 
+               delete state.dbmap[socket.id];
+               if(Object.keys(state.players)===0){
+                 state.bodies = {};
+                 state.changedBodies = [];
+                 state.dbmap = {};
+               }
+               socket.broadcast.emit('remove-player',socket.id);
+               socket.emit('failed-socket');
+               db.get('users').find({name:socket.name}).assign({isPlaying:false}).write();
+
+             }else{
+               console.log(`Socket check on timeout reauth true, socket.dbid : ${socket.dbid}`);
+             }
+             
+           },5000)
+            
+            
+          }else{
+           console.log('Unauthorized connection has disconnected',socket.id);
+          }     
+        }) 
+      
+        socket.on('reauth',authid=>{
+          
+          if(state.players[authid]){
+            
+            socket.id = authid;
+            state.players[authid].disconnected=false;
+            socket.auth = true;
+            socket.name = state.players[authid].name;
+            socket.dbid = state.dbmap[authid];
+            console.log(`Reauthorizing ${state.players[authid].name} at ${new Date().getSeconds()} seconds with id ${socket.id}!`);
+            
+          }
+          
+          
+        })
+      
+        
+      
+      
         socket.on('new-player',function(shared_state_data){ 
           if(!socket.auth)return;
           console.log('sending players already here');
@@ -62,32 +126,19 @@ module.exports = (io)=>{
           let id = socket.id; 
           io.emit('new-player',{"id":id,"name":socket.name,"data":shared_state_data});
         })   
-        socket.on('disconnect',function(){
-          // Delete from object on disconnect
-          if(socket.auth){
-           console.log(`Player named ${socket.name} disconnected. Removing ${socket.id}`);
-           if(socket.id == state.ufoTarget){
-             state.ufoTarget=false;
-             io.emit('set-ufo-target',false);
-           }
-           delete state.players[socket.id]; 
-           if(Object.keys(state.players)===0){
-             state.bodies = {};
-             state.changedBodies = [];
-           }
-           socket.broadcast.emit('remove-player',socket.id);
-           socket.emit('failed-socket');
-           db.get('users').find({id:socket.dbid}).assign({isPlaying:false}).write();
-          }else{
-           console.log('Unauthorized connection has disconnected',socket.id);
-          }     
-        }) 
+        
         // Online players' shared data throughput
         socket.on('send-update',function(data){
           if(state.players[socket.id] == null || !socket.auth) return;
           state.players[socket.id].position = data.position; 
           state.players[socket.id].rotation = data.rotation;
           state.players[socket.id].faceIndex = data.faceIndex;
+          if(data.lhp){
+            state.players[socket.id].lhp = data.lhp;
+            state.players[socket.id].lhr = data.lhr;
+            state.players[socket.id].rhp = data.rhp;
+            state.players[socket.id].rhr = data.rhr;
+          }
           //console.log(data);
         });  
         socket.on('request-collection',function(data){
@@ -208,6 +259,7 @@ module.exports = (io)=>{
              socket.name = data.name;
              user.assign({isPlaying:true}).write();
              socket.dbid = user.value().id;
+             state.dbmap[socket.id]=socket.dbid;
              socket.emit('login-results',{success:true,name:data.name});
           }else{
             console.log('Failed login attempt. 30 seconds before socket is disconnected.');
@@ -240,14 +292,20 @@ module.exports = (io)=>{
         }); 
       
       
-       socket.on('logall',data=>{
-         
+        socket.on('logall',data=>{
+         if(!socket.auth){
+            socket.emit('log','You attempted to logall without being authorized!');
+            return;
+         }     
          io.sockets.emit('vr-log', data);
          
        });
       
-      socket.on('sayall',data=>{
-         
+        socket.on('sayall',data=>{
+         if(!socket.auth){
+            socket.emit('log','You attempted to sayall without being authorized!');
+            return;
+         }
          io.sockets.emit('say', data);
          
        });

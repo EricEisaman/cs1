@@ -2,14 +2,33 @@ import config from '../../../.data/client-config.json';
 export default CS1=>{
   let socket = CS1.socket = io();
   socket.on('connect',()=>{
-    //console.log(`socket connected with id: ${socket.id}`);
-    //console.log('Client.js can initialize my playerData now.');
-    socket.playerData = {position:{},rotation:{},faceIndex:0};
-    socket.lastPlayerData = {position:{},rotation:{},faceIndex:0};
-    //REVISIT
-    CS1.login = (un,pw)=>{
-        socket.emit('login',{name:un,pw:pw});
-      }   
+
+    if(socket.authid){
+      
+      socket.emit('reauth',socket.authid);
+      socket.id = socket.authid;
+      console.log('Emitting reauth!');
+      console.log('socket.id : ',socket.id);
+      console.log('socket.playerData : ');
+      console.log(socket.playerData);
+      console.log('socket.lastPlayerData : ');
+      console.log(socket.lastPlayerData);
+      socket.isInitialized = true;
+      
+    }else{
+      
+      socket.playerData = {position:{},rotation:{},faceIndex:0};
+      socket.lastPlayerData = {position:{},rotation:{},faceIndex:0};
+      //REVISIT
+      CS1.login = (un,pw)=>{
+          socket.emit('login',{name:un,pw:pw});
+        }  
+      
+    }
+    
+    
+    
+    
   }); 
   
   socket.on('login-results',data=>{
@@ -20,14 +39,20 @@ export default CS1=>{
       document.querySelector('#login').setAttribute('hidden','');
       CS1.myPlayer.name = data.name;
       CS1.game.start();
+      socket.authid=socket.id;
     }
     else document.getElementById('login-msg').innerHTML = data.msg;
   });
   
   socket.on('anim', data=>{
     let clips = ['idle','walk'];
-    if(CS1.otherPlayers[data.id])
-      CS1.otherPlayers[data.id].firstElementChild.setAttribute('animation-mixer',`clip:${clips[data.anim]}`);
+    if(CS1.otherPlayers[data.id]){
+      
+      CS1.otherPlayers[data.id].isWalking = data.anim;
+      if(CS1.otherPlayers[data.id].avatarType===1)
+        CS1.otherPlayers[data.id].firstElementChild.setAttribute('animation-mixer',`clip:${clips[data.anim]}`);
+      
+    }
   });
   
   socket.on('avatar', data=>{
@@ -37,7 +62,7 @@ export default CS1=>{
     
   socket.on('disconnect', ()=>{
     console.log('I have disconnected.');
-    socket.isInitialized = false;
+    //socket.isInitialized = false;
   });
   
   socket.initializePlayerData = playerData=>{
@@ -48,14 +73,14 @@ export default CS1=>{
   }
   
   socket.setPlayerData = playerData=>{
-    socket.playerData = playerData;
+    socket.playerData = Object.assign({},playerData);
   }
   
   socket.on('new-player', newPlayerObject=>{
     if(CS1.debug)console.log('New player object received: ', newPlayerObject);
     if(CS1.game.hasBegun && newPlayerObject.id != CS1.socket.id) {
       setTimeout(()=>{CS1.say(`${newPlayerObject.name} has joined the game!`)},1000);
-      CS1.addOtherPlayer(newPlayerObject);
+      CS1.__addOtherPlayer(newPlayerObject);
     }
   });
   
@@ -64,16 +89,21 @@ export default CS1=>{
       console.warn('SETTING INITIAL BODIES STATE');
       console.log(data);
     }
-    CS1.updateGrabbables(data);
+    CS1.__updateGrabbables(data);
   });
   
-  let isEqual=CS1.utils.isEqual;
+  const isEqual=CS1.utils.isEqual;
   //Object.is(socket.playerData, socket.lastPlayerData)
   socket.sendUpdateToServer = ()=>{
-    if(!Object.is(socket.playerData, socket.lastPlayerData)){
+    
+    
+    if(!AFRAME.utils.deepEqual( socket.lastPlayerData , socket.playerData )){
+      
+      
       socket.emit('send-update',socket.playerData);
-      //console.log("SENDING UPDATE");
-      socket.lastPlayerData = Object.assign({}, socket.playerData);
+      
+      socket.lastPlayerData = Object.assign({},socket.playerData);
+      
       let bodiesData = [];
       for(var name in CS1.grabbables){
         let b = CS1.grabbables[name];
@@ -101,7 +131,13 @@ export default CS1=>{
           console.log(bodiesData);
         } 
       }
+      
+      
+      
     }
+    
+
+    
   }
   
   socket.on('players-already-here', o=>{
@@ -110,7 +146,7 @@ export default CS1=>{
       console.log(o);
     }
     Object.keys(o).forEach(function(key,index) {
-      CS1.addOtherPlayer({"id":key,
+      CS1.__addOtherPlayer({"id":key,
         "name":o[key].name,
         "data":{"position": o[key].position,
                 "rotation": o[key].rotation,
@@ -146,23 +182,23 @@ export default CS1=>{
 });
   
   socket.on('update-bodies', grabbablesData=>{
-    if(CS1.game.hasBegun)CS1.updateGrabbables(grabbablesData);
+    if(CS1.game.hasBegun)CS1.__updateGrabbables(grabbablesData);
   });
   
   socket.on('update-players', playersObject=>{
-    if(CS1.game && CS1.game.hasBegun)CS1.updateOtherPlayers(playersObject);
+    if(CS1.game && CS1.game.hasBegun)CS1.__updateOtherPlayers(playersObject);
   });
 
   socket.on('remove-player',id=>{
     if(CS1.game.hasBegun && CS1.otherPlayers[id]){
       let name = CS1.otherPlayers[id].name;
-      CS1.removePlayer(id);
+      CS1.__removePlayer(id);
       setTimeout(()=>{CS1.say(`${name} ${config.playerLeftMsg}`)},1500);
     }
   });
   
   socket.on('msg',data=>{
-    if(CS1.game.hasBegun)CS1.setPlayerMessage(data);
+    if(CS1.game.hasBegun)CS1.__setPlayerMessage(data);
   });
   
   socket.on('failed-socket',()=>{

@@ -2,7 +2,7 @@ export default (()=>{
   
   document.addEventListener('gameStart',e=>{
     
-
+  
   
   });
   
@@ -20,5 +20,8 @@ export default (()=>{
     }
     
   });
+  
+
+  
 
 })()
