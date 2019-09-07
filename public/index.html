@@ -1,30 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="HandheldFriendly" content="true" />
-    <link rel="stylesheet" type="text/css" href="bundle.css">
     <link rel="manifest" href="/manifest.json">
-    <link rel="canonical" href="https://game-dev.glitch.me/">
+    <link rel="canonical" href="https://cs1-admin.glitch.me/">
     <link rel="shortcut icon" href="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_64.png?v=1564891473540">
     
-    
+    <title>CS1 Admin</title>
+    <!-- Tell the browser that we've optimized the page for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      Use normalize.css to get all the browsers to display the page the same
+    -->
+    <link
+      rel="stylesheet"
+      href="normalize.css"
+    />
+
+    <!--
+      Icon to display in browser tab, and when saving the page to the homescreen of your phone
+    -->
+    <link
+      rel="icon"
+      href="https://cdn.glitch.com/22ac3967-dc2f-4f45-ae11-abb640fc8eb8%2FCS1_logo_64.png?v=1567594029860"
+      type="image/png"
+    />
+
   
-    <script src="//aframe.io/releases/0.9.2/aframe.min.js"></script>   
-    <script src="https://cdn.jsdelivr.net/gh/EricEisaman/aframe-keyboard/dist/aframe-keyboard.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>    
+    <!-- Load our special font from Google Fonts -->
+    <link
+      href="./source_sans_pro.css"
+      rel="stylesheet"
+    />
+
+    <!-- Then load our base.css, all the layout information -->
+    <link rel="stylesheet" href="./base.css" />
+    <!--
+      Finally load theme.css, where we can set color information for our personalised dashboard
+    -->
+    <link rel="stylesheet" href="./theme.css" />
+    
+    <!-- Web Socket Library -->
     <script src="/socket.io/socket.io.js"></script>
-  
-<!--     <script src="https://cdn.jsdelivr.net/gh/EricEisaman/aframe-jukebox@v0.1.13/dist/aframe-jukebox.min.js" ></script> -->
-  
-    <script src="https://aframe-jukebox.glitch.me/aframe-jukebox.js"></script>
-  
-    <script src="bundle.js"></script>
     
-  
     
     <script>
       // This is just to force HTTPS (can't do it statically on glitch)
@@ -38,99 +60,94 @@
         console.warn('Service Worker not supported in this browser');
       }   
     </script>  
+    
   </head>
-<body>
-  
-  
-   <div style="position:absolute">
-      <div id="loading-screen"></div>
-   </div>
-  
-   <!-- Used for slide navigation of vrui main div  -->
-  <div id="slide2" class="slide"/>
-  <div id="slide3" class="slide"/>
-  <div id="slide4" class="slide"/>
-  
-   <div id="scene-container" style="position:relative; display:none" >
-     
-     
-     <a-scene environment="preset: starry; ground: none; light: none" game>       
-       
-       
-      <a-assets>
-        <img id="grass" crossorigin="anonymous" src="https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2Fgrass1.png?v=1561979604396">
-        <img id="vr1" crossorigin="anonymous" src="https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fvr.png?v=1567383953311">
-        <img id="cs1" crossorigin="anonymous" src="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_512.png?v=1564891633017">
-        <img id="chip" crossorigin="anonymous" src="https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fchip.png?v=1567384714024">
-        <img id="mel" crossorigin="anonymous" src="https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.png?v=1567389128396">
-      </a-assets>
-       
-      <!-- You can use a ground plane or simply add a floor in your scene model. --> 
-      <a-plane id="ground" material="src:#grass; repeat: 700 700; 
-               transparent: true; shader: flat" height="500" width="500" 
-               position="0 0.1 0" rotation="-90 0 0"></a-plane>
+  <body>
+    <!--
+      HEADER (not HEAD) is a semantic HTML tag used to mark the header of the page
+    -->
+    <header>
+      <div class="header content flex column">
+        <div class="flex row">
+          <div class="header-logo grow">
+            <span class="header-logo-icon"><i data-feather="zap"></i></span>
+            <h2>CS1 Admin</h2>
+          </div>
+          <div class="header-avatar" id="icon"><i data-feather="user"></i></div>
+        </div>
+        
+      </div>
+    </header>
+    <!--
+      MAIN is a semantic HTML tag used to mark the main content area of the page
+    -->
+    <main class="content">
+      <div class="flex row wrap cards">
+        
+    
+        
+        
+        
+        <!-- CS1 Game Engine Admin Login -->
+        <div class="card">
+          <div class="card-title">Login</div>
+          <div class="card-body">
+            <form action="" method="post" id="checkin-form">
+              <input
+                type="text"
+                name="projectname"
+                value=""
+                placeholder="Project Name"
+                id="project"
+              />
+              <input
+                type="password"
+                name="adminkey"
+                value=""
+                placeholder="ADMIN_KEY"
+                id="adminkey"
+              />
+            </form>
+          </div>
+        </div>
+
       
-      <!-- Scene Model-->
-      <a-entity id="scene-model" 
-                position="0 0.1 0"
-                shadow="receive: true"
-                gltf-model="url(https://cdn.glitch.com/376724db-dc5f-44ca-af35-36d00838079c%2Fnature_scene.glb?v=1562355917189)"></a-entity>
-
-      <!-- Nav Mesh -->
-<!--       <a-entity id="navmesh"
-                gltf-model="url()"
-                position="0 0 0"
-                visible="false"
-                nav-mesh></a-entity> -->
+        <div class="card" id="users-card" style="display:none" spellcheck="false">
+          <div class="card-title">Users</div>
+          <div class="card-body">
 
 
-      <a-entity log="max:10"  grabbable   geometry="primitive: plane" 
-                position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2" 
-                material="color: #153D0F; side:double" text="color: #CEA579">
-      </a-entity>
-       
-       
-     <a-entity gltf-model="https://cdn.glitch.com/8294eaa5-5d27-4cd6-9c0c-ce42d3cabdfc%2Fpotion.glb?v=1566412875364"
-               position="12 0 -13"
-               grabbable
-               id="potion"
-               ></a-entity>  
-       
-       
-       
+          </div>
+        </div>
+
+
+        
+
+
+        <!-- end CARDS container -->
+      </div>
+    </main>
+
+    <!--
+      FOOTER is a semantic HTML tag used to mark the footer area of the page
+    -->
+    <footer>
+      <h6>
+        Designed for administrating <a href="https://glitch.com/edit/#!/cs1?path=README.md:1:0" target="_blank" rel="noopener noreferrer">CS1 Game Engine</a> applications.
+      </h6>
+    </footer>
+
+    <!-- Load feather icons form the unpkg CDN -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Load our own JavaScripts -->
+    <script type="text/javascript" src="./index.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+
   
-         
-       
-     
-     <a-player></a-player>
-     
-       
-       
-     <a-jukebox position="0 2.2 -8" 
-                scale="2 2 2"
-                tracks="539018871 , 471053673 , 207323417 , 587979555 , 289829014 , 154728402 , 267080399 , 467164248 , 119221738 , 509421603"
-                songs="Old Town Road , Boo'd Up Reggae Remix , See You Again , Sucker Remix , Rockabye , My Cherie Amour Remix , Holy , Take Me Home Country Roads , Camisado , Calma"
-                cs1-jukebox></a-jukebox>
-       
-       
-      <a-entity light="type: ambient; color: #BBB; intensity: 0.4"></a-entity>
-      <a-entity light="type: directional; color: #FFF; intensity: 0.5" position="-0.5 100 100"></a-entity> 
-       
-       
-     </a-scene>
-     
-     <div id="mobile-btn-container" ></div>
-     
-     <input id="mobile-chat-input" placeholder="Enter message ..." >
-     
-     <div style="width:0;overflow:hidden;z-index:-1000">
-       <input id="standard-chat-dummy">
-     </div>
-     
-     <div id="login"></div>
-     
-   </div>
-  
-  
-</body>  
+
+  </body>
 </html>
+  

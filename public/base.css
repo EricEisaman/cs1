@@ -1,0 +1,457 @@
+/*
+apply a natural box layout model to all elements, but allowing components to change
+https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*/
+html {
+  box-sizing: border-box;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+::-webkit-scrollbar {
+width: 0px; /* remove scrollbar space */
+background: transparent; /* optional: just make scrollbar invisible */
+}
+
+html,
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgba(2, 0, 36, 1);
+}
+
+/* Flexbox Helpers */
+.flex {
+  display: flex;
+}
+.flex.row {
+  flex-direction: row;
+}
+.flex.column {
+  flex-direction: column;
+}
+.flex.wrap {
+  flex-wrap: wrap;
+}
+
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.grow {
+  flex-grow: 2;
+}
+.shrink {
+  flex-shrink: 2;
+}
+
+.center {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+
+/* Styles for the header of the page */
+header {
+  width: 100%;
+  min-height: 13vh;
+  position: relative;
+  margin: 0;
+  padding: 1rem 1rem 0 1rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 255, 0.6) 0%,
+    rgba(0, 212, 255, 0.5) 100%
+  );
+}
+
+/* add a gradient overlay to our header */
+/* overwrite the overlay colors in theme.css */
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 255, 0.6) 0%,
+    rgba(0, 212, 255, 0.5) 100%
+  );
+}
+
+.header.content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0;
+  color: #efefef;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.header-logo {
+  height: 2em;
+  margin: 0;
+  color: goldenrod;
+  display: flex;
+  align-items: center;
+}
+.header-logo h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0 0.5rem;
+  color: goldenrod;
+}
+.header-logo-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+}
+.header-avatar:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.header h1 {
+  margin: 2em 0;
+  color: #efefef;
+  font-weight: 200;
+}
+
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: #efefef;
+}
+header nav ul li {
+  display: inline-block;
+  padding: 1rem;
+  border-bottom: 2px solid goldenrod;
+}
+
+/* Styles for the main content area of the page */
+
+body,
+main {
+  background: #efefef;
+  min-height: 72vh;
+}
+.flex.cards {
+  margin: 0.5rem;
+}
+.card {
+  font-family: "Source Sans Pro", sans-serif;
+  flex: 1 1 30%;
+  margin: 0.5rem;
+  min-width: 250px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.card-title {
+  font-weight: 500;
+  border-bottom: 1px solid goldenrod;
+  color: goldenrod;
+  padding: 0.5rem;
+}
+
+.card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-title a .feather {
+  max-height: 1em;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  padding: 0.5rem;
+}
+
+.card-body h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 1.5rem 1rem 0.5rem;
+}
+.card-body h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: 0.5rem;
+}
+.card-body h3 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0.5rem;
+}
+
+.card input {
+  outline: none;
+  border: 1px solid #dedede;
+  width: 100%;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* color variations, just add class pink, orange, blue or green to your div.card */
+.card:not(.bold).pink .card-title {
+  color: #fc466b;
+  border-color: #fc466b;
+}
+.card:not(.bold).orange .card-title {
+  color: #daae51;
+  border-color: #daae51;
+}
+.card:not(.bold).blue .card-title {
+  color: #000851;
+  border-color: #000851;
+}
+.card:not(.bold).green .card-title {
+  color: #008552;
+  border-color: #008552;
+}
+
+/*
+Adding the class "bold" to your card div flips the color scheme
+it makes the whole background a solid color and changes the text to be white.
+*/
+.card.bold {
+  background-color: goldenrod;
+  color: #f5f5f5;
+}
+.card.bold .card-title {
+  color: #f5f5f5;
+  border-color: #f5f5f5;
+}
+
+/* color variations, just add class pink, orange, blue or green to your div.card.bold */
+.card.bold.pink {
+  background-color: #fc466b;
+}
+.card.bold.orange {
+  background-color: #daae51;
+}
+.card.bold.blue {
+  background-color: #000851;
+}
+.card.bold.green {
+  background-color: #008552;
+}
+
+/* Styles for the footer of the page */
+footer {
+  text-align: center;
+  background-color: rgba(2, 0, 36, 1);
+  color: #efefef;
+  margin: 0;
+  padding: 2em;
+}
+footer a {
+  color: #eaeaea;
+}
+
+/*  Widgets */
+
+.loading {
+  margin: 2rem auto;
+  position: relative;
+  font-size: 1rem;
+  color: #ddd;
+}
+.loading::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: -0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #ddd;
+  border-radius: 100%;
+  animation: sk-scaleout 1s infinite ease-in-out;
+}
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+
+
+.ubtn-ok {
+  background-color:#bcbcbc;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#aaa;
+  outline:none;
+  margin-right:10px;
+}
+
+.ubtn-ok:hover {
+  background-color:#bcbcbc;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#aaa;
+  outline:none;
+}
+
+.ubtn-dirty {
+  background-color:#f2b03e;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#d19734;
+  outline:none;
+}
+
+.ubtn-dirty:hover {
+  background-color:#f2bc65;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#d19734;
+  outline:none;
+}
+
+.ubtn-new {
+  background-color:#bcbcbc;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#aaa;
+  outline:none;
+  margin-right:10px;
+}
+
+.ubtn-new:hover {
+  background-color:#f2e26d;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#bfb02f;
+  outline:none;
+}
+
+.ubtn-remove {
+  background-color:#f00;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#9b3b2e;
+  outline:none;
+  margin-left:5px;
+  margin-right:10px;
+}
+
+.ubtn-remove:hover {
+  background-color:#f28779;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#9b3b2e;
+  outline:none;
+}
+
+span {
+  margin-bottom:4px;
+}
+
+#new-user {
+  margin-left:5px;
+  font-size:1.5vw;
+}
+.user {
+    font-size:1.5vw;
+}
+
+
+.msg-warn {
+  background-color : #eee;
+}
+
+@media only screen and (max-width: 768px) {  
+  .ubtn-ok {
+  margin-right:3px;
+}
+  
+  .ubtn-remove {
+  margin-left:0px;
+  margin-right:5px;
+}
+
+.card {
+ margin: 0.1rem;      
+}  
+  
+.card-body{
+  font-size: 1.0rem;
+  font-weight: 400;
+  margin: 0.5rem;
+} 
+  
+.content {
+  padding: 0.3rem;
+}  
+  
+#new-user{
+  font-size:0.7rem;
+  margin-right:3px;
+  margin-left:0px;
+}
+  
+.user {
+  font-size:0.7rem;
+}
+
+
+  
+}
