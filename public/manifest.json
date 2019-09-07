@@ -1,7 +1,7 @@
 {
-  "name": "CS1 Admin",
-  "short_name": "CS1 Admin",
-  "description": "CS1 Game Engine Application Administration",
+  "name": "CS1",
+  "short_name": "CS1",
+  "description": "Introduction to Computer Science through Game Design and Development.",
   "icons": [
     {
       "sizes": "192x192",
@@ -15,7 +15,7 @@
     }
   ],
   "display": "fullscreen",
-  "orientation":"portrait",
+  "orientation":"landscape",
   "background_color": "white",
   "theme_color": "maroon",
   "start_url": "/index.html"
