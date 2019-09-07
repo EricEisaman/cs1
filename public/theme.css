@@ -1,0 +1,52 @@
+/*
+add a gradient overlay to our header
+get the css from https://cssgradient.io/ or experiment with the values below
+make sure the gradient has some transparency.
+use the transparency slider on cssgradient.io to somthing round 0.5
+that's the last number in the rgba(x,x,x, 0.5)
+..........................................^^^
+*/
+header::after {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0.6) 0%,
+    rgba(0, 212, 255, 0.6) 100%
+  );
+}
+
+/* Styles for the footer of the page */
+footer,
+footer a {
+  /*
+  PRO-TIP:
+  use the same colour as in the header gradient, but without transparency
+  e.g.:
+  linear-gradient( 90deg, rgba(2, 0, 36, 0.6) 0%, rgba(0, 212, 255, 0.6) 100% );
+  ........................^^^^^^^^^^^^^^^^^^^ use this color
+  ==> rgba(2, 0, 36, 0.6) is 60% opaque
+  ==> rgba(2,0,36,1) is completely opaque
+  ==>  rgb(2,0,36) is completely opaque, note how we dropped the a and the ",1" at the end`
+  */
+  background-color: rgb(2, 0, 36, 1);
+  /* If you use a very light footer color, change the text color to something dark. */
+  color: #efefef;
+}
+
+/*
+Choose an accent and logo color
+make sure to replace it in all the rules below
+*/
+.header-logo,
+.header-logo h2,
+.card-title {
+  color: goldenrod;
+}
+
+header nav ul li,
+.card-title {
+  border-color: goldenrod;
+}
+
+.card.bold {
+  background-color: goldenrod;
+}
