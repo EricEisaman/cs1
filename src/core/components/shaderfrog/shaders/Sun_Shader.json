@@ -1,0 +1,56 @@
+{
+  "id": 1068,
+  "name": "Sun Shader",
+  "fragment": "#define OCTAVES 2\n\n#extension GL_OES_standard_derivatives : enable\n\nprecision highp float;\nprecision highp int;\nuniform float time;\nuniform float brightness;\nuniform float sunSpots;\nuniform vec3 color;\nuniform vec2 speed;\nuniform vec2 resolution;\nvarying vec2 vUv;\nfloat rand(vec2 n) \n{\n    return fract(sin(dot(n, vec2(13, 5))) * 43758.5453);\n}\nfloat noise(vec2 n) \n{\n    const vec2 d = vec2(0.0, 1.0);\n    vec2 b = floor(n), f = smoothstep(vec2(0.0), vec2(1.0), fract(n));\n    return mix(mix(rand(b), rand(b + d.yx), f.x), mix(rand(b + d.xy), rand(b + d.yy), f.x), f.y);\n}\nfloat fbm(vec2 n) \n{\n    float total = 0.0;\n    float amplitude = 2.0;\n    for (int i = 0;\n i < OCTAVES; i++) \n    {\n        total += noise(n) * amplitude;\n        n += n;\n        amplitude *= 0.3;\n    }\n    return total;\n}\nvec3 tex(vec2 pos) \n{\n    vec3 c1 = (1.0 - sunSpots) * vec3(3.1, 0.0, 0.0);\n    vec3 c2 = vec3(c1);\n    vec3 c3 = vec3(c1);\n    vec3 c4 = vec3(3.0, 0.9, 0.0) * color;\n    vec3 c5 = vec3(c3);\n    vec3 c6 = vec3(c1);\n    vec2 p = pos;\n    float q = fbm(p + time * speed);\n    vec2 r = vec2(fbm(p + q + (time * speed.x) - p.x - p.y), fbm(p + p + (time * speed.y)));\n    vec3 c = color * (mix(c1, c2, fbm(p + r)) + mix(c3, c4, r.x) - mix(c5, c6, r.y));\n    return c;\n}\nvec4 Surface_of_The_Sun1478777938883_101_main() \n{\n    vec4 Surface_of_The_Sun1478777938883_101_gl_FragColor = vec4(0.0);\n    vec2 p = (vUv - 0.5) * resolution;\n    vec3 col = tex(p);\n    Surface_of_The_Sun1478777938883_101_gl_FragColor = vec4(col * brightness, 1.0);\n    return Surface_of_The_Sun1478777938883_101_gl_FragColor *= 1.0;\n}\nvoid main() \n{\n    gl_FragColor = (Surface_of_The_Sun1478777938883_101_main());}\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 cameraPosition;\nuniform float time;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\nvec4 Surface_of_The_Sun1478777938883_101_main() \n{\n    vec4 Surface_of_The_Sun1478777938883_101_gl_Position = vec4(0.0);\n    vNormal = normal;\n    vUv = uv;\n    vUv2 = uv2;\n    vPosition = position;\n    Surface_of_The_Sun1478777938883_101_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n    return Surface_of_The_Sun1478777938883_101_gl_Position *= 1.0;\n}\nvoid main() \n{\n    gl_Position = Surface_of_The_Sun1478777938883_101_main();}\n",
+  "uniforms": {
+    "cameraPosition": {
+      "type": "v3",
+      "glslType": "vec3"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "resolution": {
+      "value": {
+        "x": "100",
+        "y": "100"
+      },
+      "type": "v2",
+      "glslType": "vec2"
+    },
+    "brightness": {
+      "value": "0.52098325",
+      "type": "f",
+      "glslType": "float"
+    },
+    "speed": {
+      "value": {
+        "x": 0.9230769230769231,
+        "y": 0.9230769230769231
+      },
+      "type": "v2",
+      "glslType": "vec2"
+    },
+    "color": {
+      "value": {
+        "r": "1",
+        "g": "1",
+        "b": "1"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "sunSpots": {
+      "value": "1",
+      "type": "f",
+      "glslType": "float"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/1068",
+  "user": {
+    "username": "entropy",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}

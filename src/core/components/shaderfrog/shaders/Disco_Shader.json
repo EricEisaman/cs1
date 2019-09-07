@@ -1,0 +1,27 @@
+{
+  "id": 3033,
+  "name": "Disco Shader",
+  "fragment": "precision highp float;\nprecision highp int;\nuniform float time;\nuniform float scale;\nuniform float speed;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nfloat rand(in vec2 p) \n    {\n        return abs(fract(sin(p.x * 95325.328 + p.y * -48674.077) + cos(p.x * -46738.322 + p.y * 76485.077) + time * speed) - .5) + .5;\n    }\nvec4 Disco_Ball1551665981578_213_main(void) \n    {\n        vec4 Disco_Ball1551665981578_213_gl_FragColor = vec4(0.0);\n        vec2 position = (vUv.xy) * scale;\n        vec3 color = vec3(rand(vec2(floor(position.x), floor(position.y))), rand(vec2(floor(position.x), floor(position.x))), rand(vec2(floor(position.x * .5), floor(position.y * .5))));\n        float scale = 1. - pow(pow((mod(position.x, 1.) - .5), 2.) + pow((mod(position.y, 1.) - .5), 2.), .7);\n        Disco_Ball1551665981578_213_gl_FragColor = vec4(color * scale, 1.);\n        return Disco_Ball1551665981578_213_gl_FragColor *= 1.0;\n    }\nvoid main() \n    {\n        gl_FragColor = Disco_Ball1551665981578_213_main();    }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvec4 Disco_Ball1551665981578_213_main() \n    {\n        vec4 Disco_Ball1551665981578_213_gl_Position = vec4(0.0);\n        vNormal = normal;\n        vUv = uv;\n        Disco_Ball1551665981578_213_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Disco_Ball1551665981578_213_gl_Position *= 1.0;\n    }\nvoid main() \n    {\n        gl_Position = Disco_Ball1551665981578_213_main();    }\n",
+  "uniforms": {
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "scale": {
+      "value": "30",
+      "type": "f",
+      "glslType": "float"
+    },
+    "speed": {
+      "value": "1",
+      "type": "f",
+      "glslType": "float"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/3033",
+  "user": {
+    "username": "SirFizX",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}

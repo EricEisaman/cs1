@@ -1,0 +1,131 @@
+{
+  "id": 138,
+  "name": "Cool Tiles Shader",
+  "fragment": "precision highp float;\nprecision highp int;\nuniform float time;\nuniform float Flowing_Image_Combination1532324436254_38_speed;\nuniform float resolution;\nuniform sampler2D image1;\nuniform sampler2D image2;\nuniform vec3 Flowing_Image_Combination1532324436254_38_color;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 cameraPosition;\nuniform vec3 lightPosition;\nuniform sampler2D map;\nuniform vec3 diffuseColor;\nuniform vec3 specularColor;\nuniform float shininess;\nuniform vec2 scaleBias;\nuniform float scale;\nuniform float Disco_Ball1532324436329_44_speed;\nuniform vec3 Vignette1532324436351_47_color;\nuniform float intensity;\nuniform float spread;\nuniform float mirrorReflection;\nuniform samplerCube reflectionSampler;\nvarying vec2 Flowing_Image_Combination1532324436254_38_vUv;\nvarying vec3 vPosition;\nvarying vec3 Parallax_Mapping1532324436298_41_vNormal;\nvarying vec2 Parallax_Mapping1532324436298_41_vUv;\nvarying vec2 vUv2;\nvarying vec3 tsPosition;\nvarying vec3 tsCameraPosition;\nvarying vec3 tsLightSource;\nvarying vec3 Disco_Ball1532324436329_44_vNormal;\nvarying vec2 Disco_Ball1532324436329_44_vUv;\nfloat rand(in vec2 p) \n    {\n        return abs(fract(sin(p.x * 95325.328 + p.y * -48674.077) + cos(p.x * -46738.322 + p.y * 76485.077) + time * Disco_Ball1532324436329_44_speed) - .5) + .5;\n    }\nvarying vec2 Vignette1532324436351_47_vUv;\nvarying vec3 vReflect;\nvec4 Flowing_Image_Combination1532324436254_38_main() \n    {\n        vec4 Flowing_Image_Combination1532324436254_38_gl_FragColor = vec4(0.0);\n        vec2 uv = Flowing_Image_Combination1532324436254_38_vUv.xy * resolution;\n        vec4 texCol = vec4(texture2D(image1, uv));\n        mat3 tfm;\n        tfm[0] = vec3(texCol.z, 0.0, 0);\n        tfm[1] = vec3(0.0, texCol.y, 0);\n        tfm[2] = vec3(0, 0, 1.0);\n        vec2 muv = (vec3(uv, 1.0) * tfm).xy + time * Flowing_Image_Combination1532324436254_38_speed;\n        texCol = vec4(vec3(texture2D(image2, muv)) * Flowing_Image_Combination1532324436254_38_color, 1.0);\n        Flowing_Image_Combination1532324436254_38_gl_FragColor = texCol;\n        return Flowing_Image_Combination1532324436254_38_gl_FragColor *= 0.6;\n    }\nvec4 Parallax_Mapping1532324436298_41_main() \n    {\n        vec4 Parallax_Mapping1532324436298_41_gl_FragColor = vec4(0.0);\n        float height = texture2D(map, Parallax_Mapping1532324436298_41_vUv).a;\n        float v = height * scaleBias.r - scaleBias.g;\n        vec3 eye = normalize(tsCameraPosition);\n        vec2 newCoords = Parallax_Mapping1532324436298_41_vUv + (eye.xy * v);\n        vec3 color = vec3(0.0);\n        vec3 normal = texture2D(map, newCoords).rgb * 2.0 - 1.0;\n        vec3 viewVector = normalize(tsCameraPosition - tsPosition);\n        vec3 lightVector = normalize(tsLightSource - tsPosition);\n        float nxDir = max(0.0, dot(normal, lightVector));\n        float specularPower = 0.0;\n        if (nxDir != 0.0) \n        {\n            vec3 halfVector = normalize(lightVector + viewVector);\n            float nxHalf = max(0.0, dot(normal, halfVector));\n            specularPower = pow(nxHalf, shininess);\n        }\n         vec3 specular = specularColor * specularPower;\n        Parallax_Mapping1532324436298_41_gl_FragColor = vec4((diffuseColor * nxDir) + specular, 1.0);\n        return Parallax_Mapping1532324436298_41_gl_FragColor *= 0.9;\n    }\nvec4 Disco_Ball1532324436329_44_main(void) \n    {\n        vec4 Disco_Ball1532324436329_44_gl_FragColor = vec4(0.0);\n        vec2 position = (Disco_Ball1532324436329_44_vUv.xy) * scale;\n        vec3 color = vec3(rand(vec2(floor(position.x), floor(position.y))), rand(vec2(floor(position.x), floor(position.x))), rand(vec2(floor(position.x * .5), floor(position.y * .5))));\n        float scale = 1. - pow(pow((mod(position.x, 1.) - .5), 2.) + pow((mod(position.y, 1.) - .5), 2.), .7);\n        Disco_Ball1532324436329_44_gl_FragColor = vec4(color * scale, 1.);\n        return Disco_Ball1532324436329_44_gl_FragColor *= 0.1;\n    }\nvec4 Vignette1532324436351_47_main() \n    {\n        vec4 Vignette1532324436351_47_gl_FragColor = vec4(0.0);\n        float vignette = Vignette1532324436351_47_vUv.y * Vignette1532324436351_47_vUv.x * (1. - Vignette1532324436351_47_vUv.x) * (1. - Vignette1532324436351_47_vUv.y) * spread;\n        vec3 multiplier = 1.0 - (vignette * Vignette1532324436351_47_color * intensity);\n        Vignette1532324436351_47_gl_FragColor = vec4(clamp(Vignette1532324436351_47_color * multiplier, 0.0, 1.0), multiplier);\n        return Vignette1532324436351_47_gl_FragColor *= 0.2;\n    }\nvec4 Reflection_Cube_Map1532324436362_50_main() \n    {\n        vec4 Reflection_Cube_Map1532324436362_50_gl_FragColor = vec4(0.0);\n        vec4 cubeColor = textureCube(reflectionSampler, vec3(mirrorReflection * vReflect.x, vReflect.yz));\n        cubeColor.w = 1.0;\n        Reflection_Cube_Map1532324436362_50_gl_FragColor = cubeColor;\n        return Reflection_Cube_Map1532324436362_50_gl_FragColor *= 0.3;\n    }\nvoid main() \n    {\n        gl_FragColor = (Flowing_Image_Combination1532324436254_38_main() + Parallax_Mapping1532324436298_41_main() + Disco_Ball1532324436329_44_main() + Vignette1532324436351_47_main() + Reflection_Cube_Map1532324436362_50_main());    }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 lightPosition;\nuniform vec3 cameraPosition;\nuniform float time;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying vec2 Flowing_Image_Combination1532324436254_38_vUv;\nattribute vec4 tangent;\nvarying vec3 vPosition;\nvarying vec3 Parallax_Mapping1532324436298_41_vNormal;\nvarying vec2 Parallax_Mapping1532324436298_41_vUv;\nvarying vec2 vUv2;\nvarying vec3 vTangent;\nvarying vec3 vBinormal;\nvarying vec3 tsPosition;\nvarying vec3 tsCameraPosition;\nvarying vec3 tsLightSource;\nvarying vec2 Disco_Ball1532324436329_44_vUv;\nvarying vec3 Disco_Ball1532324436329_44_vNormal;\nvarying vec2 Vignette1532324436351_47_vUv;\nvarying vec3 vReflect;\nvec4 Flowing_Image_Combination1532324436254_38_main() \n    {\n        vec4 Flowing_Image_Combination1532324436254_38_gl_Position = vec4(0.0);\n        Flowing_Image_Combination1532324436254_38_vUv = uv;\n        Flowing_Image_Combination1532324436254_38_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Flowing_Image_Combination1532324436254_38_gl_Position *= 0.6;\n    }\nvec4 Parallax_Mapping1532324436298_41_main(void) \n    {\n        vec4 Parallax_Mapping1532324436298_41_gl_Position = vec4(0.0);\n        Parallax_Mapping1532324436298_41_vUv = uv;\n        vPosition = position;\n        Parallax_Mapping1532324436298_41_vNormal = normalize(normal);\n        vTangent = normalize(tangent.xyz);\n        vBinormal = normalize(cross(Parallax_Mapping1532324436298_41_vNormal, vTangent) * tangent.w);\n        mat3 TBNMatrix = mat3(vTangent, vBinormal, Parallax_Mapping1532324436298_41_vNormal);\n        tsPosition = position * TBNMatrix;\n        tsCameraPosition = cameraPosition * TBNMatrix;\n        tsLightSource = lightPosition * TBNMatrix;\n        Parallax_Mapping1532324436298_41_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Parallax_Mapping1532324436298_41_gl_Position *= 0.9;\n    }\nvec4 Disco_Ball1532324436329_44_main() \n    {\n        vec4 Disco_Ball1532324436329_44_gl_Position = vec4(0.0);\n        Disco_Ball1532324436329_44_vNormal = normal;\n        Disco_Ball1532324436329_44_vUv = uv;\n        Disco_Ball1532324436329_44_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Disco_Ball1532324436329_44_gl_Position *= 0.1;\n    }\nvec4 Vignette1532324436351_47_main() \n    {\n        vec4 Vignette1532324436351_47_gl_Position = vec4(0.0);\n        Vignette1532324436351_47_vUv = uv;\n        Vignette1532324436351_47_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Vignette1532324436351_47_gl_Position *= 0.2;\n    }\nvec4 Reflection_Cube_Map1532324436362_50_main() \n    {\n        vec4 Reflection_Cube_Map1532324436362_50_gl_Position = vec4(0.0);\n        vec3 worldPosition = (modelMatrix * vec4(position, 1.0)).xyz;\n        vec3 cameraToVertex = normalize(worldPosition - cameraPosition);\n        vec3 worldNormal = normalize(mat3(modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz) * normal);\n        vReflect = reflect(cameraToVertex, worldNormal);\n        Reflection_Cube_Map1532324436362_50_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Reflection_Cube_Map1532324436362_50_gl_Position *= 0.3;\n    }\nvoid main() \n    {\n        gl_Position = Flowing_Image_Combination1532324436254_38_main() + Parallax_Mapping1532324436298_41_main() + Disco_Ball1532324436329_44_main() + Vignette1532324436351_47_main() + Reflection_Cube_Map1532324436362_50_main();    }\n",
+  "uniforms": {
+    "resolution": {
+      "value": "1",
+      "type": "f",
+      "glslType": "float"
+    },
+    "image1": {
+      "value": null,
+      "type": "t",
+      "glslType": "sampler2D"
+    },
+    "image2": {
+      "value": null,
+      "type": "t",
+      "glslType": "sampler2D"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "Flowing_Image_Combination1532324436254_38_speed": {
+      "value": "0.05",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Flowing_Image_Combination1532324436254_38_color": {
+      "value": {
+        "r": 1,
+        "g": "1",
+        "b": "1"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "map": {
+      "value": null,
+      "type": "t",
+      "glslType": "sampler2D"
+    },
+    "diffuseColor": {
+      "value": {
+        "r": 0.2235294117647059,
+        "g": 0.2235294117647059,
+        "b": 0.2235294117647059
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "specularColor": {
+      "value": {
+        "r": 1,
+        "g": 1,
+        "b": 1
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "shininess": {
+      "value": "10",
+      "type": "f",
+      "glslType": "float"
+    },
+    "scaleBias": {
+      "value": {
+        "x": "0.04",
+        "y": "0.001",
+        "z": 0
+      },
+      "type": "v2",
+      "glslType": "vec2"
+    },
+    "Parallax_Mapping1532324436298_41_lightPosition": {
+      "value": {
+        "x": -0.04058137118438604,
+        "y": 0.3281411389717793,
+        "z": 2.4780388506290807
+      },
+      "type": "v3",
+      "glslType": "vec3"
+    },
+    "scale": {
+      "value": "4",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Disco_Ball1532324436329_44_speed": {
+      "value": "1",
+      "type": "f",
+      "glslType": "float"
+    },
+    "intensity": {
+      "value": "0.5",
+      "type": "f",
+      "glslType": "float"
+    },
+    "spread": {
+      "value": "100",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Vignette1532324436351_47_color": {
+      "value": {
+        "r": 0.8980392156862745,
+        "g": 0.9607843137254902,
+        "b": 0.9921568627450981
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "mirrorReflection": {
+      "value": "1",
+      "type": "f",
+      "glslType": "float"
+    },
+    "reflectionSampler": {
+      "value": null,
+      "type": "t",
+      "glslType": "samplerCube"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/138",
+  "user": {
+    "username": "andrewray",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}

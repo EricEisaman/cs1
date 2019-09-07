@@ -1,0 +1,61 @@
+{
+  "id": 139,
+  "name": "Polkadot Shader",
+  "fragment": "// Gives us dFdx\n#extension GL_OES_standard_derivatives : enable\n\nprecision highp float;\nprecision highp int;\n\nuniform vec3 cameraPosition;\nuniform vec3 color1;\nuniform vec3 color2;\nuniform float frequency;\nuniform float radius;\n\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\n\n// Anti-alias step function\nfloat aastep(float threshold, float value) {\n    float afwidth = 0.7 * length(vec2(dFdx(value), dFdy(value)));\n    return smoothstep(threshold - afwidth, threshold + afwidth, value);\n}\n \nvoid main() {\n    // Rotate the UV coord by 45 degrees. See \n    // https://en.wikipedia.org/wiki/Rotation_matrix#Common_rotations\n    vec2 st2 = mat2( 0.5, -0.5, 0.5, 0.5 ) * vUv;\n    vec2 nearest = 2.0 * fract( frequency * st2 ) - 1.0;\n    float dist = length( nearest );\n    \n    vec3 fragcolor = mix( color1, color2, aastep( radius, dist ) );\n    gl_FragColor = vec4( fragcolor, 1.0 );\n}",
+  "vertex": "/**\n* Example Vertex Shader\n* Sets the position of the vertex by setting gl_Position\n*/\n\n// Set the precision for data types used in this shader\nprecision highp float;\nprecision highp int;\n\n// Default THREE.js uniforms available to both fragment and vertex shader\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\n\n// Default uniforms provided by ShaderFrog.\nuniform vec3 cameraPosition;\nuniform float time;\n\n// Default attributes provided by THREE.js. Attributes are only available in the\n// vertex shader. You can pass them to the fragment shader using varyings\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\n\n// Examples of variables passed from vertex to fragment shader\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\n\nvoid main() {\n\n    // To pass variables to the fragment shader, you assign them here in the\n    // main function. Traditionally you name the varying with vAttributeName\n    vNormal = normal;\n    vUv = uv;\n    vUv2 = uv2;\n    vPosition = position;\n\n    // This sets the position of the vertex in 3d space. The correct math is\n    // provided below to take into account camera and object data.\n    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}",
+  "uniforms": {
+    "cameraPosition": {
+      "name": "cameraPosition",
+      "type": "v3",
+      "glslType": "vec3",
+      "description": ""
+    },
+    "time": {
+      "name": "time",
+      "type": "f",
+      "glslType": "float",
+      "description": ""
+    },
+    "color1": {
+      "name": null,
+      "type": "c",
+      "glslType": "vec3",
+      "value": {
+        "r": 1,
+        "g": 0.5411764705882353,
+        "b": 0.7294117647058823
+      },
+      "description": ""
+    },
+    "color2": {
+      "name": null,
+      "type": "c",
+      "glslType": "vec3",
+      "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "description": ""
+    },
+    "frequency": {
+      "name": null,
+      "type": "f",
+      "glslType": "float",
+      "value": "10",
+      "description": ""
+    },
+    "radius": {
+      "name": null,
+      "type": "f",
+      "glslType": "float",
+      "value": "0.5",
+      "description": ""
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/139",
+  "user": {
+    "username": "andrewray",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}

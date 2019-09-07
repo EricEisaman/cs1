@@ -1,0 +1,144 @@
+{
+  "id": 2894,
+  "name": "Green Dance",
+  "fragment": "#define PI 3.1415926535897932384626433832795\n\nprecision highp float;\nprecision highp int;\nuniform float time;\nuniform float Flowing_Image_Combination1547651045656_420_speed;\nuniform float Flowing_Image_Combination1547651045656_420_resolution;\nuniform sampler2D image1;\nuniform sampler2D image2;\nuniform vec3 Flowing_Image_Combination1547651045656_420_color;\nuniform vec3 Horizontal_Stripes1547651045669_423_color1;\nuniform vec3 Horizontal_Stripes1547651045669_423_color2;\nuniform float Horizontal_Stripes1547651045669_423_speed;\nuniform float Horizontal_Stripes1547651045669_423_multiplicationFactor;\nuniform vec3 Vertical_2_Color_Graident1547651045681_426_color1;\nuniform vec3 Vertical_2_Color_Graident1547651045681_426_color2;\nuniform float Checkerboard1547651045687_429_multiplicationFactor;\nuniform float Borg_Hull1547651045698_432_speed;\nuniform float Borg_Hull1547651045698_432_resolution;\nuniform vec3 Borg_Hull1547651045698_432_color;\nuniform float brightness;\nuniform float Disco_Dots1547651045724_435_speed;\nuniform vec2 Disco_Dots1547651045724_435_resolution;\nuniform vec3 Disco_Dots1547651045724_435_color;\nvarying vec2 Flowing_Image_Combination1547651045656_420_vUv;\nvarying vec2 Horizontal_Stripes1547651045669_423_vUv;\nvarying vec2 Vertical_2_Color_Graident1547651045681_426_vUv;\nvarying vec2 Checkerboard1547651045687_429_vUv;\nvarying vec3 vPosition;\nvarying vec2 Borg_Hull1547651045698_432_vUv;\nvec2 circuit(vec2 p) \n    {\n        p = fract(p);\n        float r = 5.123;\n        float v = 0.0, g = 0.0;\n        r = fract(r * 9184.928);\n        float cp, d;\n        d = p.x;\n        g += pow(clamp(1.0 - abs(d), 0.0, 1.0), 1000.0);\n        d = p.y;\n        g += pow(clamp(1.0 - abs(d), 0.0, 1.0), 1000.0);\n        d = p.x - 1.0;\n        g += pow(clamp(3.0 - abs(d), 0.0, 1.0), 1000.0);\n        d = p.y - 1.0;\n        g += pow(clamp(1.0 - abs(d), 0.0, 1.0), 10000.0);\n        const int iter = 20;\n        for (int i = 0;\n i < iter; i++) \n        {\n            cp = 0.5 + (r - 0.5) * 0.9;\n            d = p.x - cp;\n            g += pow(clamp(1. - abs(d), 0.0, 1.0), 200.0);\n            if (d > 0.0) \n            {\n                r = fract(r * 4829.013);\n                p.x = (p.x - cp) / (1.0 - cp);\n                v += 1.0;\n            }\n else \n            {\n                r = fract(r * 1239.528);\n                p.x = p.x / cp;\n            }\n            p = p.yx;\n        }\n        v /= float(iter);\n        return vec2(g, v);\n    }\nvarying vec2 Disco_Dots1547651045724_435_vUv;\nfloat rand(vec2 co) \n    {\n        return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);\n    }\nvec4 Flowing_Image_Combination1547651045656_420_main() \n    {\n        vec4 Flowing_Image_Combination1547651045656_420_gl_FragColor = vec4(0.0);\n        vec2 uv = Flowing_Image_Combination1547651045656_420_vUv.xy * Flowing_Image_Combination1547651045656_420_resolution;\n        vec4 texCol = vec4(texture2D(image1, uv));\n        mat3 tfm;\n        tfm[0] = vec3(texCol.z, 0.0, 0);\n        tfm[1] = vec3(0.0, texCol.y, 0);\n        tfm[2] = vec3(0, 0, 1.0);\n        vec2 muv = (vec3(uv, 1.0) * tfm).xy + time * Flowing_Image_Combination1547651045656_420_speed;\n        texCol = vec4(vec3(texture2D(image2, muv)) * Flowing_Image_Combination1547651045656_420_color, 1.0);\n        Flowing_Image_Combination1547651045656_420_gl_FragColor = texCol;\n        return Flowing_Image_Combination1547651045656_420_gl_FragColor *= 1.0;\n    }\nvec4 Horizontal_Stripes1547651045669_423_main() \n    {\n        vec4 Horizontal_Stripes1547651045669_423_gl_FragColor = vec4(0.0);\n        float x = fract((Horizontal_Stripes1547651045669_423_vUv.y + (time * Horizontal_Stripes1547651045669_423_speed)) * Horizontal_Stripes1547651045669_423_multiplicationFactor);\n        float f = smoothstep(0.40, 0.5, x) - smoothstep(0.90, 1.0, x);\n        Horizontal_Stripes1547651045669_423_gl_FragColor = vec4(mix(Horizontal_Stripes1547651045669_423_color2, Horizontal_Stripes1547651045669_423_color1, f), 1.0);\n        return Horizontal_Stripes1547651045669_423_gl_FragColor *= 0.3;\n    }\nvec4 Vertical_2_Color_Graident1547651045681_426_main(void) \n    {\n        vec4 Vertical_2_Color_Graident1547651045681_426_gl_FragColor = vec4(0.0);\n        vec3 mixCol = mix(Vertical_2_Color_Graident1547651045681_426_color2, Vertical_2_Color_Graident1547651045681_426_color1, Vertical_2_Color_Graident1547651045681_426_vUv.y);\n        Vertical_2_Color_Graident1547651045681_426_gl_FragColor = vec4(mixCol, 1.);\n        return Vertical_2_Color_Graident1547651045681_426_gl_FragColor *= 1.0;\n    }\nvec4 Checkerboard1547651045687_429_main() \n    {\n        vec4 Checkerboard1547651045687_429_gl_FragColor = vec4(0.0);\n        vec2 t = Checkerboard1547651045687_429_vUv * Checkerboard1547651045687_429_multiplicationFactor;\n        vec3 p = vPosition * Checkerboard1547651045687_429_multiplicationFactor;\n        vec3 color;\n        if (mod(floor(t.x) + floor(t.y), 2.0) == 1.0) color = vec3(1.0, 1.0, 1.0);\n else color = vec3(0.0, 0.0, 0.0);\n        Checkerboard1547651045687_429_gl_FragColor = vec4(color, 1.0);\n        return Checkerboard1547651045687_429_gl_FragColor *= -0.5;\n    }\nvec4 Borg_Hull1547651045698_432_main() \n    {\n        vec4 Borg_Hull1547651045698_432_gl_FragColor = vec4(0.0);\n        float scale = 2.0;\n        vec2 uv = (Borg_Hull1547651045698_432_vUv.yx - 0.5) * Borg_Hull1547651045698_432_resolution;\n        uv = uv * scale + vec2(0.0, time * Borg_Hull1547651045698_432_speed);\n        vec2 cid2 = floor(uv);\n        float cid = (cid2.y * 10.0 + cid2.x) * 0.1;\n        vec2 dg = circuit(uv);\n        float d = dg.x;\n        vec3 col1 = (brightness - vec3(max(min(d, 2.0) - 1.0, 0.0) * 2.0 * 0.25)) * Borg_Hull1547651045698_432_color;\n        Borg_Hull1547651045698_432_gl_FragColor = vec4(col1, 1.0);\n        return Borg_Hull1547651045698_432_gl_FragColor *= -0.7;\n    }\nvec4 Disco_Dots1547651045724_435_main(void) \n    {\n        vec4 Disco_Dots1547651045724_435_gl_FragColor = vec4(0.0);\n        vec2 v = Disco_Dots1547651045724_435_vUv.xy * Disco_Dots1547651045724_435_resolution;\n        float brightness = fract(rand(floor(v)) + time * Disco_Dots1547651045724_435_speed);\n        brightness *= 0.5 - length(fract(v) - vec2(0.5, 0.5));\n        Disco_Dots1547651045724_435_gl_FragColor = vec4(2.0 * brightness * Disco_Dots1547651045724_435_color, 1.0);\n        return Disco_Dots1547651045724_435_gl_FragColor *= 1.0;\n    }\nvoid main() \n    {\n        gl_FragColor = (Flowing_Image_Combination1547651045656_420_main() + Horizontal_Stripes1547651045669_423_main() + Vertical_2_Color_Graident1547651045681_426_main() + Checkerboard1547651045687_429_main() + Borg_Hull1547651045698_432_main() + Disco_Dots1547651045724_435_main());    }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying vec2 Flowing_Image_Combination1547651045656_420_vUv;\nvarying vec2 Horizontal_Stripes1547651045669_423_vUv;\nvarying vec2 Vertical_2_Color_Graident1547651045681_426_vUv;\nvarying vec2 Checkerboard1547651045687_429_vUv;\nvarying vec3 vPosition;\nvarying vec2 Borg_Hull1547651045698_432_vUv;\nvarying vec2 Disco_Dots1547651045724_435_vUv;\nvec4 Flowing_Image_Combination1547651045656_420_main() \n    {\n        vec4 Flowing_Image_Combination1547651045656_420_gl_Position = vec4(0.0);\n        Flowing_Image_Combination1547651045656_420_vUv = uv;\n        Flowing_Image_Combination1547651045656_420_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Flowing_Image_Combination1547651045656_420_gl_Position *= 1.0;\n    }\nvec4 Horizontal_Stripes1547651045669_423_main() \n    {\n        vec4 Horizontal_Stripes1547651045669_423_gl_Position = vec4(0.0);\n        Horizontal_Stripes1547651045669_423_vUv = uv;\n        Horizontal_Stripes1547651045669_423_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Horizontal_Stripes1547651045669_423_gl_Position *= 0.3;\n    }\nvec4 Vertical_2_Color_Graident1547651045681_426_main() \n    {\n        vec4 Vertical_2_Color_Graident1547651045681_426_gl_Position = vec4(0.0);\n        Vertical_2_Color_Graident1547651045681_426_vUv = uv;\n        Vertical_2_Color_Graident1547651045681_426_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Vertical_2_Color_Graident1547651045681_426_gl_Position *= 1.0;\n    }\nvec4 Checkerboard1547651045687_429_main() \n    {\n        vec4 Checkerboard1547651045687_429_gl_Position = vec4(0.0);\n        Checkerboard1547651045687_429_vUv = uv;\n        vPosition = position;\n        Checkerboard1547651045687_429_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Checkerboard1547651045687_429_gl_Position *= -0.5;\n    }\nvec4 Borg_Hull1547651045698_432_main() \n    {\n        vec4 Borg_Hull1547651045698_432_gl_Position = vec4(0.0);\n        Borg_Hull1547651045698_432_vUv = uv;\n        Borg_Hull1547651045698_432_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Borg_Hull1547651045698_432_gl_Position *= -0.7;\n    }\nvec4 Disco_Dots1547651045724_435_main() \n    {\n        vec4 Disco_Dots1547651045724_435_gl_Position = vec4(0.0);\n        Disco_Dots1547651045724_435_vUv = uv;\n        Disco_Dots1547651045724_435_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Disco_Dots1547651045724_435_gl_Position *= 1.0;\n    }\nvoid main() \n    {\n        gl_Position = Flowing_Image_Combination1547651045656_420_main() + Horizontal_Stripes1547651045669_423_main() + Vertical_2_Color_Graident1547651045681_426_main() + Checkerboard1547651045687_429_main() + Borg_Hull1547651045698_432_main() + Disco_Dots1547651045724_435_main();    }\n",
+  "uniforms": {
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "image1": {
+      "value": null,
+      "type": "t",
+      "glslType": "sampler2D"
+    },
+    "image2": {
+      "value": null,
+      "type": "t",
+      "glslType": "sampler2D"
+    },
+    "Flowing_Image_Combination1547651045656_420_speed": {
+      "value": "0.1",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Flowing_Image_Combination1547651045656_420_resolution": {
+      "value": "2",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Flowing_Image_Combination1547651045656_420_color": {
+      "value": {
+        "r": 1,
+        "g": 1,
+        "b": 1
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "Horizontal_Stripes1547651045669_423_color1": {
+      "value": {
+        "r": 1,
+        "g": 1,
+        "b": 1
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "Horizontal_Stripes1547651045669_423_color2": {
+      "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "Horizontal_Stripes1547651045669_423_speed": {
+      "value": "0",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Horizontal_Stripes1547651045669_423_multiplicationFactor": {
+      "value": "6",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Vertical_2_Color_Graident1547651045681_426_color1": {
+      "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "Vertical_2_Color_Graident1547651045681_426_color2": {
+      "value": {
+        "r": 0,
+        "g": 0.9764705882352941,
+        "b": 0
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "Checkerboard1547651045687_429_multiplicationFactor": {
+      "value": "12",
+      "type": "f",
+      "glslType": "float"
+    },
+    "brightness": {
+      "value": "0.25",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Borg_Hull1547651045698_432_speed": {
+      "value": "0.001",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Borg_Hull1547651045698_432_resolution": {
+      "value": "1",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Borg_Hull1547651045698_432_color": {
+      "value": {
+        "r": 1,
+        "g": 1,
+        "b": 1
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "Disco_Dots1547651045724_435_speed": {
+      "value": "0.01",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Disco_Dots1547651045724_435_resolution": {
+      "value": {
+        "x": "12",
+        "y": "12",
+        "z": 0
+      },
+      "type": "v2",
+      "glslType": "vec2"
+    },
+    "Disco_Dots1547651045724_435_color": {
+      "value": {
+        "r": 0.5254901960784314,
+        "g": 0.9725490196078431,
+        "b": 0.6352941176470588
+      },
+      "type": "c",
+      "glslType": "vec3"
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/2894",
+  "user": {
+    "username": "SirFizX",
+    "url": "http://shaderfrog.com/app/profile/sirfizx"
+  }
+}

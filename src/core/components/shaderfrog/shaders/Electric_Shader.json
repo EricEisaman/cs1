@@ -1,0 +1,27 @@
+{
+  "id": 3373,
+  "name": "Electric Shader",
+  "fragment": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 cameraPosition;\nuniform float time;\nuniform float opacity;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\nfloat Hash(vec2 p) \n    {\n        vec3 p2 = vec3(p.xy, 1.0);\n        return fract(sin(dot(p2, vec3(37.1, 61.7, 12.4))) * 3758.5453123);\n    }\nfloat noise(in vec2 p) \n    {\n        vec2 i = floor(p);\n        vec2 f = fract(p);\n        f *= f * (3.0 - 2.0 * f);\n        return mix(mix(Hash(i + vec2(0., 0.)), Hash(i + vec2(1., 0.)), f.x), mix(Hash(i + vec2(0., 1.)), Hash(i + vec2(1., 1.)), f.x), f.y);\n    }\nfloat fbm(vec2 p) \n    {\n        float v = 0.0;\n        v += noise(p * 1.0) * .5;\n        v += noise(p * 2.) * .25;\n        v += noise(p * 4.) * .125;\n        return v * 1.0;\n    }\nconst float PI = acos(0.0) * 2.0;\nvec2 RadialCoords(vec3 a_coords) \n    {\n        vec3 a_coords_n = normalize(a_coords);\n        float lon = atan(a_coords_n.z, a_coords_n.x);\n        float lat = acos(a_coords_n.y);\n        vec2 sphereCoords = vec2(lon, lat) / PI;\n        return vec2(fract(sphereCoords.x * 0.5 + 0.5), 1.0 - sphereCoords.y);\n    }\nvec4 Lightning_main() \n    {\n        vec4 Lightning_gl_FragColor = vec4(0.0);\n        vec2 uv = RadialCoords(vPosition * 1.0) * 2.0 - 1.0;\n        vec3 finalColor = vec3(0.0);\n        const float strength = 0.01;\n        const float dx = 0.1;\n        float t = 0.0;\n        for (int k = -4;\n k < 14; ++k) \n        {\n            vec2 thisUV = uv;\n            thisUV.x -= dx * float(k);\n            thisUV.y -= float(k);\n            t += abs(strength / (thisUV.x + fbm(thisUV + time)));\n        }\n        finalColor += t * vec3(0.1, 0.3, 1.0);\n        Lightning_gl_FragColor = vec4(finalColor, opacity);\n        return Lightning_gl_FragColor;\n    }\nvec4 Electric_Shader1556488915096_215_main() \n    {\n        vec4 Electric_Shader1556488915096_215_gl_FragColor = vec4(0.0);\n        Electric_Shader1556488915096_215_gl_FragColor = Lightning_main();\n        return Electric_Shader1556488915096_215_gl_FragColor *= 1.0;\n    }\nvoid main() \n    {\n        gl_FragColor = Electric_Shader1556488915096_215_main();\n if (gl_FragColor.a < 0.5  && gl_FragColor.g <0.5) discard;   }\n",
+  "vertex": "precision highp float;\nprecision highp int;\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\nuniform vec3 cameraPosition;\nuniform float time;\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\nvec4 Lightning_main() \n    {\n        vec4 Lightning_gl_Position = vec4(0.0);\n        vNormal = normal;\n        vUv = uv;\n        vUv2 = uv2;\n        vPosition = position;\n        Lightning_gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n        return Lightning_gl_Position *= 0.5;\n    }\nvec4 Electric_Shader1556488915096_215_main() \n    {\n        vec4 Electric_Shader1556488915096_215_gl_Position = vec4(0.0);\n        Electric_Shader1556488915096_215_gl_Position = Lightning_main();\n        return Electric_Shader1556488915096_215_gl_Position *= 1.0;\n    }\nvoid main() \n    {\n        gl_Position = Electric_Shader1556488915096_215_main();    }\n",
+  "uniforms": {
+    "cameraPosition": {
+      "type": "v3",
+      "glslType": "vec3"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "opacity": {
+      "value": "0.4",
+      "type": "f",
+      "glslType": "float"
+    }
+  },
+  "side":2,
+  "url": "http://shaderfrog.com/app/view/3373",
+  "user": {
+    "username": "SirFizX",
+    "url": "http://shaderfrog.com/app/profile/sirfizx"
+  }
+}
