@@ -11,7 +11,7 @@ export default (()=>{
     
     
     schema: {
-      console: {default: true}
+      color: {default: 'red'}
     },
 
     init: function(){
