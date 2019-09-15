@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const contents = fs.readFileSync("./src/core/config/client-config.json");
 const clientConfig = JSON.parse(contents);
-    
+   
 
 const dashboardAPI = {
    
@@ -27,7 +27,7 @@ const dashboardAPI = {
     
   },
   
-  setAdminSocket: socket=>{
+  setAdmin: (socket,state)=>{
     //IDE API Helpers
     async function ls() {
       const { stdout, stderr } = await exec('ls');
@@ -84,7 +84,7 @@ refresh`);
        
     //DASHBOARD API: 
     
-    socket.on('db-set',(data,cb)=>{
+socket.on('db-set',(data,cb)=>{
       
       let result = db.get('users').find({name:data.name}).assign(data.data).write();
       if(result && typeof cb == "function"){
@@ -109,7 +109,7 @@ refresh`);
     });
    
    
-   socket.on('db-get',(data,cb)=>{
+socket.on('db-get',(data,cb)=>{
       let result = db.get('users').find({name:data.name}).value()[data.key];
       if(result && typeof cb == "function"){
         cb(result);
@@ -119,7 +119,8 @@ refresh`);
       }  
    });
     
-  socket.on('db-get-users',(cb)=>{
+    
+socket.on('db-get-users',(cb)=>{
       let result = db.get('users').value();
       if(result && typeof cb == "function"){
         cb(result);
@@ -131,7 +132,7 @@ refresh`);
    });
     
     
-  socket.on('db-remove-user',(name,cb)=>{
+socket.on('db-remove-user',(name,cb)=>{
       
       let result = db.get('users').remove({ name: name }).write();
       if(result && typeof cb == "function"){
@@ -144,7 +145,7 @@ refresh`);
       }  
    });  
     
- socket.on('get-logo-url',cb=>{
+socket.on('get-logo-url',cb=>{
    if(typeof cb == "function"){
         cb({result:'success',url:clientConfig.theme.logo});
         
@@ -153,10 +154,17 @@ refresh`);
         socket.emit('msg',msg);
       } 
  }); 
+    
+socket.on('get-current-players',cb=>{
+  let players = {};
+  Object.keys(state.players).forEach(key=>{
+    players[key]= {name:state.players[key].name};
+  });
+  cb(players); 
+}); 
+    
 
-    
-    
-    
+       
     
   }
   
