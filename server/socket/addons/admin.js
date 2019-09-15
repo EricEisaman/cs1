@@ -13,7 +13,7 @@ const admin = {
      if(key==process.env.ADMIN_KEY){
        console.log(`Admin credentials have been verified for socket id: ${socket.id}.`);
        ideAPI.setAdminSocket(socket);
-       dashboardAPI.setAdminSocket(socket);
+       dashboardAPI.setAdmin(socket,state);
        cb('success');
      }else{
        cb('fail');
