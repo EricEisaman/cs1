@@ -16,6 +16,10 @@ if(process.env.ADMIN_KEY.length > 0){
     u.isPlaying = false;
     return u
   }).write();
+  db.get('users').filter({name:'admin'}).map(u=>{
+    if(u.pw != process.env.ADMIN_KEY)u.pw = process.env.ADMIN_KEY;
+    return u
+  }).write();
   db.get('users').value().forEach(user=>{
     console.log(user.name, user.pw); 
   });
