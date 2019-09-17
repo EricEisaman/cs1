@@ -21,6 +21,7 @@ window.onload = e=>{
  let loginContainer = document.querySelector('#login');
  loginContainer.innerHTML = loginHTML;
  setTimeout(e=>{
+   document.querySelector('.q1').focus(); 
    if(!(CS1 && CS1.socket.connected)){
      document.getElementById('login-msg').innerHTML = 'OFFLINE MODE';
       document.querySelector('#lb').setAttribute('value','Play Game Offline');
