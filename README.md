@@ -31,7 +31,7 @@ ____
 
 I suggest starting with the lessons accompanying the <a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">**CS1 IDE**</a>.
 
-<a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">![CS1 IDE](https://cdn.glitch.com/25820b43-1b95-4fa5-a6eb-7937baaa174d%2Fcs1_ide.svg?v=1560717395173)</a>
+<a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">![CS1 IDE](https://cdn.glitch.com/07af4e76-a723-4969-8e18-7d7bc9f153d8%2Fcs1_ide_logo_256.png?v=1568757168497)</a>
 
 
 ____
