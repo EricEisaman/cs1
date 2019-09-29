@@ -59,8 +59,6 @@ export default (function grabbable(){
     CS1.grabbables={}; 
     
     CS1.__updateGrabbables = (grabbablesData)=>{
-        //console.log('Update Grabbables');
-        //console.log(grabbablesData);
         if(Object.keys(CS1.grabbables).length === 0 || !CS1.grabbables[grabbablesData[0].name] || !CS1.game.hasBegun) return;
         grabbablesData.forEach( (d,index)=>{
           let b = CS1.grabbables[d.name];
@@ -74,8 +72,22 @@ export default (function grabbable(){
       
         });
       }
-    
-    
+  
+    CS1.socket.on('add-grabbable-primitive',d=>{
+      if(d.origin==CS1.socket.id)return;
+      const entity = document.createElement(d.type);
+      entity.setAttribute('grabbable','remote:true');
+      entity.object3D.position.set(d.data.position.x,d.data.position.y,d.data.position.z);
+      entity.object3D.scale.set(d.data.scale.x,d.data.scale.y,d.data.scale.z);
+      entity.object3D.setRotationFromQuaternion(new THREE.Quaternion(d.data.rotation.x,d.data.rotation.y,d.data.rotation.z,d.data.rotation.w));
+      entity.soundState = d.data.soundState;
+      if(d.custom){
+        for (let [key, value] of Object.entries(d.custom)) {
+          if(value)entity.setAttribute(key,value);
+        }
+      }
+      CS1.scene.appendChild(entity);
+    });
     
   },
 
@@ -84,7 +96,8 @@ export default (function grabbable(){
   
   AFRAME.registerComponent("grabbable", {
 	schema: {
-		origin: { type: "selector" }
+		origin: { type: "selector" },
+    remote: { default: false}
 	},
 
 	init: function()
@@ -110,6 +123,33 @@ export default (function grabbable(){
     
     self.name=Object.keys(CS1.grabbables).length;
     CS1.grabbables[self.name]=self.el;
+    
+    if(CS1 && CS1.game && CS1.game.hasBegun && !this.data.remote){
+      console.log('Adding a grabbable after game has begun.');
+      const c = {};
+      c.color = self.el.getAttribute('color');
+      const s = self.el.getAttribute('src');
+      if(s) c.src = s;
+      onGameStart();
+      let d = {
+            name: self.name,
+            position: self.el.object3D.position,
+            scale: self.el.object3D.scale,
+            rotation: { 
+              x: self.el.object3D.quaternion.x,
+              y: self.el.object3D.quaternion.y,
+              z: self.el.object3D.quaternion.z,
+              w: self.el.object3D.quaternion.w,
+            },
+            soundState: self.el.soundState
+          };
+      CS1.socket.emit('add-grabbable-primitive',{type:self.el.nodeName,
+                                                 data:d,
+                                                 custom:c,
+                                                 origin:CS1.socket.id
+                                            
+                                                });
+    }
       
     self.el.addEventListener("mousedown", grab);
     self.el.addEventListener("mouseup", release);
