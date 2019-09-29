@@ -2,21 +2,19 @@ const db = require('../db/db');
 const uuidv4 = require('uuid/v4');
 let addons = [];
 addons.push(require('./addons/userdata-socket'));
+addons.push(require('./addons/bodies'));
 addons.push(require('./addons/iot-api'));
 addons.push(require('./addons/launchable'));
 addons.push(require('./addons/admin'));
 addons.push(require('./addons/jukebox'));
+const EventEmitter = require('events').EventEmitter;
 module.exports = (io)=>{
     var state = {
       players:{},
-      bodies:{},
       dbmap:{},
-      collectibles:[],
-      changedBodies:[],
       signedIn:[],
       ufoTarget:false,
       npc:{},
-      lastSocketSentBodies:{broadcast:{emit:()=>{}}},
       intervalId:setInterval(()=>{
           io.emit('update-players',state.players);
         },100)
@@ -31,6 +29,8 @@ module.exports = (io)=>{
         socket.ip = socket.ip.split(',')[0]//.replace(/\./g, "_");
         console.log(`New connection with socket id: ${socket.id}.`);
         socket.auth = false;
+      
+        socket.addonChannel = new EventEmitter();
 
         socket.on('disconnect',function(){
           // Delete from object on disconnect
@@ -43,15 +43,16 @@ module.exports = (io)=>{
              if(state.players[socket.id].disconnected){
                
                console.log(`Unrecovered connection named ${socket.name}. Removing socket.id : ${socket.id} and socket.dbid: ${socket.dbid} at ${new Date().getSeconds()} seconds.`);
+               
+               socket.addonChannel.emit('remove-player');
+               
                if(socket.id == state.ufoTarget){
                  state.ufoTarget=false;
                  io.emit('set-ufo-target',false); 
                }
                delete state.players[socket.id]; 
                delete state.dbmap[socket.id];
-               if(Object.keys(state.players)===0){
-                 state.bodies = {};
-                 state.changedBodies = [];
+               if(Object.keys(state.players).length===0){
                  state.dbmap = {};
                }
                socket.broadcast.emit('remove-player',socket.id);
@@ -96,29 +97,6 @@ module.exports = (io)=>{
           socket.emit('players-already-here',state.players);
           if(state.signedIn.length>0)socket.emit('players-already-signed-in',state.signedIn);
           if(state.ufoTarget)socket.emit('set-ufo-target',state.ufoTarget);
-          console.log('changedBodies length:',state.changedBodies.length);
-          // (changedBodies.length > 0) && 
-          if((Object.keys(state.players).length > 0) ) {
-           let ibs = [];
-           for(name in state.bodies){
-             ibs.push(state.bodies[name]);
-           }  
-           socket.emit('initial-bodies-state',ibs);
-           console.log('sending initial bodies state');
-           //console.log(ibs);
-          }
-          if(Object.keys(state.players).length === 0){
-            socket.emit('request-for-bodies');
-            socket.emit('request-for-collectibles');
-          }else{
-            state.collectibles.forEach((c,index)=>{
-               if(c.collector){
-                 socket.emit('collect',{index:index,collector:c.collector});
-                 console.log('Sending collectible update to new player:');
-                 //console.log(c);
-               }
-            });
-          }
           console.log("New player has state:",shared_state_data);
           // Add the new player to the object
           shared_state_data.name = socket.name;
@@ -139,37 +117,7 @@ module.exports = (io)=>{
             state.players[socket.id].rhp = data.rhp;
             state.players[socket.id].rhr = data.rhr;
           }
-          //console.log(data);
         });  
-        socket.on('request-collection',function(data){
-         if(!socket.auth)return;
-         // console.log('collection requested');
-         // console.log(data);
-         console.log(state.collectibles[data.index].collector);
-         if(!state.collectibles[data.index].collector){
-           state.collectibles[data.index].collector = socket.id;
-           io.emit('collect',{index:data.index,collector:socket.id});
-           console.log('collection made');
-           if(state.collectibles[data.index].spawns){
-             setTimeout(()=>{
-               io.emit('spawn-collectible',data.index);
-               state.collectibles[data.index].collector = false;
-               console.log('calling to spawn collectible');
-             },state.collectibles[data.index].spawnDelay*1000);
-           }
-         }
-        });
-        socket.on('initial-collectibles-state',function(d){
-           console.log('Collectibles initializing.');
-           for(let i=0; i<d.length; i++){
-             let c = {};
-             c.spawns = d[i].spawns;
-             c.spawnDelay = Number(d[i].spawnDelay);
-             c.collector = false;
-             state.collectibles[i] = c;
-           }
-          //console.log(collectibles);
-        });
         socket.on('hyperspace-alert',data=>{
           socket.broadcast.emit('hyperspace',data);
         });
@@ -196,50 +144,7 @@ module.exports = (io)=>{
           io.emit('set-ufo-target', id);
           state.ufoTarget = id;
         });
-      
-      
-      
-      
-        socket.on('register-npc',data=>{
-          if(!state.npc[data.name]){
-            state.npc[data.name]={};
-            state.npc[data.name].waypoints=data.waypoints;
-            console.log('Registering NPC.');
-            //console.log(npc[data.name]);
-          }
-        });
-        socket.on('set-npc-waypoints',data=>{
-          if(state.npc[data.name]){
-            state.npc[data.name].waypoints=data.waypoints;
-            console.log('Setting NPC waypoints.');
-            //console.log(npc[data.name]);
-          }
-        });
-        socket.on('add-npc-waypoint',data=>{
-          if(state.npc[data.name]){
-            state.npc[data.name].waypoints.push(data.waypoint);
-            console.log('Adding NPC waypoint.');
-            console.log(state.npc[data.name]);
-          }
-        });
-        socket.on('npc-move',data=>{
-          io.emit('npc-move',data);
-        });
-      
-      
-      
-        socket.on('initial-bodies-state',obj=>{
-          console.log('Initial bodies state received.');
-          state.bodies = obj;
-        });
-        socket.on('update-bodies',function(data){
-          //console.log(data);
-          state.changedBodies = data;
-          state.changedBodies.forEach(bd=>{
-            state.bodies[bd.name]=bd;
-          });
-          if(Object.keys(state.players).length > 1 ) socket.broadcast.emit('update-bodies',state.changedBodies);
-        });
+    
         socket.on('arg',function(data){
           socket.ipLocal = data;
           console.log(`Client Info:\nPublic IP: ${socket.ip}  Local IP: ${socket.ipLocal}`);
