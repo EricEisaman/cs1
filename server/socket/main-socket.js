@@ -7,13 +7,13 @@ addons.push(require('./addons/iot-api'));
 addons.push(require('./addons/launchable'));
 addons.push(require('./addons/admin'));
 addons.push(require('./addons/jukebox'));
+addons.push(require('./addons/ufo-target'));
 const EventEmitter = require('events').EventEmitter;
 module.exports = (io)=>{
     var state = {
       players:{},
       dbmap:{},
       signedIn:[],
-      ufoTarget:false,
       npc:{},
       intervalId:setInterval(()=>{
           io.emit('update-players',state.players);
@@ -46,10 +46,6 @@ module.exports = (io)=>{
                
                socket.addonChannel.emit('remove-player');
                
-               if(socket.id == state.ufoTarget){
-                 state.ufoTarget=false;
-                 io.emit('set-ufo-target',false); 
-               }
                delete state.players[socket.id]; 
                delete state.dbmap[socket.id];
                if(Object.keys(state.players).length===0){
@@ -96,7 +92,6 @@ module.exports = (io)=>{
           console.log(state.players);
           socket.emit('players-already-here',state.players);
           if(state.signedIn.length>0)socket.emit('players-already-signed-in',state.signedIn);
-          if(state.ufoTarget)socket.emit('set-ufo-target',state.ufoTarget);
           console.log("New player has state:",shared_state_data);
           // Add the new player to the object
           shared_state_data.name = socket.name;
@@ -140,10 +135,7 @@ module.exports = (io)=>{
             console.log(socket.name + ' has been added to sign in list.');
           }
         });
-        socket.on('set-ufo-target',function(id){
-          io.emit('set-ufo-target', id);
-          state.ufoTarget = id;
-        });
+        
     
         socket.on('arg',function(data){
           socket.ipLocal = data;
