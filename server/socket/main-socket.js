@@ -8,6 +8,7 @@ addons.push(require('./addons/launchable'));
 addons.push(require('./addons/admin'));
 addons.push(require('./addons/jukebox'));
 addons.push(require('./addons/ufo-target'));
+addons.push(require('./addons/my-addon'));
 const EventEmitter = require('events').EventEmitter;
 module.exports = (io)=>{
     var state = {
