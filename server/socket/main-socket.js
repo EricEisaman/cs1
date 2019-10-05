@@ -1,4 +1,4 @@
-const db = require('../db/db');    
+const db = require('../db/db');      
 const uuidv4 = require('uuid/v4');
 let addons = [];
 addons.push(require('./addons/userdata-socket'));

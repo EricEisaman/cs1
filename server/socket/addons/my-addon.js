@@ -5,8 +5,8 @@ const addon = {
    this.socket = socket;
    this.state = state;
    const self = this;
-   
-    
+
+        
   }
   
 }

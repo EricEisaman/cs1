@@ -43,6 +43,19 @@ const ideAPI = {
 
     }
     
+    async function refresh(cb) {
+      try{
+        const { stdout, stderr } = await exec('refresh');
+        socket.emit('log', stdout);
+        socket.emit('log', stderr);
+        cb('success');
+      }catch(err){
+        socket.emit('log', err.name + '\n' + err.message );
+        cb('fail');
+      }
+
+    }
+    
     
     
     
@@ -50,6 +63,10 @@ const ideAPI = {
     
     socket.on('build', cb=>{
         build(cb);
+    }); 
+    
+    socket.on('refresh', cb=>{
+        refresh(cb);
     }); 
     
     socket.on('save', (data,cb)=>{
