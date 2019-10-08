@@ -8,7 +8,13 @@ addons.push(require('./addons/launchable'));
 addons.push(require('./addons/admin'));
 addons.push(require('./addons/jukebox'));
 addons.push(require('./addons/ufo-target'));
-addons.push(require('./addons/my-addon'));
+let myAddonFailed = false;
+try{
+  addons.push(require('./addons/my-addon'));
+}catch(err){
+  myAddonFailed = true;
+}
+
 const EventEmitter = require('events').EventEmitter;
 module.exports = (io)=>{
     var state = {
@@ -20,6 +26,7 @@ module.exports = (io)=>{
           io.emit('update-players',state.players);
         },100)
     };
+    if(myAddonFailed)state.myAddonFailed = true;
     io.on('connection', function(socket){
       
        
@@ -217,12 +224,17 @@ module.exports = (io)=>{
       
        
       
-      
+        try{
         //INITIALIZE ADDONS
         addons.forEach(addon=>{
            console.log(`Initializing ${addon.name} for socket id: ${socket.id} ...`);
            addon.init(socket,state);
-        });
+        }); 
+        }catch(err){
+          io.sockets.emit('server-addon-error');
+          console.log('server addon error');
+        }
+        
       
       
      })

@@ -15,6 +15,10 @@ const admin = {
        ideAPI.setAdminSocket(socket);
        dashboardAPI.setAdmin(socket,state);
        cb('success');
+       if(state.myAddonFailed){
+         socket.emit('server-addon-error');
+         console.log('server addon error called from admin addon');
+       }
      }else{
        cb('fail');
      }   
