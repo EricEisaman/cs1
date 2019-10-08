@@ -16,7 +16,7 @@ const admin = {
        dashboardAPI.setAdmin(socket,state);
        cb('success');
        if(state.myAddonFailed){
-         socket.emit('server-addon-error');
+         socket.emit('server-addon-error',state.myAddonFailed);
          console.log('server addon error called from admin addon');
        }
      }else{

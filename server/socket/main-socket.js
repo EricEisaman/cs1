@@ -12,7 +12,9 @@ let myAddonFailed = false;
 try{
   addons.push(require('./addons/my-addon'));
 }catch(err){
-  myAddonFailed = true;
+  myAddonFailed = {name:err.name,message:err.message};
+  console.log('HERE IS AN ADDON ERROR:');
+  console.log(myAddonFailed);
 }
 
 const EventEmitter = require('events').EventEmitter;
@@ -26,7 +28,7 @@ module.exports = (io)=>{
           io.emit('update-players',state.players);
         },100)
     };
-    if(myAddonFailed)state.myAddonFailed = true;
+    if(myAddonFailed)state.myAddonFailed = myAddonFailed;
     io.on('connection', function(socket){
       
        
@@ -231,8 +233,9 @@ module.exports = (io)=>{
            addon.init(socket,state);
         }); 
         }catch(err){
-          io.sockets.emit('server-addon-error');
-          console.log('server addon error');
+          io.sockets.emit('server-addon-error',{name:err.name,message:err.message});
+          console.log('server addon error at initialize stage');
+          console.log(err);
         }
         
       
