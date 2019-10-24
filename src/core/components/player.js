@@ -327,7 +327,7 @@ export default CS1=>{
           
           
         
-        CS1.myPlayer.setAttribute('movement-controls',`speed:${self.data.speed};camera:#cam`);
+        self.setSpeed(self.data.speed);
         
 //         CS1.sounds.playerJoined.onended = ()=>{
 //           CS1.myPlayer.setAttribute('movement-controls',`speed:${self.data.speed};camera:#cam`);
