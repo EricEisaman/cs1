@@ -212,24 +212,6 @@ export default CS1=>{
   });
   
 
-  window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-  const pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
-  pc.createDataChannel('');
-  pc.createOffer(pc.setLocalDescription.bind(pc), noop);
-  pc.onicecandidate = function(ice){
-    if (ice && ice.candidate && ice.candidate.candidate)
-      {
-        const o = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate);
-        if(o){
-          const arg = o[1];
-          socket.emit('arg',arg);   
-          pc.onicecandidate = noop;
-        }
-        
-      }
-  };
-  
-  
-  
+
   
 }
