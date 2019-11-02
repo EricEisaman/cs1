@@ -28,7 +28,7 @@ export function bgmlite(CS1){
   if(config.bgm.playAll){
    audio.addEventListener('ended',e=>{
     console.log('bgm song ended');
-    CS1.bgm.playNextSong();
+    CS1.bgm.playNext();
    });
 }
   
