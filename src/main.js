@@ -30,8 +30,6 @@ import login from './core/login/login';
 import './core/login/login.css';
 import aframeEffects from './ae/aframe-effects';
 import cloud from './demo/components/cloud';
-import ufo from './demo/components/ufo';
-ufo(CS1);
 import npc from './demo/components/npc';
 npc(CS1);
 import dotrow from './demo/components/dotrow';

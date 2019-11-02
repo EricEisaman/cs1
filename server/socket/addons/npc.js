@@ -2,6 +2,7 @@ const npc = {
   name: 'npc',
   init: (socket,state) => {
   
+   state.npc = {};
    this.socket = socket;
    this.state = state;
    const self = this;
