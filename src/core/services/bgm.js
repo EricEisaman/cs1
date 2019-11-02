@@ -15,7 +15,7 @@ export function bgmlite(CS1){
   nextSongBtn.zIndex = 100;
   nextSongBtn.style.display = "none";
   nextSongBtn.addEventListener('click',e=>{
-    CS1.bgm.playNextSong();
+    CS1.bgm.playNext();
   });
   let ui = document.createElement('div');
   ui.style.margin = '0 auto';
