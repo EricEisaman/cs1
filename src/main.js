@@ -12,9 +12,9 @@ import particles from './aps/particles';
 particles(CS1);
 import proximityGlitch from './demo/components/proximity-glitch'
 proximityGlitch(CS1);
-import hud from './hud/hud';
-import './hud/hud.css';
-hud(CS1);
+import stats from './stats/stats';
+import './stats/stats.css';
+stats(CS1);
 import game from './core/components/game';
 game(CS1);
 import player from './core/components/player';
