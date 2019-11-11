@@ -11,6 +11,7 @@ devDependencies:
   rollup-plugin-css-only: 0.4.0
   rollup-plugin-json: 3.1.0
   rollup-plugin-node-resolve: 3.4.0
+  rollup-plugin-string: 3.0.0
   rollup-plugin-uglify: 4.0.0
   rollup-plugin-uglify-es: 0.0.1
 packages:
@@ -405,6 +406,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-XpCnW/AE10ws/kDAs37cngSkvgIR8aN3G0MS85m7dUpuK2EREo9VJ00uvw6Dg/hXEpfsE1I1TvJOJr+Z+TL+ig==
+  /estree-walker/0.6.1:
+    dev: true
+    resolution:
+      integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==
   /esutils/2.0.2:
     dev: true
     engines:
@@ -1198,6 +1203,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-PJcd85dxfSBWih84ozRtBkB731OjXk0KnzN0oGp7WOWcarAFkVa71cV5hTJg2qpVsV2U8EUwrzHP3tvy9vS3qg==
+  /rollup-plugin-string/3.0.0:
+    dependencies:
+      rollup-pluginutils: 2.8.2
+    dev: true
+    resolution:
+      integrity: sha512-vqyzgn9QefAgeKi+Y4A7jETeIAU1zQmS6VotH6bzm/zmUQEnYkpIGRaOBPY41oiWYV4JyBoGAaBjYMYuv+6wVw==
   /rollup-plugin-uglify-es/0.0.1:
     dependencies:
       uglify-es: 3.0.3
@@ -1225,6 +1236,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2XZwja7b6P5q4RZ5FhyX1+f46xi1Z3qBKigLRZ6VTZjwbN0K1IFGMlwm06Uu0Emcre2Z63l77nq/pzn+KxIEoA==
+  /rollup-pluginutils/2.8.2:
+    dependencies:
+      estree-walker: 0.6.1
+    dev: true
+    resolution:
+      integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==
   /rollup/0.60.7:
     dependencies:
       '@types/estree': 0.0.39
@@ -1538,6 +1555,7 @@ specifiers:
   rollup-plugin-css-only: ^0.4.0
   rollup-plugin-json: ^3.1.0
   rollup-plugin-node-resolve: ^3.3.0
+  rollup-plugin-string: ^3.0.0
   rollup-plugin-uglify: ^4.0.0
   rollup-plugin-uglify-es: ^0.0.1
   socket.io: ^2.2.0

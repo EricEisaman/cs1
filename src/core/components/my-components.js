@@ -2,7 +2,7 @@ export default (()=>{
   
   document.addEventListener('gameStart',e=>{
     
-    
+    CS1.log('Hi!');
   
   });
   

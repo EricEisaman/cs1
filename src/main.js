@@ -40,7 +40,7 @@ iotAPI(CS1);
 import log from './core/components/log';
 import launchable from './core/components/launchable';
 import launchrow from './demo/components/launchrow';
-import vrui from './core/components/vrui';
+import vrui from './core/components/vrui/vrui';
 import chat from './core/components/chat';
 import cs1Jukebox from './core/components/cs1-jukebox';
 import mycomponents from './core/components/my-components';

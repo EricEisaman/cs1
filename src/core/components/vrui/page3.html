@@ -1,0 +1,17 @@
+<h1>Interactivity</h1>
+<p>You can add javascript interactivity in the standard way either by events on the elements themselves or alternatively by adding event listeners to the DOM.</p>
+<div class="code">  
+    cubebutton.addEventListener("click",function(){
+    if(show){
+      box.setAttribute("visible","false");
+      cubebutton.innerHTML="Show Box";
+    }else{
+      box.setAttribute("visible","true");
+      cubebutton.innerHTML="Hide Box";
+    }
+      show=!show;
+    });
+</div>
+<a-entity id="showbutton" showbutton="target:#box"><button>Show Box</button></a-entity>
+
+      
