@@ -14,7 +14,7 @@ body {
 #scene-container {
  z-index:0;
 }
-#vr-hud{
+#vr-stats{
  position: absolute;
  z-index: 100;
  width: 0px;

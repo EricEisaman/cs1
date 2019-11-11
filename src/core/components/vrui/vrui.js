@@ -32,10 +32,10 @@ AFRAME.registerSystem('vrui', {
       const w = document.createElement('div');
       w.style.width = '100%';
       w.style.height = '100%';
-      w.appendChild(CS1.hud.container);
+      w.appendChild(CS1.stats.container);
      
       
-    CS1.__vrui__main = function(){
+    CS1.__display__stats = function(){
       const c = document.querySelector('#main');
       c.innerHTML='';
       c.appendChild(w); 
@@ -49,7 +49,7 @@ AFRAME.registerSystem('vrui', {
     ctr.setAttribute('visible',false);
     ctr.setAttribute('position','0 0.3 0');
     CS1.myPlayer.add(ctr);
-    CS1.hud.container = ctr;
+    CS1.stats.container = ctr;
     let m = document.querySelector('#main');
     let m1 = document.querySelector('#menu1');
     let m2 = document.querySelector('#menu2');
@@ -75,9 +75,9 @@ AFRAME.registerSystem('vrui', {
         cursor.pause();
         if(CS1.cam.components.raycaster)CS1.cam.components.raycaster.pause();
           lh.el.addEventListener('abuttondown',e=>{
-            CS1.hud.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
-            let v = CS1.hud.container.getAttribute('visible');
-            CS1.hud.container.setAttribute('visible',!v);
+            CS1.stats.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
+            let v = CS1.stats.container.getAttribute('visible');
+            CS1.stats.container.setAttribute('visible',!v);
             if(v){
               document.querySelectorAll('.dark').forEach(e=>{
                e.classList.remove('screen')
@@ -89,9 +89,9 @@ AFRAME.registerSystem('vrui', {
             }
           });
           rh.el.addEventListener('abuttondown',e=>{
-            CS1.hud.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
-            let v = CS1.hud.container.getAttribute('visible');
-            CS1.hud.container.setAttribute('visible',!v); 
+            CS1.stats.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
+            let v = CS1.stats.container.getAttribute('visible');
+            CS1.stats.container.setAttribute('visible',!v); 
             if(v){
               document.querySelectorAll('.dark').forEach(e=>{
                e.classList.remove('screen')
@@ -106,9 +106,9 @@ AFRAME.registerSystem('vrui', {
       
       document.addEventListener('keypress',e=>{
           if(e.code=='Backquote'){
-            CS1.hud.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
-            let v = CS1.hud.container.getAttribute('visible');
-            CS1.hud.container.setAttribute('visible',!v);
+            CS1.stats.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
+            let v = CS1.stats.container.getAttribute('visible');
+            CS1.stats.container.setAttribute('visible',!v);
             if(v){
               document.querySelectorAll('.dark').forEach(e=>{
                e.classList.remove('screen')
@@ -125,9 +125,9 @@ AFRAME.registerSystem('vrui', {
       
       
       document.addEventListener('doubleTapMenu',e=>{
-        CS1.hud.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
-        let v = CS1.hud.container.getAttribute('visible');
-        CS1.hud.container.setAttribute('visible',!v);
+        CS1.stats.container.object3D.rotation.y = CS1.cam.object3D.rotation.y;
+        let v = CS1.stats.container.getAttribute('visible');
+        CS1.stats.container.setAttribute('visible',!v);
         if(v){
               document.querySelectorAll('.dark').forEach(e=>{
                e.classList.remove('screen')
