@@ -87,7 +87,7 @@ ____
 
 🍎 Installable as a Progressive Web App [(PWA)](https://developers.google.com/web/progressive-web-apps/).
 
-🍎 **Heads Up Display (HUD) system** including:
+🍎 **Stats visualization system** including:
 - **RingDial** data visualization widget
 - **Meter** data visualization widget
 - **GUI Widgets** (TODO)
@@ -160,7 +160,7 @@ ____
 
 🍎 CS1.grabbables
 
-🍎 CS1.hud
+🍎 CS1.stats
 
 🍎 CS1.say
 
