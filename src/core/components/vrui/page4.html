@@ -1,0 +1,10 @@
+  <h1>Limitations</h1>
+  <ul>
+      <li>All styles and images must be in the same origin or allow access via CORS; this allows the component to embed all of the assets required to render the html properly to the canvas via the foreignObject element. </li>
+      <li>transform-style css is limited to flat. This is mainly due to it not being rendered properly to canvas so element bounding for preserve-3d has not yet been implemented. If the rendering is fixed as some point I may go back and get it working as well.</li>
+      <li>"a-" tags do not render correctly as XHTML embeded into SVG, so any parent "a-" elements of the embed html will be converted to div tags for rendering. This may mean your css will require modification.</li>
+      <li>Elements that require rendering outside of the DOM such as the iframe and canvas element will not work.</li>
+      <li>:before and :after pseudo elements can't be accessed via the DOM so they can't be used in the element to determine the object bounds. As such, use them with caution. </li>
+      <li>Form elements are not consistently rendered to the canvas element so some basic default styles are included for consistency.</li>
+      <li>Currently there is no support for css transitions.</li>
+</ul>

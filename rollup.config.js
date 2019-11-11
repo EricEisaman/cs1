@@ -5,6 +5,7 @@ import css from 'rollup-plugin-css-only';
 import cleanup from 'rollup-plugin-cleanup';
 import uglify from 'rollup-plugin-uglify-es';
 import json from 'rollup-plugin-json';
+import { string } from "rollup-plugin-string";
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
@@ -19,6 +20,13 @@ export default {
 	},
 	plugins: [
     json(),
+    string({
+      // Required to be specified
+      include: "**/*.html",
+
+      // Undefined by default
+      exclude: ["**/index.html"]
+    }),
     cleanup({comments: 'none'}),
     css({ output: 'public/bundle.css' }),
 		resolve(), // tells Rollup how to find date-fns in node_modules

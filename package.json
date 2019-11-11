@@ -1,6 +1,6 @@
 {
   "name": "CS1",
-  "version": "0.6.88",
+  "version": "0.6.89",
   "description": "Game Engine for making 3D multiplayer games in JavaScript.",
   "main": "server/server.js",
   "scripts": {
@@ -21,7 +21,8 @@
     "rollup-plugin-css-only": "^0.4.0",
     "rollup-plugin-cleanup": "^3.1.1",
     "rollup-plugin-uglify-es": "^0.0.1",
-    "rollup-plugin-json": "^3.1.0"
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-string":"^3.0.0" 
   },
   "dependencies": {
     "express": "^4.16.3",
