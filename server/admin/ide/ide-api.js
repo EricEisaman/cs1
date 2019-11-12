@@ -30,9 +30,9 @@ const ideAPI = {
     }
 
 
-    async function build(cb) {
+    async function build(prod,cb) {
       try{
-        const { stdout, stderr } = await exec('pnpm run build');
+        const { stdout, stderr } = (prod) ? await exec('pnpm run build') : await exec('pnpm run dev');
         socket.emit('log', stdout);
         socket.emit('log', stderr);
         cb('success');
@@ -61,8 +61,8 @@ const ideAPI = {
     
     //IDE API:  build, save, get-src
     
-    socket.on('build', cb=>{
-        build(cb);
+    socket.on('build',(prod,cb)=>{
+        build(prod,cb);
     }); 
     
     socket.on('refresh', cb=>{

@@ -1,4 +1,4 @@
-<img src="https://cdn.glitch.com/f8abb766-9950-44ff-9adb-2f5f53fdaf1b%2FCS1_192.png?1552299344920">
+<img src="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_256.png?v=1564891474191">
 
 # CS1 Game Engine
 ____
@@ -12,11 +12,10 @@ ____
     - CS1 Flow will be designed to authenticate with developer's Glitch projects and write the resulting configurations as an ES6 module file in those projects' .data directory via a server REST API.
     - There will be an empty configuration file in the .data directory in case the developer chooses not to use any of the visual development tools.  ✅
    
-🍎 Game admin console component.
-  - will provide client-side interface with the live game server.
-  - functions
+🍎 Admin App
+  - will expose convenient API to enable live game interactions such as:
     - player boot
-    - item spawns sent as server rendered HTML strings.
+    - direct messaging
     
 🍎 Build a compelling demo with specialized components and custom user data stored in database.
   - Create a lesson on storing and retrieving custom user data using the database.
