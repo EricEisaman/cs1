@@ -8,8 +8,6 @@ import navpointer from './core/components/nav-pointer';
 import weatherviz from './core/components/weather-viz';
 import shaderfrog from './core/components/shaderfrog/shader-frog';
 shaderfrog(CS1);
-import particles from './aps/particles';
-particles(CS1);
 import proximityGlitch from './demo/components/proximity-glitch'
 proximityGlitch(CS1);
 import stats from './stats/stats';
@@ -28,7 +26,6 @@ collectible(CS1);
 import './main.css';
 import login from './core/login/login';
 import './core/login/login.css';
-import aframeEffects from './ae/aframe-effects';
 import cloud from './demo/components/cloud';
 import npc from './demo/components/npc';
 npc(CS1);

@@ -1,15 +1,12 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-//import { uglify } from 'rollup-plugin-uglify';
 import css from 'rollup-plugin-css-only';
-import cleanup from 'rollup-plugin-cleanup';
-import uglify from 'rollup-plugin-uglify-es';
+//import cleanup from 'rollup-plugin-cleanup';
+import {terser} from 'rollup-plugin-terser';
 import json from 'rollup-plugin-json';
 import { string } from "rollup-plugin-string";
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
-const production = !process.env.ROLLUP_WATCH;
+const production = process.env.BUILD!='dev'?true:false;
 
 export default {
 	input: 'src/main.js',
@@ -27,9 +24,9 @@ export default {
       // Undefined by default
       exclude: ["**/index.html"]
     }),
-    cleanup({comments: 'none'}),
     css({ output: 'public/bundle.css' }),
-		resolve(), // tells Rollup how to find date-fns in node_modules
-		production && uglify(), // minify, but only in production
+		//resolve(), // tells Rollup how to find date-fns in node_modules
+    //cleanup({comments: 'none'}),
+		production && terser(), // minify, but only in production
 	]
 };
