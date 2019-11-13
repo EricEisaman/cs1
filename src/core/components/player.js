@@ -466,7 +466,7 @@ export default CS1=>{
       rot.y = Number(Number(rot.y).toFixed(1));
       rot.z = Number(Number(rot.z).toFixed(1));
       playerData.rotation = rot;
-      playerData.faceIndex = CS1.socket.playerData.faceIndex;
+      playerData.faceIndex = (CS1.socket.playerData)?CS1.socket.playerData.faceIndex:0;
       if(   (CS1.device == 'Oculus Quest') &&  (CS1.myPlayer._avatarType === 2)  && this.lh.hasLoaded ){
           
           let lhp = this.lh.getAttribute('position');
