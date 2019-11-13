@@ -8,6 +8,7 @@
     "build": "rollup -c",
     "prewatch": "npm run config",
     "watch": "rollup -c -w",
+    "predev": "npm run config",
     "dev": "rollup -c --environment BUILD:dev",
     "start": "node server/server.js",
     "config": "if [ -f './src/core/config/client-config.json' ]; then cp ./src/core/config/client-config.json .data/; fi;"
