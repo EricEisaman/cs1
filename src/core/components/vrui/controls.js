@@ -7,30 +7,30 @@ import page4 from './page4.html';
 export const controls = {
   
  init: function(){ 
-   
- AFRAME.registerComponent('showbutton', {
-      schema: {
-        'target': {type: 'selector'},
-      },
-      init: function () {
-        var show=false;    
-        this.el.addEventListener("click",()=>{
-          if(show){
-            this.data.target.setAttribute("visible","false");
-            this.el.querySelector("button").innerHTML="Show Box";
-          }else{
-            this.data.target.setAttribute("visible","true");
-            this.el.querySelector("button").innerHTML="Hide Box";
-          }
-          show=!show;
-        });
-      }
-    });
-   
- 
+    
  const m1 = document.querySelector('#menu1');
  const m = document.querySelector('#main');
  const m2 = document.querySelector('#menu2');
+ CS1.ui = {};
+ CS1.ui.controls = {}; 
+   
+ // Beginner Edits Should Start Here
+   
+ const box = document.createElement('a-box');
+ box.setAttribute('scale','0.7 0.7 0.7');
+ box.object3D.visible = true;
+ box.object3D.position.set(0,2.3,-0.25);
+ box.setAttribute('material','src:#chip');
+ m2.appendChild(box);
+   
+ CS1.ui.controls.showBox = e => {
+   
+  box.object3D.visible = (box.object3D.visible)?false:true;
+   
+ }
+ 
+    
+ // All Beginner Edits Should Be Above Here
 
  function runOnce(){
       m1.setAttribute('sound','src:url(https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2Fclick.mp3?v=1561929149589)');
@@ -41,41 +41,40 @@ export const controls = {
 
     document.addEventListener('click',runOnce);
     
-    const box = document.querySelector('#box');
 
-    let topBtn = document.querySelector('#top-btn');
-    if(topBtn)topBtn.addEventListener('mouseenter',e=>{
+    let m2b1 = document.querySelector('#menu2-b1');
+    if(m2b1)m2b1.addEventListener('mouseenter',e=>{
   
       if(CS1.stats.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound()
 
     });
-    if(topBtn)topBtn.addEventListener('click',e=>{
+    if(m2b1)m2b1.addEventListener('click',e=>{
       e.preventDefault();
       box.setAttribute('material','src:#chip');
       CS1.socket.playerData.faceIndex = 1;
       CS1.myPlayer._avatarType = config.avatar.models[CS1.socket.playerData.faceIndex].type;
     });
 
-    let midBtn = document.querySelector('#mid-btn');
-    if(midBtn)midBtn.addEventListener('mouseenter',e=>{
+    let m2b2 = document.querySelector('#menu2-b2');
+    if(m2b2)m2b2.addEventListener('mouseenter',e=>{
 
       if(CS1.stats.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound()
 
     });
-    if(midBtn)midBtn.addEventListener('click',e=>{
+    if(m2b2)m2b2.addEventListener('click',e=>{
       e.preventDefault();
       box.setAttribute('material','src:#mel');
       CS1.socket.playerData.faceIndex = 2;
       CS1.myPlayer._avatarType = config.avatar.models[CS1.socket.playerData.faceIndex].type;
     });
 
-    let botBtn = document.querySelector('#bot-btn');
-    if(botBtn)botBtn.addEventListener('mouseenter',e=>{
+    let m2b3 = document.querySelector('#menu2-b3');
+    if(m2b3)m2b3.addEventListener('mouseenter',e=>{
 
       if(CS1.stats.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound()
 
     });
-    if(botBtn)botBtn.addEventListener('click',e=>{
+    if(m2b3)m2b3.addEventListener('click',e=>{
       e.preventDefault();
       box.setAttribute('material','src:#vr1');
       CS1.socket.playerData.faceIndex = 0;
@@ -83,46 +82,47 @@ export const controls = {
     });
 
 
-    let Btn1 = document.querySelector('#b1');
-    if(Btn1)Btn1.addEventListener('mouseenter',e=>{
+    let m1b1 = document.querySelector('#menu1-b1');
+    if(m1b1)m1b1.addEventListener('mouseenter',e=>{
 
       if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
-    Btn1.onclick = e=>{
+    m1b1.onclick = e=>{
       CS1.__display__stats();
     }
 
-    let Btn2 = document.querySelector('#b2');
-    if(Btn2)Btn2.addEventListener('mouseenter',e=>{
+    let m1b2 = document.querySelector('#menu1-b2');
+    if(m1b2)m1b2.addEventListener('mouseenter',e=>{
 
       if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
-    Btn2.onclick = e=>{
+    m1b2.onclick = e=>{
       m.innerHTML = page2;
     }
 
-    let Btn3 = document.querySelector('#b3');
-    if(Btn3)Btn3.addEventListener('mouseenter',e=>{
+    let m1b3 = document.querySelector('#menu1-b3');
+    if(m1b3)m1b3.addEventListener('mouseenter',e=>{
 
       if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
-    Btn3.onclick = e=>{
+    m1b3.onclick = e=>{
       m.innerHTML = page3;
     }
 
-    let Btn4 = document.querySelector('#b4');
-    if(Btn4)Btn4.addEventListener('mouseenter',e=>{
+    let m1b4 = document.querySelector('#menu1-b4');
+    if(m1b4)m1b4.addEventListener('mouseenter',e=>{
 
       if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound()
 
     });
-    Btn4.onclick = e=>{
+    m1b4.onclick = e=>{
       m.innerHTML = page4;
     }
-  
+    
+
  },
   
   }
