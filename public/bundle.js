@@ -4738,41 +4738,41 @@ void main() {
 
   var styles = "<link href=\"https://fonts.googleapis.com/css?family=Roboto&display=swap\" rel=\"stylesheet\">\n <style>\n body{\n   font-family: 'Roboto', sans-serif;\n   \n   font-size: 32px;\n }\n h1{\n   font-size: 52px;\n }\n .dark{\n   background-color: rgba(0,0,0,0.2);\n   border-radius:50px;  \n   background-repeat: no-repeat;\n   background-position: bottom right;\n   padding: 40px;\n   color: #fff;\n }\n .main{\n   width: 1024px;\n   height: 900px;\n   overflow: hidden;\n }\n.main ul{\n   font-size: 26px;\n   margin: 0;\n   padding: 0;\n }\n .menu{\n   width: 256px;\n   height: 900px;\n   text-align: center;\n }\n .menu ul{\n   list-style-type: none;\n   margin: 0;\n   padding: 0;\n }\n .menu button,.main button{\n   display: inline-block;\n   width: 100%;\n   height: 100px;\n   border-radius: 20px;\n   background-color: #000;\n   color: #fff;\n   text-decoration: none;\n   text-align: center;\n   font-size: 32px;\n   padding: 10px 0;\n   margin-bottom: 20px;\n }\n .menu button:hover{\n   background-color: #fff;\n   color: #888;\n }\n .menu button:active{\n   background-color: #fff;\n   color: #888;\n   box-shadow: 0px 0px 50px #00d2ff;\n }\n .imgLink{\n   width: 100%;\n   border-radius: 20px;\n   color: #fff!important;\n   text-decoration: none!important;\n   text-align: center;\n   padding: 10px 0;\n   margin-bottom: 20px;\n   background-color: #444;\n   border: 3px solid #444;\n   text-shadow: none;\n   display: block;\n }\n .imgLink:hover{\n   border: 3px solid #000;\n   background-color: #fff;\n   color:#000!important;\n }\n.imgLink:active{\n   background-color: #fff;\n   box-shadow: 0px 0px 50px #00d2ff;\n   color:#000!important;\n }\n.imgLink img , .imgLink div{\n  pointer-events: none;\n}\n .code{\n   white-space: pre;\n   font-size: 0.7em;\n   background-color: #000;\n   margin-bottom: 30px;\n }\n </style>\n";
 
-  var panels = "<a-entity id=\"menu1\" class=\"screen menu dark\"  position=\"-2.712 1.5 -1.476\" rotation=\"0 45 0\">\n  <h2>Menu</h2>\n  <ul>\n    <li><button id=\"b1\" >Stats</button></li>\n    <li><button id=\"b2\" >Mission</button></li>\n    <li><button id=\"b3\" >Interactivity</button></li>\n    <li><button id=\"b4\" >Limitations</button></li>\n  </ul>\n</a-entity>\n<a-entity id=\"main\" class=\"screen dark main\" position=\"0 1.5 -2\"></a-entity>\n<a-entity id=\"menu2\" class=\"screen menu dark\" position=\"2.712 1.5 -1.476\" rotation=\"0 -45 0\">\n  <h2>Avatars</h2>\n  <a id=\"top-btn\" class=\"imgLink\" href=\"#\">\n    <img crossorigin=\"anonymous\"   src=\"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fchip.png?v=1567384714024\" width=\"80\" height=\"80\">\n    <div>Chip</div>\n  </a>\n  <a id=\"mid-btn\" class=\"imgLink\" href=\"#\">\n    <img crossorigin=\"anonymous\"  src=\"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.png?v=1567389128396\" width=\"80\" height=\"80\">\n    <div>Mel</div>\n  </a>\n  <a id=\"bot-btn\" class=\"imgLink\" href=\"#\">\n    <img  crossorigin=\"anonymous\" src=\"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fvr.png?v=1567383953311\" width=\"80\" height=\"80\">\n    <div>VR-1</div>\n  </a>\n</a-entity>\n<a-box material=\"src:#chip\" scale=\"0.5 0.5 0.5\" position=\"1 1 -1.5\" id=\"box\" visible=\"false\"></a-box> \n\n";
+  var panels = "<a-entity id=\"menu1\" class=\"screen menu dark\"  position=\"-2.712 1.5 -1.476\" rotation=\"0 45 0\">\n  <h2>Menu</h2>\n  <ul>\n    <li><button id=\"menu1-b1\" >Stats</button></li>\n    <li><button id=\"menu1-b2\" >Mission</button></li>\n    <li><button id=\"menu1-b3\" >Control Board</button></li>\n    <li><button id=\"menu1-b4\" >Limitations</button></li>\n  </ul>\n</a-entity>\n<a-entity id=\"main\" class=\"screen dark main\" position=\"0 1.5 -2\"></a-entity>\n<a-entity id=\"menu2\" class=\"screen menu dark\" position=\"2.712 1.5 -1.476\" rotation=\"0 -45 0\">\n  <h2>Avatars</h2>\n  <a id=\"menu2-b1\" class=\"imgLink\" href=\"#\">\n    <img crossorigin=\"anonymous\"   src=\"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fchip.png?v=1567384714024\" width=\"80\" height=\"80\">\n    <div>Chip</div>\n  </a>\n  <a id=\"menu2-b2\" class=\"imgLink\" href=\"#\">\n    <img crossorigin=\"anonymous\"  src=\"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.png?v=1567389128396\" width=\"80\" height=\"80\">\n    <div>Mel</div>\n  </a>\n  <a id=\"menu2-b3\" class=\"imgLink\" href=\"#\">\n    <img  crossorigin=\"anonymous\" src=\"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fvr.png?v=1567383953311\" width=\"80\" height=\"80\">\n    <div>VR-1</div>\n  </a>\n</a-entity>\n\n";
 
   var page2 = "<h1>Mission</h1>\n<p>Roam the virtual world looking for mission clues. Be nice and helpful to everyone you meet.</p>\n<p>Once you have gathered enough clues and your mission is clear, gather the neccessary resources and fulfill your calling. 🦄</p>\n           \n  ";
 
-  var page3 = "<h1>Interactivity</h1>\n<p>You can add javascript interactivity in the standard way either by events on the elements themselves or alternatively by adding event listeners to the DOM.</p>\n<div class=\"code\">  \n    cubebutton.addEventListener(\"click\",function(){\n    if(show){\n      box.setAttribute(\"visible\",\"false\");\n      cubebutton.innerHTML=\"Show Box\";\n    }else{\n      box.setAttribute(\"visible\",\"true\");\n      cubebutton.innerHTML=\"Hide Box\";\n    }\n      show=!show;\n    });\n</div>\n<a-entity id=\"showbutton\" showbutton=\"target:#box\"><button>Show Box</button></a-entity>\n\n      ";
+  var page3 = "<h1>Control Board</h1>\n\n<button onclick='CS1.ui.controls.showBox()'>Show/Hide Current Avatar Box</button>\n\n      ";
 
   var page4 = "  <h1>Limitations</h1>\n  <ul>\n      <li>All styles and images must be in the same origin or allow access via CORS; this allows the component to embed all of the assets required to render the html properly to the canvas via the foreignObject element. </li>\n      <li>transform-style css is limited to flat. This is mainly due to it not being rendered properly to canvas so element bounding for preserve-3d has not yet been implemented. If the rendering is fixed as some point I may go back and get it working as well.</li>\n      <li>\"a-\" tags do not render correctly as XHTML embeded into SVG, so any parent \"a-\" elements of the embed html will be converted to div tags for rendering. This may mean your css will require modification.</li>\n      <li>Elements that require rendering outside of the DOM such as the iframe and canvas element will not work.</li>\n      <li>:before and :after pseudo elements can't be accessed via the DOM so they can't be used in the element to determine the object bounds. As such, use them with caution. </li>\n      <li>Form elements are not consistently rendered to the canvas element so some basic default styles are included for consistency.</li>\n      <li>Currently there is no support for css transitions.</li>\n</ul>\n";
 
   const controls = {
     
    init: function(){ 
-     
-   AFRAME.registerComponent('showbutton', {
-        schema: {
-          'target': {type: 'selector'},
-        },
-        init: function () {
-          var show=false;    
-          this.el.addEventListener("click",()=>{
-            if(show){
-              this.data.target.setAttribute("visible","false");
-              this.el.querySelector("button").innerHTML="Show Box";
-            }else{
-              this.data.target.setAttribute("visible","true");
-              this.el.querySelector("button").innerHTML="Hide Box";
-            }
-            show=!show;
-          });
-        }
-      });
-     
-   
+      
    const m1 = document.querySelector('#menu1');
    const m = document.querySelector('#main');
    const m2 = document.querySelector('#menu2');
+   CS1.ui = {};
+   CS1.ui.controls = {}; 
+     
+   // Beginner Edits Should Start Here
+     
+   const box = document.createElement('a-box');
+   box.setAttribute('scale','0.7 0.7 0.7');
+   box.object3D.visible = true;
+   box.object3D.position.set(0,2.3,-0.25);
+   box.setAttribute('material','src:#chip');
+   m2.appendChild(box);
+     
+   CS1.ui.controls.showBox = e => {
+     
+    box.object3D.visible = (box.object3D.visible)?false:true;
+     
+   };
+   
+      
+   // All Beginner Edits Should Be Above Here
 
    function runOnce(){
         m1.setAttribute('sound','src:url(https://cdn.glitch.com/36918312-2de3-4283-951d-240b263949f7%2Fclick.mp3?v=1561929149589)');
@@ -4783,41 +4783,40 @@ void main() {
 
       document.addEventListener('click',runOnce);
       
-      const box = document.querySelector('#box');
 
-      let topBtn = document.querySelector('#top-btn');
-      if(topBtn)topBtn.addEventListener('mouseenter',e=>{
+      let m2b1 = document.querySelector('#menu2-b1');
+      if(m2b1)m2b1.addEventListener('mouseenter',e=>{
     
         if(CS1.stats.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound();
 
       });
-      if(topBtn)topBtn.addEventListener('click',e=>{
+      if(m2b1)m2b1.addEventListener('click',e=>{
         e.preventDefault();
         box.setAttribute('material','src:#chip');
         CS1.socket.playerData.faceIndex = 1;
         CS1.myPlayer._avatarType = config.avatar.models[CS1.socket.playerData.faceIndex].type;
       });
 
-      let midBtn = document.querySelector('#mid-btn');
-      if(midBtn)midBtn.addEventListener('mouseenter',e=>{
+      let m2b2 = document.querySelector('#menu2-b2');
+      if(m2b2)m2b2.addEventListener('mouseenter',e=>{
 
         if(CS1.stats.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound();
 
       });
-      if(midBtn)midBtn.addEventListener('click',e=>{
+      if(m2b2)m2b2.addEventListener('click',e=>{
         e.preventDefault();
         box.setAttribute('material','src:#mel');
         CS1.socket.playerData.faceIndex = 2;
         CS1.myPlayer._avatarType = config.avatar.models[CS1.socket.playerData.faceIndex].type;
       });
 
-      let botBtn = document.querySelector('#bot-btn');
-      if(botBtn)botBtn.addEventListener('mouseenter',e=>{
+      let m2b3 = document.querySelector('#menu2-b3');
+      if(m2b3)m2b3.addEventListener('mouseenter',e=>{
 
         if(CS1.stats.container.getAttribute('visible')&&m2.components.sound)m2.components.sound.playSound();
 
       });
-      if(botBtn)botBtn.addEventListener('click',e=>{
+      if(m2b3)m2b3.addEventListener('click',e=>{
         e.preventDefault();
         box.setAttribute('material','src:#vr1');
         CS1.socket.playerData.faceIndex = 0;
@@ -4825,46 +4824,47 @@ void main() {
       });
 
 
-      let Btn1 = document.querySelector('#b1');
-      if(Btn1)Btn1.addEventListener('mouseenter',e=>{
+      let m1b1 = document.querySelector('#menu1-b1');
+      if(m1b1)m1b1.addEventListener('mouseenter',e=>{
 
         if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound();
 
       });
-      Btn1.onclick = e=>{
+      m1b1.onclick = e=>{
         CS1.__display__stats();
       };
 
-      let Btn2 = document.querySelector('#b2');
-      if(Btn2)Btn2.addEventListener('mouseenter',e=>{
+      let m1b2 = document.querySelector('#menu1-b2');
+      if(m1b2)m1b2.addEventListener('mouseenter',e=>{
 
         if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound();
 
       });
-      Btn2.onclick = e=>{
+      m1b2.onclick = e=>{
         m.innerHTML = page2;
       };
 
-      let Btn3 = document.querySelector('#b3');
-      if(Btn3)Btn3.addEventListener('mouseenter',e=>{
+      let m1b3 = document.querySelector('#menu1-b3');
+      if(m1b3)m1b3.addEventListener('mouseenter',e=>{
 
         if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound();
 
       });
-      Btn3.onclick = e=>{
+      m1b3.onclick = e=>{
         m.innerHTML = page3;
       };
 
-      let Btn4 = document.querySelector('#b4');
-      if(Btn4)Btn4.addEventListener('mouseenter',e=>{
+      let m1b4 = document.querySelector('#menu1-b4');
+      if(m1b4)m1b4.addEventListener('mouseenter',e=>{
 
         if(CS1.stats.container.getAttribute('visible')&&m1.components.sound)m1.components.sound.playSound();
 
       });
-      Btn4.onclick = e=>{
+      m1b4.onclick = e=>{
         m.innerHTML = page4;
       };
-    
+      
+
    },
     
     };
@@ -5303,7 +5303,7 @@ void main() {
     
     document.addEventListener('gameStart',e=>{
         
-            
+           
        
     });
     
