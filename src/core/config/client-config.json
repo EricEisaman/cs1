@@ -1,6 +1,6 @@
 {
-    "gameName": "Clean Start",
-	"welcomeMsg": "This world can be anything you dream it to be. ...  a carnival ... a haunted house .... a city ... anything ... it is all up to you.  You have the power to create.   May inspiration dwell in you forever.",
+    "gameName": "CS1 Community Park",
+	"welcomeMsg": "Welcome to CS1 Community Park . . . . . . Please join us at 9pm for some tasty roasted ... marshmallow smores.",
   "playerLeftMsg": "... has packed up and headed for home.",
     "theme": {
         "fontFamily": "Arial",
@@ -10,7 +10,7 @@
         "formButtonColor": "#A82F1E",
         "overlayColor": "rgba(0,0,0, 0.9)",
         "fontSize": 2,
-        "logo":"https://cdn.glitch.com/376a6bb1-e9b2-4998-af7a-cc4ea70344b8%2Fclean_start_128.png?v=1572433640155"
+        "logo":"https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_64.png?v=1564891473540"
     },
     "avatar": {
         "models": [{
@@ -57,23 +57,24 @@
         }]},
     "sounds": {
         "playerJoined": {
-            "url": "https://cdn.glitch.com/376a6bb1-e9b2-4998-af7a-cc4ea70344b8%2Fwheer.mp3?v=1572442693465"
+            "url": "https://cdn.glitch.com/c6f972e4-0e71-47c3-85c6-30f0ce9dcba1%2Fthunder.mp3?v=1562601088647"
         },
         "playerLeft": {
-            "url": "https://cdn.glitch.com/376a6bb1-e9b2-4998-af7a-cc4ea70344b8%2Fwheer.mp3?v=1572442693465"
+            "url": "https://cdn.glitch.com/c6f972e4-0e71-47c3-85c6-30f0ce9dcba1%2Fthunder.mp3?v=1562601088647"
         }
     },
     "bgm": {
-        "songs": [326404324],
+        "songs": [247087410],
         "volume": 0.2,
         "playAll": true,
         "initialDelay": 5000
     },
     "voice": {
         "name": "Google UK English Female",
-        "rate": 0.9,
+        "rate": 1,
         "pitch": 1,
         "volume": 1,
         "welcomeDelay": 4000
     }
 }
+
