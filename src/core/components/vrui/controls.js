@@ -29,6 +29,18 @@ export const controls = {
    
  }
  
+ CS1.ui.controls.addBlasterBall = e => {
+   const sphere = document.createElement('a-sphere');
+   sphere.setAttribute('color','brown');
+   sphere.setAttribute('collectible','affects:energyDial ; value: -10'); 
+   sphere.setAttribute('launchable','');
+   sphere.classList = 'blasterball';
+   const pp = CS1.myPlayer.object3D.position;
+   sphere.object3D.position.set(pp.x,pp.y+4,pp.z);
+   CS1.scene.appendChild(sphere);
+ }
+ 
+ 
     
  // All Beginner Edits Should Be Above Here
 

@@ -41,7 +41,7 @@ module.exports = io => {
         state.players[socket.id].disconnected = true;
 
         setTimeout(_ => {
-          if (state.players[socket.id].disconnected) {
+          if (state.players[socket.id] && state.players[socket.id].disconnected) {
             console.log(
               `Unrecovered connection named ${
                 socket.name

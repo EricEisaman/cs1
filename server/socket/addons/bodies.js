@@ -6,12 +6,14 @@ const bodies = {
    this.state = state;
    const self = this;
     
-   state.bodies = {};
-   state.changedBodies = [];
-   state.collectibles = [];
-   state.lastSocketSentBodies={broadcast:{emit:()=>{}}};
-   state.lateBodies = [];
-    
+   if(Object.keys(state.players).length==0){
+      state.bodies = {};
+      state.changedBodies = [];
+      state.collectibles = [];
+      state.lastSocketSentBodies={broadcast:{emit:()=>{}}};
+      state.lateBodies = [];
+   }
+   
    socket.addonChannel.on('remove-player',function(){
      if(Object.keys(state.players).length===0){
         state.bodies = {};
@@ -22,36 +24,44 @@ const bodies = {
     
    socket.on('new-player',function(){
      console.log('changedBodies length:',state.changedBodies.length);
-     if((Object.keys(state.players).length > 0) ) {
-     let ibs = [];
-     for(name in state.bodies){
-      ibs.push(state.bodies[name]);
+     if( Object.keys(state.players).length > 1 ){
+        
+       let ibs = [];
+       for(name in state.bodies){
+        ibs.push(state.bodies[name]);
+       }
+       if(state.lateBodies.length>0){
+         state.lateBodies.forEach(d=>{
+           socket.broadcast.emit('add-grabbable-primitive',d); 
+         }); 
+       }
+       if(ibs.length>0){
+         socket.emit('initial-bodies-state',ibs);
+         console.log('sending initial bodies state');
+         console.log(ibs);
+       }  
+       
      }
-     if(state.lateBodies.length>0){
-       state.lateBodies.forEach(d=>{
-         socket.broadcast.emit('add-grabbable-primitive',d); 
-       });
-     }
-     if(ibs.length>0)socket.emit('initial-bodies-state',ibs);
-     console.log('sending initial bodies state');
-     }
-     if(Object.keys(state.players).length === 0){
+     if(Object.keys(state.players).length === 1){
       socket.emit('request-for-bodies');
       socket.emit('request-for-collectibles');
+      console.log('requesting bodies and collectibles');
      }else{
-     state.collectibles.forEach((c,index)=>{
-       if(c.collector){
-        socket.emit('collect',{index:index,collector:c.collector});
-        console.log('Sending collectible update to new player:');
-       }
-     });
+         state.collectibles.forEach((c,index)=>{
+           if(c.collector){
+            socket.emit('collect',{index:index,collector:c.collector});
+            console.log('Sending collectible update to new player:');
+           }
+         });
     }   
-   });
+   }); 
     
     
    socket.on('request-collection',function(data){
-    if(!socket.auth)return;
-      console.log(state.collectibles[data.index].collector);
+    if(!socket.auth || !state.collectibles[data.index]){
+      console.log('bad request collection data',data);
+      return;
+    }
       if(!state.collectibles[data.index].collector){
         state.collectibles[data.index].collector = socket.id;
         socket.emit('collect',{index:data.index,collector:socket.id});
@@ -94,9 +104,19 @@ const bodies = {
     
     
     socket.on('add-grabbable-primitive',d=>{
+      console.log('Adding late grabbable');
       state.lateBodies.push(d);
-      state.bodies[Object.keys(state.bodies).length]=d.data;
-      socket.broadcast.emit('add-grabbable-primitive',d);    
+      state.bodies[Object.keys(state.bodies).length]=d.data; 
+      if(d.custom.collectible){
+        let c = {};
+        c.spawns = d.custom.collectible.spawns;
+        c.spawnDelay = d.custom.collectible.spawnDelay;
+        c.collector = false;
+        state.collectibles[Object.keys(state.collectibles).length]=c; 
+        console.log('Adding late collectible');
+        console.log(state.collectibles);
+      } 
+      socket.broadcast.emit('add-grabbable-primitive',d); 
     });
     
    
@@ -104,4 +124,4 @@ const bodies = {
   }
   
 }
-module.exports = bodies; 
+module.exports = bodies;  

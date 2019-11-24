@@ -81,9 +81,17 @@ export default (function grabbable(){
       entity.object3D.scale.set(d.data.scale.x,d.data.scale.y,d.data.scale.z);
       entity.object3D.setRotationFromQuaternion(new THREE.Quaternion(d.data.rotation.x,d.data.rotation.y,d.data.rotation.z,d.data.rotation.w));
       entity.soundState = d.data.soundState;
+      console.log('adding remote late grabbable');
       if(d.custom){
         for (let [key, value] of Object.entries(d.custom)) {
           if(value)entity.setAttribute(key,value);
+          if(key=='collectible'){
+            console.log('detected collectible on remote late grabbable');
+          }
+          if(key=='launchable'){
+            entity.setAttribute('launchable','');
+            console.log('detected launchable on remote late grabbable');
+          }
         }
       }
       CS1.scene.appendChild(entity);
@@ -121,15 +129,25 @@ export default (function grabbable(){
     }
     
     
-    self.name=Object.keys(CS1.grabbables).length;
-    CS1.grabbables[self.name]=self.el;
+    this.name=Object.keys(CS1.grabbables).length;
+    CS1.grabbables[this.name]=self.el;
     
     if(CS1 && CS1.game && CS1.game.hasBegun && !this.data.remote){
-      console.log('Adding a grabbable after game has begun.');
+      console.log('Adding a local late grabbable.');
       const c = {};
       c.color = self.el.getAttribute('color');
       const s = self.el.getAttribute('src');
       if(s) c.src = s;
+      const collectible = self.el.components.collectible;
+      if(collectible){
+        c.collectible = collectible.data;
+        console.log('detected collectible on local late grabbable');
+      }
+      const launchable = self.el.components.launchable;
+      if(launchable){
+        c.launchable = true;
+        console.log('detected launchable on local late grabbable');
+      }  
       onGameStart();
       let d = {
             name: self.name,

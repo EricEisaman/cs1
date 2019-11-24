@@ -6,7 +6,12 @@ export default (()=>{
   init: function () {
 
     CS1.socket.on('launch-sound',name=>{
-      CS1.grabbables[name].components.sound__launch.playSound();
+      if(CS1.grabbables[name] && CS1.grabbables[name].components.sound__launch)
+        CS1.grabbables[name].components.sound__launch.playSound();
+    });
+    
+    CS1.socket.on('launch-complete',name=>{
+      CS1.grabbables[name].components.grabbable.isDragging = false;
     });
     
   },
@@ -24,18 +29,17 @@ export default (()=>{
     
     init: function () {
       
+      this.name = this.el.components.grabbable.name;
+      console.log(`Launchable added with name: ${this.name}.`);
+      
       let self = this;
       
-      self.grabbable = self.el.components.grabbable;
+      this.grabbable = self.el.components.grabbable;
       
       self.el.setAttribute('sound__launch',`src:url(${this.data.launchSound})`);
       
       self.el.addEventListener('grabEnd',e=>{
-        CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} launched grabbable ${self.grabbable.name}!`,channel:'0'});
-        self.grabbable.isDragging = true; // can't grab while it is in launch
-        let launchData = {name:self.grabbable.name,dir:self.getDir()};
-        //console.log(launchData);
-        CS1.socket.emit('launch',launchData);
+        self.launch();
       });
       
       
@@ -55,6 +59,13 @@ export default (()=>{
        return this.grabbable.cursor.object3D.getWorldDirection(); 
      }
      
+    },
+    
+    launch: function(dir){
+      CS1.socket.emit('logall',{msg:`${CS1.myPlayer.name} launched grabbable ${this.el.components.grabbable.name}!`,channel:'0'});
+      this.el.components.grabbable.isDragging = true; // can't grab while it is in launch
+      const launchData = {name:this.name,dir:(dir)?dir:this.getDir()};
+      CS1.socket.emit('launch',launchData);
     }
     
     

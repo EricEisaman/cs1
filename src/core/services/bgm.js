@@ -3,13 +3,7 @@ export function bgmlite(CS1){
   let tracks = config.bgm.songs;
   let audio = document.createElement('audio');
   let bgmUrlStart = 'https://api.soundcloud.com/tracks/';
-  let bgmUrlEnd = '/stream?client_id=b9d11449cd4c64d461b8b5c30650cd06';
-  // audio.src = bgmUrlStart +tracks[0]+ bgmUrlEnd;
-  // audio.crossorigin = 'anonymous';
-  // audio.autoplay = 'autoplay';
-  // if(config.bgm.playAll) audio.loop = true;
-  // audio.volume = 0.00;
-  
+  let bgmUrlEnd = '/stream?client_id=b9d11449cd4c64d461b8b5c30650cd06'; 
   let nextSongBtn = document.createElement('button');
   nextSongBtn.innerHTML = "PLAY NEXT SONG";
   nextSongBtn.zIndex = 100;
@@ -35,10 +29,11 @@ export function bgmlite(CS1){
 let currentSongIndex = 0;
   
   CS1.bgm = {
+    audio:audio,
     tracks: tracks,
     play: ()=>{
-      audio.volume = config.bgm.volume;
       audio.play();
+      audio.volume = config.bgm.volume;
     },
     playTrackIndex: n=>{
       currentSongIndex=n;
@@ -47,6 +42,7 @@ let currentSongIndex = 0;
       audio.load();
       audio.loop = !config.bgm.playAll;
       audio.play();
+      audio.volume = config.bgm.volume;
     },
     pause: ()=>{
       audio.pause();
@@ -59,6 +55,7 @@ let currentSongIndex = 0;
       audio.load();
       audio.loop = !config.bgm.playAll;
       audio.play();
+      audio.volume = config.bgm.volume;
     },
     
   }//end of CS1.bgm definition

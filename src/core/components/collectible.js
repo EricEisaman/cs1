@@ -36,7 +36,7 @@ export default CS1=>{
            CS1.myPlayer.components.player.setSpeed(s);
            console.log('speed boost');
         }else  
-        CS1.hud[collectedEntity.data.affects].changeBy(collectedEntity.data.value);
+        CS1.stats[collectedEntity.data.affects].changeBy(collectedEntity.data.value);
       }
       if( (data.collector!=CS1.socket.id) && (collectedEntity.data.affects=='avatarUpgrade')){  
          console.log(CS1.otherPlayers[data.collector]);
@@ -109,7 +109,10 @@ export default CS1=>{
     this.el.setAttribute('sound__collect',`src:url(${this.data.soundCollect})`);
     if(this.data.soundLoop)this.el.setAttribute('sound__loop',`src:url(${this.data.soundLoop});autoplay:true;loop:true`);
     CS1.collectibles.push(this);
+    console.log('running collectible init');
     this.soundIsPlaying=false;
+    
+    
       
   }, 
 	tick: function()
@@ -135,7 +138,7 @@ export default CS1=>{
       this.el.components.sound__collect.playSound();
       if(this.data.cb)CS1.game[this.data.cb](this.el);
       if(this.data.affects && this.data.affects !== 'avatarUpgrade')
-        CS1.hud[this.data.affects].animateTo(CS1.hud[this.data.affects].value+this.data.value);
+        CS1.stats[this.data.affects].animateTo(CS1.stats[this.data.affects].value+this.data.value);
       this.el.addEventListener('sound-ended',e=>{
         this.soundIsPlaying=false;
         this.pause();   
