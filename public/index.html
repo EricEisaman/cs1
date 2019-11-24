@@ -49,12 +49,12 @@
    <div style="position:absolute">
       <div id="loading-screen"></div>
    </div>
-  
+
   
    <div id="scene-container" style="position:relative; display:none" >
      
      
-     <a-scene environment="preset: default; ground: flat;" game>       
+     <a-scene environment="preset: starry; ground: none;" game>       
        
        
       <a-assets>
@@ -66,12 +66,15 @@
       </a-assets>
        
       <!-- You can use a ground plane or simply add a floor in your scene model. --> 
-<!--       <a-plane id="ground" material="src:#grass; repeat: 700 700; 
+      <a-plane id="ground" material="src:#grass; repeat: 700 700; 
                transparent: true; shader: flat" height="500" width="500" 
-               position="0 0.1 0" rotation="-90 0 0"></a-plane> -->
+               position="0 0.1 0" rotation="-90 0 0"></a-plane>
       
       <!-- Scene Model-->
-    
+      <a-entity id="scene-model" 
+                position="0 0.1 0"
+                shadow="receive: true"
+                gltf-model="url(https://cdn.glitch.com/376724db-dc5f-44ca-af35-36d00838079c%2Fnature_scene.glb?v=1562355917189)"></a-entity>
 
       <!-- Nav Mesh -->
 <!--       <a-entity id="navmesh"
@@ -82,16 +85,17 @@
 
 
       <a-entity grabbable  log="max:10;channel:grab" geometry="primitive: plane" 
-                position="0 2 -6" rotation="0 0 0" scale="2 2 2" 
-                material="color: #890b0b; side:double" text="color: #fff">
+                position="-9.25 2 -11.2" rotation="0 90 0" scale="2 2 2" 
+                material="color: #153D0F; side:double" text="color: #CEA579">
       </a-entity>
        
        
-  <!-- TEMPLATE FOR ADDING YOUR 3D MODELS  -->
-    <a-gltf-model scale="1 1 1"
-                  position="0 0 0" 
-                  src="">
-    </a-gltf-model>    
+     <a-entity gltf-model="https://cdn.glitch.com/8294eaa5-5d27-4cd6-9c0c-ce42d3cabdfc%2Fpotion.glb?v=1566412875364"
+               position="12 0 -13"
+               grabbable
+               id="potion"
+               ></a-entity>  
+       
        
        
   
@@ -102,7 +106,11 @@
      
        
        
-     
+     <a-jukebox position="0 2.2 -8" 
+                scale="2 2 2"
+                tracks="539018871 , 471053673 , 207323417 , 587979555 , 289829014 , 154728402 , 267080399 , 467164248 , 119221738 , 509421603"
+                songs="Old Town Road , Boo'd Up Reggae Remix , See You Again , Sucker Remix , Rockabye , My Cherie Amour Remix , Holy , Take Me Home Country Roads , Camisado , Calma"
+                cs1-jukebox></a-jukebox>
        
        
       <a-entity light="type: ambient; color: #BBB; intensity: 0.4"></a-entity>
@@ -126,3 +134,4 @@
   
 </body>  
 </html>
+
