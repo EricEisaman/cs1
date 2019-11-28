@@ -6,6 +6,8 @@ export default CS1=>{AFRAME.registerComponent('game', {
     CS1.game = this;
     this.isRunning = false;
     
+    CS1.callbacks = {};
+    
     this.determineDevice();
     
     this.name = config.gameName;
