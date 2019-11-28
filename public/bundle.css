@@ -127,7 +127,7 @@ body {
   z-index:100;
   width:100%;
   height:100%;
-  font-size:24px;
+  font-size:22px;
 }
 
 #login-modal {
@@ -145,6 +145,7 @@ body {
 #logo {
   display:block;
   margin:auto;
+  padding-top:20px;
 }
 
 /****** LOGIN MODAL ******/
@@ -164,7 +165,7 @@ body {
 
 .loginmodal-container h3 {
   text-align: center;
-  font-size: 1.0em;
+  font-size: 25px;
   font-family: roboto;
 }
 
@@ -177,7 +178,7 @@ body {
 
 .loginmodal-container .q1, .q2 {
   height: 44px;
-  font-size: 16px;
+  font-size: 22px;
   width: 100%;
   margin-bottom: 10px;
   -webkit-appearance: none;
@@ -201,7 +202,7 @@ body {
 .loginmodal {
   height:36px;
   text-align: center;
-  font-size: 14px;
+  font-size: 22px;
   font-family: 'Arial', sans-serif;
   font-weight: 700;
   padding: 0 8px;
@@ -218,7 +219,7 @@ body {
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
-  font-size: 14px;
+  font-size: 22px;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
@@ -241,7 +242,7 @@ body {
 } 
 
 .login-help{
-  font-size: 12px;
+  font-size: 22px;
 }
 
 .login-btn {
@@ -257,11 +258,25 @@ body {
   display: inline-block;
   font-family: roboto;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .button:hover,
 .button:visited {
   background: #006cba;
   color: #fff;
+}
+
+@media screen and (orientation:landscape) and (max-aspect-ratio: 8/5){
+  
+.loginmodal-container h3 {
+  text-align: center;
+  font-size: 16px;
+  font-family: roboto;
+}
+  
+  #lb {
+    font-size:14px;
+  }  
+  
 }
