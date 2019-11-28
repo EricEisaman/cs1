@@ -57,6 +57,7 @@ export default (function grabbable() {
           return;
         grabbablesData.forEach((d, index) => {
           let b = CS1.grabbables[d.name];
+          if (!b) return;
           if (CS1.debug) {
             console.log("Individual body data from server:");
             console.log(d);
@@ -101,22 +102,36 @@ export default (function grabbable() {
               entity.setAttribute("launchable", "");
               console.log("detected launchable on remote late grabbable");
             }
+            if (key == "postRelease") {
+              entity.setAttribute(
+                "grabbable",
+                `remote:true;postRelease:${value}`
+              );
+              console.log("detected postRelease on remote late grabbable");
+            }
           }
         }
         CS1.scene.appendChild(entity);
       });
-      
-      CS1.socket.on("post-release", grabbableName=>{
-        CS1.grabbables[grabbableName].components.grabbable.postRelease();
+
+      CS1.socket.on("post-release", grabbableName => {
+        if (
+          typeof CS1.callbacks[
+            CS1.grabbables[grabbableName].components.grabbable.data.postRelease
+          ] == "function"
+        )
+          CS1.callbacks[
+            CS1.grabbables[grabbableName].components.grabbable.data.postRelease
+          ](grabbableName);
       });
-      
     }
   }); //end system definition
 
   AFRAME.registerComponent("grabbable", {
     schema: {
       origin: { type: "selector" },
-      remote: { default: false }
+      remote: { default: false },
+      postRelease: { default: "" }
     },
 
     init: function() {
@@ -155,6 +170,9 @@ export default (function grabbable() {
         if (launchable) {
           c.launchable = true;
           console.log("detected launchable on local late grabbable");
+        }
+        if (this.data.postRelease) {
+          c.postRelease = this.data.postRelease;
         }
         onGameStart();
         let d = {
@@ -271,14 +289,15 @@ export default (function grabbable() {
             self.originEl.getAttribute("rotation")
           ); //seems pointless, but will force the event system to notify subscribers
 
-          self.originEl.emit("grabEnd", e);
-          self.originEl.removeState("moving");
-          
-          if(self.postRelease){
-            self.postRelease();
-            CS1.socket.emit("post-release", self.name);  
+          if (self.data.postRelease) {
+            CS1.socket.emit("post-release", self.name);
+            CS1.callbacks[self.data.postRelease](self.name);
           }
-          
+
+          setTimeout(e => {
+            self.originEl.emit("grabEnd", e);
+            self.originEl.removeState("moving");
+          }, 500);
         }
       }
 
@@ -307,8 +326,6 @@ export default (function grabbable() {
           self.originEl.getAttribute("rotation")
         ); //seems pointless, but will force the event system to notify subscribers
       }
-    },
-
-    postRelease: false
+    }
   });
 })();
