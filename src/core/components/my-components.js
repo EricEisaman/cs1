@@ -1,13 +1,12 @@
 export default (()=>{
   
   document.addEventListener('gameStart',e=>{
-      
-         
+       
      
   });
   
   
-  AFRAME.registerComponent('mycomponent', {
+  AFRAME.registerComponent('animate', {
     
     
     schema: {
@@ -16,12 +15,16 @@ export default (()=>{
 
     init: function(){
 
+    },
+    
+    tick: function(t,dt){
+      
+      
     }
     
     
   });
   
-
-
+ 
   
 })()

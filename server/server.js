@@ -1,4 +1,4 @@
-let express = require('express'); 
+let express = require('express');  
 var app = express();  
 var http = require('http').Server(app); 
 var io = require('socket.io')(http);
@@ -10,7 +10,7 @@ app.use(function(req, res, next) {
       if ((req.get('X-Forwarded-Proto') !== 'https')) {
         res.redirect('https://' + req.get('Host') + req.url);
       } else
-        next(); 
+        next();    
     });
 app.get("/", function (request, response) {
   response.sendFile('./public/index.html',{root:'.'});
@@ -23,5 +23,5 @@ http.listen(app.get('port'), function(){
   console.log('listening on port',app.get('port'));
 }); 
    
-                            
+                             
     

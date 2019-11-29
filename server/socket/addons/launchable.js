@@ -26,7 +26,11 @@ const launchable = {
      
      var launchId = setInterval(()=>{
       // TODO: if collision, burst and clearInterval(launchId)
-      if(++ticks > maxTicks)clearInterval(launchId);
+      if(++ticks > maxTicks){
+        clearInterval(launchId);
+        socket.emit('launch-complete',data.name);
+      }
+      if(!b)return; 
       b.position.x -=  d.x;
       b.position.y -=  d.y;
       b.position.z -=  d.z;
