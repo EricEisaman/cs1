@@ -12,6 +12,15 @@ ____
 
 ____
 
+
+
+## Getting Started Video
+
+<a href="https://youtu.be/lKYQ1o2Uc_0" rel="noopener noreferer">![Video Overview](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2FGetting_Started_Video.png?v=1575052424055)</a>
+
+
+____
+
 ## Tech Demo
 
 🍎 Log into the <a href="https://cs1.glitch.me/" noopener noreferer>tech demo</a> with username: **computer** or **science** and password: **1234**.
@@ -27,48 +36,6 @@ ____
 
 ____
 
-## First Steps
-
-I suggest starting with the lessons accompanying the <a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">**CS1 IDE**</a>.
-
-<a href="https://glitch.com/edit/#!/cs1-ide?path=README.md:1:0" rel="noopener noreferer">![CS1 IDE](https://cdn.glitch.com/07af4e76-a723-4969-8e18-7d7bc9f153d8%2Fcs1_ide_logo_256.png?v=1568757168497)</a>
-
-
-____
-## Quick Start 
-
-🍎 Remix this project.
-
-🍎 Add an **ADMIN_KEY** in **.env**, such as:
-```C
-ADMIN_KEY="myAdminPassword1234"
-```
-- Open the server log at Tools/Logs.
-- Insert an empty space on a blank line of **.env** to force reboot.
-- Observe the recorded **ADMIN_KEY** printed next to **admin** in the log.
-- Use the recorded **ADMIN_KEY** when logging into the <a href="https://cs1-admin.glitch.me/" rel="noopener noreferer">CS1 Admin App</a>
-
-🍎 Add **DATABASE_API_PROPERTIES** in **.env**, separated by spaces such as:
-```C
-DATABASE_API_PROPERTIES="LED credits"
-```
-
-🍎 Add **IOT_API_KEY** in **.env** if you are connecting an IoT device:
-```C
-IOT_API_KEY="wejvaYi359qM12"
-```
-🍎 For the admin account, login with admin and your ADMIN_KEY.
-
-🍎 Add additional accounts through the client console.
-```js
-CS1.socket.emit('add-user',{key:[ADMIN_KEY],name:[new username],pw:[new user pw]})
-```
-🍎 After changing any src/ files, in the server Tools/Console run:
-```sh
-pnpm run build
-refresh
-```
-____
 
 ## Overview
 
