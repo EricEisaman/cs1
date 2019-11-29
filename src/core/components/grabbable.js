@@ -57,7 +57,7 @@ export default (function grabbable() {
           return;
         grabbablesData.forEach((d, index) => {
           let b = CS1.grabbables[d.name];
-          if (!b) return;
+          if(!b)return;
           if (CS1.debug) {
             console.log("Individual body data from server:");
             console.log(d);
@@ -103,27 +103,19 @@ export default (function grabbable() {
               console.log("detected launchable on remote late grabbable");
             }
             if (key == "postRelease") {
-              entity.setAttribute(
-                "grabbable",
-                `remote:true;postRelease:${value}`
-              );
+              entity.setAttribute('grabbable',`remote:true;postRelease:${value}`);
               console.log("detected postRelease on remote late grabbable");
             }
           }
         }
         CS1.scene.appendChild(entity);
       });
-
-      CS1.socket.on("post-release", grabbableName => {
-        if (
-          typeof CS1.callbacks[
-            CS1.grabbables[grabbableName].components.grabbable.data.postRelease
-          ] == "function"
-        )
-          CS1.callbacks[
-            CS1.grabbables[grabbableName].components.grabbable.data.postRelease
-          ](grabbableName);
+      
+      CS1.socket.on("post-release", grabbableName=>{
+        if(typeof CS1.callbacks[CS1.grabbables[grabbableName].components.grabbable.data.postRelease]=='function')
+          CS1.callbacks[CS1.grabbables[grabbableName].components.grabbable.data.postRelease](grabbableName);
       });
+      
     }
   }); //end system definition
 
@@ -131,7 +123,7 @@ export default (function grabbable() {
     schema: {
       origin: { type: "selector" },
       remote: { default: false },
-      postRelease: { default: "" }
+      postRelease: { default: '' }
     },
 
     init: function() {
@@ -154,6 +146,8 @@ export default (function grabbable() {
 
       this.name = Object.keys(CS1.grabbables).length;
       CS1.grabbables[this.name] = self.el;
+      
+      
 
       if (CS1 && CS1.game && CS1.game.hasBegun && !this.data.remote) {
         console.log("Adding a local late grabbable.");
@@ -289,15 +283,21 @@ export default (function grabbable() {
             self.originEl.getAttribute("rotation")
           ); //seems pointless, but will force the event system to notify subscribers
 
-          if (self.data.postRelease) {
-            CS1.socket.emit("post-release", self.name);
+          
+          
+          if(self.data.postRelease){
+            CS1.socket.emit("post-release", self.name); 
             CS1.callbacks[self.data.postRelease](self.name);
           }
-
-          setTimeout(e => {
-            self.originEl.emit("grabEnd", e);
+          
+          self.originEl.emit("grabEnd", e);
+            
+          setTimeout(e=>{
             self.originEl.removeState("moving");
-          }, 500);
+          },500);
+          
+          
+          
         }
       }
 
