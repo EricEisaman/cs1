@@ -48,7 +48,7 @@ export const controls = {
     CS1.ui.controls.addMagicPellet = e => {
       const sphere = document.createElement("a-sphere");
       sphere.setAttribute("color", "purple");
-      sphere.setAttribute("radius", "0.3");
+      sphere.setAttribute("scale", "0.3 0.3 0.3");
       sphere.setAttribute("collectible", "affects:magicDial ; value:10");
       sphere.setAttribute("grabbable", "");
       sphere.classList = "magicpellet";
