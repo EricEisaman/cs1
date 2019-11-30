@@ -79,6 +79,7 @@
  display: flex;
  flex-direction: row;
  font-family: Century Gothic, Lato;
+ margin-left: 20px;
 }
 
 #mobile-btn-container{
@@ -220,6 +221,7 @@ body {
   padding: 17px 0px;
   font-family: roboto;
   font-size: 22px;
+  cursor: pointer;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 

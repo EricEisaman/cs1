@@ -11,6 +11,7 @@ const bodies = {
       state.collectibles = [];
       state.lastSocketSentBodies = { broadcast: { emit: () => {} } };
       state.lateBodies = [];
+      console.log("Clearing state from bodies socket addon.");
     }
 
     socket.addonChannel.on("remove-player", function() {
@@ -18,11 +19,16 @@ const bodies = {
         state.bodies = {};
         state.changedBodies = [];
         state.lateBodies = [];
+        state.collectibles = [];
+        state.lastSocketSentBodies = { broadcast: { emit: () => {} } };
+        console.log(
+          "Clearing state from bodies socket addon in remove player handler."
+        );
       }
     });
 
     socket.on("new-player", function() {
-      console.log("changedBodies length:", state.changedBodies.length);
+      //console.log("changedBodies length:", state.changedBodies.length);
       if (Object.keys(state.players).length > 1) {
         let ibs = [];
         for (name in state.bodies) {
@@ -34,9 +40,9 @@ const bodies = {
           });
         }
         if (ibs.length > 0) {
-          socket.emit("initial-bodies-state", ibs);
+          //socket.emit("initial-bodies-state", ibs);
           console.log("sending initial bodies state");
-          console.log(ibs);
+          //console.log(ibs);
         }
       }
       if (Object.keys(state.players).length === 1) {
@@ -113,15 +119,14 @@ const bodies = {
         c.collector = false;
         state.collectibles[Object.keys(state.collectibles).length] = c;
         console.log("Adding late collectible");
-        console.log(state.collectibles);
+        //console.log(state.collectibles);
       }
       socket.broadcast.emit("add-grabbable-primitive", d);
     });
-    
-    socket.on("post-release", grabbableName=>{
+
+    socket.on("post-release", grabbableName => {
       socket.broadcast.emit("post-release", grabbableName);
     });
-    
   }
 };
 module.exports = bodies;

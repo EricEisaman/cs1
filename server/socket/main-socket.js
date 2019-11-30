@@ -41,7 +41,10 @@ module.exports = io => {
         state.players[socket.id].disconnected = true;
 
         setTimeout(_ => {
-          if (state.players[socket.id] && state.players[socket.id].disconnected) {
+          if (
+            state.players[socket.id] &&
+            state.players[socket.id].disconnected
+          ) {
             console.log(
               `Unrecovered connection named ${
                 socket.name
@@ -63,9 +66,12 @@ module.exports = io => {
               .find({ name: socket.name })
               .assign({ isPlaying: false })
               .write();
+            console.log(
+              `There are now ${Object.keys(state.players).length} players.`
+            );
           } else {
             console.log(
-              `Socket check on timeout reauth true, socket.dbid : ${socket.dbid}`
+              `Socket connection recovered for socket.dbid : ${socket.dbid}`
             );
           }
         }, 5000);
@@ -92,12 +98,15 @@ module.exports = io => {
     socket.on("new-player", function(shared_state_data) {
       if (!socket.auth) return;
       console.log("sending players already here");
-      console.log(state.players);
+      //console.log(state.players);
       socket.emit("players-already-here", state.players);
-      console.log("New player has state:", shared_state_data);
+      //console.log("New player has state:", shared_state_data);
       // Add the new player to the object
       shared_state_data.name = socket.name;
       state.players[socket.id] = shared_state_data;
+      console.log(
+        `There are now ${Object.keys(state.players).length} players.`
+      );
       let id = socket.id;
       io.emit("new-player", {
         id: id,
@@ -250,4 +259,3 @@ module.exports = io => {
     }
   });
 };
-
