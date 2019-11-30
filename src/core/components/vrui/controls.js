@@ -49,7 +49,7 @@ export const controls = {
       const sphere = document.createElement("a-sphere");
       sphere.setAttribute("color", "purple");
       sphere.setAttribute("scale", "0.3 0.3 0.3");
-      sphere.setAttribute("collectible", "affects:magicDial ; value:10");
+      sphere.setAttribute("collectible", "affects:magicDial ; value:10; threshold:1.7");
       sphere.setAttribute("grabbable", "");
       sphere.classList = "magicpellet";
       const pp = CS1.myPlayer.object3D.position;
