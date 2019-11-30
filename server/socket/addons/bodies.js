@@ -40,7 +40,7 @@ const bodies = {
           });
         }
         if (ibs.length > 0) {
-          //socket.emit("initial-bodies-state", ibs);
+          socket.emit("initial-bodies-state", ibs);
           console.log("sending initial bodies state");
           //console.log(ibs);
         }
