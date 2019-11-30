@@ -18,6 +18,7 @@ export default (() => {
 	</div>
 </div>
 `;
+    document.title = config.gameName;
     let loginContainer = document.querySelector("#login");
     loginContainer.innerHTML = loginHTML;
     document.querySelector("a-scene").addEventListener("loaded", function() {
