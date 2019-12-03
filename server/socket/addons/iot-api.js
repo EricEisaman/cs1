@@ -5,7 +5,7 @@ const iotAPI = {
   init: socket => {
     
     if(!process.env.DATABASE_API_PROPERTIES){
-     console.log('Add DATABASE_API_PROPERTIES to your .env file, such as DATABASE_API_PROPERTIES="LED credits"');
+     //console.log('Add DATABASE_API_PROPERTIES to your .env file, such as DATABASE_API_PROPERTIES="LED credits"');
      return;
     }
     if(!db.get('iot').value()){ 

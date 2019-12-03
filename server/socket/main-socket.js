@@ -244,9 +244,9 @@ module.exports = io => {
     try {
       //INITIALIZE ADDONS
       addons.forEach(addon => {
-        console.log(
-          `Initializing ${addon.name} for socket id: ${socket.id} ...`
-        );
+        // console.log(
+        //   `Initializing ${addon.name} for socket id: ${socket.id} ...`
+        // );
         addon.init(socket, state);
       });
     } catch (err) {

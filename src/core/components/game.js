@@ -5,6 +5,7 @@ export default CS1=>{AFRAME.registerComponent('game', {
     
     CS1.game = this;
     this.isRunning = false;
+    this.hasBegun = false;
     
     CS1.callbacks = {};
     
