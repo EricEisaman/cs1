@@ -15,24 +15,10 @@
   "avatar": {
     "models": [
       {
-        "type": 2,
-        "url": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_head.glb?v=1566741683664",
-        "lefthand": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_lefthand.glb?v=1566749593952",
-        "righthand": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_righthand.glb?v=1566749593705",
-        "scale": 1,
-        "yOffset": 0,
-        "animations": {
-          "idle": "idle",
-          "walk": "walk"
-        },
-        "msg": {
-          "color": "orange",
-          "offset": "0 1.75 0"
-        }
-      },
-      {
         "type": 1,
         "url": "https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401",
+        "thumbnail":"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fchip.png?v=1567384714024",
+        "name":"Chip",
         "scale": 0.75,
         "yOffset": 0.1,
         "animations": {
@@ -47,6 +33,8 @@
       {
         "type": 1,
         "url": "https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.glb?v=1567388543651",
+        "thumbnail":"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.png?v=1567389128396",
+        "name":"Mel",
         "scale": 0.75,
         "yOffset": 0.1,
         "animations": {
@@ -56,6 +44,24 @@
         "msg": {
           "color": "orange",
           "offset": "0 4 0"
+        }
+      },
+      {
+        "type": 2,
+        "url": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_head.glb?v=1566741683664",
+        "lefthand": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_lefthand.glb?v=1566749593952",
+        "righthand": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_righthand.glb?v=1566749593705",
+        "thumbnail":"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fvr.png?v=1567383953311",
+        "name":"VR-1",
+        "scale": 1,
+        "yOffset": 0,
+        "animations": {
+          "idle": "idle",
+          "walk": "walk"
+        },
+        "msg": {
+          "color": "orange",
+          "offset": "0 1.75 0"
         }
       }
     ]

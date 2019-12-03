@@ -11,6 +11,7 @@ export default CS1=>{
     CS1.socket.on('collect',data=>{
       if(!(CS1.game && CS1.game.hasBegun))return;
       let collectedEntity = CS1.collectibles[data.index];
+      if(!collectedEntity)return;
       if(collectedEntity.el.components.sound__loop)collectedEntity.el.components.sound__loop.pause();
       collectedEntity.el.setAttribute('visible',false);
       //collectedEntity.el.setAttribute('scale','0 0 0');

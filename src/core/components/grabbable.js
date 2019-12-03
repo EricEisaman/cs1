@@ -69,28 +69,28 @@ export default (function grabbable() {
       };
 
       CS1.socket.on("add-grabbable-primitive", d => {
-        if (d.origin == CS1.socket.id) return;
+        if (d.origin == CS1.socket.id || !CS1.game.hasBegun) return;
         const entity = document.createElement(d.type);
         entity.setAttribute("grabbable", "remote:true");
         entity.object3D.position.set(
-          d.data.position.x,
-          d.data.position.y,
-          d.data.position.z
+          d.position.x,
+          d.position.y,
+          d.position.z
         );
         entity.object3D.scale.set(
-          d.data.scale.x,
-          d.data.scale.y,
-          d.data.scale.z
+          d.scale.x,
+          d.scale.y,
+          d.scale.z
         );
         entity.object3D.setRotationFromQuaternion(
           new THREE.Quaternion(
-            d.data.rotation.x,
-            d.data.rotation.y,
-            d.data.rotation.z,
-            d.data.rotation.w
+            d.rotation.x,
+            d.rotation.y,
+            d.rotation.z,
+            d.rotation.w
           )
         );
-        entity.soundState = d.data.soundState;
+        entity.soundState = d.soundState;
         console.log("adding remote late grabbable");
         if (d.custom) {
           for (let [key, value] of Object.entries(d.custom)) {
@@ -169,7 +169,7 @@ export default (function grabbable() {
           c.postRelease = this.data.postRelease;
         }
         onGameStart();
-        let d = {
+        CS1.socket.emit("add-grabbable-primitive", {
           name: self.name,
           position: self.el.object3D.position,
           scale: self.el.object3D.scale,
@@ -179,11 +179,8 @@ export default (function grabbable() {
             z: self.el.object3D.quaternion.z,
             w: self.el.object3D.quaternion.w
           },
-          soundState: self.el.soundState
-        };
-        CS1.socket.emit("add-grabbable-primitive", {
+          soundState: self.el.soundState,
           type: self.el.nodeName,
-          data: d,
           custom: c,
           origin: CS1.socket.id
         });
