@@ -23,11 +23,9 @@ export default (() => {
     loginContainer.innerHTML = loginHTML;
     document.querySelector("a-scene").addEventListener("loaded", function() {
       document.querySelector(".q1").focus();
-      if (!(CS1 && CS1.socket.connected)) {
+      if (!navigator.onLine) {
         document.getElementById("login-msg").innerHTML = "OFFLINE MODE";
-        document
-          .querySelector("#lb")
-          .setAttribute("value", "Play Game Offline");
+        document.querySelector("#lb").setAttribute("value", "Play Game Offline");
       }
     });
     document.getElementById("lb").addEventListener("click", login);
