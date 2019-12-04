@@ -112,7 +112,8 @@ export default (function grabbable() {
       });
       
       CS1.socket.on("post-release", grabbableName=>{
-        if(typeof CS1.callbacks[CS1.grabbables[grabbableName].components.grabbable.data.postRelease]=='function')
+        if(typeof CS1.callbacks[CS1.grabbables[grabbableName].components.grabbable.data.postRelease]=='function' &&
+          CS1.grabbables[grabbableName])
           CS1.callbacks[CS1.grabbables[grabbableName].components.grabbable.data.postRelease](grabbableName);
       });
       
