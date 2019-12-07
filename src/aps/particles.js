@@ -68,6 +68,10 @@ export default(()=>{
     fire: function(){
       this.e.object3D.position.copy(this.el.object3D.position).add(this.data.offset);
       this.p.components.particleplayer.start();
+    },
+    fireAt: function(entity){
+      this.e.object3D.position.copy(entity.object3D.position).add(this.data.offset);
+      this.p.components.particleplayer.start();
     }
     
   });
