@@ -21,6 +21,11 @@ ____
 
 ____
 
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQUJYDleE4LBILr-2V57v_kPAD5TY-X6hnA94fJWl8drADMHHDtMB9BnDUtw7v1N6JmVS1NK_dTYc71/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+____
+
 ## Tech Demo
 
 🍎 Log into the <a href="https://cs1.glitch.me/" noopener noreferer>tech demo</a> with username: **computer** or **science** and password: **1234**.
