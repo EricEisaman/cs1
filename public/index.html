@@ -34,14 +34,14 @@
       rel="shortcut icon"
       href="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_64.png?v=1564891473540"
     />
-
+    
+<!--<script src="brython.js"></script>-->    
     <script src="aframe-v0.9.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/EricEisaman/aframe-keyboard/dist/aframe-keyboard.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
-    <!--     <script src="https://cdn.jsdelivr.net/gh/EricEisaman/aframe-jukebox@v0.1.13/dist/aframe-jukebox.min.js" ></script> -->
     <!-- aframe-jukebox includes the htmlembed component used in vrui in the main bundle -->
     <script src="aframe-jukebox.min.js"></script>
 
@@ -82,7 +82,7 @@
           />
         </a-assets>
 
-        <!-- You can use a ground plane or simply add a floor in your scene model. -->
+        <!-- You can use a ground plane, use the environment ground, or add ground to your scene model. -->
         <a-plane
           id="ground"
           material="src:#grass; repeat: 700 700; 

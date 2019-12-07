@@ -3,7 +3,7 @@
 # CS1 Game Engine
 ____
 
-## Roadmap to version 0.7.0 👣
+## Roadmap to version 1.0.0 👣
 
 🍎 Provide community with a clear goal for our developer experience (DX)
   - follow the entity component system (<a href="https://en.wikipedia.org/wiki/Entity_component_system" rel="noreferer">ECS</a>) paradigm consistent with A-Frame and the underlying browser custom components. ✅
@@ -20,3 +20,8 @@ ____
 🍎 Build a compelling demo with specialized components and custom user data stored in database.
   - Create a lesson on storing and retrieving custom user data using the database.
   - Create a lesson on writing and using custom events.
+  - Create a lesson on integrating with [D3.js](https://d3js.org/) for data visualization.
+
+🍎 Node Graph Flow Based Editor
+- Create with [Litegraph](https://github.com/jagenjo/litegraph.js). (<a href="https://glitch.com/edit/#!/cs1-flow?path=README.md:1:0" noopener noreferer>Early Development</a>)
+  
