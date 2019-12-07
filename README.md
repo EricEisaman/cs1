@@ -1,7 +1,7 @@
 <img src="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_128.png?v=1564891473860">
 
 # CS1 Game Engine
-#### version 0.7.06
+#### version 0.7.07
 ____
 
 ## Mission
@@ -43,9 +43,6 @@ ____
   
 🍎 Using [navigation mesh](https://www.donmccurdy.com/2017/08/20/creating-a-nav-mesh-for-a-webvr-scene/) based pathfinding.
   
-🍎 Integrated with [D3.js](https://d3js.org/) for data visualization.
-- Make examples. (TODO)
-  
 🍎 Enables easy use of shaders created with [Shader Frog](https://shaderfrog.com/).
 - Include the desired shader json file in your build by importing in shader-frog.js
 - Declaratively implement the shader-frog component in your HTML.
@@ -68,15 +65,6 @@ ____
 
 🍎 **grabbable** items can be launched with the **launchable** component.
 
-🍎 [A-Frame Effects](https://github.com/wizgrav/aframe-effects)
-- bloom
-- glitch
-- godrays
-- fxaa
-
-🍎 [A-Frame Particle Player](https://github.com/supermedium/aframe-particleplayer-component)
-- JSON particles bundling
-
 🍎 BGM System (named exports)
 - via SoundCloud
   - bgmlite: simple no UI, no server interaction
@@ -86,8 +74,10 @@ ____
 - instantiated for all players
 - avatars and animation clips can be changed dynamically
 
-🍎 Node Graph Flow Based Editor
-- Create with [Litegraph](https://github.com/jagenjo/litegraph.js). (<a href="https://glitch.com/edit/#!/cs1-flow?path=README.md:1:0" noopener noreferer>Early Development</a>)
+
+🍎 Particles Component
+- implements [A-Frame Particle Player](https://github.com/supermedium/aframe-particleplayer-component)
+- bundles particle animations stored as JSON
 
 🍎 Cloud Component
 - vertex animation
