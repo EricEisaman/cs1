@@ -7,6 +7,7 @@ addons.push(require("./addons/iot-api"));
 addons.push(require("./addons/launchable"));
 addons.push(require("./addons/admin"));
 addons.push(require("./addons/jukebox"));
+addons.push(require("./addons/particles"));
 let myAddonFailed = false;
 try {
   addons.push(require("./addons/my-addon"));

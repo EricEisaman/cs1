@@ -14,11 +14,39 @@ AFRAME.registerComponent('jump', {
     this.jumpEvent = new Event('jump');
     this.landEvent = new Event('land');
     this.jumpDirection = new THREE.Vector3();
-    document.addEventListener('keypress', e=>{
-      if(e.code=='Space' && !this.el.isJumping){
-        this.jump();
-      }
-    });
+    switch(CS1.device){
+      case 'Oculus Quest':
+        const lh = CS1.myPlayer.components.player.lh.components["oculus-touch-controls"];
+        if(AFRAME.utils.device.checkHeadsetConnected()){
+          lh.el.addEventListener('xbuttondown',e=>{
+             this.jump();
+          });
+        }
+        break;
+      case 'Standard':
+        document.addEventListener('keydown', e=>{
+          if(e.code=='Space' && !this.el.isJumping){
+            this.jump();
+          }
+        });
+        break;
+      case 'Mobile':
+        document.body.addEventListener("touchstart", e => {
+              let now = new Date().getTime();
+              let timesince = now - this.lastJumpTap;
+
+              if (timesince < 300 && timesince > 0) {
+                // double tap
+                this.jump();
+     
+              } else {
+                // too much time to be a doubletap
+              }
+              this.lastJumpTap = new Date().getTime();
+            });
+        break;
+    }
+    
   },
   
   tick: function(t,dt){

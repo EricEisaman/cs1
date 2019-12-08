@@ -199,6 +199,11 @@ export default CS1=>{
     }
   
     CS1.__removePlayer = id=>{
+      CS1.scene.dispatchEvent(new CustomEvent('before-remove-player',{
+        detail:{
+          player: CS1.otherPlayers[id]
+        }
+      }));
       CS1.otherPlayers[id].parentNode.removeChild(CS1.otherPlayers[id]);
       delete CS1.otherPlayers[id]; 
       CS1.sounds.playerLeft.play();
