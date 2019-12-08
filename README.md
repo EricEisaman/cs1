@@ -152,5 +152,11 @@ ____
 
 🍎 Please post any issues to <a href="https://github.com/EricEisaman/cs1/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc" noopener noreferer>GitHub</a>.
 
+____
+
+## Credits
+
+🙏 Big thanks to [all the fine people](./docs/CREDITS.md) who contributed to the underlying technologies!
+
     
     
