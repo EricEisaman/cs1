@@ -148,6 +148,18 @@ ____
 
 
 ____
+## IoT
+
+![iot icon](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2Fiot.png?v=1575817305056)[IoT API](./docs/IOT-API.md)
+
+
+____
+## Roadmap
+
+🛣️[Road to v1.0.0](./docs/ROADMAP.md)
+
+
+____
 ## License
 
 ![MIT License logo](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2F64px-License_icon-mit.png?v=1575813934631)[Copyright (c) 2019 Eric Eisaman](LICENSE.md)
