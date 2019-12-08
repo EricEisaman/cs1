@@ -11,6 +11,8 @@ AFRAME.registerComponent('jump', {
     this.el.isJumping = false;
     this.forwardVelocity = -this.data.speed;
     this.verticalVelocity = 0;
+    this.jumpEvent = new Event('jump');
+    this.landEvent = new Event('land');
     document.addEventListener('keypress', e=>{
       if(e.code=='Space' && !this.el.isJumping){
         this.jump();
@@ -38,6 +40,7 @@ AFRAME.registerComponent('jump', {
     this.el.components['movement-controls'].pause();
     this.el.isJumping = true;
     this.verticalVelocity = s?s:this.data.speed;
+    this.el.dispatchEvent(this.jumpEvent);
   },
   
   land: function(){
@@ -45,6 +48,7 @@ AFRAME.registerComponent('jump', {
     this.verticalVelocity = 0;
     this.el.object3D.position.y = 0;
     this.el.components['movement-controls'].play();
+    this.el.dispatchEvent(this.landEvent);  
   }
   
 });

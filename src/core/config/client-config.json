@@ -72,6 +72,12 @@
     },
     "playerLeft": {
       "url": "https://cdn.glitch.com/c6f972e4-0e71-47c3-85c6-30f0ce9dcba1%2Fthunder.mp3?v=1562601088647"
+    },
+    "jump":{
+      "url":"https://cdn.glitch.com/826d99b1-f98c-4ee8-bbe5-abdd27784a77%2Fjump.mp3?v=1575808936991"
+    },
+    "land":{
+      "url":"https://cdn.glitch.com/826d99b1-f98c-4ee8-bbe5-abdd27784a77%2Fland.mp3?v=1575809351148"
     }
   },
   "bgm": {
