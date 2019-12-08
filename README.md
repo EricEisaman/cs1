@@ -142,6 +142,10 @@ ____
 
 
 ____
+## License
+
+[MIT](LICENSE.md)
+____
 
 ## Issues
 
