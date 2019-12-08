@@ -40,6 +40,7 @@ import launchrow from './demo/components/launchrow';
 import vrui from './core/components/vrui/vrui';
 import chat from './core/components/chat';
 import cs1Jukebox from './core/components/cs1-jukebox';
+import jump from './core/components/jump';
 import mycomponents from './core/components/my-components';
 
 //supress console.warn
