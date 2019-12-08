@@ -23,6 +23,8 @@ Thanks to **WandererOU** for the [aframe-keyboard](https://github.com/WandererOU
 Thanks to **supermedium** for the [aframe-environment-component](https://github.com/supermedium/aframe-environment-component)!
 
 
+____
 
+## ![Home](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2FHome.png?v=1575814724026)[Home](README.md)
 
 
