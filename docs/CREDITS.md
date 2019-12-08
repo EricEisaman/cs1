@@ -24,5 +24,9 @@ Thanks to **supermedium** for the [aframe-environment-component](https://github.
 
 
 ____
+## Graphics
+
+Thanks to **srip** for [icons](https://www.flaticon.com/authors/srip)!
+___
 
 ## ![Home](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2FHome.png?v=1575814724026)[Home](../README.md)
