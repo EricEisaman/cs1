@@ -13,6 +13,7 @@ AFRAME.registerComponent('jump', {
     this.verticalVelocity = 0;
     this.jumpEvent = new Event('jump');
     this.landEvent = new Event('land');
+    this.jumpDirection = new THREE.Vector3();
     document.addEventListener('keypress', e=>{
       if(e.code=='Space' && !this.el.isJumping){
         this.jump();
@@ -23,12 +24,7 @@ AFRAME.registerComponent('jump', {
   tick: function(t,dt){
     if(this.el.isJumping){
       this.verticalVelocity+=this.data.g*dt/1000;
-      const dirVec = new THREE.Vector3();
-      CS1.cam.object3D.getWorldDirection(dirVec);
-      dirVec.y = (dirVec.y>=0)?-0.02:dirVec.y;
-      dirVec.x /= 2;
-      dirVec.z /= 2;
-      this.el.object3D.position.addScaledVector(dirVec,this.forwardVelocity*dt/1500);
+      this.el.object3D.position.addScaledVector(this.jumpDirection,this.forwardVelocity*dt/1500);
       this.el.object3D.translateY(this.verticalVelocity*dt/1000);
       if(this.verticalVelocity<0 && this.el.object3D.position.y<=0){
         this.land();
@@ -39,6 +35,10 @@ AFRAME.registerComponent('jump', {
   jump: function(s){
     this.el.components['movement-controls'].pause();
     this.el.isJumping = true;
+    CS1.cam.object3D.getWorldDirection(this.jumpDirection);
+    this.jumpDirection.y = (this.jumpDirection.y>=0)?-0.02:this.jumpDirection.y;
+    this.jumpDirection.x /= 2;
+    this.jumpDirection.z /= 2;
     this.verticalVelocity = s?s:this.data.speed;
     this.el.dispatchEvent(this.jumpEvent);
   },
