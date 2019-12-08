@@ -43,4 +43,7 @@ References an array of allowed keys from **process.env.DATABASE_API_PROPERTIES**
 Implements a **maxstore** variable to limit the size of any saved data.
 
 
+____
+
+## ![Home](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2FHome.png?v=1575814724026)[Home](README.md)
 
