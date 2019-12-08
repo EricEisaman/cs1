@@ -1,6 +1,6 @@
 {
   "name": "CS1",
-  "version": "0.7.08",
+  "version": "0.7.09",
   "description": "Game Engine for making 3D multiplayer games in JavaScript.",
   "main": "server/server.js",
   "scripts": {
