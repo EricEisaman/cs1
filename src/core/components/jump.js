@@ -22,7 +22,7 @@ AFRAME.registerComponent('jump', {
     if(this.el.isJumping){
       this.verticalVelocity+=this.data.g*dt/1000;
       const dirVec = new THREE.Vector3();
-	  CS1.cam.object3D.getWorldDirection(dirVec);
+      CS1.cam.object3D.getWorldDirection(dirVec);
       dirVec.y = (dirVec.y>=0)?-0.02:dirVec.y;
       dirVec.x /= 2;
       dirVec.z /= 2;
