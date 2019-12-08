@@ -8,3 +8,4 @@ relative_links:
 include:
   - README.md
   - LICENSE.md
+  - ./docs/CREDITS.md
