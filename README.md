@@ -144,7 +144,7 @@ ____
 ____
 ## License
 
-🍎 ![MIT License logo](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2F64px-License_icon-mit.png?v=1575813934631) [MIT](LICENSE.md)
+[![MIT License logo](https://cdn.glitch.com/162b879e-fd42-40d9-8519-671d783b8c70%2F64px-License_icon-mit.png?v=1575813934631)](LICENSE.md)
 
 ____
 
