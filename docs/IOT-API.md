@@ -11,9 +11,9 @@ ____
 # Example Implementation
 ____
 
-# Client Side
+**Client Side**
  
-## 💾 Remotely control the IoT Device
+**💾 Remotely control the IoT Device**
 
 ```js
 //This is the callback function run when your data arrives from the database.
@@ -30,7 +30,7 @@ function onResponse(status){
 CS1.db.set({LED : 'on'} , onResponse)
 ```
 
-## 💾 Get the current state of the IoT Device
+**💾 Get the current state of the IoT Device**
 
 ```js
 //This is the callback function run when your data arrives from the database.
@@ -42,15 +42,15 @@ CS1.db.get('LED', onResponse);
 ```
 
 
-# Server Side
+**Server Side**
  
-## 💾 In this example, the server mediates communication between a polling IoT Device and the 3d application's client socket. 
+**💾 In this example, the server mediates communication between a polling IoT Device and the 3d application's client socket.**
 
-##  💎 If the IoT device can support a secure websocket connection, it would be preferable over polling.
+**💎 If the IoT device can support a secure websocket connection, it would be preferable over polling.**
 
 Note: the polling period should not be less than 3500 milliseconds to avoid hitting the hourly request limit for Glitch.
 
-# On IoT Device  
+**On IoT Device**  
 [Example sketch at GitHub](https://github.com/EricEisaman/esp8266/blob/master/ino/cs1-iot.ino)
 
 Example for remote control of an **ESP8266 LED**.
