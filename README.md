@@ -162,7 +162,7 @@ ____
 ____
 ## Wiki
 
-<a href="https://github.com/EricEisaman/cs1/wiki" rel="noopener noreferer">CS1 Game Engine Wiki</a>
+<a href="https://github.com/EricEisaman/cs1/wiki" rel="noopener noreferer" target="_blank">CS1 Game Engine Wiki</a>
 
 
 ____
