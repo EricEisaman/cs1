@@ -162,7 +162,7 @@ ____
 ____
 ## Wiki
 
-[CS1 Game Engine Wiki](../../cs1/wiki)
+[CS1 Game Engine Wiki](https://github.com/EricEisaman/cs1/wiki)
 
 ____
 ## License
