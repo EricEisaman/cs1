@@ -35,7 +35,9 @@ AFRAME.registerComponent('jump', {
               let now = new Date().getTime();
               let timesince = now - this.lastJumpTap;
 
-              if (timesince < 300 && timesince > 0) {
+              if (timesince < 300 && 
+                  timesince > 0  &&
+                  e.changedTouches[0].pageY > window.innerHeight/2) {
                 // double tap
                 this.jump();
      
