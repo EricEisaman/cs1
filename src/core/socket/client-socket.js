@@ -45,12 +45,11 @@ export default CS1=>{
   });
   
   socket.on('anim', data=>{
-    let clips = ['idle','walk'];
     if(CS1.otherPlayers[data.id]){
       
-      CS1.otherPlayers[data.id].isWalking = data.anim;
+      CS1.otherPlayers[data.id].isWalking = (data.anim=='walk');
       if(CS1.otherPlayers[data.id].avatarType===1)
-        CS1.otherPlayers[data.id].firstElementChild.setAttribute('animation-mixer',`clip:${clips[data.anim]}`);
+        CS1.otherPlayers[data.id].firstElementChild.setAttribute('animation-mixer',`clip:${data.anim}`);
       
     }
   });
