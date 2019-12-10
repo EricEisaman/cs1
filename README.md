@@ -1,7 +1,7 @@
 <img src="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_128.png?v=1564891473860">
 
 # CS1 Game Engine
-#### version 0.7.13
+#### version 0.7.14
 ____
 
 ## Mission
@@ -157,12 +157,6 @@ ____
 ## Roadmap
 
 🛣️[Road to v1.0.0](./docs/ROADMAP.md)
-
-
-____
-## Wiki
-
-<a href="https://github.com/EricEisaman/cs1/wiki" rel="noopener noreferer" target="_blank">CS1 Game Engine Wiki</a>
 
 
 ____

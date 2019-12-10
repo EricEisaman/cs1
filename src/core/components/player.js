@@ -386,7 +386,7 @@ export default CS1=>{
            case 83:
            case 40:
              if(!this.isWalking){
-               CS1.socket.emit('anim',1);
+               CS1.socket.emit('anim','walk');
                this.isWalking=true;    
              }       
          }
@@ -398,7 +398,7 @@ export default CS1=>{
            case 38:
            case 83:
            case 40:
-             CS1.socket.emit('anim',0);
+             CS1.socket.emit('anim','idle');
              this.isWalking=false;
          }
       });
@@ -406,12 +406,12 @@ export default CS1=>{
     setTouchCtls: function(){
       window.addEventListener('touchstart',e=>{
         if(!this.isWalking){
-               CS1.socket.emit('anim',1);
+               CS1.socket.emit('anim','walk');
                this.isWalking=true;    
              }    
       });
       window.addEventListener('touchend',e=>{
-         CS1.socket.emit('anim',0);
+         CS1.socket.emit('anim','idle');
          this.isWalking=false;
       });
     },
@@ -427,22 +427,22 @@ export default CS1=>{
         if(AFRAME.utils.device.checkHeadsetConnected()){
           lh.el.addEventListener('thumbsticktouchstart',e=>{
              if(!this.isWalking){
-                   CS1.socket.emit('anim',1);
+                   CS1.socket.emit('anim','walk');
                    this.isWalking=true;    
                  }   
           });
           lh.el.addEventListener('thumbsticktouchend',e=>{
-             CS1.socket.emit('anim',0);
+             CS1.socket.emit('anim','idle');
              this.isWalking=false; 
           });
           rh.el.addEventListener('thumbsticktouchstart',e=>{
              if(!this.isWalking){
-                   CS1.socket.emit('anim',1);
+                   CS1.socket.emit('anim','walk');
                    this.isWalking=true;    
                  }   
           });
           rh.el.addEventListener('thumbsticktouchend',e=>{
-             CS1.socket.emit('anim',0);
+             CS1.socket.emit('anim','idle');
              this.isWalking=false; 
           });
         }
