@@ -1,4 +1,4 @@
-
+import config from "../../../../.data/client-config.json";
 import styles from './styles.html';
 import panels from './panels.html';
 import {controls} from './controls';
@@ -23,6 +23,7 @@ AFRAME.registerSystem('vrui', {
     ec.setAttribute('vrui','');
     ec.id = 'embed-container';
     ec.innerHTML = panels;
+    ec.setAttribute('scale',`${config.vrui.scale} ${config.vrui.scale} ${config.vrui.scale}`);
     let scn = document.querySelector('a-scene');
     scn.appendChild(ec);
         
@@ -47,7 +48,7 @@ AFRAME.registerSystem('vrui', {
     let scn = document.querySelector('a-scene');
     let ctr = document.querySelector('#embed-container');
     ctr.setAttribute('visible',false);
-    ctr.setAttribute('position','0 0.3 0');
+    ctr.setAttribute('position',config.vrui.offset);
     CS1.myPlayer.add(ctr);
     CS1.stats.container = ctr;
     let m = document.querySelector('#main');
