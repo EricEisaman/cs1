@@ -70,14 +70,10 @@ export default CS1 => {
       if (CS1.device == "Oculus Quest") {
         CS1.myPlayer.leftHand = CS1.myPlayer.components.player.lh;
         CS1.myPlayer.rightHand = CS1.myPlayer.components.player.rh;
-        CS1.socket.emit("logall", {
-          msg: `${CS1.myPlayer.name} is playing with an Oculus VR device!`,
-          channel: "0"
-        });
       }
-
+      
       CS1.game.hasBegun = true;
-
+      
       // Create a new event
       let event = new CustomEvent("gameStart", {
         detail: {
@@ -90,6 +86,13 @@ export default CS1 => {
 
       // Dispatch the gameStart event
       document.body.dispatchEvent(event);
+      
+      CS1.socket.emit("logall", {
+          msg: `${CS1.myPlayer.name} is playing with a ${CS1.device} device!`,
+          channel: "grab"
+      });
+      
+      
     },
 
     playerDistanceTo: function(entity) {
@@ -105,7 +108,6 @@ export default CS1 => {
     mobileSetup: function(){
       CS1.myPlayer.cursor = document.querySelector("#cam-cursor");
             CS1.device = "Mobile";
-            CS1.log("Mobile");
             CS1.scene.setAttribute("vr-mode-ui", "enabled: false");
             CS1.mylatesttap = 0;
             let mbc = document.querySelector("#mobile-btn-container");
@@ -195,7 +197,7 @@ export default CS1 => {
       self = this;
       if (navigator.xr) {
         navigator.xr.isSessionSupported("immersive-vr").then(vrDevice => {
-          if(vrDevice){
+          if(vrDevice&&navigator.userAgent.includes('OculusBrowser')){
             self.oculusSetup();
           }else if(AFRAME.utils.device.isMobile()){
             self.mobileSetup();
