@@ -1,7 +1,7 @@
 const db = require("../db/db");
 const uuidv4 = require("uuid/v4");
 let addons = [];
-addons.push(require("./addons/userdata-socket"));
+addons.push(require("./addons/userdata"));
 addons.push(require("./addons/bodies"));
 addons.push(require("./addons/iot-api"));
 addons.push(require("./addons/launchable"));
