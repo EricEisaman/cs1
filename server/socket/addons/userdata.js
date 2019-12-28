@@ -36,12 +36,12 @@ let userdataSocket = {
       console.log(d);
       let result = db.get('users').find({id:socket.dbid}).assign(d).write();
       if(result && typeof cb == "function"){
-        cb('success');
-        let msg = 'Userdata save was a success!'
+        cb({success:true});
+        let msg = `Userdata ${key} save was a success!`;
         console.log(msg);
       }else{
-        cb('fail');
-        let msg = 'Userdata save was attempted but failed!'
+        let msg = `Userdata ${key} save was attempted but failed!`;
+        cb({success:false,error:msg});
         console.log(msg);
       }
       
@@ -53,11 +53,11 @@ let userdataSocket = {
       //console.log(`Attempting to get user.${key} for user with id: ${socket.dbid}`);
       let result = db.get('users').find({id:socket.dbid}).value()[key];
       if(result && typeof cb == "function"){
-        cb(result);
+        cb({success:true,value:result});
       }else{
-        socket.emit('db-fail',key);
-        let msg = `Failed to retrieve user.${key} from database.`
-        socket.emit('log',msg);
+        let msg = `Userdata ${key} retrieval was attempted but failed!`;  
+        socket.emit({success:false,error:msg});
+        console.log(msg);
       }  
    });
    
