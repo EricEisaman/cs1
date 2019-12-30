@@ -11,6 +11,25 @@ AFRAME.registerComponent('chat', {
   
   init: function(){
     
+    CS1.socket.on('dm', d=>{
+    
+      CS1.log(`${d.name} - ${d.msg}`);
+      const m = document.createElement('li');
+      m.innerHTML=`<font color=${CS1.utils.toColor(CS1.utils.stringToInt(d.name))}>${d.name}</font> - ${d.msg}`;
+      document.querySelector('#messages').appendChild(m);
+      if(CS1.playDMSound)CS1.sounds.tada.play();
+    
+    });
+    
+    
+    CS1.socket.on('msg',data=>{
+      
+      if(CS1.game.hasBegun){
+        CS1.__setPlayerMessage(data);
+      }
+       
+    });
+    
     
     
     this.container = document.createElement('a-entity');
@@ -59,7 +78,13 @@ AFRAME.registerComponent('chat', {
                  e.classList.remove('collidable')
                 }) 
             self.keyboard.components['a-keyboard'].pause();
-            document.removeEventListener('a-keyboard-update', updateInput)
+            document.removeEventListener('a-keyboard-update', updateInput);
+            if(self.value.startsWith('@')){
+               const name = self.value.substring(1 , self.value.indexOf(' '));
+               const msg = self.value.substring(self.value.indexOf(' ')+1 , self.value.length);
+               CS1.socket.emit('dm',{msg:msg,name:name});
+               return;
+            }
             CS1.socket.emit('msg',{msg:self.value});
             dummy.blur(); 
       }
@@ -94,6 +119,12 @@ AFRAME.registerComponent('chat', {
                 });
             self.keyboard.components['a-keyboard'].pause();
             document.removeEventListener('a-keyboard-update', updateInputQuest)
+            if(self.value.startsWith('@')){
+               const name = self.value.substring(1 , self.value.indexOf(' ')-1);
+               const msg = self.value.substring(self.value.indexOf(' ')+1 , self.value.length-1);
+               CS1.socket.emit('dm',{msg:msg,name:name});
+               return;
+            }
             CS1.socket.emit('msg',{msg:self.value});
       }
       
@@ -173,6 +204,12 @@ AFRAME.registerComponent('chat', {
           CS1.chatInput.addEventListener('keydown',e=>{
             switch(e.keyCode){
               case 13:
+                if(CS1.chatInput.value.startsWith('@')){
+                   const name = CS1.chatInput.value.substring(1 , CS1.chatInput.value.indexOf(' ')-1);
+                   const msg = CS1.chatInput.value.substring(CS1.chatInput.value.indexOf(' ')+1 , CS1.chatInput.value.length-1);
+                   CS1.socket.emit('dm',{msg:msg,name:name});
+                   return;
+                }
                 CS1.socket.emit('msg',{msg:CS1.chatInput.value});
                 CS1.chatInput.style.zIndex = -1000;
                 CS1.chatInput.style.top = '-100px';

@@ -134,6 +134,15 @@ module.exports = io => {
         socket.broadcast.emit("msg", { id: socket.id, msg: data.msg });
       }
     });
+    socket.on('dm',d=>{
+   
+       const id = Object.keys(state.players).filter(key=>{
+               return state.players[key].name == d.name
+              });
+       if(id)
+         socket.broadcast.to(id).emit('dm',{msg:d.msg,name:socket.name});
+
+     });
     socket.on("anim", function(data) {
       socket.broadcast.emit("anim", { id: socket.id, anim: data });
     });
