@@ -114,19 +114,25 @@ export const controls = {
     const m1b1 = document.querySelector("#menu1-b1");
     if (m1b1)
       m1b1.onclick = e => {
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
         CS1.__display__stats();
       };
 
     const m1b2 = document.querySelector("#menu1-b2");
     if (m1b2)
       m1b2.onclick = e => {
-        m.innerHTML = p2.innerHTML;
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
+        m.appendChild(p2);
       };
 
     const m1b3 = document.querySelector("#menu1-b3");
     if (m1b3)
       m1b3.onclick = e => {
-        m.innerHTML = p3.innerHTML;
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
+        m.appendChild(p3);
         const mbs = document.querySelectorAll(".main button ,.main.imgLink");
         if (mbs)
           mbs.forEach(b => {
@@ -137,7 +143,9 @@ export const controls = {
     const m1b4 = document.querySelector("#menu1-b4");
     if (m1b4)
       m1b4.onclick = e => {
-        m.innerHTML = p4.innerHTML;
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
+        m.appendChild(p4);
       };
     
     const m2b1 = document.querySelector("#menu2-b1");
