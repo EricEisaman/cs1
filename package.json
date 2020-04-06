@@ -30,7 +30,7 @@
     "lowdb": "^1.x"
   },
   "engines": {
-    "node": "10.x"
+    "node": "^12.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/cs1"
